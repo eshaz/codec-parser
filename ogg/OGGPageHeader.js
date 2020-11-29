@@ -1,16 +1,18 @@
 /* Copyright 2020 Ethan Halsall
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
+    
+    This file is part of isobmff-audio.
+    
+    isobmff-audio is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
+    isobmff-audio is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
@@ -48,9 +50,9 @@ L   n   Segment table (n=page_segments+26).
         
 */
 
-export default class OGGPageHeader {
-  static OggS = 0x4f676753;
+const OggS = 0x4f676753;
 
+export default class OGGPageHeader {
   static getHeader(buffer) {
     // Must be at least 28 bytes.
     if (buffer.length < 28) return null;
@@ -63,7 +65,7 @@ export default class OGGPageHeader {
 
     // Bytes (1-4 of 28)
     // Frame sync (must equal OggS): `AAAAAAAA|AAAAAAAA|AAAAAAAA|AAAAAAAA`:
-    if (view.getUint32(0) !== OGGPageHeader.OggS) {
+    if (view.getUint32(0) !== OggS) {
       return null;
     }
 

@@ -1,16 +1,18 @@
 /* Copyright 2020 Ethan Halsall
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
+    
+    This file is part of isobmff-audio.
+    
+    isobmff-audio is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
+    isobmff-audio is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
@@ -41,79 +43,78 @@ Q 	16 	CRC if protection absent is 0
 
 import CodecHeader from "../CodecHeader";
 
+const mpegVersion = {
+  0b00000000: "MPEG-4",
+  0b00001000: "MPEG-2",
+};
+
+const layer = {
+  0b00000000: "valid",
+  0b00000010: "bad",
+  0b00000100: "bad",
+  0b00000110: "bad",
+};
+
+const protection = {
+  0b00000000: "16bit CRC",
+  0b00000001: "none",
+};
+
+const profile = {
+  0b00000000: "AAC Main",
+  0b01000000: "AAC LC (Low Complexity)",
+  0b10000000: "AAC SSR (Scalable Sample Rate)",
+  0b11000000: "AAC LTP (Long Term Prediction)",
+};
+
+const sampleRates = {
+  0b00000000: "96000",
+  0b00000100: "88200",
+  0b00001000: "64000",
+  0b00001100: "48000",
+  0b00010000: "44100",
+  0b00010100: "32000",
+  0b00011000: "24000",
+  0b00011100: "22050",
+  0b00100000: "16000",
+  0b00100100: "12000",
+  0b00101000: "11025",
+  0b00101100: "8000",
+  0b00110000: "7350",
+  0b00110100: "reserved",
+  0b00111000: "reserved",
+  0b00111100: "frequency is written explicitly",
+};
+
+const channelMode = {
+  0b000000000: { channels: 0, description: "Defined in AOT Specific Config" },
+  0b001000000: { channels: 1, description: "front-center" },
+  0b010000000: { channels: 2, description: "front-left, front-right" },
+  0b011000000: {
+    channels: 3,
+    description: "front-center, front-left, front-right",
+  },
+  0b100000000: {
+    channels: 4,
+    description: "front-center, front-left, front-right, back-center",
+  },
+  0b101000000: {
+    channels: 5,
+    description: "front-center, front-left, front-right, back-left, back-right",
+  },
+  0b110000000: {
+    channels: 6,
+    description:
+      "front-center, front-left, front-right, back-left, back-right, LFE-channel",
+  },
+  0b111000000: {
+    channels: 8,
+    description:
+      "front-center, front-left, front-right, side-left, side-right, back-left, back-right, LFE-channel",
+  },
+};
+
 export default class AACHeader extends CodecHeader {
-  static mpegVersion = {
-    0b00000000: "MPEG-4",
-    0b00001000: "MPEG-2",
-  };
-
-  static layer = {
-    0b00000000: "valid",
-    0b00000010: "bad",
-    0b00000100: "bad",
-    0b00000110: "bad",
-  };
-
-  static protection = {
-    0b00000000: "16bit CRC",
-    0b00000001: "none",
-  };
-
-  static profile = {
-    0b00000000: "AAC Main",
-    0b01000000: "AAC LC (Low Complexity)",
-    0b10000000: "AAC SSR (Scalable Sample Rate)",
-    0b11000000: "AAC LTP (Long Term Prediction)",
-  };
-
-  static sampleRates = {
-    0b00000000: "96000",
-    0b00000100: "88200",
-    0b00001000: "64000",
-    0b00001100: "48000",
-    0b00010000: "44100",
-    0b00010100: "32000",
-    0b00011000: "24000",
-    0b00011100: "22050",
-    0b00100000: "16000",
-    0b00100100: "12000",
-    0b00101000: "11025",
-    0b00101100: "8000",
-    0b00110000: "7350",
-    0b00110100: "reserved",
-    0b00111000: "reserved",
-    0b00111100: "frequency is written explicitly",
-  };
-
-  static channelMode = {
-    0b000000000: { channels: 0, description: "Defined in AOT Specific Config" },
-    0b001000000: { channels: 1, description: "front-center" },
-    0b010000000: { channels: 2, description: "front-left, front-right" },
-    0b011000000: {
-      channels: 3,
-      description: "front-center, front-left, front-right",
-    },
-    0b100000000: {
-      channels: 4,
-      description: "front-center, front-left, front-right, back-center",
-    },
-    0b101000000: {
-      channels: 5,
-      description:
-        "front-center, front-left, front-right, back-left, back-right",
-    },
-    0b110000000: {
-      channels: 6,
-      description:
-        "front-center, front-left, front-right, back-left, back-right, LFE-channel",
-    },
-    0b111000000: {
-      channels: 8,
-      description:
-        "front-center, front-left, front-right, side-left, side-right, back-left, back-right, LFE-channel",
-    },
-  };
-
   static getHeader(buffer) {
     // Must be at least seven bytes.
     if (buffer.length < 7) return null;
@@ -131,12 +132,12 @@ export default class AACHeader extends CodecHeader {
     const protectionBit = buffer[1] & 0b00000001;
 
     const header = {};
-    header.mpegVersion = AACHeader.mpegVersion[mpegVersionBits];
+    header.mpegVersion = mpegVersion[mpegVersionBits];
 
-    header.layer = AACHeader.layer[layerBits];
+    header.layer = layer[layerBits];
     if (header.layer === "bad") return null;
 
-    header.protection = AACHeader.protection[protectionBit];
+    header.protection = protection[protectionBit];
     header.length = protectionBit ? 7 : 9;
 
     // Byte (3 of 7)
@@ -148,9 +149,9 @@ export default class AACHeader extends CodecHeader {
     const sampleRateBits = buffer[2] & 0b00111100;
     const privateBit = buffer[2] & 0b00000010;
 
-    header.profile = AACHeader.profile[profileBits];
+    header.profile = profile[profileBits];
 
-    header.sampleRate = AACHeader.sampleRates[sampleRateBits];
+    header.sampleRate = sampleRates[sampleRateBits];
     if (header.sampleRate === "reserved") return null;
 
     header.isPrivate = !!(privateBit >> 1);
@@ -160,8 +161,8 @@ export default class AACHeader extends CodecHeader {
     const channelModeBits =
       new DataView(Uint8Array.from([buffer[2], buffer[3]]).buffer).getUint16() &
       0b111000000;
-    header.channelMode = AACHeader.channelMode[channelModeBits].description;
-    header.channels = AACHeader.channelMode[channelModeBits].channels;
+    header.channelMode = channelMode[channelModeBits].description;
+    header.channels = channelMode[channelModeBits].channels;
 
     // Byte (4 of 7)
     // * `HHIJKLMM`
