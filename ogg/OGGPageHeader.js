@@ -113,14 +113,24 @@ export default class OGGPageHeader {
 
     // Byte (27 of 28)
     // * `JJJJJJJJ`: Number of page segments in the segment table
-    header.numberPageSegments = buffer[26];
-    header.length = header.numberPageSegments + 27;
+    const pageSegmentTableLength = buffer[26];
+    header.length = pageSegmentTableLength + 27;
 
     if (header.length > buffer.length) return null;
 
     header.dataByteLength = 0;
-    for (let i = 0; i < header.numberPageSegments; i++) {
-      header.dataByteLength += buffer[i + 27];
+    header.pageSegmentTable = [];
+
+    let segmentLength = 0;
+    for (let i = 0; i < pageSegmentTableLength; i++) {
+      const segmentByte = buffer[i + 27];
+      header.dataByteLength += segmentByte;
+      segmentLength += segmentByte;
+
+      if (segmentByte !== 0xff) {
+        header.pageSegmentTable.push(segmentLength);
+        segmentLength = 0;
+      }
     }
 
     return new OGGPageHeader(header);
@@ -137,7 +147,7 @@ export default class OGGPageHeader {
     this._isFirstPage = header.isFirstPage;
     this._isLastPage = header.isLastPage;
     this._length = header.length;
-    this._numberPageSegments = header.numberPageSegments;
+    this._pageSegmentTable = header.pageSegmentTable;
     this._pageSequenceNumber = header.pageSequenceNumber;
     this._pageChecksum = header.pageChecksum;
     this._streamSerialNumber = header.streamSerialNumber;
@@ -149,6 +159,10 @@ export default class OGGPageHeader {
 
   get dataByteLength() {
     return this._dataByteLength;
+  }
+
+  get pageSegmentTable() {
+    return this._pageSegmentTable;
   }
 
   get length() {

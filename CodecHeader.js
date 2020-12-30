@@ -45,6 +45,10 @@ export default class CodecHeader {
     return this._sampleRate;
   }
 
+  set sampleLength(length) {
+    this._sampleLength = length;
+  }
+
   get sampleLength() {
     return this._sampleLength;
   }

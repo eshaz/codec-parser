@@ -22,6 +22,7 @@ import AACFrame from "./AACFrame";
 export default class AACParser extends CodecParser {
   constructor() {
     super();
+    this.CodecFrame = AACFrame;
     this._maxHeaderLength = 9;
   }
 
@@ -30,6 +31,6 @@ export default class AACParser extends CodecParser {
   }
 
   parseFrames(data) {
-    return this.fixedLengthFrame(AACFrame, data);
+    return this.fixedLengthFrame(data);
   }
 }

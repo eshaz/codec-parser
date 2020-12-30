@@ -18,8 +18,11 @@
 
 import CodecFrame from "../CodecFrame";
 
-export default class FlacFrame extends CodecFrame {
-  constructor(data, header) {
-    super(header, data, data.length);
+export default class OpusFrame extends CodecFrame {
+  constructor(data, header, packet) {
+    super(header, header && data, header && data.length);
+
+    this._header.sampleLength = data.length;
+    this._header.packet = packet;
   }
 }

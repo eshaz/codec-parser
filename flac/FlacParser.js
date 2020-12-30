@@ -17,19 +17,34 @@
 */
 
 import CodecParser from "../CodecParser";
-import FlacFrame from "../flac/FlacFrame";
+import FlacFrame from "./FlacFrame";
+import FlacHeader from "./FlacHeader";
 
 export default class FlacParser extends CodecParser {
   constructor() {
     super();
-    this._maxHeaderLength = 26;
+    this.CodecFrame = FlacFrame;
   }
 
   get codec() {
     return "flac";
   }
 
-  parseFrames(data) {
-    return this.variableLengthFrame(FlacFrame, data);
+  parseFrames(oggPage) {
+    if (this._initialHeader) {
+      return {
+        frames: oggPage.segments
+          .filter(
+            (segment) =>
+              segment[0] === 0xff &&
+              (segment[1] === 0xf8 || segment[1] === 0xf9)
+          )
+          .map((segment) => new FlacFrame(segment, this._initialHeader)),
+        remainingData: 0,
+      };
+    }
+
+    this._initialHeader = FlacHeader.getHeader(oggPage.data);
+    return { frames: [], remainingData: 0 };
   }
 }

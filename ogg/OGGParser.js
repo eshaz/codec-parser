@@ -18,11 +18,13 @@
 
 import CodecParser from "../CodecParser";
 import OGGPage from "./OGGPage";
-import FlacFrame from "../flac/FlacFrame";
+import FlacParser from "../flac/FlacParser";
+import OpusParser from "../opus/OpusParser";
 
 export default class OGGParser extends CodecParser {
   constructor() {
     super();
+    this.CodecFrame = OGGPage;
     this._maxHeaderLength = 283;
     this._codec = null;
   }
@@ -31,32 +33,33 @@ export default class OGGParser extends CodecParser {
     return this._codec || "flac,opus";
   }
 
-  setCodec(oggPage) {
-    // FLAC
-    if (
-      oggPage.data[0] === 0x7f &&
-      oggPage.data[1] === 0x46 &&
-      oggPage.data[2] === 0x4c &&
-      oggPage.data[3] === 0x41 &&
-      oggPage.data[4] === 0x43
-    ) {
+  _matchBytes(matchString, bytes) {
+    return String.fromCharCode(...bytes).match(matchString);
+  }
+
+  setCodec({ data }) {
+    if (this._matchBytes(/\x7fFLAC/, data.subarray(0, 5))) {
       this._codec = "flac";
-      this._frameClass = FlacFrame;
-      this._maxHeaderLength = 309;
+      this._parser = new FlacParser();
+    } else if (this._matchBytes(/OpusHead/, data.subarray(0, 8))) {
+      this._codec = "opus";
+      this._parser = new OpusParser();
+    } else if (this._matchBytes(/\x01vorbis/, data.subarray(0, 7))) {
+      throw new Error("Vorbis is currently not supported by isobmff-audio");
     }
   }
 
   parseFrames(data) {
-    const oggPages = this.fixedLengthFrame(OGGPage, data);
+    const oggPages = this.fixedLengthFrame(data);
 
     if (!this._codec && oggPages.frames.length)
       this.setCodec(oggPages.frames[0]);
 
-    const frames = oggPages.frames.flatMap(
-      ({ data }) =>
-        this.variableLengthFrame(this._frameClass, data, true).frames
-    );
-
-    return { frames, remainingData: oggPages.remainingData };
+    return {
+      frames: oggPages.frames.flatMap(
+        (oggPage) => this._parser.parseFrames(oggPage).frames
+      ),
+      remainingData: oggPages.remainingData,
+    };
   }
 }
