@@ -161,10 +161,6 @@ export default class OpusHeader extends CodecHeader {
     this._streamCount = header.streamCount;
   }
 
-  set packet(opusPacket) {
-    this._packet = opusPacket;
-  }
-
   get channelMappingFamily() {
     return this._channelMappingFamily;
   }

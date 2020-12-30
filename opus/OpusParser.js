@@ -20,81 +20,12 @@ import CodecParser from "../CodecParser";
 import OpusFrame from "./OpusFrame";
 import OpusHeader from "./OpusHeader";
 
-//  0 1 2 3 4 5 6 7
-// +-+-+-+-+-+-+-+-+
-// | config  |s| c |
-// +-+-+-+-+-+-+-+-+
-const configTable = {
-  0b00000000: { mode: "SILK-only", bandwidth: "NB", frameSize: 10 },
-  0b00001000: { mode: "SILK-only", bandwidth: "NB", frameSize: 20 },
-  0b00010000: { mode: "SILK-only", bandwidth: "NB", frameSize: 40 },
-  0b00011000: { mode: "SILK-only", bandwidth: "NB", frameSize: 60 },
-  0b00100000: { mode: "SILK-only", bandwidth: "MB", frameSize: 10 },
-  0b00101000: { mode: "SILK-only", bandwidth: "MB", frameSize: 20 },
-  0b00110000: { mode: "SILK-only", bandwidth: "MB", frameSize: 40 },
-  0b00111000: { mode: "SILK-only", bandwidth: "MB", frameSize: 60 },
-  0b01000000: { mode: "SILK-only", bandwidth: "WB", frameSize: 10 },
-  0b01001000: { mode: "SILK-only", bandwidth: "WB", frameSize: 20 },
-  0b01010000: { mode: "SILK-only", bandwidth: "WB", frameSize: 40 },
-  0b01011000: { mode: "SILK-only", bandwidth: "WB", frameSize: 60 },
-  0b01100000: { mode: "Hybrid", bandwidth: "SWB", frameSize: 10 },
-  0b01101000: { mode: "Hybrid", bandwidth: "SWB", frameSize: 20 },
-  0b01110000: { mode: "Hybrid", bandwidth: "FB", frameSize: 10 },
-  0b01111000: { mode: "Hybrid", bandwidth: "FB", frameSize: 20 },
-  0b10000000: { mode: "CELT-only", bandwidth: "NB", frameSize: 2.5 },
-  0b10001000: { mode: "CELT-only", bandwidth: "NB", frameSize: 5 },
-  0b10010000: { mode: "CELT-only", bandwidth: "NB", frameSize: 10 },
-  0b10011000: { mode: "CELT-only", bandwidth: "NB", frameSize: 20 },
-  0b10100000: { mode: "CELT-only", bandwidth: "WB", frameSize: 2.5 },
-  0b10101000: { mode: "CELT-only", bandwidth: "WB", frameSize: 5 },
-  0b10110000: { mode: "CELT-only", bandwidth: "WB", frameSize: 10 },
-  0b10111000: { mode: "CELT-only", bandwidth: "WB", frameSize: 20 },
-  0b11000000: { mode: "CELT-only", bandwidth: "SWB", frameSize: 2.5 },
-  0b11001000: { mode: "CELT-only", bandwidth: "SWB", frameSize: 5 },
-  0b11010000: { mode: "CELT-only", bandwidth: "SWB", frameSize: 10 },
-  0b11011000: { mode: "CELT-only", bandwidth: "SWB", frameSize: 20 },
-  0b11100000: { mode: "CELT-only", bandwidth: "FB", frameSize: 2.5 },
-  0b11101000: { mode: "CELT-only", bandwidth: "FB", frameSize: 5 },
-  0b11110000: { mode: "CELT-only", bandwidth: "FB", frameSize: 10 },
-  0b11111000: { mode: "CELT-only", bandwidth: "FB", frameSize: 20 },
-};
-
 export default class OpusParser extends CodecParser {
   constructor() {
     super();
     this.CodecFrame = OpusFrame;
     this._initialHeader = null;
     this._maxHeaderLength = 26;
-  }
-
-  static getPacket(data) {
-    const packet = {
-      config: configTable[0b11111000 & data[0]],
-      channels: 0b00000100 & data[0] ? 2 : 1,
-      // 0: 1 frame in the packet
-      // 1: 2 frames in the packet, each with equal compressed size
-      // 2: 2 frames in the packet, with different compressed sizes
-      // 3: an arbitrary number of frames in the packet
-      code: 0b00000011 & data[0],
-    };
-
-    // https://tools.ietf.org/html/rfc6716#appendix-B
-    switch (packet.code) {
-      case 0:
-        packet.frameCount = 1;
-        return packet;
-      case 1:
-        packet.frameCount = 2;
-        return packet;
-      case 2:
-        packet.frameCount = 2;
-        return packet;
-      case 3:
-        packet.isVbr = Boolean(0b10000000 & data[1]);
-        packet.hasOpusPadding = Boolean(0b01000000 & data[1]);
-        packet.frameCount = 0b00111111 & data[1];
-        return packet;
-    }
   }
 
   get codec() {
@@ -106,14 +37,7 @@ export default class OpusParser extends CodecParser {
       return {
         frames: oggPage.segments
           .filter((segment) => segment[0] !== 0x4f && segment[1] !== 0x70)
-          .map(
-            (segment) =>
-              new OpusFrame(
-                segment,
-                this._initialHeader,
-                OpusParser.getPacket(segment)
-              )
-          ),
+          .map((segment) => new OpusFrame(segment, this._initialHeader)),
         remainingData: 0,
       };
     }
