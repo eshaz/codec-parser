@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -30,7 +30,7 @@ IIIIIIII IIIIIIII IIIIIIII IIIIIIII
 JJJJJJJJ
 LLLLLLLL...
 
-OGG Page Header
+Ogg Page Header
 Letter 	Length (bits) 	Description
 A 	32 	0x4f676753, "OggS"
 B 	8 	stream_structure_version
@@ -52,16 +52,14 @@ L   n   Segment table (n=page_segments+26).
 
 const OggS = 0x4f676753;
 
-export default class OGGPageHeader {
-  static getHeader(buffer) {
-    // Must be at least 28 bytes.
-    if (buffer.length < 28) return null;
+export default class OggPageHeader {
+  static getHeader(data) {
+    const header = {};
 
-    let headerBytes = [];
-    for (let i = 0; i < 28; i++) {
-      headerBytes.push(buffer[i]);
-    }
-    const view = new DataView(Uint8Array.from(headerBytes).buffer);
+    // Must be at least 28 bytes.
+    if (data.length < 28) return new OggPageHeader(header, false);
+
+    const view = new DataView(Uint8Array.of(...data.subarray(0, 28)).buffer);
 
     // Bytes (1-4 of 28)
     // Frame sync (must equal OggS): `AAAAAAAA|AAAAAAAA|AAAAAAAA|AAAAAAAA`:
@@ -69,11 +67,9 @@ export default class OGGPageHeader {
       return null;
     }
 
-    const header = {};
-
     // Byte (5 of 28)
     // * `BBBBBBBB`: stream_structure_version
-    header.streamStructureVersion = buffer[4];
+    header.streamStructureVersion = data[4];
 
     // Byte (6 of 28)
     // * `00000CDE`
@@ -81,10 +77,10 @@ export default class OGGPageHeader {
     // * `.....C..`: (0 no, 1 yes) continued packet
     // * `......D.`: (0 no, 1 yes) first page of logical bitstream (bos)
     // * `.......E`: (0 no, 1 yes) last page of logical bitstream (eos)
-    const zeros = buffer[5] & 0b11111000;
-    const continuePacketBit = buffer[5] & 0b00000100;
-    const firstPageBit = buffer[5] & 0b00000010;
-    const lastPageBit = buffer[5] & 0b00000001;
+    const zeros = data[5] & 0b11111000;
+    const continuePacketBit = data[5] & 0b00000100;
+    const firstPageBit = data[5] & 0b00000010;
+    const lastPageBit = data[5] & 0b00000001;
 
     if (zeros) return null;
     header.isContinuedPacket = !!(continuePacketBit >> 2);
@@ -113,17 +109,18 @@ export default class OGGPageHeader {
 
     // Byte (27 of 28)
     // * `JJJJJJJJ`: Number of page segments in the segment table
-    const pageSegmentTableLength = buffer[26];
+    const pageSegmentTableLength = data[26];
     header.length = pageSegmentTableLength + 27;
 
-    if (header.length > buffer.length) return null;
+    if (header.length > data.length) return new OggPageHeader(header, false); // out of data
 
     header.dataByteLength = 0;
     header.pageSegmentTable = [];
+    header.pageSegmentBytes = data.subarray(27, header.length);
 
     let segmentLength = 0;
-    for (let i = 0; i < pageSegmentTableLength; i++) {
-      const segmentByte = buffer[i + 27];
+
+    for (const segmentByte of header.pageSegmentBytes) {
       header.dataByteLength += segmentByte;
       segmentLength += segmentByte;
 
@@ -133,24 +130,30 @@ export default class OGGPageHeader {
       }
     }
 
-    return new OGGPageHeader(header);
+    return new OggPageHeader(header, true);
   }
 
   /**
    * @private
-   * Call OGGPageHeader.getHeader(Array<Uint8>) to get instance
+   * Call OggPageHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header) {
+  constructor(header, isParsed) {
+    this._isParsed = isParsed;
     this._absoluteGranulePosition = header.absoluteGranulePosition;
     this._dataByteLength = header.dataByteLength;
     this._isContinuedPacket = header.isContinuedPacket;
     this._isFirstPage = header.isFirstPage;
     this._isLastPage = header.isLastPage;
     this._length = header.length;
+    this._pageSegmentBytes = header.pageSegmentBytes;
     this._pageSegmentTable = header.pageSegmentTable;
     this._pageSequenceNumber = header.pageSequenceNumber;
     this._pageChecksum = header.pageChecksum;
     this._streamSerialNumber = header.streamSerialNumber;
+  }
+
+  get isParsed() {
+    return this._isParsed;
   }
 
   get absoluteGranulePosition() {
@@ -163,6 +166,14 @@ export default class OGGPageHeader {
 
   get pageSegmentTable() {
     return this._pageSegmentTable;
+  }
+
+  get pageSegmentBytes() {
+    return this._pageSegmentBytes;
+  }
+
+  get pageSequenceNumber() {
+    return this._pageSequenceNumber;
   }
 
   get length() {

@@ -17,15 +17,14 @@
 */
 
 import CodecFrame from "../CodecFrame";
-import AACHeader from "./AACHeader";
 
-export default class AACFrame extends CodecFrame {
-  constructor(data, headerCache) {
-    const header = AACHeader.getHeader(data, headerCache);
+export default class VorbisFrame extends CodecFrame {
+  constructor(data, header, samples) {
+    if (header) {
+      header.dataByteLength = data.length;
+      header.samplesPerFrame = samples;
+    }
 
-    super(
-      header,
-      header && data.subarray(header.length, header.dataByteLength)
-    );
+    super(header, data);
   }
 }

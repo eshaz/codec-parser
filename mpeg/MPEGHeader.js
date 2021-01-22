@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -17,6 +17,7 @@
 */
 
 import CodecHeader from "../CodecHeader";
+import HeaderCache from "../HeaderCache";
 
 // http://www.mp3-tech.org/programmer/frame_header.html
 
@@ -68,18 +69,18 @@ const layers = {
     modeExtensions: layer3ModeExtensions,
     v1: {
       bitrateIndex: v1Layer3,
-      sampleLength: 1152,
+      samplesPerFrame: 1152,
     },
     v2: {
       bitrateIndex: v2Layer23,
-      sampleLength: 576,
+      samplesPerFrame: 576,
     },
   },
   0b00000100: {
     description: "Layer II",
     framePadding: 1,
     modeExtensions: layer12ModeExtensions,
-    sampleLength: 1152,
+    samplesPerFrame: 1152,
     v1: {
       bitrateIndex: v1Layer2,
     },
@@ -91,7 +92,7 @@ const layers = {
     description: "Layer I",
     framePadding: 4,
     modeExtensions: layer12ModeExtensions,
-    sampleLength: 384,
+    samplesPerFrame: 384,
     v1: {
       bitrateIndex: v1Layer1,
     },
@@ -155,23 +156,28 @@ const channelModes = {
 };
 
 export default class MPEGHeader extends CodecHeader {
-  static getHeader(buffer) {
+  static getHeader(data, headerCache) {
+    const header = {};
     // Must be at least four bytes.
-    if (buffer.length < 4) return null;
+    if (data.length < 4) return new MPEGHeader(header, false);
+
+    // Check header cache
+    const key = HeaderCache.getKey(data.subarray(0, 4));
+    const cachedHeader = headerCache.getHeader(key);
+    if (cachedHeader) return new MPEGHeader(cachedHeader, true);
 
     // Frame sync (all bits must be set): `11111111|111`:
-    if (buffer[0] !== 0xff || buffer[1] < 0xe0) return null;
+    if (data[0] !== 0xff || data[1] < 0xe0) return null;
 
     // Byte (2 of 4)
     // * `111BBCCD`
     // * `...BB...`: MPEG Audio version ID
     // * `.....CC.`: Layer description
     // * `.......D`: Protection bit (0 - Protected by CRC (16bit CRC follows header), 1 = Not protected)
-    const mpegVersionBits = buffer[1] & 0b00011000;
-    const layerBits = buffer[1] & 0b00000110;
-    const protectionBit = buffer[1] & 0b00000001;
+    const mpegVersionBits = data[1] & 0b00011000;
+    const layerBits = data[1] & 0b00000110;
+    const protectionBit = data[1] & 0b00000001;
 
-    const header = {};
     header.length = 4;
 
     // Mpeg version (1, 2, 2.5)
@@ -187,7 +193,7 @@ export default class MPEGHeader extends CodecHeader {
 
     header.mpegVersion = mpegVersion.description;
     header.layer = layer.description;
-    header.sampleLength = layer.sampleLength;
+    header.samplesPerFrame = layer.samplesPerFrame;
     header.protection = protection[protectionBit];
 
     // Byte (3 of 4)
@@ -196,10 +202,10 @@ export default class MPEGHeader extends CodecHeader {
     // * `....FF..`: Sample rate
     // * `......G.`: Padding bit, 0=frame not padded, 1=frame padded
     // * `.......H`: Private bit.
-    const bitrateBits = buffer[2] & 0b11110000;
-    const sampleRateBits = buffer[2] & 0b00001100;
-    const paddingBit = buffer[2] & 0b00000010;
-    const privateBit = buffer[2] & 0b00000001;
+    const bitrateBits = data[2] & 0b11110000;
+    const sampleRateBits = data[2] & 0b00001100;
+    const paddingBit = data[2] & 0b00000010;
+    const privateBit = data[2] & 0b00000001;
 
     header.bitrate = bitrateMatrix[bitrateBits][layer.bitrateIndex];
     if (header.bitrate === "bad") return null;
@@ -211,7 +217,7 @@ export default class MPEGHeader extends CodecHeader {
     header.isPrivate = !!privateBit;
 
     header.dataByteLength = Math.floor(
-      (125 * header.bitrate * header.sampleLength) / header.sampleRate +
+      (125 * header.bitrate * header.samplesPerFrame) / header.sampleRate +
         header.framePadding
     );
     if (!header.dataByteLength) return null;
@@ -223,11 +229,11 @@ export default class MPEGHeader extends CodecHeader {
     // * `....K...`: Copyright
     // * `.....L..`: Original
     // * `......MM`: Emphasis
-    const channelModeBits = buffer[3] & 0b11000000;
-    const modeExtensionBits = buffer[3] & 0b00110000;
-    const copyrightBit = buffer[3] & 0b00001000;
-    const originalBit = buffer[3] & 0b00000100;
-    const emphasisBits = buffer[3] & 0b00000011;
+    const channelModeBits = data[3] & 0b11000000;
+    const modeExtensionBits = data[3] & 0b00110000;
+    const copyrightBit = data[3] & 0b00001000;
+    const originalBit = data[3] & 0b00000100;
+    const emphasisBits = data[3] & 0b00000011;
 
     header.channelMode = channelModes[channelModeBits].description;
     header.channels = channelModes[channelModeBits].channels;
@@ -238,15 +244,26 @@ export default class MPEGHeader extends CodecHeader {
     header.emphasis = emphasis[emphasisBits];
     if (header.emphasis === "reserved") return null;
 
-    return new MPEGHeader(header);
+    header.bitDepth = 16;
+
+    // set header cache
+    const {
+      length,
+      dataByteLength,
+      samplesPerFrame,
+      ...codecUpdateFields
+    } = header;
+
+    headerCache.setHeader(key, header, codecUpdateFields);
+    return new MPEGHeader(header, true);
   }
 
   /**
    * @private
    * Call MPEGHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header) {
-    super(header);
+  constructor(header, isParsed) {
+    super(header, isParsed);
     this._bitrate = header.bitrate;
     this._emphasis = header.emphasis;
     this._framePadding = header.framePadding;

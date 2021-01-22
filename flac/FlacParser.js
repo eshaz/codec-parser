@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -21,8 +21,8 @@ import FlacFrame from "./FlacFrame";
 import FlacHeader from "./FlacHeader";
 
 export default class FlacParser extends CodecParser {
-  constructor() {
-    super();
+  constructor(onCodecUpdate) {
+    super(onCodecUpdate);
     this.CodecFrame = FlacFrame;
   }
 
@@ -44,7 +44,7 @@ export default class FlacParser extends CodecParser {
       };
     }
 
-    this._initialHeader = FlacHeader.getHeader(oggPage.data);
+    this._initialHeader = FlacHeader.getHeader(oggPage.data, this._headerCache);
     return { frames: [], remainingData: 0 };
   }
 }

@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -17,20 +17,19 @@
 */
 
 import CodecFrame from "../CodecFrame";
-import OGGPageHeader from "./OGGPageHeader";
+import OggPageHeader from "./OggPageHeader";
 
-export default class OGGPage extends CodecFrame {
+export default class OggPage extends CodecFrame {
   constructor(data) {
-    const oggPage = OGGPageHeader.getHeader(data);
+    const oggPage = OggPageHeader.getHeader(data);
 
     super(
       oggPage,
       oggPage &&
-        data.subarray(oggPage.length, oggPage.length + oggPage.dataByteLength),
-      oggPage && oggPage.length + oggPage.dataByteLength
+        data.subarray(oggPage.length, oggPage.length + oggPage.dataByteLength)
     );
 
-    if (oggPage) {
+    if (oggPage && oggPage.isParsed) {
       let offset = oggPage.length;
       this._segments = oggPage.pageSegmentTable.map((segmentLength) => {
         const segment = data.subarray(offset, offset + segmentLength);
@@ -38,6 +37,13 @@ export default class OGGPage extends CodecFrame {
         return segment;
       });
     }
+  }
+
+  /**
+   * @returns Total length of frame (header + data)
+   */
+  get length() {
+    return this._header ? this._header.length + this._header.dataByteLength : 0;
   }
 
   get segments() {

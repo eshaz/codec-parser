@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -21,10 +21,10 @@ import OpusFrame from "./OpusFrame";
 import OpusHeader from "./OpusHeader";
 
 export default class OpusParser extends CodecParser {
-  constructor() {
-    super();
+  constructor(onCodecUpdate) {
+    super(onCodecUpdate);
     this.CodecFrame = OpusFrame;
-    this._initialHeader = null;
+    this._identificationHeader = null;
     this._maxHeaderLength = 26;
   }
 
@@ -33,16 +33,24 @@ export default class OpusParser extends CodecParser {
   }
 
   parseFrames(oggPage) {
-    if (this._initialHeader) {
-      return {
-        frames: oggPage.segments
-          .filter((segment) => segment[0] !== 0x4f && segment[1] !== 0x70)
-          .map((segment) => new OpusFrame(segment, this._initialHeader)),
-        remainingData: 0,
-      };
+    if (oggPage.header.pageSequenceNumber === 0) {
+      this._identificationHeader = OpusHeader.getHeader(
+        oggPage.data,
+        this._headerCache
+      );
+      return { frames: [], remainingData: 0 };
     }
 
-    this._initialHeader = OpusHeader.getHeader(oggPage.data);
-    return { frames: [], remainingData: 0 };
+    if (oggPage.header.pageSequenceNumber === 1) {
+      // OpusTags
+      return { frames: [], remainingData: 0 };
+    }
+
+    return {
+      frames: oggPage.segments
+        .filter((segment) => segment[0] !== 0x4f && segment[1] !== 0x70)
+        .map((segment) => new OpusFrame(segment, this._identificationHeader)),
+      remainingData: 0,
+    };
   }
 }

@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -20,13 +20,21 @@ export default class CodecHeader {
   /**
    * @private
    */
-  constructor(header) {
+  constructor(header, isParsed) {
+    this._isParsed = isParsed;
     this._channelMode = header.channelMode;
     this._channels = header.channels;
     this._dataByteLength = header.dataByteLength;
     this._length = header.length;
     this._sampleRate = header.sampleRate;
-    this._sampleLength = header.sampleLength;
+    this._samplesPerFrame = header.samplesPerFrame;
+  }
+
+  /**
+   * @returns Boolean that returns true if the header has been completely parsed and there is no remaining data
+   */
+  get isParsed() {
+    return this._isParsed;
   }
 
   get channels() {
@@ -45,11 +53,19 @@ export default class CodecHeader {
     return this._sampleRate;
   }
 
-  set sampleLength(length) {
-    this._sampleLength = length;
+  set samplesPerFrame(length) {
+    this._samplesPerFrame = length;
   }
 
-  get sampleLength() {
-    return this._sampleLength;
+  get samplesPerFrame() {
+    return this._samplesPerFrame;
+  }
+
+  set duration(duration) {
+    this._duration = duration;
+  }
+
+  get duration() {
+    return this._duration;
   }
 }

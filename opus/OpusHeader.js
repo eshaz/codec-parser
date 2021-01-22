@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -52,6 +52,7 @@ J  8*C Channel Mapping
 */
 
 import CodecHeader from "../CodecHeader";
+import HeaderCache from "../HeaderCache";
 
 /* prettier-ignore */
 const channelMappingFamilies = {
@@ -72,65 +73,74 @@ const channelMappingFamilies = {
 };
 
 export default class OpusHeader extends CodecHeader {
-  static getHeader(data) {
-    // Must be at least 19 bytes.
-    if (data.length < 19) return null;
-
-    // Bytes (1-8 of 19): OpusHead - Magic Signature
-    if (
-      data[0] !== 0x4f ||
-      data[1] !== 0x70 ||
-      data[2] !== 0x75 ||
-      data[3] !== 0x73 ||
-      data[4] !== 0x48 ||
-      data[5] !== 0x65 ||
-      data[6] !== 0x61 ||
-      data[7] !== 0x64
-    ) {
-      return null;
-    }
-
-    // Byte (9 of 19)
-    // * `00000001`: Version number
-    if (data[8] !== 1) return null;
-
-    const view = new DataView(
-      Uint8Array.from([...data.subarray(0, 19)]).buffer
-    );
-
+  static getHeader(data, headerCache) {
     const header = {};
-    header.length = 19;
+    // Must be at least 19 bytes.
+    if (data.length < 19) return new OpusHeader(header, false);
 
-    // Byte (10 of 19)
-    // * `CCCCCCCC`: Channel Count
-    header.channels = data[9];
+    // Check header cache
+    const key = HeaderCache.getKey(data.subarray(0, 19));
+    const cachedHeader = headerCache.getHeader(key);
 
-    // Byte (11-12 of 19)
-    // * `DDDDDDDD|DDDDDDDD`: Pre skip
-    header.preSkip = view.getUint16(10, true);
+    if (!cachedHeader) {
+      // Bytes (1-8 of 19): OpusHead - Magic Signature
+      if (
+        data[0] !== 0x4f ||
+        data[1] !== 0x70 ||
+        data[2] !== 0x75 ||
+        data[3] !== 0x73 ||
+        data[4] !== 0x48 ||
+        data[5] !== 0x65 ||
+        data[6] !== 0x61 ||
+        data[7] !== 0x64
+      ) {
+        return null;
+      }
 
-    // Byte (13-16 of 19)
-    // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
-    header.inputSampleRate = view.getUint32(12, true);
-    // Opus is always decoded at 48kHz
-    header.sampleRate = 48000;
+      // Byte (9 of 19)
+      // * `00000001`: Version number
+      if (data[8] !== 1) return null;
 
-    // Byte (17-18 of 19)
-    // * `FFFFFFFF|FFFFFFFF`: Output Gain
-    header.outputGain = view.getInt16(16, true);
+      const view = new DataView(Uint8Array.of(...data.subarray(0, 19)).buffer);
+      header.bitDepth = 16;
 
-    // Byte (19 of 19)
-    // * `GGGGGGGG`: Channel Mapping Family
-    header.channelMappingFamily = data[18];
-    if (!header.channelMappingFamily in channelMappingFamilies) return null;
+      header.length = 19;
 
-    header.channelMode =
-      channelMappingFamilies[header.channelMappingFamily][header.channels - 1];
-    if (!header.channelMode) return null;
+      // Byte (10 of 19)
+      // * `CCCCCCCC`: Channel Count
+      header.channels = data[9];
+
+      // Byte (11-12 of 19)
+      // * `DDDDDDDD|DDDDDDDD`: Pre skip
+      header.preSkip = view.getUint16(10, true);
+
+      // Byte (13-16 of 19)
+      // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
+      header.inputSampleRate = view.getUint32(12, true);
+      // Opus is always decoded at 48kHz
+      header.sampleRate = 48000;
+
+      // Byte (17-18 of 19)
+      // * `FFFFFFFF|FFFFFFFF`: Output Gain
+      header.outputGain = view.getInt16(16, true);
+
+      // Byte (19 of 19)
+      // * `GGGGGGGG`: Channel Mapping Family
+      header.channelMappingFamily = data[18];
+      if (!header.channelMappingFamily in channelMappingFamilies) return null;
+
+      header.channelMode =
+        channelMappingFamilies[header.channelMappingFamily][
+          header.channels - 1
+        ];
+      if (!header.channelMode) return null;
+    } else {
+      Object.assign(header, cachedHeader);
+    }
 
     if (header.channelMappingFamily !== 0) {
       header.length += 2 + header.channels;
-      if (data.length < header.length) return null;
+      if (data.length < header.length) return new OpusHeader(header, false); // out of data
 
       // * `HHHHHHHH`: Stream count
       header.streamCount = data[19];
@@ -142,23 +152,46 @@ export default class OpusHeader extends CodecHeader {
       header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
-    return new OpusHeader(header);
+    header.bytes = data.subarray(0, header.length);
+
+    if (!cachedHeader) {
+      // set header cache
+      const {
+        length,
+        bytes,
+        channelMappingFamily,
+        ...codecUpdateFields
+      } = header;
+
+      headerCache.setHeader(key, header, codecUpdateFields);
+    }
+
+    return new OpusHeader(header, true);
   }
 
   /**
    * @private
    * Call OpusHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header) {
-    super(header);
+  constructor(header, isParsed) {
+    super(header, isParsed);
     this._channelMappingFamily = header.channelMappingFamily;
     this._channelMappingTable = header.channelMappingTable;
     this._coupledStreamCount = header.coupledStreamCount;
+    this._bytes = header.bytes;
     this._inputSampleRate = header.inputSampleRate;
     this._outputGain = header.outputGain;
     this._preSkip = header.preSkip;
-    this._sampleSize = 16;
+    this._bitDepth = header.bitDepth;
     this._streamCount = header.streamCount;
+  }
+
+  get bytes() {
+    return this._bytes;
+  }
+
+  set dataByteLength(dataByteLength) {
+    this._dataByteLength = dataByteLength;
   }
 
   get channelMappingFamily() {
@@ -181,8 +214,8 @@ export default class OpusHeader extends CodecHeader {
     return this._inputSampleRate;
   }
 
-  get sampleSize() {
-    return this._sampleSize;
+  get bitDepth() {
+    return this._bitDepth;
   }
 
   get streamCount() {

@@ -1,13 +1,13 @@
-/* Copyright 2020 Ethan Halsall
+/* Copyright 2020-2021 Ethan Halsall
     
-    This file is part of isobmff-audio.
+    This file is part of mse-audio-wrapper.
     
-    isobmff-audio is free software: you can redistribute it and/or modify
+    mse-audio-wrapper is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    isobmff-audio is distributed in the hope that it will be useful,
+    mse-audio-wrapper is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
@@ -17,6 +17,7 @@
 */
 
 import CodecFrame from "../CodecFrame";
+import OpusHeader from "./OpusHeader";
 
 //  0 1 2 3 4 5 6 7
 // +-+-+-+-+-+-+-+-+
@@ -89,13 +90,18 @@ export default class OpusFrame extends CodecFrame {
   }
 
   constructor(data, header) {
-    super(header, data, data.length);
+    let opusHeader = null;
 
-    const packet = OpusFrame.getPacket(data);
+    if (header) {
+      opusHeader = new OpusHeader(header, true);
 
-    this._header.sampleLength =
-      (packet.config.frameSize / 1000) *
-      this._header.sampleRate *
-      packet.frameCount;
+      const packet = OpusFrame.getPacket(data);
+      opusHeader.samplesPerFrame =
+        ((packet.config.frameSize * packet.frameCount) / 1000) *
+        header.sampleRate;
+      opusHeader.dataByteLength = data.length;
+    }
+
+    super(opusHeader, data);
   }
 }
