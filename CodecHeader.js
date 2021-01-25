@@ -37,6 +37,10 @@ export default class CodecHeader {
     return this._isParsed;
   }
 
+  get bitDepth() {
+    return this._bitDepth;
+  }
+
   get channels() {
     return this._channels;
   }

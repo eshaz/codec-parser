@@ -128,6 +128,7 @@ export default class VorbisHeader extends CodecHeader {
     this._bitrateMaximum = header.bitrateMaximum;
     this._bitrateNominal = header.bitrateNominal;
     this._bitrateMinimum = header.bitrateMinimum;
+    this._bitDepth = header.bitDepth;
     this._blocksize0 = header.blocksize0;
     this._blocksize1 = header.blocksize1;
     this._codecPrivate = header.codecPrivate;

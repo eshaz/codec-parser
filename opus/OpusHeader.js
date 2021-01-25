@@ -178,6 +178,7 @@ export default class OpusHeader extends CodecHeader {
     this._channelMappingFamily = header.channelMappingFamily;
     this._channelMappingTable = header.channelMappingTable;
     this._coupledStreamCount = header.coupledStreamCount;
+    this._bitDepth = header.bitDepth;
     this._bytes = header.bytes;
     this._inputSampleRate = header.inputSampleRate;
     this._outputGain = header.outputGain;
