@@ -90,7 +90,13 @@ export default class OggPageHeader {
     // Byte (7-14 of 28)
     // * `FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF`
     // * Absolute Granule Position
-    header.absoluteGranulePosition = view.getBigInt64(6, true);
+
+    /**
+     * @todo Safari does not support getBigInt64, but it also doesn't support Ogg
+     */
+    try {
+      header.absoluteGranulePosition = view.getBigInt64(6, true);
+    } catch {}
 
     // Byte (15-18 of 28)
     // * `GGGGGGGG|GGGGGGGG|GGGGGGGG|GGGGGGGG`
