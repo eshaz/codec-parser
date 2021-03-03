@@ -1,0 +1,35 @@
+{
+  "name": "codec-parser",
+  "version": "0.0.1",
+  "description": "Library that splits audio data into an array of frames",
+  "main": "index.js",
+  "keywords": [
+    "mp3",
+    "mpeg",
+    "aac",
+    "aacp",
+    "flac",
+    "opus",
+    "vorbis",
+    "ogg"
+  ],
+  "scripts": {
+    "format": "prettier --write '**/*.js' --write '**/*.json'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eshaz/codec-parser.git"
+  },
+  "author": {
+    "name": "Ethan Halsall",
+    "email": "ethanhalsall@pm.me"
+  },
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/eshaz/codec-parser/issues"
+  },
+  "homepage": "https://github.com/eshaz/codec-parser#readme",
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
