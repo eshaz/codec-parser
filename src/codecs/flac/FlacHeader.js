@@ -310,10 +310,6 @@ export default class FlacHeader extends Header {
     this._samplesPerFrame = header.blockSize;
   }
 
-  set dataByteLength(dataByteLength) {
-    this._dataByteLength = dataByteLength;
-  }
-
   get blockSize() {
     return this._blockSize;
   }

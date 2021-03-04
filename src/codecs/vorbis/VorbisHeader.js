@@ -134,10 +134,6 @@ export default class VorbisHeader extends Header {
     this._codecPrivate = header.codecPrivate;
   }
 
-  set dataByteLength(dataByteLength) {
-    this._dataByteLength = dataByteLength;
-  }
-
   get blocksize0() {
     return this._blocksize0;
   }

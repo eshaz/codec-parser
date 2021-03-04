@@ -191,10 +191,6 @@ export default class OpusHeader extends Header {
     return this._bytes;
   }
 
-  set dataByteLength(dataByteLength) {
-    this._dataByteLength = dataByteLength;
-  }
-
   get channelMappingFamily() {
     return this._channelMappingFamily;
   }

@@ -120,14 +120,14 @@ export default class OggPageHeader {
 
     if (header.length > data.length) return new OggPageHeader(header, false); // out of data
 
-    header.dataByteLength = 0;
+    header.frameLength = 0;
     header.pageSegmentTable = [];
     header.pageSegmentBytes = data.subarray(27, header.length);
 
     let segmentLength = 0;
 
     for (const segmentByte of header.pageSegmentBytes) {
-      header.dataByteLength += segmentByte;
+      header.frameLength += segmentByte;
       segmentLength += segmentByte;
 
       if (segmentByte !== 0xff) {
@@ -146,7 +146,7 @@ export default class OggPageHeader {
   constructor(header, isParsed) {
     this._isParsed = isParsed;
     this._absoluteGranulePosition = header.absoluteGranulePosition;
-    this._dataByteLength = header.dataByteLength;
+    this._frameLength = header.frameLength;
     this._isContinuedPacket = header.isContinuedPacket;
     this._isFirstPage = header.isFirstPage;
     this._isLastPage = header.isLastPage;
@@ -166,8 +166,8 @@ export default class OggPageHeader {
     return this._absoluteGranulePosition;
   }
 
-  get dataByteLength() {
-    return this._dataByteLength;
+  get frameLength() {
+    return this._frameLength;
   }
 
   get pageSegmentTable() {

@@ -202,8 +202,8 @@ export default class AACHeader extends Header {
       new DataView(
         Uint8Array.of(0x00, data[3], data[4], data[5]).buffer
       ).getUint32() & 0x3ffe0;
-    header.dataByteLength = frameLengthBits >> 5;
-    if (!header.dataByteLength) return null;
+    header.frameLength = frameLengthBits >> 5;
+    if (!header.frameLength) return null;
 
     // Byte (6,7 of 7)
     // * `...OOOOO|OOOOOO..`: Buffer fullness
@@ -223,7 +223,7 @@ export default class AACHeader extends Header {
         channelModeBits,
         profileBits,
         sampleRateBits,
-        dataByteLength,
+        frameLength,
         bufferFullness,
         numberAACFrames,
         samplesPerFrame,
@@ -243,6 +243,7 @@ export default class AACHeader extends Header {
     this._copyrightId = header.copyrightId;
     this._copyrightIdStart = header.copyrightIdStart;
     this._bufferFullness = header.bufferFullness;
+    this._frameLength = header.frameLength;
     this._isHome = header.isHome;
     this._isOriginal = header.isOriginal;
     this._isPrivate = header.isPrivate;
@@ -273,5 +274,9 @@ export default class AACHeader extends Header {
     const bytes = new Uint8Array(2);
     new DataView(bytes.buffer).setUint16(0, audioSpecificConfig, false);
     return bytes;
+  }
+
+  get frameLength() {
+    return this._frameLength;
   }
 }

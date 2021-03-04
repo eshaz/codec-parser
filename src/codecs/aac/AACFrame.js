@@ -23,9 +23,8 @@ export default class AACFrame extends Frame {
   constructor(data, headerCache) {
     const header = AACHeader.getHeader(data, headerCache);
 
-    super(
-      header,
-      header && data.subarray(header.length, header.dataByteLength)
-    );
+    super(header, header && data.subarray(header.length, header.frameLength));
+
+    this._length = header.frameLength;
   }
 }

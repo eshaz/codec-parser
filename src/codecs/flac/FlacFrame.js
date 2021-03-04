@@ -25,7 +25,6 @@ export default class FlacFrame extends Frame {
 
     if (header) {
       flacHeader = new FlacHeader(header, true);
-      flacHeader.dataByteLength = data.length;
     }
 
     super(flacHeader, data);

@@ -216,11 +216,11 @@ export default class MPEGHeader extends Header {
     header.framePadding = paddingBit >> 1 && layer.framePadding;
     header.isPrivate = !!privateBit;
 
-    header.dataByteLength = Math.floor(
+    header.frameLength = Math.floor(
       (125 * header.bitrate * header.samplesPerFrame) / header.sampleRate +
         header.framePadding
     );
-    if (!header.dataByteLength) return null;
+    if (!header.frameLength) return null;
 
     // Byte (4 of 4)
     // * `IIJJKLMM`
@@ -249,7 +249,7 @@ export default class MPEGHeader extends Header {
     // set header cache
     const {
       length,
-      dataByteLength,
+      frameLength,
       samplesPerFrame,
       ...codecUpdateFields
     } = header;
@@ -267,6 +267,7 @@ export default class MPEGHeader extends Header {
     this._bitrate = header.bitrate;
     this._emphasis = header.emphasis;
     this._framePadding = header.framePadding;
+    this._frameLength = header.frameLength;
     this._isCopyrighted = header.isCopyrighted;
     this._isOriginal = header.isOriginal;
     this._isPrivate = header.isPrivate;
@@ -274,5 +275,9 @@ export default class MPEGHeader extends Header {
     this._modeExtension = header.modeExtension;
     this._mpegVersion = header.mpegVersion;
     this._protection = header.protection;
+  }
+
+  get frameLength() {
+    return this._frameLength;
   }
 }

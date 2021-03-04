@@ -24,7 +24,6 @@ export default class Header {
     this._isParsed = isParsed;
     this._channelMode = header.channelMode;
     this._channels = header.channels;
-    this._dataByteLength = header.dataByteLength;
     this._length = header.length;
     this._sampleRate = header.sampleRate;
     this._samplesPerFrame = header.samplesPerFrame;
@@ -43,10 +42,6 @@ export default class Header {
 
   get channels() {
     return this._channels;
-  }
-
-  get dataByteLength() {
-    return this._dataByteLength;
   }
 
   get length() {

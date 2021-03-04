@@ -21,7 +21,6 @@ import Frame from "../Frame";
 export default class VorbisFrame extends Frame {
   constructor(data, header, samples) {
     if (header) {
-      header.dataByteLength = data.length;
       header.samplesPerFrame = samples;
     }
 

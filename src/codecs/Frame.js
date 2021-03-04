@@ -21,11 +21,12 @@ export default class Frame {
     this._header = header;
     this._data = data || [];
   }
+
   /**
-   * @returns Total length of frame (header + data)
+   * @returns Total length of the original codec frame
    */
   get length() {
-    return this._header ? this._header.dataByteLength : 0;
+    return this._length || this._data.length;
   }
 
   /**

@@ -23,6 +23,6 @@ export default class MPEGFrame extends Frame {
   constructor(data, headerCache) {
     const header = MPEGHeader.getHeader(data, headerCache);
 
-    super(header, header && data.subarray(0, header.dataByteLength));
+    super(header, header && data.subarray(0, header.frameLength));
   }
 }

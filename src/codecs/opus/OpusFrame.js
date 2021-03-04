@@ -99,7 +99,6 @@ export default class OpusFrame extends Frame {
       opusHeader.samplesPerFrame =
         ((packet.config.frameSize * packet.frameCount) / 1000) *
         header.sampleRate;
-      opusHeader.dataByteLength = data.length;
     }
 
     super(opusHeader, data);

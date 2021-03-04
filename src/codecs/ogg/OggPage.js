@@ -26,7 +26,7 @@ export default class OggPage extends Frame {
     super(
       oggPage,
       oggPage &&
-        data.subarray(oggPage.length, oggPage.length + oggPage.dataByteLength)
+        data.subarray(oggPage.length, oggPage.length + oggPage.frameLength)
     );
 
     if (oggPage && oggPage.isParsed) {
@@ -43,7 +43,7 @@ export default class OggPage extends Frame {
    * @returns Total length of frame (header + data)
    */
   get length() {
-    return this._header ? this._header.length + this._header.dataByteLength : 0;
+    return this._header ? this._header.length + this._header.frameLength : 0;
   }
 
   get segments() {
