@@ -18,6 +18,14 @@
 
 export default class Frame {
   constructor(header, data) {
+    if (header) {
+      this._samples = header.samples;
+    }
+
+    if (data) {
+      this._length = data.length;
+    }
+
     this._header = header;
     this._data = data || [];
   }
@@ -26,7 +34,21 @@ export default class Frame {
    * @returns Total length of the original codec frame
    */
   get length() {
-    return this._length || this._data.length;
+    return this._length;
+  }
+
+  /**
+   * @returns Total duration in milliseconds of the frame
+   */
+  get duration() {
+    return (this.samples / this.header.sampleRate) * 1000;
+  }
+
+  /**
+   * @returns Total audio samples contained in the frame
+   */
+  get samples() {
+    return this._samples;
   }
 
   /**

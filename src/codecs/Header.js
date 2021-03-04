@@ -26,7 +26,7 @@ export default class Header {
     this._channels = header.channels;
     this._length = header.length;
     this._sampleRate = header.sampleRate;
-    this._samplesPerFrame = header.samplesPerFrame;
+    this._samples = header.samples;
   }
 
   /**
@@ -52,19 +52,7 @@ export default class Header {
     return this._sampleRate;
   }
 
-  set samplesPerFrame(length) {
-    this._samplesPerFrame = length;
-  }
-
-  get samplesPerFrame() {
-    return this._samplesPerFrame;
-  }
-
-  set duration(duration) {
-    this._duration = duration;
-  }
-
-  get duration() {
-    return this._duration;
+  get samples() {
+    return this._samples;
   }
 }

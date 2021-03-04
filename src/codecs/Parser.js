@@ -62,7 +62,7 @@ export default class Parser {
 
     while (
       frame.header && // was a header found
-      frame.header.isParsed && // was there enough data to parse the header
+      frame.header._isParsed && // was there enough data to parse the header
       frame.length + remainingData + this._maxHeaderLength < data.length // is there enough data left to form a frame and check the next frame
     ) {
       // check if there is a valid frame immediately after this frame
@@ -79,7 +79,7 @@ export default class Parser {
         remainingData += frame.length;
         frame = nextFrame;
 
-        if (nextFrame.header && !nextFrame.header.isParsed) break; // out of data
+        if (nextFrame.header && !nextFrame.header._isParsed) break; // out of data
       } else {
         // frame is invalid and must re-sync and clear cache
         this._headerCache.reset();

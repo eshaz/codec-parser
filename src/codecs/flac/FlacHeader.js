@@ -307,7 +307,7 @@ export default class FlacHeader extends Header {
     this._frameNumber = header.frameNumber;
     this._bitDepth = header.bitDepth;
     this._sampleNumber = header.sampleNumber;
-    this._samplesPerFrame = header.blockSize;
+    this._samples = header.blockSize;
   }
 
   get blockSize() {

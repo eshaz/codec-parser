@@ -215,7 +215,7 @@ export default class AACHeader extends Header {
     // Byte (7 of 7)
     // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
     header.numberAACFrames = data[6] & 0b00000011;
-    header.samplesPerFrame = 1024;
+    header.samples = 1024;
 
     if (!cachedHeader) {
       const {
@@ -226,7 +226,7 @@ export default class AACHeader extends Header {
         frameLength,
         bufferFullness,
         numberAACFrames,
-        samplesPerFrame,
+        samples,
         ...codecUpdateFields
       } = header;
       headerCache.setHeader(key, header, codecUpdateFields);

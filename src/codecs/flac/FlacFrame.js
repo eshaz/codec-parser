@@ -21,12 +21,6 @@ import FlacHeader from "./FlacHeader";
 
 export default class FlacFrame extends Frame {
   constructor(data, header) {
-    let flacHeader = null;
-
-    if (header) {
-      flacHeader = new FlacHeader(header, true);
-    }
-
-    super(flacHeader, data);
+    super(new FlacHeader(header, true), data);
   }
 }

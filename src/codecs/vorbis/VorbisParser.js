@@ -81,14 +81,14 @@ export default class VorbisParser extends Parser {
           new VorbisFrame(
             segment,
             new VorbisHeader(this._vorbisHead, true),
-            this._getSamplesPerFrame(segment)
+            this._getSamples(segment)
           )
       ),
       remainingData: 0,
     };
   }
 
-  _getSamplesPerFrame(segment) {
+  _getSamples(segment) {
     const byte = segment[0] >> 1;
 
     const blockFlag = this._mode[byte & this._mode.mask];

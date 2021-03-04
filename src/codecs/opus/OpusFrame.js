@@ -90,17 +90,13 @@ export default class OpusFrame extends Frame {
   }
 
   constructor(data, header) {
-    let opusHeader = null;
-
-    if (header) {
-      opusHeader = new OpusHeader(header, true);
-
-      const packet = OpusFrame.getPacket(data);
-      opusHeader.samplesPerFrame =
-        ((packet.config.frameSize * packet.frameCount) / 1000) *
-        header.sampleRate;
-    }
+    let opusHeader = new OpusHeader(header, true);
+    const packet = OpusFrame.getPacket(data);
 
     super(opusHeader, data);
+
+    this._samples =
+      ((packet.config.frameSize * packet.frameCount) / 1000) *
+      header.sampleRate;
   }
 }

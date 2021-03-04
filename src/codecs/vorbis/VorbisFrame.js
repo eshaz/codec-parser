@@ -20,10 +20,8 @@ import Frame from "../Frame";
 
 export default class VorbisFrame extends Frame {
   constructor(data, header, samples) {
-    if (header) {
-      header.samplesPerFrame = samples;
-    }
-
     super(header, data);
+
+    this._samples = samples;
   }
 }
