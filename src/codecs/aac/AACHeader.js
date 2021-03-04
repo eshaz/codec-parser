@@ -41,6 +41,8 @@ P 	2 	Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibili
 Q 	16 	CRC if protection absent is 0 
 */
 
+import { headerStore } from "../../globals";
+
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -240,21 +242,6 @@ export default class AACHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._copyrightId = header.copyrightId;
-    this._copyrightIdStart = header.copyrightIdStart;
-    this._bufferFullness = header.bufferFullness;
-    this._frameLength = header.frameLength;
-    this._isHome = header.isHome;
-    this._isOriginal = header.isOriginal;
-    this._isPrivate = header.isPrivate;
-    this._layer = header.layer;
-    this._mpegVersion = header.mpegVersion;
-    this._numberAACFrames = header.numberAACFrames;
-    this._profile = header.profile;
-    this._protection = header.protection;
-    this._profileBits = header.profileBits;
-    this._sampleRateBits = header.sampleRateBits;
-    this._channelModeBits = header.channelModeBits;
   }
 
   get audioSpecificConfig() {
@@ -266,17 +253,63 @@ export default class AACHeader extends Header {
     // * `........|.....0..`: Frame Length (1024)
     // * `........|......0.`: does not depend on core coder
     // * `........|.......0`: Not Extension
+    const header = headerStore.get(this);
+
     const audioSpecificConfig =
-      ((this._profileBits + 0x40) << 5) |
-      (this._sampleRateBits << 5) |
-      (this._channelModeBits >> 3);
+      ((header.profileBits + 0x40) << 5) |
+      (header.sampleRateBits << 5) |
+      (header.channelModeBits >> 3);
 
     const bytes = new Uint8Array(2);
     new DataView(bytes.buffer).setUint16(0, audioSpecificConfig, false);
     return bytes;
   }
 
+  get copyrightId() {
+    return headerStore.get(this).copyrightId;
+  }
+
+  get copyrightIdStart() {
+    return headerStore.get(this).copyrightIdStart;
+  }
+
+  get bufferFullness() {
+    return headerStore.get(this).bufferFullness;
+  }
+
   get frameLength() {
-    return this._frameLength;
+    return headerStore.get(this).frameLength;
+  }
+
+  get isHome() {
+    return headerStore.get(this).isHome;
+  }
+
+  get isOriginal() {
+    return headerStore.get(this).isOriginal;
+  }
+
+  get isPrivate() {
+    return headerStore.get(this).isPrivate;
+  }
+
+  get layer() {
+    return headerStore.get(this).layer;
+  }
+
+  get mpegVersion() {
+    return headerStore.get(this).mpegVersion;
+  }
+
+  get numberAACFrames() {
+    return headerStore.get(this).numberAACFrames;
+  }
+
+  get profile() {
+    return headerStore.get(this).profile;
+  }
+
+  get protection() {
+    return headerStore.get(this).protection;
   }
 }

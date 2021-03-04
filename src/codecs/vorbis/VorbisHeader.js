@@ -35,6 +35,7 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
+import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -124,29 +125,29 @@ export default class VorbisHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._version = header.version;
-    this._bitrateMaximum = header.bitrateMaximum;
-    this._bitrateNominal = header.bitrateNominal;
-    this._bitrateMinimum = header.bitrateMinimum;
-    this._bitDepth = header.bitDepth;
-    this._blocksize0 = header.blocksize0;
-    this._blocksize1 = header.blocksize1;
-    this._codecPrivate = header.codecPrivate;
   }
 
-  get blocksize0() {
-    return this._blocksize0;
-  }
-
-  get blocksize1() {
-    return this._blocksize1;
-  }
-
-  get codecPrivate() {
-    return this._codecPrivate;
+  get bitrateMaximum() {
+    return headerStore.get(this).bitrateMaximum;
   }
 
   get bitrateNominal() {
-    return this._bitrateNominal;
+    return headerStore.get(this).bitrateNominal;
+  }
+
+  get bitrateMinimum() {
+    return headerStore.get(this).bitrateMinimum;
+  }
+
+  get blocksize0() {
+    return headerStore.get(this).blocksize0;
+  }
+
+  get blocksize1() {
+    return headerStore.get(this).blocksize1;
+  }
+
+  get codecPrivate() {
+    return headerStore.get(this).codecPrivate;
   }
 }

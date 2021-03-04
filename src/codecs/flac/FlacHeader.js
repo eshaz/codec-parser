@@ -47,9 +47,10 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
         
 */
 
+import { crc8 } from "../../utilities";
+import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
-import { crc8 } from "../../utilities";
 
 const blockingStrategy = {
   0b00000000: "Fixed",
@@ -301,24 +302,25 @@ export default class FlacHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._blockingStrategy = header.blockingStrategy;
-    this._blockSize = header.blockSize;
-    this._crc = header.crc;
-    this._frameNumber = header.frameNumber;
-    this._bitDepth = header.bitDepth;
-    this._sampleNumber = header.sampleNumber;
-    this._samples = header.blockSize;
+  }
+
+  get samples() {
+    return headerStore.get(this).blockSize;
+  }
+
+  get blockingStrategy() {
+    return headerStore.get(this).blockingStrategy;
   }
 
   get blockSize() {
-    return this._blockSize;
+    return headerStore.get(this).blockSize;
   }
 
   get frameNumber() {
-    return this._frameNumber;
+    return headerStore.get(this).frameNumber;
   }
 
-  get bitDepth() {
-    return this._bitDepth;
+  get sampleNumber() {
+    return headerStore.get(this).frameNumber;
   }
 }

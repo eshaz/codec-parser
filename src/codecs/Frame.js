@@ -16,25 +16,43 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../globals";
+
 export default class Frame {
   constructor(header, data) {
+    frameStore.set(this, {
+      header,
+      data: data || [],
+    });
+
     if (header) {
-      this._samples = header.samples;
+      frameStore.get(this).samples = header.samples;
     }
 
     if (data) {
-      this._length = data.length;
+      frameStore.get(this).length = data.length;
     }
+  }
 
-    this._header = header;
-    this._data = data || [];
+  /**
+   * @returns {MPEGHeader} {Uint8Array} This frame's data
+   */
+  get data() {
+    return frameStore.get(this).data;
+  }
+
+  /**
+   * @returns {MPEGHeader} This frame's header
+   */
+  get header() {
+    return frameStore.get(this).header;
   }
 
   /**
    * @returns Total length of the original codec frame
    */
   get length() {
-    return this._length;
+    return frameStore.get(this).length;
   }
 
   /**
@@ -48,20 +66,22 @@ export default class Frame {
    * @returns Total audio samples contained in the frame
    */
   get samples() {
-    return this._samples;
+    return frameStore.get(this).samples;
   }
 
-  /**
-   * @returns {MPEGHeader} This frame's header
-   */
-  get header() {
-    return this._header;
+  get frameNumber() {
+    return frameStore.get(this).frameNumber;
   }
 
-  /**
-   * @returns {MPEGHeader} {Uint8Array} This frame's data
-   */
-  get data() {
-    return this._data;
+  get totalBytesOut() {
+    return frameStore.get(this).totalBytesOut;
+  }
+
+  get totalSamples() {
+    return frameStore.get(this).totalSamples;
+  }
+
+  get totalDuration() {
+    return frameStore.get(this).totalDuration;
   }
 }

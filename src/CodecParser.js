@@ -1,4 +1,5 @@
 import { concatBuffers } from "./utilities";
+import { frameStore } from "./globals";
 import MPEGParser from "./codecs/mpeg/MPEGParser";
 import AACParser from "./codecs/aac/AACParser";
 import OggParser from "./codecs/ogg/OggParser";
@@ -20,6 +21,11 @@ export default class CodecParser {
     } else {
       throw new Error(`Unsupported Codec ${mimeType}`);
     }
+
+    this._frameNumber = 0;
+    this._totalBytesOut = 0;
+    this._totalSamples = 0;
+    this._totalDuration = 0;
 
     this._frames = [];
     this._codecData = new Uint8Array(0);
@@ -98,6 +104,16 @@ export default class CodecParser {
 
     this._codecData = this._codecData.subarray(remainingData);
 
-    return frames;
+    return frames.map((frame) => {
+      const store = frameStore.get(frame);
+      store.frameNumber = this._frameNumber++;
+      store.totalBytesOut = this._totalBytesOut += frame.data.length;
+      store.totalSamples = this._totalSamples += frame.samples;
+      store.totalDuration = this._totalDuration += frame.duration;
+
+      console.log(frame);
+
+      return frame;
+    });
   }
 }

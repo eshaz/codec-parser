@@ -43,7 +43,7 @@ export default class OggPage extends Frame {
    * @returns Total length of frame (header + data)
    */
   get length() {
-    return this._header ? this._header.length + this._header.frameLength : 0;
+    return this.header ? this.header.length + this.header.frameLength : 0;
   }
 
   get segments() {

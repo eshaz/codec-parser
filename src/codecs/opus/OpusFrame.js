@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../../globals";
 import Frame from "../Frame";
 import OpusHeader from "./OpusHeader";
 
@@ -95,7 +96,7 @@ export default class OpusFrame extends Frame {
 
     super(opusHeader, data);
 
-    this._samples =
+    frameStore.get(this).samples =
       ((packet.config.frameSize * packet.frameCount) / 1000) *
       header.sampleRate;
   }

@@ -51,6 +51,7 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
+import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -175,51 +176,37 @@ export default class OpusHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._channelMappingFamily = header.channelMappingFamily;
-    this._channelMappingTable = header.channelMappingTable;
-    this._coupledStreamCount = header.coupledStreamCount;
-    this._bitDepth = header.bitDepth;
-    this._bytes = header.bytes;
-    this._inputSampleRate = header.inputSampleRate;
-    this._outputGain = header.outputGain;
-    this._preSkip = header.preSkip;
-    this._bitDepth = header.bitDepth;
-    this._streamCount = header.streamCount;
   }
 
   get bytes() {
-    return this._bytes;
+    return headerStore.get(this).bytes;
   }
 
   get channelMappingFamily() {
-    return this._channelMappingFamily;
+    return headerStore.get(this).channelMappingFamily;
   }
 
   get coupledStreamCount() {
-    return this._coupledStreamCount;
+    return headerStore.get(this).coupledStreamCount;
   }
 
   get preSkip() {
-    return this._preSkip;
+    return headerStore.get(this).preSkip;
   }
 
   get outputGain() {
-    return this._outputGain;
+    return headerStore.get(this).outputGain;
   }
 
   get inputSampleRate() {
-    return this._inputSampleRate;
-  }
-
-  get bitDepth() {
-    return this._bitDepth;
+    return headerStore.get(this).inputSampleRate;
   }
 
   get streamCount() {
-    return this._streamCount;
+    return headerStore.get(this).streamCount;
   }
 
   get channelMappingTable() {
-    return this._channelMappingTable;
+    return headerStore.get(this).channelMappingTable;
   }
 }
