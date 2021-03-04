@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecFrame from "../CodecFrame";
+import Frame from "../Frame";
 import AACHeader from "./AACHeader";
 
-export default class AACFrame extends CodecFrame {
+export default class AACFrame extends Frame {
   constructor(data, headerCache) {
     const header = AACHeader.getHeader(data, headerCache);
 

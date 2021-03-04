@@ -16,14 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecParser from "../CodecParser";
+import Parser from "../Parser";
 import FlacFrame from "./FlacFrame";
 import FlacHeader from "./FlacHeader";
 
-export default class FlacParser extends CodecParser {
+export default class FlacParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.CodecFrame = FlacFrame;
+    this.Frame = FlacFrame;
   }
 
   get codec() {

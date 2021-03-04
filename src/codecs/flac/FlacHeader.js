@@ -47,7 +47,7 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
         
 */
 
-import CodecHeader from "../CodecHeader";
+import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 import { crc8 } from "../../utilities";
 
@@ -125,7 +125,7 @@ const bitDepth = {
   0b00001110: "reserved",
 };
 
-export default class FlacHeader extends CodecHeader {
+export default class FlacHeader extends Header {
   static decodeUTF8Int(data) {
     if (data[0] < 0x80) return { value: data[0], next: 1 };
 

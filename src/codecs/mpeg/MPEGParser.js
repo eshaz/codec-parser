@@ -16,13 +16,13 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecParser from "../CodecParser";
+import Parser from "../Parser";
 import MPEGFrame from "./MPEGFrame";
 
-export default class MPEGParser extends CodecParser {
+export default class MPEGParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.CodecFrame = MPEGFrame;
+    this.Frame = MPEGFrame;
     this._maxHeaderLength = 4;
   }
 

@@ -22,26 +22,20 @@ import HeaderCache from "./HeaderCache";
  * @abstract
  * @description Abstract class containing methods for parsing codec frames
  */
-export default class CodecParser {
+export default class Parser {
   constructor(onCodecUpdate) {
     this._headerCache = new HeaderCache(onCodecUpdate);
   }
 
   syncFrame(data, remainingData = 0) {
-    let frame = new this.CodecFrame(
-      data.subarray(remainingData),
-      this._headerCache
-    );
+    let frame = new this.Frame(data.subarray(remainingData), this._headerCache);
 
     while (
       !frame.header &&
       remainingData + this._maxHeaderLength < data.length
     ) {
       remainingData += frame.length || 1;
-      frame = new this.CodecFrame(
-        data.subarray(remainingData),
-        this._headerCache
-      );
+      frame = new this.Frame(data.subarray(remainingData), this._headerCache);
     }
 
     return { frame, remainingData };
@@ -57,7 +51,7 @@ export default class CodecParser {
   }
 
   /**
-   * @description Searches for CodecFrames within bytes containing a sequence of known codec frames.
+   * @description Searches for Frames within bytes containing a sequence of known codec frames.
    * @param {Uint8Array} data Codec data that should contain a sequence of known length frames.
    * @returns {object} Object containing the actual offset and frame. Frame is undefined if no valid header was found
    */
@@ -72,7 +66,7 @@ export default class CodecParser {
       frame.length + remainingData + this._maxHeaderLength < data.length // is there enough data left to form a frame and check the next frame
     ) {
       // check if there is a valid frame immediately after this frame
-      const nextFrame = new this.CodecFrame(
+      const nextFrame = new this.Frame(
         data.subarray(frame.length + remainingData),
         this._headerCache
       );

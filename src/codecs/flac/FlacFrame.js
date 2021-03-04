@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecFrame from "../CodecFrame";
+import Frame from "../Frame";
 import FlacHeader from "./FlacHeader";
 
-export default class FlacFrame extends CodecFrame {
+export default class FlacFrame extends Frame {
   constructor(data, header) {
     let flacHeader = null;
 

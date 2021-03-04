@@ -16,14 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecParser from "../CodecParser";
+import Parser from "../Parser";
 import OpusFrame from "./OpusFrame";
 import OpusHeader from "./OpusHeader";
 
-export default class OpusParser extends CodecParser {
+export default class OpusParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.CodecFrame = OpusFrame;
+    this.Frame = OpusFrame;
     this._identificationHeader = null;
     this._maxHeaderLength = 26;
   }

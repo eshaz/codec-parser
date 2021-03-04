@@ -1,3 +1,3 @@
-import MSEAudioWrapper from "./src/MSEAudioWrapper";
+import CodecParser from "./src/CodecParser";
 
-export default MSEAudioWrapper;
+export default CodecParser;

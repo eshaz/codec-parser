@@ -35,7 +35,7 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
-import CodecHeader from "../CodecHeader";
+import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
 /* prettier-ignore */
@@ -50,7 +50,7 @@ const blockSizes = {
   0b1101: 8192
 };
 
-export default class VorbisHeader extends CodecHeader {
+export default class VorbisHeader extends Header {
   static getHeader(data, headerCache) {
     const header = { length: 29 };
 

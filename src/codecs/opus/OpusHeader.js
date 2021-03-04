@@ -51,7 +51,7 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
-import CodecHeader from "../CodecHeader";
+import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
 /* prettier-ignore */
@@ -72,7 +72,7 @@ const channelMappingFamilies = {
   ]
 };
 
-export default class OpusHeader extends CodecHeader {
+export default class OpusHeader extends Header {
   static getHeader(data, headerCache) {
     const header = {};
     // Must be at least 19 bytes.

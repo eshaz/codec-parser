@@ -16,18 +16,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecParser from "../CodecParser";
+import Parser from "../Parser";
 import OggPage from "./OggPage";
 
 import FlacParser from "../flac/FlacParser";
 import OpusParser from "../opus/OpusParser";
 import VorbisParser from "../vorbis/VorbisParser";
 
-export default class OggParser extends CodecParser {
+export default class OggParser extends Parser {
   constructor(onCodecUpdate) {
     super();
     this._onCodecUpdate = onCodecUpdate;
-    this.CodecFrame = OggPage;
+    this.Frame = OggPage;
     this._maxHeaderLength = 283;
     this._codec = null;
   }

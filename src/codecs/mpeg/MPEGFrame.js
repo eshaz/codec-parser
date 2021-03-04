@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecFrame from "../CodecFrame";
+import Frame from "../Frame";
 import MPEGHeader from "./MPEGHeader";
 
-export default class MPEGFrame extends CodecFrame {
+export default class MPEGFrame extends Frame {
   constructor(data, headerCache) {
     const header = MPEGHeader.getHeader(data, headerCache);
 

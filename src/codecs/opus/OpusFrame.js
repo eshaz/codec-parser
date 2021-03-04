@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecFrame from "../CodecFrame";
+import Frame from "../Frame";
 import OpusHeader from "./OpusHeader";
 
 //  0 1 2 3 4 5 6 7
@@ -58,7 +58,7 @@ const configTable = {
   0b11111000: { mode: "CELT-only", bandwidth: "FB", frameSize: 20 },
 };
 
-export default class OpusFrame extends CodecFrame {
+export default class OpusFrame extends Frame {
   static getPacket(data) {
     const packet = {
       config: configTable[0b11111000 & data[0]],

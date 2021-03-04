@@ -16,15 +16,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecParser from "../CodecParser";
+import Parser from "../Parser";
 import VorbisFrame from "./VorbisFrame";
 import VorbisHeader from "./VorbisHeader";
 import { BitReader, reverse, logError } from "../../utilities";
 
-export default class VorbisParser extends CodecParser {
+export default class VorbisParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.CodecFrame = VorbisFrame;
+    this.Frame = VorbisFrame;
     this._maxHeaderLength = 29;
 
     this._vorbisHead = null;

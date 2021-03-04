@@ -16,13 +16,13 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecParser from "../CodecParser";
+import Parser from "../Parser";
 import AACFrame from "./AACFrame";
 
-export default class AACParser extends CodecParser {
+export default class AACParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.CodecFrame = AACFrame;
+    this.Frame = AACFrame;
     this._maxHeaderLength = 9;
   }
 

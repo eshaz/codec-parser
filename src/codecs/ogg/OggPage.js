@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecFrame from "../CodecFrame";
+import Frame from "../Frame";
 import OggPageHeader from "./OggPageHeader";
 
-export default class OggPage extends CodecFrame {
+export default class OggPage extends Frame {
   constructor(data) {
     const oggPage = OggPageHeader.getHeader(data);
 

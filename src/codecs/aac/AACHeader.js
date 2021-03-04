@@ -41,7 +41,7 @@ P 	2 	Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibili
 Q 	16 	CRC if protection absent is 0 
 */
 
-import CodecHeader from "../CodecHeader";
+import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
 const mpegVersion = {
@@ -115,7 +115,7 @@ const channelMode = {
   },
 };
 
-export default class AACHeader extends CodecHeader {
+export default class AACHeader extends Header {
   static getHeader(data, headerCache) {
     const header = {};
 
