@@ -52,6 +52,8 @@ L   n   Segment table (n=page_segments+26).
 
 const OggS = 0x4f676753;
 
+import { headerStore, isParsedStore } from "../../globals";
+
 export default class OggPageHeader {
   static getHeader(data) {
     const header = {};
@@ -144,45 +146,55 @@ export default class OggPageHeader {
    * Call OggPageHeader.getHeader(Array<Uint8>) to get instance
    */
   constructor(header, isParsed) {
-    this._isParsed = isParsed;
-    this._absoluteGranulePosition = header.absoluteGranulePosition;
-    this._frameLength = header.frameLength;
-    this._isContinuedPacket = header.isContinuedPacket;
-    this._isFirstPage = header.isFirstPage;
-    this._isLastPage = header.isLastPage;
-    this._length = header.length;
-    this._pageSegmentBytes = header.pageSegmentBytes;
-    this._pageSegmentTable = header.pageSegmentTable;
-    this._pageSequenceNumber = header.pageSequenceNumber;
-    this._pageChecksum = header.pageChecksum;
-    this._streamSerialNumber = header.streamSerialNumber;
+    headerStore.set(this, header);
+    isParsedStore.set(this, isParsed);
   }
 
   get isParsed() {
-    return this._isParsed;
+    return isParsedStore.get(this);
   }
 
   get absoluteGranulePosition() {
-    return this._absoluteGranulePosition;
+    return headerStore.get(this).absoluteGranulePosition;
   }
 
   get frameLength() {
-    return this._frameLength;
+    return headerStore.get(this).frameLength;
   }
 
-  get pageSegmentTable() {
-    return this._pageSegmentTable;
+  get isContinuedPacket() {
+    return headerStore.get(this).isContinuedPacket;
   }
 
-  get pageSegmentBytes() {
-    return this._pageSegmentBytes;
+  get isFirstPage() {
+    return headerStore.get(this).isFirstPage;
   }
 
-  get pageSequenceNumber() {
-    return this._pageSequenceNumber;
+  get isLastPage() {
+    return headerStore.get(this).isLastPage;
   }
 
   get length() {
-    return this._length;
+    return headerStore.get(this).length;
+  }
+
+  get pageSegmentBytes() {
+    return headerStore.get(this).pageSegmentBytes;
+  }
+
+  get pageSegmentTable() {
+    return headerStore.get(this).pageSegmentTable;
+  }
+
+  get pageSequenceNumber() {
+    return headerStore.get(this).pageSequenceNumber;
+  }
+
+  get pageChecksum() {
+    return headerStore.get(this).pageChecksum;
+  }
+
+  get streamSerialNumber() {
+    return headerStore.get(this).streamSerialNumber;
   }
 }

@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../globals";
+import { headerStore, isParsedStore } from "../globals";
 
 export default class Header {
   /**
@@ -24,7 +24,7 @@ export default class Header {
    */
   constructor(header, isParsed) {
     headerStore.set(this, header);
-    this._isParsed = isParsed;
+    isParsedStore.set(this, isParsed);
   }
 
   get bitDepth() {
