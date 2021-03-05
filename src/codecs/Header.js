@@ -35,19 +35,11 @@ export default class Header {
     return headerStore.get(this).channels;
   }
 
-  get channelMode() {
-    return headerStore.get(this).channelMode;
-  }
-
   get length() {
     return headerStore.get(this).length;
   }
 
   get sampleRate() {
     return headerStore.get(this).sampleRate;
-  }
-
-  get samples() {
-    return headerStore.get(this).samples;
   }
 }

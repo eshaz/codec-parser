@@ -153,13 +153,13 @@ export default class OpusHeader extends Header {
       header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
-    header.bytes = data.subarray(0, header.length);
+    header.data = data.subarray(0, header.length);
 
     if (!cachedHeader) {
       // set header cache
       const {
         length,
-        bytes,
+        data,
         channelMappingFamily,
         ...codecUpdateFields
       } = header;
@@ -178,12 +178,16 @@ export default class OpusHeader extends Header {
     super(header, isParsed);
   }
 
-  get bytes() {
-    return headerStore.get(this).bytes;
+  get data() {
+    return headerStore.get(this).data;
   }
 
   get channelMappingFamily() {
     return headerStore.get(this).channelMappingFamily;
+  }
+
+  get channelMode() {
+    return headerStore.get(this).channelMode;
   }
 
   get coupledStreamCount() {

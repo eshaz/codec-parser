@@ -16,22 +16,16 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../globals";
+import { frameStore, headerStore } from "../globals";
 
 export default class Frame {
   constructor(header, data) {
     frameStore.set(this, {
       header,
+      samples: header && headerStore.get(header).samples,
       data: data || [],
+      length: data && data.length,
     });
-
-    if (header) {
-      frameStore.get(this).samples = header.samples;
-    }
-
-    if (data) {
-      frameStore.get(this).length = data.length;
-    }
   }
 
   /**

@@ -273,6 +273,10 @@ export default class AACHeader extends Header {
     return headerStore.get(this).copyrightIdStart;
   }
 
+  get channelMode() {
+    return headerStore.get(this).channelMode;
+  }
+
   get bufferFullness() {
     return headerStore.get(this).bufferFullness;
   }

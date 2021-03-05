@@ -266,6 +266,10 @@ export default class MPEGHeader extends Header {
     return headerStore.get(this).bitrate;
   }
 
+  get channelMode() {
+    return headerStore.get(this).channelMode;
+  }
+
   get emphasis() {
     return headerStore.get(this).emphasis;
   }

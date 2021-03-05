@@ -250,6 +250,8 @@ export default class FlacHeader extends Header {
       }
     }
 
+    header.samples = header.blockSize;
+
     // Byte (...)
     // * `KKKKKKKK|(KKKKKKKK)`: Sample rate (8/16bit custom value)
     if (typeof header.sampleRate === "string") {
@@ -304,8 +306,8 @@ export default class FlacHeader extends Header {
     super(header, isParsed);
   }
 
-  get samples() {
-    return headerStore.get(this).blockSize;
+  get channelMode() {
+    return headerStore.get(this).channelMode;
   }
 
   get blockingStrategy() {
