@@ -1,5 +1,4 @@
 import { concatBuffers } from "./utilities";
-import { frameStore } from "./globals";
 import MPEGParser from "./codecs/mpeg/MPEGParser";
 import AACParser from "./codecs/aac/AACParser";
 import OggParser from "./codecs/ogg/OggParser";
@@ -105,11 +104,10 @@ export default class CodecParser {
     this._codecData = this._codecData.subarray(remainingData);
 
     return frames.map((frame) => {
-      const store = frameStore.get(frame);
-      store.frameNumber = this._frameNumber++;
-      store.totalBytesOut = this._totalBytesOut += frame.data.length;
-      store.totalSamples = this._totalSamples += frame.samples;
-      store.totalDuration = this._totalDuration += frame.duration;
+      frame.frameNumber = this._frameNumber++;
+      frame.totalBytesOut = this._totalBytesOut += frame.data.length;
+      frame.totalSamples = this._totalSamples += frame.samples;
+      frame.totalDuration = this._totalDuration += frame.duration;
 
       console.log(frame);
 

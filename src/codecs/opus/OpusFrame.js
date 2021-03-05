@@ -16,7 +16,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../../globals";
 import Frame from "../Frame";
 import OpusHeader from "./OpusHeader";
 
@@ -94,10 +93,12 @@ export default class OpusFrame extends Frame {
     let opusHeader = new OpusHeader(header, true);
     const packet = OpusFrame.getPacket(data);
 
-    super(opusHeader, data);
-
-    frameStore.get(this).samples =
-      ((packet.config.frameSize * packet.frameCount) / 1000) *
-      header.sampleRate;
+    super(
+      opusHeader,
+      data,
+      opusHeader &&
+        ((packet.config.frameSize * packet.frameCount) / 1000) *
+          opusHeader.sampleRate
+    );
   }
 }

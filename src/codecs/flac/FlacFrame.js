@@ -16,11 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { headerStore } from "../../globals";
 import Frame from "../Frame";
 import FlacHeader from "./FlacHeader";
 
 export default class FlacFrame extends Frame {
   constructor(data, header) {
-    super(new FlacHeader(header, true), data);
+    const flacHeader = new FlacHeader(header, true);
+
+    super(flacHeader, data, flacHeader && headerStore.get(flacHeader).samples);
   }
 }

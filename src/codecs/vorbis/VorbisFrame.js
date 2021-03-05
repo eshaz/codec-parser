@@ -16,13 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../../globals";
 import Frame from "../Frame";
 
 export default class VorbisFrame extends Frame {
   constructor(data, header, samples) {
-    super(header, data);
-
-    frameStore.get(this).samples = samples;
+    super(header, data, samples);
   }
 }

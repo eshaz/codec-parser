@@ -31,22 +31,13 @@ export default class OggPage extends Frame {
 
     if (oggPage && oggPage.isParsed) {
       let offset = oggPage.length;
-      this._segments = oggPage.pageSegmentTable.map((segmentLength) => {
+
+      this.segments = oggPage.pageSegmentTable.map((segmentLength) => {
         const segment = data.subarray(offset, offset + segmentLength);
         offset += segmentLength;
         return segment;
       });
+      this.length = oggPage.length + oggPage.frameLength;
     }
-  }
-
-  /**
-   * @returns Total length of frame (header + data)
-   */
-  get length() {
-    return this.header ? this.header.length + this.header.frameLength : 0;
-  }
-
-  get segments() {
-    return this._segments;
   }
 }

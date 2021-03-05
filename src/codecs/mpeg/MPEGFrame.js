@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { headerStore } from "../../globals";
 import Frame from "../Frame";
 import MPEGHeader from "./MPEGHeader";
 
@@ -23,6 +24,10 @@ export default class MPEGFrame extends Frame {
   constructor(data, headerCache) {
     const header = MPEGHeader.getHeader(data, headerCache);
 
-    super(header, header && data.subarray(0, header.frameLength));
+    super(
+      header,
+      header && data.subarray(0, headerStore.get(header).frameLength),
+      header && headerStore.get(header).samples
+    );
   }
 }
