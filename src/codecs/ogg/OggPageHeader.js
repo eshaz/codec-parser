@@ -148,53 +148,14 @@ export default class OggPageHeader {
   constructor(header, isParsed) {
     headerStore.set(this, header);
     isParsedStore.set(this, isParsed);
-  }
 
-  get isParsed() {
-    return isParsedStore.get(this);
-  }
-
-  get absoluteGranulePosition() {
-    return headerStore.get(this).absoluteGranulePosition;
-  }
-
-  get frameLength() {
-    return headerStore.get(this).frameLength;
-  }
-
-  get isContinuedPacket() {
-    return headerStore.get(this).isContinuedPacket;
-  }
-
-  get isFirstPage() {
-    return headerStore.get(this).isFirstPage;
-  }
-
-  get isLastPage() {
-    return headerStore.get(this).isLastPage;
-  }
-
-  get length() {
-    return headerStore.get(this).length;
-  }
-
-  get pageSegmentBytes() {
-    return headerStore.get(this).pageSegmentBytes;
-  }
-
-  get pageSegmentTable() {
-    return headerStore.get(this).pageSegmentTable;
-  }
-
-  get pageSequenceNumber() {
-    return headerStore.get(this).pageSequenceNumber;
-  }
-
-  get pageChecksum() {
-    return headerStore.get(this).pageChecksum;
-  }
-
-  get streamSerialNumber() {
-    return headerStore.get(this).streamSerialNumber;
+    this.absoluteGranulePosition = header.absoluteGranulePosition;
+    this.isContinuedPacket = header.isContinuedPacket;
+    this.isFirstPage = header.isFirstPage;
+    this.isLastPage = header.isLastPage;
+    this.pageSegmentTable = header.pageSegmentTable;
+    this.pageSequenceNumber = header.pageSequenceNumber;
+    this.pageChecksum = header.pageChecksum;
+    this.streamSerialNumber = header.streamSerialNumber;
   }
 }

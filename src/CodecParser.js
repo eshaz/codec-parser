@@ -112,8 +112,6 @@ export default class CodecParser {
       this._totalBytesOut += frame.data.length;
       this._totalSamples += frame.samples;
 
-      console.log(frame);
-
       return frame;
     });
   }
