@@ -11,7 +11,10 @@
     "flac",
     "opus",
     "vorbis",
-    "ogg"
+    "ogg",
+    "ogg-flac",
+    "ogg-opus",
+    "ogg-vorbis"
   ],
   "scripts": {
     "format": "prettier --write '**/*.js' --write '**/*.json'"
