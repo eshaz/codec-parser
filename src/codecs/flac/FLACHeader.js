@@ -25,7 +25,7 @@ AAAAAAAA AAAAAABC DDDDEEEE FFFFGGGH
 (KKKKKKKK|KKKKKKKK)
 LLLLLLLLL
 
-Flac Frame Header
+FLAC Frame Header
 Letter 	Length (bits) 	Description
 A 	13 	11111111|11111
 B   1   Reserved 0 - mandatory, 1 - reserved
@@ -125,7 +125,7 @@ const bitDepth = {
   0b00001110: "reserved",
 };
 
-export default class FlacHeader extends Header {
+export default class FLACHeader extends Header {
   static decodeUTF8Int(data) {
     if (data[0] < 0x80) return { value: data[0], next: 1 };
 
@@ -160,7 +160,7 @@ export default class FlacHeader extends Header {
     const header = {};
 
     // Must be at least 6 bytes.
-    if (data.length < 6) return new FlacHeader(header, false);
+    if (data.length < 6) return new FLACHeader(header, false);
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 3));
@@ -220,8 +220,8 @@ export default class FlacHeader extends Header {
     header.length = 5;
 
     // check if there is enough data to parse UTF8
-    if (data.length < header.length + 8) return new FlacHeader(header, false);
-    const decodedUtf8 = FlacHeader.decodeUTF8Int(data.subarray(4));
+    if (data.length < header.length + 8) return new FLACHeader(header, false);
+    const decodedUtf8 = FLACHeader.decodeUTF8Int(data.subarray(4));
     if (!decodedUtf8) return null;
 
     if (header.blockingStrategyBits) {
@@ -237,12 +237,12 @@ export default class FlacHeader extends Header {
     if (typeof header.blockSize === "string") {
       if (blockSizeBits === 0b01100000) {
         // 8 bit
-        if (data.length < header.length) return new FlacHeader(header, false); // out of data
+        if (data.length < header.length) return new FLACHeader(header, false); // out of data
         header.blockSize = data[header.length - 1] - 1;
         header.length += 1;
       } else if (blockSizeBits === 0b01110000) {
         // 16 bit
-        if (data.length <= header.length) return new FlacHeader(header, false); // out of data
+        if (data.length <= header.length) return new FLACHeader(header, false); // out of data
         header.blockSize =
           (data[header.length - 1] << 8) + data[header.length] - 1;
         header.length += 2;
@@ -256,18 +256,18 @@ export default class FlacHeader extends Header {
     if (typeof header.sampleRate === "string") {
       if (sampleRateBits === 0b00001100) {
         // 8 bit
-        if (data.length < header.length) return new FlacHeader(header, false); // out of data
+        if (data.length < header.length) return new FLACHeader(header, false); // out of data
         header.sampleRate = data[header.length - 1] - 1;
         header.length += 1;
       } else if (sampleRateBits === 0b00001101) {
         // 16 bit
-        if (data.length <= header.length) return new FlacHeader(header, false); // out of data
+        if (data.length <= header.length) return new FLACHeader(header, false); // out of data
         header.sampleRate =
           (data[header.length - 1] << 8) + data[header.length] - 1;
         header.length += 2;
       } else if (sampleRateBits === 0b00001110) {
         // 16 bit
-        if (data.length <= header.length) return new FlacHeader(header, false); // out of data
+        if (data.length <= header.length) return new FLACHeader(header, false); // out of data
         header.sampleRate =
           (data[header.length - 1] << 8) + data[header.length] - 1;
         header.length += 2;
@@ -276,7 +276,7 @@ export default class FlacHeader extends Header {
 
     // Byte (...)
     // * `LLLLLLLL`: CRC-8
-    if (data.length < header.length) return new FlacHeader(header, false); // out of data
+    if (data.length < header.length) return new FLACHeader(header, false); // out of data
 
     header.crc = data[header.length - 1];
     if (header.crc !== crc8(data.subarray(0, header.length - 1))) {
@@ -299,7 +299,7 @@ export default class FlacHeader extends Header {
 
   /**
    * @private
-   * Call FlacHeader.getHeader(Array<Uint8>) to get instance
+   * Call FLACHeader.getHeader(Array<Uint8>) to get instance
    */
   constructor(header, isParsed) {
     super(header, isParsed);

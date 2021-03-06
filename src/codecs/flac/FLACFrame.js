@@ -18,11 +18,11 @@
 
 import { headerStore } from "../../globals";
 import Frame from "../Frame";
-import FlacHeader from "./FlacHeader";
+import FLACHeader from "./FLACHeader";
 
-export default class FlacFrame extends Frame {
+export default class FLACFrame extends Frame {
   constructor(data, header) {
-    const flacHeader = new FlacHeader(header, true);
+    const flacHeader = new FLACHeader(header, true);
 
     super(flacHeader, data, flacHeader && headerStore.get(flacHeader).samples);
   }

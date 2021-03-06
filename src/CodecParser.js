@@ -34,19 +34,10 @@ export default class CodecParser {
 
   /**
    * @public
-   * @returns The mimetype being returned from MSEAudioWrapper
-   * mp3, mp4a.40.2, flac, vorbis, opus
+   * @returns The detected codec
    */
   get codec() {
     return this._codecParser.codec;
-  }
-
-  /**
-   * @public
-   * @returns The mimetype of the incoming audio data
-   */
-  get inputMimeType() {
-    return this._inputMimeType;
   }
 
   /**

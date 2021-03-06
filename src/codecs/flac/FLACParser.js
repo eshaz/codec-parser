@@ -17,13 +17,13 @@
 */
 
 import Parser from "../Parser";
-import FlacFrame from "./FlacFrame";
-import FlacHeader from "./FlacHeader";
+import FLACFrame from "./FLACFrame";
+import FLACHeader from "./FLACHeader";
 
-export default class FlacParser extends Parser {
+export default class FLACParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.Frame = FlacFrame;
+    this.Frame = FLACFrame;
   }
 
   get codec() {
@@ -44,9 +44,9 @@ export default class FlacParser extends Parser {
     return {
       frames: oggPage.segments.map(
         (segment) =>
-          new FlacFrame(
+          new FLACFrame(
             segment,
-            FlacHeader.getHeader(segment, this._headerCache)
+            FLACHeader.getHeader(segment, this._headerCache)
           )
       ),
       remainingData: 0,
