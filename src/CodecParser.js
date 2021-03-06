@@ -24,7 +24,6 @@ export default class CodecParser {
     this._frameNumber = 0;
     this._totalBytesOut = 0;
     this._totalSamples = 0;
-    this._totalDuration = 0;
 
     this._frames = [];
     this._codecData = new Uint8Array(0);
@@ -105,11 +104,15 @@ export default class CodecParser {
 
     return frames.map((frame) => {
       frame.frameNumber = this._frameNumber++;
-      frame.totalBytesOut = this._totalBytesOut += frame.data.length;
-      frame.totalSamples = this._totalSamples += frame.samples;
-      frame.totalDuration = this._totalDuration += frame.duration;
+      frame.totalBytesOut = this._totalBytesOut;
+      frame.totalSamples = this._totalSamples;
+      frame.totalDuration =
+        (this._totalSamples / frame.header.sampleRate) * 1000;
 
-      //console.log(frame);
+      this._totalBytesOut += frame.data.length;
+      this._totalSamples += frame.samples;
+
+      console.log(frame);
 
       return frame;
     });

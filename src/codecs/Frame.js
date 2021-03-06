@@ -19,9 +19,9 @@
 export default class Frame {
   constructor(header, data, samples) {
     this.data = data || [];
-    this.length = this.data.length;
     this.header = header;
     this.samples = samples;
+    this.length = this.data.length;
     this.duration =
       header && samples && (this.samples / this.header.sampleRate) * 1000;
     this.frameNumber = undefined;

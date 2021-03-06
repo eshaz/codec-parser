@@ -152,7 +152,7 @@ export default class OpusHeader extends Header {
       header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
-    header.data = data.subarray(0, header.length);
+    header.data = Uint8Array.of(...data.subarray(0, header.length));
 
     if (!cachedHeader) {
       // set header cache
