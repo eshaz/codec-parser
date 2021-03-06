@@ -16,17 +16,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../globals";
+
 export default class Frame {
   constructor(header, data, samples) {
     this.data = data || [];
     this.header = header;
     this.samples = samples;
-    this.length = this.data.length;
     this.duration =
       header && samples && (this.samples / this.header.sampleRate) * 1000;
     this.frameNumber = undefined;
     this.totalBytesOut = undefined;
     this.totalSamples = undefined;
     this.totalDuration = undefined;
+
+    frameStore.set(this, { length: this.data.length });
   }
 }

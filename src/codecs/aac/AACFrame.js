@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../../globals";
+import { headerStore, frameStore } from "../../globals";
 import Frame from "../Frame";
 import AACHeader from "./AACHeader";
 
@@ -34,6 +34,6 @@ export default class AACFrame extends Frame {
       header && headerStore.get(header).samples
     );
 
-    this.length = header && headerStore.get(header).frameLength;
+    frameStore.get(this).length = header && headerStore.get(header).frameLength;
   }
 }
