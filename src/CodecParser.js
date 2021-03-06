@@ -1,3 +1,21 @@
+/* Copyright 2020-2021 Ethan Halsall
+    
+    This file is part of codec-parser.
+    
+    codec-parser is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    codec-parser is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>
+*/
+
 import { concatBuffers } from "./utilities";
 import MPEGParser from "./codecs/mpeg/MPEGParser";
 import AACParser from "./codecs/aac/AACParser";
@@ -21,6 +39,10 @@ export default class CodecParser {
       throw new Error(`Unsupported Codec ${mimeType}`);
     }
 
+    this._frameNumber = 0;
+    this._totalBytesOut = 0;
+    this._totalSamples = 0;
+
     this._frames = [];
     this._codecData = new Uint8Array(0);
 
@@ -30,19 +52,10 @@ export default class CodecParser {
 
   /**
    * @public
-   * @returns The mimetype being returned from MSEAudioWrapper
-   * mp3, mp4a.40.2, flac, vorbis, opus
+   * @returns The detected codec
    */
   get codec() {
     return this._codecParser.codec;
-  }
-
-  /**
-   * @public
-   * @returns The mimetype of the incoming audio data
-   */
-  get inputMimeType() {
-    return this._inputMimeType;
   }
 
   /**
@@ -98,6 +111,17 @@ export default class CodecParser {
 
     this._codecData = this._codecData.subarray(remainingData);
 
-    return frames;
+    return frames.map((frame) => {
+      frame.frameNumber = this._frameNumber++;
+      frame.totalBytesOut = this._totalBytesOut;
+      frame.totalSamples = this._totalSamples;
+      frame.totalDuration =
+        (this._totalSamples / frame.header.sampleRate) * 1000;
+
+      this._totalBytesOut += frame.data.length;
+      this._totalSamples += frame.samples;
+
+      return frame;
+    });
   }
 }

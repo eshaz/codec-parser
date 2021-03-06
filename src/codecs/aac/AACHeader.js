@@ -41,6 +41,8 @@ P 	2 	Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibili
 Q 	16 	CRC if protection absent is 0 
 */
 
+import { headerStore } from "../../globals";
+
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -202,8 +204,8 @@ export default class AACHeader extends Header {
       new DataView(
         Uint8Array.of(0x00, data[3], data[4], data[5]).buffer
       ).getUint32() & 0x3ffe0;
-    header.dataByteLength = frameLengthBits >> 5;
-    if (!header.dataByteLength) return null;
+    header.frameLength = frameLengthBits >> 5;
+    if (!header.frameLength) return null;
 
     // Byte (6,7 of 7)
     // * `...OOOOO|OOOOOO..`: Buffer fullness
@@ -215,7 +217,7 @@ export default class AACHeader extends Header {
     // Byte (7 of 7)
     // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
     header.numberAACFrames = data[6] & 0b00000011;
-    header.samplesPerFrame = 1024;
+    header.samples = 1024;
 
     if (!cachedHeader) {
       const {
@@ -223,10 +225,10 @@ export default class AACHeader extends Header {
         channelModeBits,
         profileBits,
         sampleRateBits,
-        dataByteLength,
+        frameLength,
         bufferFullness,
         numberAACFrames,
-        samplesPerFrame,
+        samples,
         ...codecUpdateFields
       } = header;
       headerCache.setHeader(key, header, codecUpdateFields);
@@ -240,20 +242,19 @@ export default class AACHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._copyrightId = header.copyrightId;
-    this._copyrightIdStart = header.copyrightIdStart;
-    this._bufferFullness = header.bufferFullness;
-    this._isHome = header.isHome;
-    this._isOriginal = header.isOriginal;
-    this._isPrivate = header.isPrivate;
-    this._layer = header.layer;
-    this._mpegVersion = header.mpegVersion;
-    this._numberAACFrames = header.numberAACFrames;
-    this._profile = header.profile;
-    this._protection = header.protection;
-    this._profileBits = header.profileBits;
-    this._sampleRateBits = header.sampleRateBits;
-    this._channelModeBits = header.channelModeBits;
+
+    this.copyrightId = header.copyrightId;
+    this.copyrightIdStart = header.copyrightIdStart;
+    this.channelMode = header.channelMode;
+    this.bufferFullness = header.bufferFullness;
+    this.isHome = header.isHome;
+    this.isOriginal = header.isOriginal;
+    this.isPrivate = header.isPrivate;
+    this.layer = header.layer;
+    this.mpegVersion = header.mpegVersion;
+    this.numberAACFrames = header.numberAACFrames;
+    this.profile = header.profile;
+    this.protection = header.protection;
   }
 
   get audioSpecificConfig() {
@@ -265,10 +266,12 @@ export default class AACHeader extends Header {
     // * `........|.....0..`: Frame Length (1024)
     // * `........|......0.`: does not depend on core coder
     // * `........|.......0`: Not Extension
+    const header = headerStore.get(this);
+
     const audioSpecificConfig =
-      ((this._profileBits + 0x40) << 5) |
-      (this._sampleRateBits << 5) |
-      (this._channelModeBits >> 3);
+      ((header.profileBits + 0x40) << 5) |
+      (header.sampleRateBits << 5) |
+      (header.channelModeBits >> 3);
 
     const bytes = new Uint8Array(2);
     new DataView(bytes.buffer).setUint16(0, audioSpecificConfig, false);

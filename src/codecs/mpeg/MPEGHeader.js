@@ -69,18 +69,18 @@ const layers = {
     modeExtensions: layer3ModeExtensions,
     v1: {
       bitrateIndex: v1Layer3,
-      samplesPerFrame: 1152,
+      samples: 1152,
     },
     v2: {
       bitrateIndex: v2Layer23,
-      samplesPerFrame: 576,
+      samples: 576,
     },
   },
   0b00000100: {
     description: "Layer II",
     framePadding: 1,
     modeExtensions: layer12ModeExtensions,
-    samplesPerFrame: 1152,
+    samples: 1152,
     v1: {
       bitrateIndex: v1Layer2,
     },
@@ -92,7 +92,7 @@ const layers = {
     description: "Layer I",
     framePadding: 4,
     modeExtensions: layer12ModeExtensions,
-    samplesPerFrame: 384,
+    samples: 384,
     v1: {
       bitrateIndex: v1Layer1,
     },
@@ -193,7 +193,7 @@ export default class MPEGHeader extends Header {
 
     header.mpegVersion = mpegVersion.description;
     header.layer = layer.description;
-    header.samplesPerFrame = layer.samplesPerFrame;
+    header.samples = layer.samples;
     header.protection = protection[protectionBit];
 
     // Byte (3 of 4)
@@ -216,11 +216,11 @@ export default class MPEGHeader extends Header {
     header.framePadding = paddingBit >> 1 && layer.framePadding;
     header.isPrivate = !!privateBit;
 
-    header.dataByteLength = Math.floor(
-      (125 * header.bitrate * header.samplesPerFrame) / header.sampleRate +
+    header.frameLength = Math.floor(
+      (125 * header.bitrate * header.samples) / header.sampleRate +
         header.framePadding
     );
-    if (!header.dataByteLength) return null;
+    if (!header.frameLength) return null;
 
     // Byte (4 of 4)
     // * `IIJJKLMM`
@@ -247,12 +247,7 @@ export default class MPEGHeader extends Header {
     header.bitDepth = 16;
 
     // set header cache
-    const {
-      length,
-      dataByteLength,
-      samplesPerFrame,
-      ...codecUpdateFields
-    } = header;
+    const { length, frameLength, samples, ...codecUpdateFields } = header;
 
     headerCache.setHeader(key, header, codecUpdateFields);
     return new MPEGHeader(header, true);
@@ -264,15 +259,17 @@ export default class MPEGHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._bitrate = header.bitrate;
-    this._emphasis = header.emphasis;
-    this._framePadding = header.framePadding;
-    this._isCopyrighted = header.isCopyrighted;
-    this._isOriginal = header.isOriginal;
-    this._isPrivate = header.isPrivate;
-    this._layer = header.layer;
-    this._modeExtension = header.modeExtension;
-    this._mpegVersion = header.mpegVersion;
-    this._protection = header.protection;
+
+    this.bitrate = header.bitrate;
+    this.channelMode = header.channelMode;
+    this.emphasis = header.emphasis;
+    this.framePadding = header.framePadding;
+    this.isCopyrighted = header.isCopyrighted;
+    this.isOriginal = header.isOriginal;
+    this.isPrivate = header.isPrivate;
+    this.layer = header.layer;
+    this.modeExtension = header.modeExtension;
+    this.mpegVersion = header.mpegVersion;
+    this.protection = header.protection;
   }
 }

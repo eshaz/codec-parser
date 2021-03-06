@@ -152,13 +152,13 @@ export default class OpusHeader extends Header {
       header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
-    header.bytes = data.subarray(0, header.length);
+    header.data = Uint8Array.of(...data.subarray(0, header.length));
 
     if (!cachedHeader) {
       // set header cache
       const {
         length,
-        bytes,
+        data,
         channelMappingFamily,
         ...codecUpdateFields
       } = header;
@@ -175,55 +175,15 @@ export default class OpusHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-    this._channelMappingFamily = header.channelMappingFamily;
-    this._channelMappingTable = header.channelMappingTable;
-    this._coupledStreamCount = header.coupledStreamCount;
-    this._bitDepth = header.bitDepth;
-    this._bytes = header.bytes;
-    this._inputSampleRate = header.inputSampleRate;
-    this._outputGain = header.outputGain;
-    this._preSkip = header.preSkip;
-    this._bitDepth = header.bitDepth;
-    this._streamCount = header.streamCount;
-  }
 
-  get bytes() {
-    return this._bytes;
-  }
-
-  set dataByteLength(dataByteLength) {
-    this._dataByteLength = dataByteLength;
-  }
-
-  get channelMappingFamily() {
-    return this._channelMappingFamily;
-  }
-
-  get coupledStreamCount() {
-    return this._coupledStreamCount;
-  }
-
-  get preSkip() {
-    return this._preSkip;
-  }
-
-  get outputGain() {
-    return this._outputGain;
-  }
-
-  get inputSampleRate() {
-    return this._inputSampleRate;
-  }
-
-  get bitDepth() {
-    return this._bitDepth;
-  }
-
-  get streamCount() {
-    return this._streamCount;
-  }
-
-  get channelMappingTable() {
-    return this._channelMappingTable;
+    this.data = header.data;
+    this.channelMappingFamily = header.channelMappingFamily;
+    this.channelMode = header.channelMode;
+    this.coupledStreamCount = header.coupledStreamCount;
+    this.preSkip = header.preSkip;
+    this.outputGain = header.outputGain;
+    this.inputSampleRate = header.inputSampleRate;
+    this.streamCount = header.streamCount;
+    this.channelMappingTable = header.channelMappingTable;
   }
 }

@@ -47,9 +47,9 @@ export default class OpusParser extends Parser {
     }
 
     return {
-      frames: oggPage.segments
-        .filter((segment) => segment[0] !== 0x4f && segment[1] !== 0x70)
-        .map((segment) => new OpusFrame(segment, this._identificationHeader)),
+      frames: oggPage.segments.map(
+        (segment) => new OpusFrame(segment, this._identificationHeader)
+      ),
       remainingData: 0,
     };
   }

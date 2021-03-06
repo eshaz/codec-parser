@@ -52,6 +52,8 @@ L   n   Segment table (n=page_segments+26).
 
 const OggS = 0x4f676753;
 
+import { headerStore, isParsedStore } from "../../globals";
+
 export default class OggPageHeader {
   static getHeader(data) {
     const header = {};
@@ -120,14 +122,14 @@ export default class OggPageHeader {
 
     if (header.length > data.length) return new OggPageHeader(header, false); // out of data
 
-    header.dataByteLength = 0;
+    header.frameLength = 0;
     header.pageSegmentTable = [];
     header.pageSegmentBytes = data.subarray(27, header.length);
 
     let segmentLength = 0;
 
     for (const segmentByte of header.pageSegmentBytes) {
-      header.dataByteLength += segmentByte;
+      header.frameLength += segmentByte;
       segmentLength += segmentByte;
 
       if (segmentByte !== 0xff) {
@@ -144,45 +146,16 @@ export default class OggPageHeader {
    * Call OggPageHeader.getHeader(Array<Uint8>) to get instance
    */
   constructor(header, isParsed) {
-    this._isParsed = isParsed;
-    this._absoluteGranulePosition = header.absoluteGranulePosition;
-    this._dataByteLength = header.dataByteLength;
-    this._isContinuedPacket = header.isContinuedPacket;
-    this._isFirstPage = header.isFirstPage;
-    this._isLastPage = header.isLastPage;
-    this._length = header.length;
-    this._pageSegmentBytes = header.pageSegmentBytes;
-    this._pageSegmentTable = header.pageSegmentTable;
-    this._pageSequenceNumber = header.pageSequenceNumber;
-    this._pageChecksum = header.pageChecksum;
-    this._streamSerialNumber = header.streamSerialNumber;
-  }
+    headerStore.set(this, header);
+    isParsedStore.set(this, isParsed);
 
-  get isParsed() {
-    return this._isParsed;
-  }
-
-  get absoluteGranulePosition() {
-    return this._absoluteGranulePosition;
-  }
-
-  get dataByteLength() {
-    return this._dataByteLength;
-  }
-
-  get pageSegmentTable() {
-    return this._pageSegmentTable;
-  }
-
-  get pageSegmentBytes() {
-    return this._pageSegmentBytes;
-  }
-
-  get pageSequenceNumber() {
-    return this._pageSequenceNumber;
-  }
-
-  get length() {
-    return this._length;
+    this.absoluteGranulePosition = header.absoluteGranulePosition;
+    this.isContinuedPacket = header.isContinuedPacket;
+    this.isFirstPage = header.isFirstPage;
+    this.isLastPage = header.isLastPage;
+    this.pageSegmentTable = header.pageSegmentTable;
+    this.pageSequenceNumber = header.pageSequenceNumber;
+    this.pageChecksum = header.pageChecksum;
+    this.streamSerialNumber = header.streamSerialNumber;
   }
 }

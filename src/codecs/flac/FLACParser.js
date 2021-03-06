@@ -17,13 +17,13 @@
 */
 
 import Parser from "../Parser";
-import FlacFrame from "./FlacFrame";
-import FlacHeader from "./FlacHeader";
+import FLACFrame from "./FLACFrame";
+import FLACHeader from "./FLACHeader";
 
-export default class FlacParser extends Parser {
+export default class FLACParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
-    this.Frame = FlacFrame;
+    this.Frame = FLACFrame;
   }
 
   get codec() {
@@ -31,20 +31,25 @@ export default class FlacParser extends Parser {
   }
 
   parseFrames(oggPage) {
-    if (this._initialHeader) {
-      return {
-        frames: oggPage.segments
-          .filter(
-            (segment) =>
-              segment[0] === 0xff &&
-              (segment[1] === 0xf8 || segment[1] === 0xf9)
-          )
-          .map((segment) => new FlacFrame(segment, this._initialHeader)),
-        remainingData: 0,
-      };
+    if (oggPage.header.pageSequenceNumber === 0) {
+      // Identification header
+      return { frames: [], remainingData: 0 };
     }
 
-    this._initialHeader = FlacHeader.getHeader(oggPage.data, this._headerCache);
-    return { frames: [], remainingData: 0 };
+    if (oggPage.header.pageSequenceNumber === 1) {
+      // Vorbis comments
+      return { frames: [], remainingData: 0 };
+    }
+
+    return {
+      frames: oggPage.segments.map(
+        (segment) =>
+          new FLACFrame(
+            segment,
+            FLACHeader.getHeader(segment, this._headerCache)
+          )
+      ),
+      remainingData: 0,
+    };
   }
 }

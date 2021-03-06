@@ -19,7 +19,7 @@
 import Parser from "../Parser";
 import OggPage from "./OggPage";
 
-import FlacParser from "../flac/FlacParser";
+import FLACParser from "../flac/FLACParser";
 import OpusParser from "../opus/OpusParser";
 import VorbisParser from "../vorbis/VorbisParser";
 
@@ -42,7 +42,7 @@ export default class OggParser extends Parser {
 
   getCodec({ data }) {
     if (this._matchBytes(/\x7fFLAC/, data.subarray(0, 5))) {
-      this._parser = new FlacParser(this._onCodecUpdate);
+      this._parser = new FLACParser(this._onCodecUpdate);
       return "flac";
     } else if (this._matchBytes(/OpusHead/, data.subarray(0, 8))) {
       this._parser = new OpusParser(this._onCodecUpdate);

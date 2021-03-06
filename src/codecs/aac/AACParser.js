@@ -27,7 +27,7 @@ export default class AACParser extends Parser {
   }
 
   get codec() {
-    return "mp4a.40.2";
+    return "aac";
   }
 
   parseFrames(data) {

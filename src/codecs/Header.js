@@ -16,60 +16,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { headerStore, isParsedStore } from "../globals";
+
 export default class Header {
   /**
    * @private
    */
   constructor(header, isParsed) {
-    this._isParsed = isParsed;
-    this._channelMode = header.channelMode;
-    this._channels = header.channels;
-    this._dataByteLength = header.dataByteLength;
-    this._length = header.length;
-    this._sampleRate = header.sampleRate;
-    this._samplesPerFrame = header.samplesPerFrame;
-  }
+    headerStore.set(this, header);
+    isParsedStore.set(this, isParsed);
 
-  /**
-   * @returns Boolean that returns true if the header has been completely parsed and there is no remaining data
-   */
-  get isParsed() {
-    return this._isParsed;
-  }
-
-  get bitDepth() {
-    return this._bitDepth;
-  }
-
-  get channels() {
-    return this._channels;
-  }
-
-  get dataByteLength() {
-    return this._dataByteLength;
-  }
-
-  get length() {
-    return this._length;
-  }
-
-  get sampleRate() {
-    return this._sampleRate;
-  }
-
-  set samplesPerFrame(length) {
-    this._samplesPerFrame = length;
-  }
-
-  get samplesPerFrame() {
-    return this._samplesPerFrame;
-  }
-
-  set duration(duration) {
-    this._duration = duration;
-  }
-
-  get duration() {
-    return this._duration;
+    this.bitDepth = header.bitDepth;
+    this.channels = header.channels;
+    this.sampleRate = header.sampleRate;
   }
 }

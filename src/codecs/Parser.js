@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { isParsedStore, frameStore } from "../globals";
 import HeaderCache from "./HeaderCache";
 
 /**
@@ -34,7 +35,7 @@ export default class Parser {
       !frame.header &&
       remainingData + this._maxHeaderLength < data.length
     ) {
-      remainingData += frame.length || 1;
+      remainingData += frameStore.get(frame).length || 1;
       frame = new this.Frame(data.subarray(remainingData), this._headerCache);
     }
 
@@ -61,13 +62,13 @@ export default class Parser {
     let frames = [];
 
     while (
-      frame.header && // was a header found
-      frame.header.isParsed && // was there enough data to parse the header
-      frame.length + remainingData + this._maxHeaderLength < data.length // is there enough data left to form a frame and check the next frame
+      isParsedStore.get(frame.header) && // was there enough data to parse the header
+      frameStore.get(frame).length + remainingData + this._maxHeaderLength <
+        data.length // is there enough data left to form a frame and check the next frame
     ) {
       // check if there is a valid frame immediately after this frame
       const nextFrame = new this.Frame(
-        data.subarray(frame.length + remainingData),
+        data.subarray(frameStore.get(frame).length + remainingData),
         this._headerCache
       );
 
@@ -76,10 +77,10 @@ export default class Parser {
         this._headerCache.enable();
         // there is a next frame, so the current frame is valid
         frames.push(frame);
-        remainingData += frame.length;
+        remainingData += frameStore.get(frame).length;
         frame = nextFrame;
 
-        if (nextFrame.header && !nextFrame.header.isParsed) break; // out of data
+        if (!isParsedStore.get(frame.header)) break; // out of data
       } else {
         // frame is invalid and must re-sync and clear cache
         this._headerCache.reset();

@@ -27,7 +27,7 @@ export default class MPEGParser extends Parser {
   }
 
   get codec() {
-    return "mp3";
+    return "mpeg";
   }
 
   parseFrames(data) {

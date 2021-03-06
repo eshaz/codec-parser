@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { BitReader, reverse, logError } from "../../utilities";
 import Parser from "../Parser";
 import VorbisFrame from "./VorbisFrame";
 import VorbisHeader from "./VorbisHeader";
-import { BitReader, reverse, logError } from "../../utilities";
 
 export default class VorbisParser extends Parser {
   constructor(onCodecUpdate) {
@@ -27,13 +27,7 @@ export default class VorbisParser extends Parser {
     this.Frame = VorbisFrame;
     this._maxHeaderLength = 29;
 
-    this._vorbisHead = null;
-
-    this._codecPrivate = {
-      lacing: [],
-      vorbisHead: null,
-      vorbisSetup: null,
-    };
+    this._identificationHeader = null;
 
     this._mode = {
       count: 0,
@@ -48,14 +42,9 @@ export default class VorbisParser extends Parser {
 
   parseFrames(oggPage) {
     if (oggPage.header.pageSequenceNumber === 0) {
-      this._vorbisHead = VorbisHeader.getHeader(
+      this._identificationHeader = VorbisHeader.getHeader(
         oggPage.data,
         this._headerCache
-      );
-      // gather WEBM CodecPrivate data
-      this._codecPrivate.vorbisHead = oggPage.segments[0];
-      this._codecPrivate.lacing = this._codecPrivate.lacing.concat(
-        ...oggPage.header.pageSegmentBytes
       );
 
       return { frames: [], remainingData: 0 };
@@ -63,13 +52,9 @@ export default class VorbisParser extends Parser {
 
     if (oggPage.header.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
-      this._codecPrivate.vorbisSetup = oggPage.data;
-      for (const lace of oggPage.header.pageSegmentBytes) {
-        this._codecPrivate.lacing.push(lace);
-        if (lace !== 0xff) break;
-      }
+      this._identificationHeader.vorbisComments = oggPage.segments[0];
+      this._identificationHeader.vorbisSetup = oggPage.segments[1];
 
-      this._vorbisHead.codecPrivate = this._codecPrivate;
       this._mode = this._parseSetupHeader(oggPage.segments[1]);
 
       return { frames: [], remainingData: 0 };
@@ -80,15 +65,15 @@ export default class VorbisParser extends Parser {
         (segment) =>
           new VorbisFrame(
             segment,
-            new VorbisHeader(this._vorbisHead, true),
-            this._getSamplesPerFrame(segment)
+            this._identificationHeader,
+            this._getSamples(segment)
           )
       ),
       remainingData: 0,
     };
   }
 
-  _getSamplesPerFrame(segment) {
+  _getSamples(segment) {
     const byte = segment[0] >> 1;
 
     const blockFlag = this._mode[byte & this._mode.mask];
@@ -97,13 +82,13 @@ export default class VorbisParser extends Parser {
     if (blockFlag) {
       this._prevBlockSize =
         byte & this._mode.prevMask
-          ? this._vorbisHead.blocksize1
-          : this._vorbisHead.blocksize0;
+          ? this._identificationHeader.blocksize1
+          : this._identificationHeader.blocksize0;
     }
 
     this._currBlockSize = blockFlag
-      ? this._vorbisHead.blocksize1
-      : this._vorbisHead.blocksize0;
+      ? this._identificationHeader.blocksize1
+      : this._identificationHeader.blocksize0;
 
     const samples = (this._prevBlockSize + this._currBlockSize) >> 2;
     this._prevBlockSize = this._currBlockSize;

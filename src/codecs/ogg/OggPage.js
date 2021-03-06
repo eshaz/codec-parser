@@ -16,37 +16,34 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { headerStore, isParsedStore } from "../../globals";
 import Frame from "../Frame";
 import OggPageHeader from "./OggPageHeader";
 
 export default class OggPage extends Frame {
   constructor(data) {
     const oggPage = OggPageHeader.getHeader(data);
+    const pageStore = headerStore.get(oggPage);
 
     super(
       oggPage,
-      oggPage &&
-        data.subarray(oggPage.length, oggPage.length + oggPage.dataByteLength)
+      oggPage
+        ? data.subarray(
+            pageStore.length,
+            pageStore.length + pageStore.frameLength
+          )
+        : []
     );
 
-    if (oggPage && oggPage.isParsed) {
-      let offset = oggPage.length;
-      this._segments = oggPage.pageSegmentTable.map((segmentLength) => {
+    if (isParsedStore.get(oggPage)) {
+      let offset = pageStore.length;
+
+      this.segments = oggPage.pageSegmentTable.map((segmentLength) => {
         const segment = data.subarray(offset, offset + segmentLength);
         offset += segmentLength;
         return segment;
       });
+      this.length = pageStore.length + pageStore.frameLength;
     }
-  }
-
-  /**
-   * @returns Total length of frame (header + data)
-   */
-  get length() {
-    return this._header ? this._header.length + this._header.dataByteLength : 0;
-  }
-
-  get segments() {
-    return this._segments;
   }
 }
