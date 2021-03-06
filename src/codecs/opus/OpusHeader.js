@@ -51,7 +51,6 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
-import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -176,41 +175,15 @@ export default class OpusHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-  }
 
-  get data() {
-    return headerStore.get(this).data;
-  }
-
-  get channelMappingFamily() {
-    return headerStore.get(this).channelMappingFamily;
-  }
-
-  get channelMode() {
-    return headerStore.get(this).channelMode;
-  }
-
-  get coupledStreamCount() {
-    return headerStore.get(this).coupledStreamCount;
-  }
-
-  get preSkip() {
-    return headerStore.get(this).preSkip;
-  }
-
-  get outputGain() {
-    return headerStore.get(this).outputGain;
-  }
-
-  get inputSampleRate() {
-    return headerStore.get(this).inputSampleRate;
-  }
-
-  get streamCount() {
-    return headerStore.get(this).streamCount;
-  }
-
-  get channelMappingTable() {
-    return headerStore.get(this).channelMappingTable;
+    this.data = header.data;
+    this.channelMappingFamily = header.channelMappingFamily;
+    this.channelMode = header.channelMode;
+    this.coupledStreamCount = header.coupledStreamCount;
+    this.preSkip = header.preSkip;
+    this.outputGain = header.outputGain;
+    this.inputSampleRate = header.inputSampleRate;
+    this.streamCount = header.streamCount;
+    this.channelMappingTable = header.channelMappingTable;
   }
 }

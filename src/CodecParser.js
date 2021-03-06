@@ -109,7 +109,7 @@ export default class CodecParser {
       frame.totalSamples = this._totalSamples += frame.samples;
       frame.totalDuration = this._totalDuration += frame.duration;
 
-      console.log(frame);
+      //console.log(frame);
 
       return frame;
     });

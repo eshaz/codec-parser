@@ -25,8 +25,9 @@ export default class OggPage extends Frame {
 
     super(
       oggPage,
-      oggPage &&
-        data.subarray(oggPage.length, oggPage.length + oggPage.frameLength)
+      oggPage
+        ? data.subarray(oggPage.length, oggPage.length + oggPage.frameLength)
+        : []
     );
 
     if (oggPage && oggPage.isParsed) {

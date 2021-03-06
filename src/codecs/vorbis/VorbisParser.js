@@ -17,7 +17,6 @@
 */
 
 import { BitReader, reverse, logError } from "../../utilities";
-import { headerStore } from "../../globals";
 import Parser from "../Parser";
 import VorbisFrame from "./VorbisFrame";
 import VorbisHeader from "./VorbisHeader";
@@ -53,10 +52,8 @@ export default class VorbisParser extends Parser {
 
     if (oggPage.header.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
-      headerStore.get(this._identificationHeader).vorbisComments =
-        oggPage.segments[0];
-      headerStore.get(this._identificationHeader).vorbisSetup =
-        oggPage.segments[1];
+      this._identificationHeader.vorbisComments = oggPage.segments[0];
+      this._identificationHeader.vorbisSetup = oggPage.segments[1];
 
       this._mode = this._parseSetupHeader(oggPage.segments[1]);
 

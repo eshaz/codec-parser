@@ -32,12 +32,12 @@ export default class HeaderCache {
   }
 
   setHeader(key, header, codecUpdateFields) {
-    if (key !== this._currentHeader) {
-      this._currentHeader = key;
-      this._onCodecUpdate({ ...codecUpdateFields });
-    }
-
     if (this._isEnabled) {
+      if (key !== this._currentHeader) {
+        this._currentHeader = key;
+        this._onCodecUpdate({ ...codecUpdateFields });
+      }
+
       this._headerCache.set(key, header);
       this._codecUpdateData.set(header, codecUpdateFields);
     }

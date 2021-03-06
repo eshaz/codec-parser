@@ -16,7 +16,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -260,53 +259,17 @@ export default class MPEGHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-  }
 
-  get bitrate() {
-    return headerStore.get(this).bitrate;
-  }
-
-  get channelMode() {
-    return headerStore.get(this).channelMode;
-  }
-
-  get emphasis() {
-    return headerStore.get(this).emphasis;
-  }
-
-  get framePadding() {
-    return headerStore.get(this).framePadding;
-  }
-
-  get frameLength() {
-    return headerStore.get(this).frameLength;
-  }
-
-  get isCopyrighted() {
-    return headerStore.get(this).isCopyrighted;
-  }
-
-  get isOriginal() {
-    return headerStore.get(this).isOriginal;
-  }
-
-  get isPrivate() {
-    return headerStore.get(this).isPrivate;
-  }
-
-  get layer() {
-    return headerStore.get(this).layer;
-  }
-
-  get modeExtension() {
-    return headerStore.get(this).modeExtension;
-  }
-
-  get mpegVersion() {
-    return headerStore.get(this).mpegVersion;
-  }
-
-  get protection() {
-    return headerStore.get(this).protection;
+    this.bitrate = header.bitrate;
+    this.channelMode = header.channelMode;
+    this.emphasis = header.emphasis;
+    this.framePadding = header.framePadding;
+    this.isCopyrighted = header.isCopyrighted;
+    this.isOriginal = header.isOriginal;
+    this.isPrivate = header.isPrivate;
+    this.layer = header.layer;
+    this.modeExtension = header.modeExtension;
+    this.mpegVersion = header.mpegVersion;
+    this.protection = header.protection;
   }
 }

@@ -35,7 +35,6 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
-import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -53,17 +52,17 @@ const blockSizes = {
 
 export default class VorbisHeader extends Header {
   static getHeader(data, headerCache) {
-    const header = { length: 29 };
+    const header = { length: 30 };
 
-    // Must be at least 29 bytes.
-    if (data.length < 29) return new VorbisHeader(header, false);
+    // Must be at least 30 bytes.
+    if (data.length < 30) return new VorbisHeader(header, false);
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 29));
+    const key = HeaderCache.getKey(data.subarray(0, 30));
     const cachedHeader = headerCache.getHeader(key);
     if (cachedHeader) return new VorbisHeader(cachedHeader, true);
 
-    // Bytes (1-7 of 29): /01vorbis - Magic Signature
+    // Bytes (1-7 of 30): /01vorbis - Magic Signature
     if (
       data[0] !== 0x01 || // identification header packet type
       data[1] !== 0x76 || // v
@@ -76,41 +75,45 @@ export default class VorbisHeader extends Header {
       return null;
     }
 
-    const view = new DataView(Uint8Array.of(...data.subarray(0, 29)).buffer);
+    header.data = Uint8Array.of(...data.subarray(0, 30));
+    const view = new DataView(header.data.buffer);
 
-    // Byte (8-11 of 29)
+    // Byte (8-11 of 30)
     // * `CCCCCCCC|CCCCCCCC|CCCCCCCC|CCCCCCCC`: Version number
     header.version = view.getUint32(7, true);
     if (header.version !== 0) return null;
 
-    // Byte (12 of 29)
+    // Byte (12 of 30)
     // * `DDDDDDDD`: Channel Count
     header.channels = data[11];
 
-    // Byte (13-16 of 29)
+    // Byte (13-16 of 30)
     // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
     header.sampleRate = view.getUint32(12, true);
 
-    // Byte (17-20 of 29)
+    // Byte (17-20 of 30)
     // * `FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF`: Bitrate Maximum
     header.bitrateMaximum = view.getInt32(16, true);
 
-    // Byte (21-24 of 29)
+    // Byte (21-24 of 30)
     // * `GGGGGGGG|GGGGGGGG|GGGGGGGG|GGGGGGGG`: Bitrate Nominal
     header.bitrateNominal = view.getInt32(20, true);
 
-    // Byte (25-28 of 29)
+    // Byte (25-28 of 30)
     // * `HHHHHHHH|HHHHHHHH|HHHHHHHH|HHHHHHHH`: Bitrate Minimum
     header.bitrateMinimum = view.getInt32(24, true);
 
-    // Byte (29 of 29)
+    // Byte (29 of 30)
     // * `IIII....` Blocksize 1
     // * `....JJJJ` Blocksize 0
     header.blocksize1 = blockSizes[(data[28] & 0b11110000) >> 4];
     header.blocksize0 = blockSizes[data[28] & 0b00001111];
 
+    // Byte (29 of 30)
+    // * `00000001` Framing bit
+    if (data[29 !== 0x01]) return null;
+
     header.bitDepth = 32;
-    header.data = data.subarray(0, header.length);
 
     {
       // set header cache
@@ -127,37 +130,14 @@ export default class VorbisHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-  }
 
-  get bitrateMaximum() {
-    return headerStore.get(this).bitrateMaximum;
-  }
-
-  get bitrateNominal() {
-    return headerStore.get(this).bitrateNominal;
-  }
-
-  get bitrateMinimum() {
-    return headerStore.get(this).bitrateMinimum;
-  }
-
-  get blocksize0() {
-    return headerStore.get(this).blocksize0;
-  }
-
-  get blocksize1() {
-    return headerStore.get(this).blocksize1;
-  }
-
-  get data() {
-    return headerStore.get(this).data;
-  }
-
-  get vorbisComments() {
-    return headerStore.get(this).vorbisComments;
-  }
-
-  get vorbisSetup() {
-    return headerStore.get(this).vorbisSetup;
+    this.bitrateMaximum = header.bitrateMaximum;
+    this.bitrateMinimum = header.bitrateMinimum;
+    this.bitrateNominal = header.bitrateNominal;
+    this.blocksize0 = header.blocksize0;
+    this.blocksize1 = header.blocksize1;
+    this.data = header.data;
+    this.vorbisComments = undefined; // set during ogg parsing
+    this.vorbisSetup = undefined; // set during ogg parsing
   }
 }

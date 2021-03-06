@@ -25,21 +25,9 @@ export default class Header {
   constructor(header, isParsed) {
     headerStore.set(this, header);
     isParsedStore.set(this, isParsed);
-  }
 
-  get bitDepth() {
-    return headerStore.get(this).bitDepth;
-  }
-
-  get channels() {
-    return headerStore.get(this).channels;
-  }
-
-  get length() {
-    return headerStore.get(this).length;
-  }
-
-  get sampleRate() {
-    return headerStore.get(this).sampleRate;
+    this.bitDepth = header.bitDepth;
+    this.channels = header.channels;
+    this.sampleRate = header.sampleRate;
   }
 }

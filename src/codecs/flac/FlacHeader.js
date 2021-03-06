@@ -48,7 +48,6 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
 */
 
 import { crc8 } from "../../utilities";
-import { headerStore } from "../../globals";
 import Header from "../Header";
 import HeaderCache from "../HeaderCache";
 
@@ -304,25 +303,11 @@ export default class FlacHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
-  }
 
-  get channelMode() {
-    return headerStore.get(this).channelMode;
-  }
-
-  get blockingStrategy() {
-    return headerStore.get(this).blockingStrategy;
-  }
-
-  get blockSize() {
-    return headerStore.get(this).blockSize;
-  }
-
-  get frameNumber() {
-    return headerStore.get(this).frameNumber;
-  }
-
-  get sampleNumber() {
-    return headerStore.get(this).frameNumber;
+    this.channelMode = header.channelMode;
+    this.blockingStrategy = header.blockingStrategy;
+    this.blockSize = header.blockSize;
+    this.frameNumber = header.frameNumber;
+    this.sampleNumber = header.sampleNumber;
   }
 }

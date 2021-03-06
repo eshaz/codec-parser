@@ -17,10 +17,10 @@
 */
 
 export default class Frame {
-  constructor(header, data = [], samples) {
-    this.data = data;
+  constructor(header, data, samples) {
+    this.data = data || [];
+    this.length = this.data.length;
     this.header = header;
-    this.length = data.length;
     this.samples = samples;
     this.duration =
       header && samples && (this.samples / this.header.sampleRate) * 1000;

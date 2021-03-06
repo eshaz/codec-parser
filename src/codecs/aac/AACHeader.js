@@ -242,6 +242,19 @@ export default class AACHeader extends Header {
    */
   constructor(header, isParsed) {
     super(header, isParsed);
+
+    this.copyrightId = header.copyrightId;
+    this.copyrightIdStart = header.copyrightIdStart;
+    this.channelMode = header.channelMode;
+    this.bufferFullness = header.bufferFullness;
+    this.isHome = header.isHome;
+    this.isOriginal = header.isOriginal;
+    this.isPrivate = header.isPrivate;
+    this.layer = header.layer;
+    this.mpegVersion = header.mpegVersion;
+    this.numberAACFrames = header.numberAACFrames;
+    this.profile = header.profile;
+    this.protection = header.protection;
   }
 
   get audioSpecificConfig() {
@@ -263,57 +276,5 @@ export default class AACHeader extends Header {
     const bytes = new Uint8Array(2);
     new DataView(bytes.buffer).setUint16(0, audioSpecificConfig, false);
     return bytes;
-  }
-
-  get copyrightId() {
-    return headerStore.get(this).copyrightId;
-  }
-
-  get copyrightIdStart() {
-    return headerStore.get(this).copyrightIdStart;
-  }
-
-  get channelMode() {
-    return headerStore.get(this).channelMode;
-  }
-
-  get bufferFullness() {
-    return headerStore.get(this).bufferFullness;
-  }
-
-  get frameLength() {
-    return headerStore.get(this).frameLength;
-  }
-
-  get isHome() {
-    return headerStore.get(this).isHome;
-  }
-
-  get isOriginal() {
-    return headerStore.get(this).isOriginal;
-  }
-
-  get isPrivate() {
-    return headerStore.get(this).isPrivate;
-  }
-
-  get layer() {
-    return headerStore.get(this).layer;
-  }
-
-  get mpegVersion() {
-    return headerStore.get(this).mpegVersion;
-  }
-
-  get numberAACFrames() {
-    return headerStore.get(this).numberAACFrames;
-  }
-
-  get profile() {
-    return headerStore.get(this).profile;
-  }
-
-  get protection() {
-    return headerStore.get(this).protection;
   }
 }
