@@ -1,29 +1,40 @@
 # Codec Parser
 
 `codec-parser` is a JavaScript library that takes in audio data and returns an array of audio frames with information.
+
+### Supports:
+  * ### MPEG (MP3) - `audio/mpeg`
+  * ### AAC - `audio/aac`, `audio/aacp`
+  * ### Ogg FLAC - `application/ogg`, `audio/ogg`
+  * ### Ogg Opus - `application/ogg`, `audio/ogg`
+  * ### Ogg Vorbis - `application/ogg`, `audio/ogg`
+
+
+## Demo
+The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-js) uses this library to allow for playback of streaming audio. `codec-parser` is used by [`mse-audio-wrapper`](https://github.com/eshaz/mse-audio-wrapper) to wrap streaming audio in ISOBMFF or WEBM so it can be played back using the MediaSource API.
+
+## View the live demo [here](https://eshaz.github.io/icecast-metadata-js/)!
+
+---
+
 * [Usage](#usage)
   * [Instantiation](#instantiation)
   * [Methods](#methods)
   * [Properties](#properties)
-* [DataTypes](#datatypes)
+* [Data Types](#data-types)
   * [Frame](#frame)
   * [Header](#header)
-    * [MPEG](#mpeg)
-    * [AAC](#aac)
-    * [FLAC](#flac)
-    * [Opus](#opus)
-    * [Vorbis](#vorbis)
-* [**Demo**](#demo)
-   * React application that demonstrates CodecParser being used to support icecast-metadata-js`
-   * Checkout the demo [here](https://eshaz.github.io/icecast-metadata-js/)!
-
----
+    * [MPEGHeader](#mpegheader)
+    * [AACHeader](#aacheader)
+    * [FLACHeader](#flacheader)
+    * [OpusHeader](#opusheader)
+    * [VorbisHeader](#vorbisheader)
 
 ## Usage
 
 1. To use `CodecParser`, create a new instance of the class by passing in the mimetype of your audio data along with the options object.
 
-    *Note: For directly converting from a HTTP response, use the mimetype contained in the `Content-Type` header*
+    *Note: For directly reading from a HTTP response, use the mimetype contained in the `Content-Type` header*
     
     ```
     import CodecParser from "codec-parser";
@@ -49,10 +60,13 @@
     const frames = [...parser.iterator(audioData)]
     ```
 
-    `CodecParser` will read the passed in data and attempt to parser audio frames according to the passed in `mimeType`. Any partial data will be stored until enough data is passed in for a complete frame can be formed. Iterations will begin to return frames once at least two consecutive frames have been detected in the passed in data.
+    `CodecParser` will read the passed in data and attempt to parse audio frames according to the passed in `mimeType`. Any partial data will be stored until enough data is passed in for a complete frame can be formed. Iterations will begin to return frames once at least two consecutive frames have been detected in the passed in data.
 
     *Note: Any data that does not conform to the instance's mimetype will be discarded.*
-  * 1st `.iterator` call
+
+    ### Example:
+
+  * 1st `.iterator()` call
     * Input
         ```
         [MPEG frame 0 (partial)],
@@ -64,7 +78,7 @@
       ```
     * `Frame 0` is dropped since it doesn't start with a valid header.
     * `Frame 1` is parsed and stored internally until enough data is passed in to properly sync.
-  * 2nd `.iterator` call
+  * 2nd `.iterator()` call
     * Input
         ```
         [MPEG frame 1 (partial)], 
@@ -80,7 +94,7 @@
       ```
     * `Frame 1` is joined with the partial data and returned since it was immediately followed by `Frame 2`.
     * `Frame 2` is stored internally as partial data.
-  * 3rd `.iterator` call
+  * 3rd `.iterator()` call
     * Input
       ```
       [MPEG frame 2 (partial)],
@@ -131,10 +145,10 @@
 * `parser.codec` The detected codec of the audio data
     * **Note: For Ogg streams, the codec will only be available after Ogg identification header has been parsed.**
   * Values:
-    * MP3 (MPEG) - `"mpeg"`
+    * MPEG (MP3) - `"mpeg"`
     * AAC - `"aac"`
     * FLAC - `"flac"`
-    * OPUS - `"opus"`
+    * Opus - `"opus"`
     * Vorbis - `"vorbis"`
 
 ## Data Types
@@ -148,9 +162,9 @@ Each iteration of `CodecParser.iterator()` will return a single `Frame`.
 * `samples`: Audio samples contained within this frame.
 * `duration`: Audio duration in milliseconds contained within this frame.
 * `frameNumber`: Total count of frames output by `CodecParser` starting at 0.
-* `totalBytesOut`: Total bytes output by `CodecParer` starting at the beginning of this frame.
-* `totalSamples`: Total audio samples output by `CodecParer` starting at the beginning of this frame.
-* `totalDuration`: Total audio duration in milliseconds output by `CodecParer` starting at the beginning of this frame.
+* `totalBytesOut`: Total bytes output by `CodecParer` not including this frame.
+* `totalSamples`: Total audio samples output by `CodecParer` not including this frame.
+* `totalDuration`: Total audio duration in milliseconds output by `CodecParer` not including this frame.
 
 #### Example
 ```
@@ -215,7 +229,6 @@ Each codec has it's own `Header` data type. See each `Header` class for document
 
 ### MPEGHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/mpeg/MPEGHeader.js)
-#### Example
 ```
 {
   bitDepth: 16,
@@ -302,11 +315,3 @@ Each codec has it's own `Header` data type. See each `Header` class for document
   vorbisSetup: `Uint8Array`
 }
 ```
-
-# Demo
-
-`codec-parser` is used in the demo for `icecast-metadata-js` to allow for Icecast metadata support in Firefox (mp3, aac, flac) and Chrome (flac) by wrapping the streaming audio in ISOBMFF so it can be used with the [MediaSource API](https://developer.mozilla.org/en-US/docs/Web/API/MediaSource).
-
-https://github.com/eshaz/icecast-metadata-js/tree/master/src/demo
-
-## View the live demo here: https://eshaz.github.io/icecast-metadata-js/
