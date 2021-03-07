@@ -22,10 +22,12 @@ import VorbisFrame from "./VorbisFrame";
 import VorbisHeader from "./VorbisHeader";
 
 export default class VorbisParser extends Parser {
-  constructor(onCodecUpdate) {
+  constructor(onCodecUpdate, onCodec) {
     super(onCodecUpdate);
     this.Frame = VorbisFrame;
     this._maxHeaderLength = 29;
+
+    onCodec(this.codec);
 
     this._identificationHeader = null;
 

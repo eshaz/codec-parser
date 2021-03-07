@@ -21,11 +21,13 @@ import OpusFrame from "./OpusFrame";
 import OpusHeader from "./OpusHeader";
 
 export default class OpusParser extends Parser {
-  constructor(onCodecUpdate) {
+  constructor(onCodecUpdate, onCodec) {
     super(onCodecUpdate);
     this.Frame = OpusFrame;
     this._identificationHeader = null;
     this._maxHeaderLength = 26;
+
+    onCodec(this.codec);
   }
 
   get codec() {

@@ -24,9 +24,10 @@ import OpusParser from "../opus/OpusParser";
 import VorbisParser from "../vorbis/VorbisParser";
 
 export default class OggParser extends Parser {
-  constructor(onCodecUpdate) {
+  constructor(onCodecUpdate, onCodec) {
     super();
     this._onCodecUpdate = onCodecUpdate;
+    this._onCodec = onCodec;
     this.Frame = OggPage;
     this._maxHeaderLength = 283;
     this._codec = null;
@@ -42,13 +43,13 @@ export default class OggParser extends Parser {
 
   getCodec({ data }) {
     if (this._matchBytes(/\x7fFLAC/, data.subarray(0, 5))) {
-      this._parser = new FLACParser(this._onCodecUpdate);
+      this._parser = new FLACParser(this._onCodecUpdate, this._onCodec);
       return "flac";
     } else if (this._matchBytes(/OpusHead/, data.subarray(0, 8))) {
-      this._parser = new OpusParser(this._onCodecUpdate);
+      this._parser = new OpusParser(this._onCodecUpdate, this._onCodec);
       return "opus";
     } else if (this._matchBytes(/\x01vorbis/, data.subarray(0, 7))) {
-      this._parser = new VorbisParser(this._onCodecUpdate);
+      this._parser = new VorbisParser(this._onCodecUpdate, this._onCodec);
       return "vorbis";
     }
   }

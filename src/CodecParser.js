@@ -24,17 +24,17 @@ import OggParser from "./codecs/ogg/OggParser";
 const noOp = () => {};
 
 export default class CodecParser {
-  constructor(mimeType, { onMimeType, onCodecUpdate }) {
+  constructor(mimeType, { onCodecUpdate, onCodec }) {
     this._inputMimeType = mimeType;
-    this._onMimeType = onMimeType || noOp;
     this._onCodecUpdate = onCodecUpdate || noOp;
+    this._onCodec = onCodec || noOp;
 
     if (this._inputMimeType.match(/aac/)) {
-      this._codecParser = new AACParser(this._onCodecUpdate);
+      this._codecParser = new AACParser(this._onCodecUpdate, this._onCodec);
     } else if (this._inputMimeType.match(/mpeg/)) {
-      this._codecParser = new MPEGParser(this._onCodecUpdate);
+      this._codecParser = new MPEGParser(this._onCodecUpdate, this._onCodec);
     } else if (this._inputMimeType.match(/ogg/)) {
-      this._codecParser = new OggParser(this._onCodecUpdate);
+      this._codecParser = new OggParser(this._onCodecUpdate, this._onCodec);
     } else {
       throw new Error(`Unsupported Codec ${mimeType}`);
     }

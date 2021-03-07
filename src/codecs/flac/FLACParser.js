@@ -21,9 +21,11 @@ import FLACFrame from "./FLACFrame";
 import FLACHeader from "./FLACHeader";
 
 export default class FLACParser extends Parser {
-  constructor(onCodecUpdate) {
+  constructor(onCodecUpdate, onCodec) {
     super(onCodecUpdate);
     this.Frame = FLACFrame;
+
+    onCodec(this.codec);
   }
 
   get codec() {
