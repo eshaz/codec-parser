@@ -35,6 +35,8 @@ export default class FLACParser extends Parser {
   parseFrames(oggPage) {
     if (oggPage.header.pageSequenceNumber === 0) {
       // Identification header
+      this._headerCache.enable();
+
       return { frames: [], remainingData: 0 };
     }
 

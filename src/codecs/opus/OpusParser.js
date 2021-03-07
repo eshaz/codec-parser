@@ -36,6 +36,8 @@ export default class OpusParser extends Parser {
 
   parseFrames(oggPage) {
     if (oggPage.header.pageSequenceNumber === 0) {
+      this._headerCache.enable();
+
       this._identificationHeader = OpusHeader.getHeader(
         oggPage.data,
         this._headerCache

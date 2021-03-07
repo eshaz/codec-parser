@@ -163,7 +163,7 @@ export default class FLACHeader extends Header {
     if (data.length < 6) return new FLACHeader(header, false);
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 3));
+    const key = HeaderCache.getKey(data.subarray(0, 4));
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {

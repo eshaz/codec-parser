@@ -44,6 +44,8 @@ export default class VorbisParser extends Parser {
 
   parseFrames(oggPage) {
     if (oggPage.header.pageSequenceNumber === 0) {
+      this._headerCache.enable();
+
       this._identificationHeader = VorbisHeader.getHeader(
         oggPage.data,
         this._headerCache
