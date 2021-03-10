@@ -46,13 +46,15 @@ export default class FLACParser extends Parser {
     }
 
     return {
-      frames: oggPage.segments.map(
-        (segment) =>
-          new FLACFrame(
-            segment,
-            FLACHeader.getHeader(segment, this._headerCache)
-          )
-      ),
+      frames: oggPage.segments
+        .filter((segment) => segment[0] === 0xff) // filter out padding and other metadata frames
+        .map(
+          (segment) =>
+            new FLACFrame(
+              segment,
+              FLACHeader.getHeader(segment, this._headerCache)
+            )
+        ),
       remainingData: 0,
     };
   }

@@ -1,6 +1,6 @@
 {
   "name": "codec-parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Library that splits audio data into an array of frames",
   "main": "index.js",
   "keywords": [

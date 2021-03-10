@@ -288,6 +288,7 @@ export default class FLACHeader extends Header {
         blockingStrategyBits,
         frameNumber,
         sampleNumber,
+        samples,
         crc,
         length,
         ...codecUpdateFields
