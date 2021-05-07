@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Parser from "../Parser";
-import OpusFrame from "./OpusFrame";
-import OpusHeader from "./OpusHeader";
+import Parser from "../Parser.js";
+import OpusFrame from "./OpusFrame.js";
+import OpusHeader from "./OpusHeader.js";
 
 export default class OpusParser extends Parser {
   constructor(onCodecUpdate, onCodec) {

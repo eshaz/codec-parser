@@ -41,10 +41,10 @@ P 	2 	Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibili
 Q 	16 	CRC if protection absent is 0 
 */
 
-import { headerStore } from "../../globals";
+import { headerStore } from "../../globals.js";
 
-import Header from "../Header";
-import HeaderCache from "../HeaderCache";
+import Header from "../Header.js";
+import HeaderCache from "../HeaderCache.js";
 
 const mpegVersion = {
   0b00000000: "MPEG-4",

@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { concatBuffers } from "./utilities";
-import MPEGParser from "./codecs/mpeg/MPEGParser";
-import AACParser from "./codecs/aac/AACParser";
-import OggParser from "./codecs/ogg/OggParser";
+import { concatBuffers } from "./utilities.js";
+import MPEGParser from "./codecs/mpeg/MPEGParser.js";
+import AACParser from "./codecs/aac/AACParser.js";
+import OggParser from "./codecs/ogg/OggParser.js";
 
 const noOp = () => {};
 

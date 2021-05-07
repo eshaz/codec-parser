@@ -47,9 +47,9 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
         
 */
 
-import { crc8 } from "../../utilities";
-import Header from "../Header";
-import HeaderCache from "../HeaderCache";
+import { crc8 } from "../../utilities.js";
+import Header from "../Header.js";
+import HeaderCache from "../HeaderCache.js";
 
 const blockingStrategy = {
   0b00000000: "Fixed",

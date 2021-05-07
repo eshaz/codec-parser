@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Parser from "../Parser";
-import FLACFrame from "./FLACFrame";
-import FLACHeader from "./FLACHeader";
+import Parser from "../Parser.js";
+import FLACFrame from "./FLACFrame.js";
+import FLACHeader from "./FLACHeader.js";
 
 export default class FLACParser extends Parser {
   constructor(onCodecUpdate) {

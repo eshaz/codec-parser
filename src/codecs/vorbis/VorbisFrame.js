@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Frame from "../Frame";
+import Frame from "../Frame.js";
 
 export default class VorbisFrame extends Frame {
   constructor(data, header, samples) {

@@ -16,8 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Frame from "../Frame";
-import OpusHeader from "./OpusHeader";
+import Frame from "../Frame.js";
+import OpusHeader from "./OpusHeader.js";
 
 //  0 1 2 3 4 5 6 7
 // +-+-+-+-+-+-+-+-+

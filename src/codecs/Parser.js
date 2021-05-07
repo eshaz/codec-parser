@@ -16,8 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { isParsedStore, frameStore } from "../globals";
-import HeaderCache from "./HeaderCache";
+import { isParsedStore, frameStore } from "../globals.js";
+import HeaderCache from "./HeaderCache.js";
 
 /**
  * @abstract

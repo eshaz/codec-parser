@@ -51,8 +51,8 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
-import Header from "../Header";
-import HeaderCache from "../HeaderCache";
+import Header from "../Header.js";
+import HeaderCache from "../HeaderCache.js";
 
 /* prettier-ignore */
 const channelMappingFamilies = {

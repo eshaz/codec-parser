@@ -16,8 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Parser from "../Parser";
-import AACFrame from "./AACFrame";
+import Parser from "../Parser.js";
+import AACFrame from "./AACFrame.js";
 
 export default class AACParser extends Parser {
   constructor(onCodecUpdate, onCodec) {

@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../globals";
+import { frameStore } from "../globals.js";
 
 export default class Frame {
   constructor(header, data, samples) {

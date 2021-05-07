@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../../globals";
-import Frame from "../Frame";
-import MPEGHeader from "./MPEGHeader";
+import { headerStore } from "../../globals.js";
+import Frame from "../Frame.js";
+import MPEGHeader from "./MPEGHeader.js";
 
 export default class MPEGFrame extends Frame {
   constructor(data, headerCache) {

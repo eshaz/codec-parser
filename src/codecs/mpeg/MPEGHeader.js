@@ -16,8 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Header from "../Header";
-import HeaderCache from "../HeaderCache";
+import Header from "../Header.js";
+import HeaderCache from "../HeaderCache.js";
 
 // http://www.mp3-tech.org/programmer/frame_header.html
 

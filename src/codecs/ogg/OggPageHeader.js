@@ -52,7 +52,7 @@ L   n   Segment table (n=page_segments+26).
 
 const OggS = 0x4f676753;
 
-import { headerStore, isParsedStore } from "../../globals";
+import { headerStore, isParsedStore } from "../../globals.js";
 
 export default class OggPageHeader {
   static getHeader(data) {

@@ -16,8 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Parser from "../Parser";
-import MPEGFrame from "./MPEGFrame";
+import Parser from "../Parser.js";
+import MPEGFrame from "./MPEGFrame.js";
 
 export default class MPEGParser extends Parser {
   constructor(onCodecUpdate, onCodec) {

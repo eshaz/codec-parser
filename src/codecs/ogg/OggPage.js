@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, frameStore, isParsedStore } from "../../globals";
-import Frame from "../Frame";
-import OggPageHeader from "./OggPageHeader";
+import { headerStore, frameStore, isParsedStore } from "../../globals.js";
+import Frame from "../Frame.js";
+import OggPageHeader from "./OggPageHeader.js";
 
 export default class OggPage extends Frame {
   constructor(data) {

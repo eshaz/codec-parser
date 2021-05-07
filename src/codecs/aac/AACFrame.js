@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, frameStore } from "../../globals";
-import Frame from "../Frame";
-import AACHeader from "./AACHeader";
+import { headerStore, frameStore } from "../../globals.js";
+import Frame from "../Frame.js";
+import AACHeader from "./AACHeader.js";
 
 export default class AACFrame extends Frame {
   constructor(data, headerCache) {

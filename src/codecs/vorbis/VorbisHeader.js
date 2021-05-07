@@ -35,8 +35,8 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
-import Header from "../Header";
-import HeaderCache from "../HeaderCache";
+import Header from "../Header.js";
+import HeaderCache from "../HeaderCache.js";
 
 /* prettier-ignore */
 const blockSizes = {

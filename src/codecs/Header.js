@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, isParsedStore } from "../globals";
+import { headerStore, isParsedStore } from "../globals.js";
 
 export default class Header {
   /**

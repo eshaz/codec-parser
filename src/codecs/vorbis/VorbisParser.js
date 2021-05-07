@@ -16,10 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { BitReader, reverse, logError } from "../../utilities";
-import Parser from "../Parser";
-import VorbisFrame from "./VorbisFrame";
-import VorbisHeader from "./VorbisHeader";
+import { BitReader, reverse, logError } from "../../utilities.js";
+import Parser from "../Parser.js";
+import VorbisFrame from "./VorbisFrame.js";
+import VorbisHeader from "./VorbisHeader.js";
 
 export default class VorbisParser extends Parser {
   constructor(onCodecUpdate) {

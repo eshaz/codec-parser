@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../../globals";
-import Frame from "../Frame";
-import FLACHeader from "./FLACHeader";
+import { headerStore } from "../../globals.js";
+import Frame from "../Frame.js";
+import FLACHeader from "./FLACHeader.js";
 
 export default class FLACFrame extends Frame {
   constructor(data, header, streamInfo) {
