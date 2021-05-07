@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, isParsedStore } from "../../globals";
+import { headerStore, frameStore, isParsedStore } from "../../globals";
 import Frame from "../Frame";
 import OggPageHeader from "./OggPageHeader";
 
@@ -44,6 +44,8 @@ export default class OggPage extends Frame {
         return segment;
       });
       this.length = pageStore.length + pageStore.frameLength;
+
+      frameStore.set(this, { length: this.length });
     }
   }
 }
