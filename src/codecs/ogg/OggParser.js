@@ -37,47 +37,43 @@ export default class OggParser extends Parser {
     return this._codec || "";
   }
 
-  _matchBytes(matchString, bytes) {
-    return String.fromCharCode(...bytes).match(matchString);
+  _updateCodec(codec, parser) {
+    if (this._codec !== codec) {
+      this._parser = new parser(this._onCodecUpdate);
+      this._codec = codec;
+      this._onCodec(codec);
+    }
   }
 
-  getCodec({ data }) {
-    if (this._matchBytes(/\x7fFLAC/, data.subarray(0, 5))) {
-      this._parser = new FLACParser(this._onCodecUpdate, this._onCodec);
-      return "flac";
-    } else if (this._matchBytes(/OpusHead/, data.subarray(0, 8))) {
-      this._parser = new OpusParser(this._onCodecUpdate, this._onCodec);
-      return "opus";
-    } else if (this._matchBytes(/\x01vorbis/, data.subarray(0, 7))) {
-      this._parser = new VorbisParser(this._onCodecUpdate, this._onCodec);
-      return "vorbis";
+  checkForIdentifier({ data }) {
+    const idString = String.fromCharCode(...data.subarray(0, 8));
+
+    switch (idString) {
+      case "fishead\0":
+        return false; // ignore ogg skeleton packets
+      case "fisbone\0":
+        return false; // ignore ogg skeleton packets
+      case "OpusHead":
+        this._updateCodec("opus", OpusParser);
+        return true;
+      case /^\x7fFLAC/.test(idString) && idString:
+        this._updateCodec("flac", FLACParser);
+        return true;
+      case /^\x01vorbis/.test(idString) && idString:
+        this._updateCodec("vorbis", VorbisParser);
+        return true;
+      default:
+        return true;
     }
   }
 
   parseFrames(data) {
     const oggPages = this.fixedLengthFrame(data);
 
-    if (!oggPages.frames.length) {
-      return {
-        frames: [],
-        remainingData: oggPages.remainingData,
-      };
-    }
-
-    if (!this._codec) {
-      this._codec = this.getCodec(oggPages.frames[0]);
-      if (!this._codec) {
-        return {
-          frames: [],
-          remainingData: oggPages.remainingData,
-        };
-      }
-    }
-
     return {
-      frames: oggPages.frames.flatMap(
-        (oggPage) => this._parser.parseFrames(oggPage).frames
-      ),
+      frames: oggPages.frames
+        .filter((frame) => this.checkForIdentifier(frame) && this._codec)
+        .flatMap((oggPage) => this._parser.parseFrames(oggPage).frames),
       remainingData: oggPages.remainingData,
     };
   }

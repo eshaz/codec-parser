@@ -22,12 +22,10 @@ import VorbisFrame from "./VorbisFrame";
 import VorbisHeader from "./VorbisHeader";
 
 export default class VorbisParser extends Parser {
-  constructor(onCodecUpdate, onCodec) {
+  constructor(onCodecUpdate) {
     super(onCodecUpdate);
     this.Frame = VorbisFrame;
     this._maxHeaderLength = 29;
-
-    onCodec(this.codec);
 
     this._identificationHeader = null;
 
@@ -151,7 +149,10 @@ export default class VorbisParser extends Parser {
     // limit mode count to 63 so previous block flag will be in first packet byte
     while (mode.count < 64 && bitReader.position > 0) {
       const mapping = reverse(bitReader.read(8));
-      if (mapping in mode) {
+      if (
+        mapping in mode &&
+        !(mode.count === 1 && mapping === 0) // allows for the possibility of only one mode
+      ) {
         logError(
           "received duplicate mode mapping, failed to parse vorbis modes"
         );
@@ -160,7 +161,7 @@ export default class VorbisParser extends Parser {
 
       // 16 bits transform type, 16 bits window type, all values must be zero
       let i = 0;
-      while (bitReader.read(8) === 0x00 && i++ < 3) {} // a non-zero value may indicate the end of the mode entries, or a read error
+      while (bitReader.read(8) === 0x00 && i++ < 3) {} // a non-zero value may indicate the end of the mode entries, or invalid data
 
       if (i === 4) {
         // transform type and window type were all zeros

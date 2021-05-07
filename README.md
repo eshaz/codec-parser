@@ -279,7 +279,8 @@ Each codec has it's own `Header` data type. See each `Header` class for document
   channelMode: "left, right",
   blockingStrategy: "Fixed",
   blockSize: 4096,
-  frameNumber: 15183508
+  frameNumber: 15183508,
+  streamInfo: `Uint8Array`
 }
 ```
 
