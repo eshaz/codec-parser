@@ -310,5 +310,6 @@ export default class FLACHeader extends Header {
     this.blockSize = header.blockSize;
     this.frameNumber = header.frameNumber;
     this.sampleNumber = header.sampleNumber;
+    this.streamInfo = undefined; // set during ogg parsing
   }
 }

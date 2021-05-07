@@ -21,11 +21,9 @@ import FLACFrame from "./FLACFrame";
 import FLACHeader from "./FLACHeader";
 
 export default class FLACParser extends Parser {
-  constructor(onCodecUpdate, onCodec) {
+  constructor(onCodecUpdate) {
     super(onCodecUpdate);
     this.Frame = FLACFrame;
-
-    onCodec(this.codec);
   }
 
   get codec() {
@@ -36,6 +34,7 @@ export default class FLACParser extends Parser {
     if (oggPage.header.pageSequenceNumber === 0) {
       // Identification header
       this._headerCache.enable();
+      this._streamInfo = oggPage.data.subarray(13);
 
       return { frames: [], remainingData: 0 };
     }
@@ -52,7 +51,8 @@ export default class FLACParser extends Parser {
           (segment) =>
             new FLACFrame(
               segment,
-              FLACHeader.getHeader(segment, this._headerCache)
+              FLACHeader.getHeader(segment, this._headerCache),
+              this._streamInfo
             )
         ),
       remainingData: 0,

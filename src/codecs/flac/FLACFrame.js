@@ -21,8 +21,12 @@ import Frame from "../Frame";
 import FLACHeader from "./FLACHeader";
 
 export default class FLACFrame extends Frame {
-  constructor(data, header) {
+  constructor(data, header, streamInfo) {
     const flacHeader = new FLACHeader(header, true);
+
+    if (flacHeader) {
+      flacHeader.streamInfo = streamInfo;
+    }
 
     super(flacHeader, data, flacHeader && headerStore.get(flacHeader).samples);
   }
