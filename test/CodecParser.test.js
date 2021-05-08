@@ -1,6 +1,5 @@
 import fs from "fs/promises";
 import path from "path";
-import bson from "bson";
 
 import CodecParser from "../index.js";
 
@@ -27,16 +26,10 @@ const generateTestData = async (files) => {
       const frames = [...parser.iterator(testFile)];
       const framesNoData = frames.map(removeDataElements);
 
-      await Promise.all([
-        fs.writeFile(
-          path.join(resultsPath, `${testFilePath}_iterator_no_data.json`),
-          JSON.stringify(framesNoData, null, 2)
-        ),
-        fs.writeFile(
-          path.join(resultsPath, `${testFilePath}_iterator.bson`),
-          bson.serialize(frames)
-        ),
-      ]);
+      await fs.writeFile(
+        path.join(resultsPath, `${testFilePath}_iterator.json`),
+        JSON.stringify(framesNoData, null, 2)
+      );
     })
   );
 };
@@ -66,29 +59,21 @@ describe("Given the CodeParser", () => {
       const framesWithoutData = frames.map(removeDataElements);
 
       const expectedFrames = await fs.readFile(
-        path.join(resultsPath, `${testFilePath}_iterator_no_data.json`)
+        path.join(resultsPath, `${testFilePath}_iterator.json`)
       );
 
       expect(framesWithoutData).toEqual(JSON.parse(expectedFrames));
     });
-
-    it(`should parse ${testFilePath} data for each frame`, async () => {
-      const frames = [...parser.iterator(file)];
-
-      const expectedFrames = await fs.readFile(
-        path.join(resultsPath, `${testFilePath}_iterator.bson`)
-      );
-
-      expect(Buffer.compare(expectedFrames, bson.serialize(frames))).toEqual(0);
-    });
   };
 
   // uncomment to regenerate the test data
-  /*it("should generate the test data", async () => {
+  /*
+  it("should generate the test data", async () => {
     await generateTestData(await fs.readdir(dataPath));
 
     expect(true).toBeTruthy();
-  }, 10000);*/
+  }, 10000);
+  */
 
   describe("Given MP3 CBR", () => {
     testParser("mpeg.cbr.mp3", "audio/mpeg");
