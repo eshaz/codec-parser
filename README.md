@@ -262,6 +262,7 @@ Each codec has it's own `Header` data type. See each `Header` class for document
   isOriginal: false,
   isPrivate: false,
   layer: "valid",
+  length: 7,
   mpegVersion: "MPEG-4",
   numberAACFrames: 0,
   profile: "AAC LC (Low Complexity)",
