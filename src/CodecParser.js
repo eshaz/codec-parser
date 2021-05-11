@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { concatBuffers } from "./utilities.js";
+import { crc32, concatBuffers } from "./utilities.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
 import AACParser from "./codecs/aac/AACParser.js";
 import OggParser from "./codecs/ogg/OggParser.js";
@@ -117,6 +117,7 @@ export default class CodecParser {
       frame.totalSamples = this._totalSamples;
       frame.totalDuration =
         (this._totalSamples / frame.header.sampleRate) * 1000;
+      frame.crc32 = crc32(frame.data);
 
       this._totalBytesOut += frame.data.length;
       this._totalSamples += frame.samples;

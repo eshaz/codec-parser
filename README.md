@@ -1,14 +1,13 @@
 # Codec Parser
 
-`codec-parser` is a JavaScript library that takes in audio data and returns an array of audio frames with information.
+`codec-parser` is a JavaScript library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.
 
 ### Supports:
-  * ### MPEG (MP3) - `audio/mpeg`
-  * ### AAC - `audio/aac`, `audio/aacp`
-  * ### Ogg FLAC - `application/ogg`, `audio/ogg`
-  * ### Ogg Opus - `application/ogg`, `audio/ogg`
-  * ### Ogg Vorbis - `application/ogg`, `audio/ogg`
-
+  * **MPEG (MP3)** - `audio/mpeg`
+  * **AAC** - `audio/aac`, `audio/aacp`
+  * **Ogg FLAC** - `application/ogg`, `audio/ogg`
+  * **Ogg Opus** - `application/ogg`, `audio/ogg`
+  * **Ogg Vorbis** - `application/ogg`, `audio/ogg`
 
 ## Demo
 The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-js) uses this library to allow for playback of streaming audio. `codec-parser` is used by [`mse-audio-wrapper`](https://github.com/eshaz/mse-audio-wrapper) to wrap streaming audio in ISOBMFF or WEBM so it can be played back using the MediaSource API.
@@ -17,6 +16,7 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
 ---
 
+* [Installing](#installing)
 * [Usage](#usage)
   * [Instantiation](#instantiation)
   * [Methods](#methods)
@@ -29,6 +29,11 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
     * [FLACHeader](#flacheader)
     * [OpusHeader](#opusheader)
     * [VorbisHeader](#vorbisheader)
+
+## Installing
+
+### Install via [NPM](https://www.npmjs.com/package/codec-parser)
+* `npm i codec-parser`
 
 ## Usage
 
@@ -159,6 +164,7 @@ Each iteration of `CodecParser.iterator()` will return a single `Frame`.
 
 * `data`: `Uint8Array` containing the audio data within this frame.
 * `header`: [`Header`](#header) object describing the codec information.
+* `crc32`: CRC-32 hash of the frame data.
 * `samples`: Audio samples contained within this frame.
 * `duration`: Audio duration in milliseconds contained within this frame.
 * `frameNumber`: Total count of frames output by `CodecParser` starting at 0.
@@ -187,6 +193,7 @@ MPEGFrame {
     mpegVersion: "MPEG Version 1 (ISO/IEC 11172-3)",
     protection: "none"
   },
+  crc32: 275944052,
   samples: 1152,
   duration: 26.122448979591837,
   frameNumber: 0,
@@ -214,6 +221,7 @@ MPEGFrame {
     mpegVersion: "MPEG Version 1 (ISO/IEC 11172-3)",
     protection: "none"
   },
+  crc32: 1336875295,
   samples: 1152,
   duration: 26.122448979591837,
   frameNumber: 1,
@@ -262,6 +270,7 @@ Each codec has it's own `Header` data type. See each `Header` class for document
   isOriginal: false,
   isPrivate: false,
   layer: "valid",
+  length: 7,
   mpegVersion: "MPEG-4",
   numberAACFrames: 0,
   profile: "AAC LC (Low Complexity)",

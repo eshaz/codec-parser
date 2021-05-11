@@ -26,14 +26,8 @@ export default class AACFrame extends Frame {
 
     super(
       header,
-      header &&
-        data.subarray(
-          headerStore.get(header).length,
-          headerStore.get(header).frameLength
-        ),
+      header && data.subarray(0, headerStore.get(header).frameLength),
       header && headerStore.get(header).samples
     );
-
-    frameStore.get(this).length = header && headerStore.get(header).frameLength;
   }
 }

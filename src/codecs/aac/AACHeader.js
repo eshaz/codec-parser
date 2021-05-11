@@ -251,6 +251,7 @@ export default class AACHeader extends Header {
     this.isOriginal = header.isOriginal;
     this.isPrivate = header.isPrivate;
     this.layer = header.layer;
+    this.length = header.length;
     this.mpegVersion = header.mpegVersion;
     this.numberAACFrames = header.numberAACFrames;
     this.profile = header.profile;
