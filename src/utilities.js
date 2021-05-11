@@ -24,7 +24,8 @@ const logError = (...messages) => {
 };
 
 const getCrcTable = (crcFunction) => {
-  let crcTable = [];
+  let crcTable = new Int32Array(256);
+
   for (let byte = 0; byte < 256; byte++) {
     let crc = byte;
 

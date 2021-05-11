@@ -1,6 +1,6 @@
 # Codec Parser
 
-`codec-parser` is a JavaScript library that takes in audio data and returns an array of audio frames with information.
+`codec-parser` is a JavaScript library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.
 
 ### Supports:
   * **MPEG (MP3)** - `audio/mpeg`
@@ -8,7 +8,6 @@
   * **Ogg FLAC** - `application/ogg`, `audio/ogg`
   * **Ogg Opus** - `application/ogg`, `audio/ogg`
   * **Ogg Vorbis** - `application/ogg`, `audio/ogg`
-
 
 ## Demo
 The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-js) uses this library to allow for playback of streaming audio. `codec-parser` is used by [`mse-audio-wrapper`](https://github.com/eshaz/mse-audio-wrapper) to wrap streaming audio in ISOBMFF or WEBM so it can be played back using the MediaSource API.
