@@ -17,10 +17,10 @@
 */
 
 import { headerStore } from "../../globals.js";
-import Frame from "../Frame.js";
+import CodecFrame from "../../containers/CodecFrame.js";
 import FLACHeader from "./FLACHeader.js";
 
-export default class FLACFrame extends Frame {
+export default class FLACFrame extends CodecFrame {
   constructor(data, header, streamInfo) {
     const flacHeader = new FLACHeader(header, true);
 

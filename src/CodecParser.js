@@ -19,7 +19,7 @@
 import { crc32, concatBuffers } from "./utilities.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
 import AACParser from "./codecs/aac/AACParser.js";
-import OggParser from "./codecs/ogg/OggParser.js";
+import OggParser from "./containers/ogg/OggParser.js";
 
 const noOp = () => {};
 

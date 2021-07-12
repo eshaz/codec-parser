@@ -17,10 +17,10 @@
 */
 
 import { headerStore, frameStore } from "../../globals.js";
-import Frame from "../Frame.js";
+import CodecFrame from "../../containers/CodecFrame.js";
 import AACHeader from "./AACHeader.js";
 
-export default class AACFrame extends Frame {
+export default class AACFrame extends CodecFrame {
   constructor(data, headerCache) {
     const header = AACHeader.getHeader(data, headerCache);
 

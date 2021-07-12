@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Frame from "../Frame.js";
+import CodecFrame from "../../containers/CodecFrame.js";
 
-export default class VorbisFrame extends Frame {
+export default class VorbisFrame extends CodecFrame {
   constructor(data, header, samples) {
     super(header, data, samples);
   }

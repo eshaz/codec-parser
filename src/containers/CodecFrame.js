@@ -18,7 +18,7 @@
 
 import { frameStore } from "../globals.js";
 
-export default class Frame {
+export default class CodecFrame {
   constructor(header, data, samples) {
     this.data = data || [];
     this.header = header;
