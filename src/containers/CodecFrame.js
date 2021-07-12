@@ -17,10 +17,12 @@
 */
 
 import { frameStore } from "../globals.js";
+import Frame from "./Frame.js";
 
-export default class CodecFrame {
+export default class CodecFrame extends Frame {
   constructor(header, data, samples) {
-    this.data = data || [];
+    super(header, data);
+
     this.header = header;
     this.samples = samples;
     this.duration =
@@ -30,6 +32,6 @@ export default class CodecFrame {
     this.totalSamples = undefined;
     this.totalDuration = undefined;
 
-    frameStore.set(this, { length: this.data.length });
+    frameStore.get(this).length = this.data.length;
   }
 }

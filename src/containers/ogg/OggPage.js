@@ -17,10 +17,10 @@
 */
 
 import { headerStore, frameStore, isParsedStore } from "../../globals.js";
-import CodecFrame from "../CodecFrame.js";
+import Frame from "../Frame.js";
 import OggPageHeader from "./OggPageHeader.js";
 
-export default class OggPage extends CodecFrame {
+export default class OggPage extends Frame {
   constructor(data) {
     const oggPage = OggPageHeader.getHeader(data);
     const pageStore = headerStore.get(oggPage);
@@ -36,6 +36,8 @@ export default class OggPage extends CodecFrame {
     );
 
     if (isParsedStore.get(oggPage)) {
+      const length = pageStore.length + pageStore.frameLength;
+
       let offset = pageStore.length;
 
       this.segments = oggPage.pageSegmentTable.map((segmentLength) => {
@@ -43,13 +45,11 @@ export default class OggPage extends CodecFrame {
         offset += segmentLength;
         return segment;
       });
-      this.length = pageStore.length + pageStore.frameLength;
-      //this.rawData = data.subarray(0, this.length);
-      //his.crc32 = oggPage.pageChecksum;
+      this.rawData = data.subarray(0, length);
 
-      frameStore.set(this, {
-        length: this.length,
-      });
+      Object.assign(this, oggPage);
+
+      frameStore.get(this).length = length;
     }
   }
 }

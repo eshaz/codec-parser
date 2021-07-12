@@ -41,7 +41,7 @@ export default class VorbisParser extends Parser {
   }
 
   parseFrames(oggPage) {
-    if (oggPage.header.pageSequenceNumber === 0) {
+    if (oggPage.pageSequenceNumber === 0) {
       this._headerCache.enable();
 
       this._identificationHeader = VorbisHeader.getHeader(
@@ -52,7 +52,7 @@ export default class VorbisParser extends Parser {
       return { frames: [], remainingData: 0 };
     }
 
-    if (oggPage.header.pageSequenceNumber === 1) {
+    if (oggPage.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
       this._identificationHeader.vorbisComments = oggPage.segments[0];
       this._identificationHeader.vorbisSetup = oggPage.segments[1];

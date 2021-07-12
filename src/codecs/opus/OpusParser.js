@@ -26,6 +26,7 @@ export default class OpusParser extends Parser {
     this.Frame = OpusFrame;
     this._identificationHeader = null;
     this._maxHeaderLength = 26;
+    this._oggPages = [];
   }
 
   get codec() {
@@ -33,24 +34,38 @@ export default class OpusParser extends Parser {
   }
 
   parseFrames(oggPage) {
-    if (oggPage.header.pageSequenceNumber === 0) {
+    if (oggPage.pageSequenceNumber === 0) {
       this._headerCache.enable();
 
       this._identificationHeader = OpusHeader.getHeader(
         oggPage.data,
         this._headerCache
       );
+      this._oggPages.push(oggPage);
+
       return { frames: [], remainingData: 0 };
     }
 
-    if (oggPage.header.pageSequenceNumber === 1) {
+    if (oggPage.pageSequenceNumber === 1) {
       // OpusTags
+      this._oggPages.push(oggPage);
+
       return { frames: [], remainingData: 0 };
+    }
+
+    let oggPages;
+
+    if (this._oggPages.length) {
+      oggPages = [...this._oggPages, oggPage];
+      this._oggPages = [];
+    } else {
+      oggPages = [oggPage];
     }
 
     return {
       frames: oggPage.segments.map(
-        (segment) => new OpusFrame(segment, this._identificationHeader)
+        (segment) =>
+          new OpusFrame(segment, this._identificationHeader, oggPages)
       ),
       remainingData: 0,
     };
