@@ -43,7 +43,7 @@ Q 	16 	CRC if protection absent is 0
 
 import { headerStore } from "../../globals.js";
 
-import Header from "../Header.js";
+import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
 const mpegVersion = {
@@ -117,7 +117,7 @@ const channelMode = {
   },
 };
 
-export default class AACHeader extends Header {
+export default class AACHeader extends CodecHeader {
   static getHeader(data, headerCache) {
     const header = {};
 

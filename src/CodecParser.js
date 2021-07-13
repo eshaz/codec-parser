@@ -42,6 +42,7 @@ export default class CodecParser {
     this._frameNumber = 0;
     this._totalBytesOut = 0;
     this._totalSamples = 0;
+    this._sampleRate = undefined;
 
     this._frames = [];
     this._codecData = new Uint8Array(0);
@@ -101,6 +102,20 @@ export default class CodecParser {
     this._codecData = concatBuffers(this._codecData, codecData);
   }
 
+  _mapFrameStats(frame) {
+    if (this._sampleRate !== frame.header.sampleRate)
+      this._sampleRate = frame.header.sampleRate;
+
+    frame.frameNumber = this._frameNumber++;
+    frame.totalBytesOut = this._totalBytesOut;
+    frame.totalSamples = this._totalSamples;
+    frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000;
+    frame.crc32 = crc32(frame.data);
+
+    this._totalBytesOut += frame.data.length;
+    this._totalSamples += frame.samples;
+  }
+
   /**
    * @private
    */
@@ -111,18 +126,22 @@ export default class CodecParser {
 
     this._codecData = this._codecData.subarray(remainingData);
 
-    return frames.map((frame) => {
-      frame.frameNumber = this._frameNumber++;
-      frame.totalBytesOut = this._totalBytesOut;
-      frame.totalSamples = this._totalSamples;
-      frame.totalDuration =
-        (this._totalSamples / frame.header.sampleRate) * 1000;
-      frame.crc32 = crc32(frame.data);
+    frames.forEach((frame) => {
+      // Ogg container
+      if (frame.codecFrames) {
+        frame.codecFrames.forEach((codecFrame) =>
+          this._mapFrameStats(codecFrame)
+        );
 
-      this._totalBytesOut += frame.data.length;
-      this._totalSamples += frame.samples;
-
-      return frame;
+        frame.totalSamples = this._totalSamples;
+        frame.totalDuration =
+          (this._totalSamples / this._sampleRate) * 1000 || 0;
+        frame.totalBytesOut = this._totalBytesOut;
+      } else {
+        this._mapFrameStats(frame);
+      }
     });
+
+    return frames;
   }
 }

@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../../globals.js";
 import Parser from "../Parser.js";
 import OpusFrame from "./OpusFrame.js";
 import OpusHeader from "./OpusHeader.js";
@@ -26,47 +27,36 @@ export default class OpusParser extends Parser {
     this.Frame = OpusFrame;
     this._identificationHeader = null;
     this._maxHeaderLength = 26;
-    this._oggPages = [];
   }
 
   get codec() {
     return "opus";
   }
 
+  /**
+   * @todo implement continued page support
+   */
   parseFrames(oggPage) {
     if (oggPage.pageSequenceNumber === 0) {
-      this._headerCache.enable();
+      // Identification header
 
+      this._headerCache.enable();
       this._identificationHeader = OpusHeader.getHeader(
         oggPage.data,
         this._headerCache
       );
-      this._oggPages.push(oggPage);
-
-      return { frames: [], remainingData: 0 };
-    }
-
-    if (oggPage.pageSequenceNumber === 1) {
+    } else if (oggPage.pageSequenceNumber === 1) {
       // OpusTags
-      this._oggPages.push(oggPage);
-
-      return { frames: [], remainingData: 0 };
-    }
-
-    let oggPages;
-
-    if (this._oggPages.length) {
-      oggPages = [...this._oggPages, oggPage];
-      this._oggPages = [];
     } else {
-      oggPages = [oggPage];
+      oggPage.codecFrames = frameStore
+        .get(oggPage)
+        .segments.map(
+          (segment) => new OpusFrame(segment, this._identificationHeader)
+        );
     }
 
     return {
-      frames: oggPage.segments.map(
-        (segment) =>
-          new OpusFrame(segment, this._identificationHeader, oggPages)
-      ),
+      frames: [oggPage],
       remainingData: 0,
     };
   }

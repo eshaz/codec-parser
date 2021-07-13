@@ -36,20 +36,26 @@ export default class OggPage extends Frame {
     );
 
     if (isParsedStore.get(oggPage)) {
-      const length = pageStore.length + pageStore.frameLength;
+      const frame = frameStore.get(this);
+
+      frame.length = pageStore.length + pageStore.frameLength;
 
       let offset = pageStore.length;
-
-      this.segments = oggPage.pageSegmentTable.map((segmentLength) => {
+      frame.segments = oggPage.pageSegmentTable.map((segmentLength) => {
         const segment = data.subarray(offset, offset + segmentLength);
         offset += segmentLength;
         return segment;
       });
-      this.rawData = data.subarray(0, length);
 
-      Object.assign(this, oggPage);
-
-      frameStore.get(this).length = length;
+      this.codecFrames = [];
+      this.rawData = data.subarray(0, frame.length);
+      this.absoluteGranulePosition = oggPage.absoluteGranulePosition;
+      this.isContinuedPacket = oggPage.isContinuedPacket;
+      this.isFirstPage = oggPage.isFirstPage;
+      this.isLastPage = oggPage.isLastPage;
+      this.pageSequenceNumber = oggPage.pageSequenceNumber;
+      this.pageChecksum = oggPage.pageChecksum;
+      this.streamSerialNumber = oggPage.streamSerialNumber;
     }
   }
 }

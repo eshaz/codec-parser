@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Header from "../Header.js";
+import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
 // http://www.mp3-tech.org/programmer/frame_header.html
@@ -155,7 +155,7 @@ const channelModes = {
   0b11000000: { channels: 1, description: "Single channel (Mono)" },
 };
 
-export default class MPEGHeader extends Header {
+export default class MPEGHeader extends CodecHeader {
   static getHeader(data, headerCache) {
     const header = {};
     // Must be at least four bytes.

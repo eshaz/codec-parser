@@ -18,7 +18,7 @@
 
 import { headerStore, isParsedStore } from "../globals.js";
 
-export default class Header {
+export default class CodecHeader {
   /**
    * @private
    */

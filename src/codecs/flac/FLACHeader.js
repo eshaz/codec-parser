@@ -48,7 +48,7 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
 */
 
 import { crc8 } from "../../utilities.js";
-import Header from "../Header.js";
+import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
 const blockingStrategy = {
@@ -125,7 +125,7 @@ const bitDepth = {
   0b00001110: "reserved",
 };
 
-export default class FLACHeader extends Header {
+export default class FLACHeader extends CodecHeader {
   static decodeUTF8Int(data) {
     if (data[0] < 0x80) return { value: data[0], next: 1 };
 

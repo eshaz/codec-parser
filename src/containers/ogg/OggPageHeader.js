@@ -39,7 +39,6 @@ D 	1 	(0 no, 1 yes) first page of logical bitstream (bos)
 E 	1 	(0 no, 1 yes) last page of logical bitstream (eos)
 
 F 	64 	absolute granule position
-        Sample Count??
 G   32  stream serial number
 H   32  page sequence no
 I   32  page checksum
