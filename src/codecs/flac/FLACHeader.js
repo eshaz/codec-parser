@@ -26,12 +26,12 @@ AAAAAAAA AAAAAABC DDDDEEEE FFFFGGGH
 LLLLLLLLL
 
 FLAC Frame Header
-Letter 	Length (bits) 	Description
-A 	13 	11111111|11111
+Letter  Length (bits)  Description
+A   13  11111111|11111
 B   1   Reserved 0 - mandatory, 1 - reserved
-C 	1 	Blocking strategy, 0 - fixed, 1 - variable
-D 	4   Block size in inter-channel samples
-E 	4 	Sample rate
+C   1   Blocking strategy, 0 - fixed, 1 - variable
+D   4   Block size in inter-channel samples
+E   4   Sample rate
 F   4   Channel assignment
 G   3   Sample size in bits
 H   1   Reserved 0 - mandatory, 1 - reserved
@@ -48,7 +48,7 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
 */
 
 import { crc8 } from "../../utilities.js";
-import Header from "../Header.js";
+import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
 const blockingStrategy = {
@@ -125,7 +125,7 @@ const bitDepth = {
   0b00001110: "reserved",
 };
 
-export default class FLACHeader extends Header {
+export default class FLACHeader extends CodecHeader {
   static decodeUTF8Int(data) {
     if (data[0] < 0x80) return { value: data[0], next: 1 };
 

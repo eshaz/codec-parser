@@ -32,7 +32,7 @@ export default class Parser {
     let frame = new this.Frame(data.subarray(remainingData), this._headerCache);
 
     while (
-      !frame.header &&
+      !frameStore.get(frame).header &&
       remainingData + this._maxHeaderLength < data.length
     ) {
       remainingData += frameStore.get(frame).length || 1;
@@ -62,7 +62,7 @@ export default class Parser {
     let frames = [];
 
     while (
-      isParsedStore.get(frame.header) && // was there enough data to parse the header
+      isParsedStore.get(frameStore.get(frame).header) && // was there enough data to parse the header
       frameStore.get(frame).length + remainingData + this._maxHeaderLength <
         data.length // is there enough data left to form a frame and check the next frame
     ) {
@@ -80,7 +80,7 @@ export default class Parser {
         remainingData += frameStore.get(frame).length;
         frame = nextFrame;
 
-        if (!isParsedStore.get(frame.header)) break; // out of data
+        if (!isParsedStore.get(frameStore.get(frame).header)) break; // out of data
       } else {
         // frame is invalid and must re-sync and clear cache
         this._headerCache.reset();

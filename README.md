@@ -22,8 +22,9 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
   * [Methods](#methods)
   * [Properties](#properties)
 * [Data Types](#data-types)
-  * [Frame](#frame)
-  * [Header](#header)
+  * [OggPage](#oggpage)
+  * [CodecFrame](#codecframe)
+  * [CodecHeader](#codecheader)
     * [MPEGHeader](#mpegheader)
     * [AACHeader](#aacheader)
     * [FLACHeader](#flacheader)
@@ -158,9 +159,29 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
 ## Data Types
 
-### Frame
+Depending on the mimetype each iteration of `CodecParser.iterator()` will return a single `CodecFrame` or a single `OggPage`.
 
-Each iteration of `CodecParser.iterator()` will return a single `Frame`.
+### OggPage
+
+`OggPage` describes a single ogg page. An `OggPage` may contain zero to many `CodecFrame`. `OggPage` will be returned when the mimetype is `audio/ogg` or `application/ogg`.
+
+* `absoluteGranulePosition`: Total audio samples in the ogg stream up to the end of this `OggPage`.
+* `codecFrames`: Array of `CodecFrame`(s) contained within this `OggPage`.
+* `data`: `Uint8Array` containing the page segments within the ogg page.
+* `isContinuedPacket`: Boolean indicating if this `OggPage` is part of a continued packet.
+* `isFirstPage`: Boolean indicating if this `OggPage` is the first page in the Ogg stream.
+* `isLastPage`: Boolean indicating if this this `OggPage` is the final page in the Ogg stream.
+* `pageChecksum`: CRC-32 hash of the frame data using the Ogg formula / polynomial.
+* `pageSequenceNumber`: Page sequence number within the Ogg stream.
+* `rawData`: `Uint8Array` Total data of the `OggPage`.
+* `streamSerialNumber`: Serial number of the Ogg stream.
+* `totalBytesOut`: Total bytes of codec data output by `CodecParer` at the end of this ogg page.
+* `totalDuration`: Total audio samples output by `CodecParer` at the end of this ogg page.
+* `totalSamples`: Total audio duration in milliseconds output by `CodecParer` at the end of this ogg page.
+
+### CodecFrame
+
+`CodecFrame` describes a single frame for an audio codec. `CodecFrame` will be returned when the mimetype describes audio that is not encapsulated within a container i.e. `audio/mpeg` or `audio/aac`.
 
 * `data`: `Uint8Array` containing the audio data within this frame.
 * `header`: [`Header`](#header) object describing the codec information.
@@ -174,7 +195,7 @@ Each iteration of `CodecParser.iterator()` will return a single `Frame`.
 
 #### Example
 ```
-// First Frame
+// First CodecFrame
 MPEGFrame {
   data: Uint8Array(417),
   header: MPEGHeader {
@@ -202,7 +223,7 @@ MPEGFrame {
   totalDuration: 0
 }
 
-// Second Frame
+// Second CodecFrame
 MPEGFrame {
   data: Uint8Array(416),
   header: MPEGHeader {
@@ -231,9 +252,9 @@ MPEGFrame {
 }
 ```
 
-### Header
+### CodecHeader
 
-Each codec has it's own `Header` data type. See each `Header` class for documentation on each codec specific header.
+Each codec has it's own `CodecHeader` data type. See each class below for documentation on each codec specific header.
 
 ### MPEGHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/mpeg/MPEGHeader.js)

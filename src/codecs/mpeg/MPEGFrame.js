@@ -17,10 +17,10 @@
 */
 
 import { headerStore } from "../../globals.js";
-import Frame from "../Frame.js";
+import CodecFrame from "../../containers/CodecFrame.js";
 import MPEGHeader from "./MPEGHeader.js";
 
-export default class MPEGFrame extends Frame {
+export default class MPEGFrame extends CodecFrame {
   constructor(data, headerCache) {
     const header = MPEGHeader.getHeader(data, headerCache);
 

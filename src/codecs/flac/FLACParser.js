@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../../globals.js";
 import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
@@ -31,22 +32,19 @@ export default class FLACParser extends Parser {
   }
 
   parseFrames(oggPage) {
-    if (oggPage.header.pageSequenceNumber === 0) {
+    if (oggPage.pageSequenceNumber === 0) {
       // Identification header
+
       this._headerCache.enable();
       this._streamInfo = oggPage.data.subarray(13);
 
       return { frames: [], remainingData: 0 };
-    }
-
-    if (oggPage.header.pageSequenceNumber === 1) {
+    } else if (oggPage.pageSequenceNumber === 1) {
       // Vorbis comments
-      return { frames: [], remainingData: 0 };
-    }
-
-    return {
-      frames: oggPage.segments
-        .filter((segment) => segment[0] === 0xff) // filter out padding and other metadata frames
+    } else {
+      oggPage.codecFrames = frameStore
+        .get(oggPage)
+        .segments.filter((segment) => segment[0] === 0xff) // filter out padding and other metadata frames
         .map(
           (segment) =>
             new FLACFrame(
@@ -54,7 +52,11 @@ export default class FLACParser extends Parser {
               FLACHeader.getHeader(segment, this._headerCache),
               this._streamInfo
             )
-        ),
+        );
+    }
+
+    return {
+      frames: [oggPage],
       remainingData: 0,
     };
   }

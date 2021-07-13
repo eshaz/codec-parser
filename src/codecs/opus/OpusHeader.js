@@ -36,7 +36,7 @@ https://tools.ietf.org/html/rfc7845.html
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-Letter 	Length (bits) 	Description
+Letter  Length (bits)  Description
 A  64  Magic Signature - OpusHead
 B  8   Version number - 00000001
 C  8   Output channel count (unsigned)
@@ -51,7 +51,7 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
-import Header from "../Header.js";
+import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
 /* prettier-ignore */
@@ -72,7 +72,7 @@ const channelMappingFamilies = {
   ]
 };
 
-export default class OpusHeader extends Header {
+export default class OpusHeader extends CodecHeader {
   static getHeader(data, headerCache) {
     const header = {};
     // Must be at least 19 bytes.

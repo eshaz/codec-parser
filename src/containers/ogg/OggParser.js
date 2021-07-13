@@ -16,12 +16,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import Parser from "../Parser.js";
+import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
 
-import FLACParser from "../flac/FLACParser.js";
-import OpusParser from "../opus/OpusParser.js";
-import VorbisParser from "../vorbis/VorbisParser.js";
+import FLACParser from "../../codecs/flac/FLACParser.js";
+import OpusParser from "../../codecs/opus/OpusParser.js";
+import VorbisParser from "../../codecs/vorbis/VorbisParser.js";
 
 export default class OggParser extends Parser {
   constructor(onCodecUpdate, onCodec) {

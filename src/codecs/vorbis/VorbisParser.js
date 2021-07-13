@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../../globals.js";
 import { BitReader, reverse, logError } from "../../utilities.js";
 import Parser from "../Parser.js";
 import VorbisFrame from "./VorbisFrame.js";
@@ -41,36 +42,37 @@ export default class VorbisParser extends Parser {
   }
 
   parseFrames(oggPage) {
-    if (oggPage.header.pageSequenceNumber === 0) {
+    const oggPageSegments = frameStore.get(oggPage).segments;
+
+    if (oggPage.pageSequenceNumber === 0) {
+      // Identification header
+
       this._headerCache.enable();
 
       this._identificationHeader = VorbisHeader.getHeader(
         oggPage.data,
         this._headerCache
       );
-
-      return { frames: [], remainingData: 0 };
-    }
-
-    if (oggPage.header.pageSequenceNumber === 1) {
+    } else if (oggPage.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
-      this._identificationHeader.vorbisComments = oggPage.segments[0];
-      this._identificationHeader.vorbisSetup = oggPage.segments[1];
 
-      this._mode = this._parseSetupHeader(oggPage.segments[1]);
+      this._identificationHeader.vorbisComments = oggPageSegments[0];
+      this._identificationHeader.vorbisSetup = oggPageSegments[1];
 
-      return { frames: [], remainingData: 0 };
-    }
-
-    return {
-      frames: oggPage.segments.map(
+      this._mode = this._parseSetupHeader(oggPageSegments[1]);
+    } else {
+      oggPage.codecFrames = oggPageSegments.map(
         (segment) =>
           new VorbisFrame(
             segment,
             this._identificationHeader,
             this._getSamples(segment)
           )
-      ),
+      );
+    }
+
+    return {
+      frames: [oggPage],
       remainingData: 0,
     };
   }

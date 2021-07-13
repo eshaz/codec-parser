@@ -14,21 +14,35 @@ const removeDataElements = ({ data, header, ...rest }) => ({
   ...rest,
 });
 
+const removeDataElementsOgg = ({
+  absoluteGranulePosition, // can't serialize BigInt
+  data,
+  rawData,
+  codecFrames,
+  ...rest
+}) => ({
+  codecFrames: codecFrames.map(removeDataElements),
+  ...rest,
+});
+
 const generateTestData = async (files) => {
   const dataPath = new URL("data", import.meta.url).pathname;
   const resultsPath = new URL("expected-results", import.meta.url).pathname;
 
-  await Promise.allSettled(
+  await Promise.all(
     files.map(async (testFilePath) => {
       const testFile = await fs.readFile(path.join(dataPath, testFilePath));
+      const codec = testFilePath.split(".")[0];
 
-      const parser = new CodecParser("audio/" + testFilePath.split(".")[0]);
-      const frames = [...parser.iterator(testFile)];
-      const framesNoData = frames.map(removeDataElements);
+      const codecParser = new CodecParser("audio/" + codec);
+
+      const framesWithoutData = [...codecParser.iterator(testFile)].map(
+        codec === "ogg" ? removeDataElementsOgg : removeDataElements
+      );
 
       await fs.writeFile(
         path.join(resultsPath, `${testFilePath}_iterator.json`),
-        JSON.stringify(framesNoData, null, 2)
+        JSON.stringify(framesWithoutData, null, 2)
       );
     })
   );
@@ -43,20 +57,20 @@ describe("Given the CodeParser", () => {
   });
 
   const testParser = (testFilePath, mimeType) => {
-    let file, parser;
+    let file, codecParser;
 
     beforeAll(async () => {
       file = await fs.readFile(path.join(dataPath, testFilePath));
     });
 
     beforeEach(() => {
-      parser = new CodecParser(mimeType);
+      codecParser = new CodecParser(mimeType);
     });
 
     it(`should parse ${testFilePath} header information for each frame`, async () => {
-      const frames = [...parser.iterator(file)];
-
-      const framesWithoutData = frames.map(removeDataElements);
+      const framesWithoutData = [...codecParser.iterator(file)].map(
+        mimeType === "audio/ogg" ? removeDataElementsOgg : removeDataElements
+      );
 
       const expectedFrames = await fs.readFile(
         path.join(resultsPath, `${testFilePath}_iterator.json`)

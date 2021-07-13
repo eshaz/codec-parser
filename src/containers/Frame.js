@@ -16,18 +16,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../../globals.js";
-import CodecFrame from "../../containers/CodecFrame.js";
-import FLACHeader from "./FLACHeader.js";
+import { frameStore } from "../globals.js";
 
-export default class FLACFrame extends CodecFrame {
-  constructor(data, header, streamInfo) {
-    const flacHeader = new FLACHeader(header, true);
+/**
+ * @abstract
+ */
+export default class Frame {
+  constructor(header, data) {
+    frameStore.set(this, { header });
 
-    if (flacHeader) {
-      flacHeader.streamInfo = streamInfo;
-    }
-
-    super(flacHeader, data, flacHeader && headerStore.get(flacHeader).samples);
+    this.data = data || [];
   }
 }
