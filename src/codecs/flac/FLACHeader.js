@@ -26,12 +26,12 @@ AAAAAAAA AAAAAABC DDDDEEEE FFFFGGGH
 LLLLLLLLL
 
 FLAC Frame Header
-Letter 	Length (bits) 	Description
-A 	13 	11111111|11111
+Letter  Length (bits)  Description
+A   13  11111111|11111
 B   1   Reserved 0 - mandatory, 1 - reserved
-C 	1 	Blocking strategy, 0 - fixed, 1 - variable
-D 	4   Block size in inter-channel samples
-E 	4 	Sample rate
+C   1   Blocking strategy, 0 - fixed, 1 - variable
+D   4   Block size in inter-channel samples
+E   4   Sample rate
 F   4   Channel assignment
 G   3   Sample size in bits
 H   1   Reserved 0 - mandatory, 1 - reserved

@@ -31,14 +31,14 @@ JJJJJJJJ
 LLLLLLLL...
 
 Ogg Page Header
-Letter 	Length (bits) 	Description
-A 	32 	0x4f676753, "OggS"
-B 	8 	stream_structure_version
-C 	1 	(0 no, 1 yes) continued packet
-D 	1 	(0 no, 1 yes) first page of logical bitstream (bos)
-E 	1 	(0 no, 1 yes) last page of logical bitstream (eos)
+Letter  Length (bits)  Description
+A   32  0x4f676753, "OggS"
+B   8   stream_structure_version
+C   1   (0 no, 1 yes) continued packet
+D   1   (0 no, 1 yes) first page of logical bitstream (bos)
+E   1   (0 no, 1 yes) last page of logical bitstream (eos)
 
-F 	64 	absolute granule position
+F   64  absolute granule position
 G   32  stream serial number
 H   32  page sequence no
 I   32  page checksum

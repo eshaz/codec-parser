@@ -36,7 +36,7 @@ https://tools.ietf.org/html/rfc7845.html
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-Letter 	Length (bits) 	Description
+Letter  Length (bits)  Description
 A  64  Magic Signature - OpusHead
 B  8   Version number - 00000001
 C  8   Output channel count (unsigned)
