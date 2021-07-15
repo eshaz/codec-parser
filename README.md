@@ -167,13 +167,15 @@ Depending on the mimetype each iteration of `CodecParser.iterator()` will return
 
 * `absoluteGranulePosition`: Total audio samples in the ogg stream up to the end of this `OggPage`.
 * `codecFrames`: Array of `CodecFrame`(s) contained within this `OggPage`.
+* `crc32`: CRC-32 hash of the frame data using the Ogg formula / polynomial.
 * `data`: `Uint8Array` containing the page segments within the ogg page.
+* `duration`: Audio duration in milliseconds contained within this `OggPage`.
 * `isContinuedPacket`: Boolean indicating if this `OggPage` is part of a continued packet.
 * `isFirstPage`: Boolean indicating if this `OggPage` is the first page in the Ogg stream.
 * `isLastPage`: Boolean indicating if this this `OggPage` is the final page in the Ogg stream.
-* `pageChecksum`: CRC-32 hash of the frame data using the Ogg formula / polynomial.
 * `pageSequenceNumber`: Page sequence number within the Ogg stream.
 * `rawData`: `Uint8Array` Total data of the `OggPage`.
+* `samples`: Total number of audio samples contained within the `OggPage`.
 * `streamSerialNumber`: Serial number of the Ogg stream.
 * `totalBytesOut`: Total bytes of codec data output by `CodecParer` at the end of this ogg page.
 * `totalDuration`: Total audio samples output by `CodecParer` at the end of this ogg page.

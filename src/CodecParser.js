@@ -127,11 +127,13 @@ export default class CodecParser {
     this._codecData = this._codecData.subarray(remainingData);
 
     frames.forEach((frame) => {
-      // Ogg container
       if (frame.codecFrames) {
-        frame.codecFrames.forEach((codecFrame) =>
-          this._mapFrameStats(codecFrame)
-        );
+        // Ogg container
+        frame.codecFrames.forEach((codecFrame) => {
+          frame.duration += codecFrame.duration;
+          frame.samples += codecFrame.samples;
+          this._mapFrameStats(codecFrame);
+        });
 
         frame.totalSamples = this._totalSamples;
         frame.totalDuration =

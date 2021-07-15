@@ -1,6 +1,6 @@
 {
   "name": "codec-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.",
   "main": "index.js",
   "keywords": [

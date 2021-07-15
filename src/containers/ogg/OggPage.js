@@ -50,11 +50,13 @@ export default class OggPage extends Frame {
       this.codecFrames = [];
       this.rawData = data.subarray(0, frame.length);
       this.absoluteGranulePosition = oggPage.absoluteGranulePosition;
+      this.crc32 = oggPage.pageChecksum;
+      this.duration = 0;
       this.isContinuedPacket = oggPage.isContinuedPacket;
       this.isFirstPage = oggPage.isFirstPage;
       this.isLastPage = oggPage.isLastPage;
       this.pageSequenceNumber = oggPage.pageSequenceNumber;
-      this.pageChecksum = oggPage.pageChecksum;
+      this.samples = 0;
       this.streamSerialNumber = oggPage.streamSerialNumber;
     }
   }
