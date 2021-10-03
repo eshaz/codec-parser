@@ -35,45 +35,53 @@ describe("Given the CodecParser", () => {
   const assertFrames = async (actualFileName, expectedFileName) => {
     const [actualFrames, expectedFrames] = await Promise.all([
       fs.readFile(path.join(ACTUAL_PATH, actualFileName)).then(JSON.parse),
-      fs.readFile(path.join(EXPECTED_PATH, expectedFileName)).then(JSON.parse)
+      fs.readFile(path.join(EXPECTED_PATH, expectedFileName)).then(JSON.parse),
     ]);
 
     expect(actualFrames).toEqual(expectedFrames);
   };
 
   const testParser = (fileName, mimeType) => {
-    it.concurrent(`should parse ${fileName}`, async () => {
-      const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
-      const codecParser = new CodecParser(mimeType);
+    it.concurrent(
+      `should parse ${fileName}`,
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
 
-      const actualFileName = `${fileName}_iterator.json`;
-      const expectedFileName = `${fileName}_iterator.json`;
+        const actualFileName = `${fileName}_iterator.json`;
+        const expectedFileName = `${fileName}_iterator.json`;
 
-      const frames = [...codecParser.iterator(file)];
+        const frames = [...codecParser.iterator(file)];
 
-      await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
-      assertFrames(actualFileName, expectedFileName);
-    }, 20000);
+        assertFrames(actualFileName, expectedFileName);
+      },
+      20000
+    );
 
-    it.concurrent(`should parse ${fileName} when reading small chunks`, async () => {
-      const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
-      const codecParser = new CodecParser(mimeType);
+    it.concurrent(
+      `should parse ${fileName} when reading small chunks`,
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
 
-      const actualFileName = `${fileName}_iterator_chunks.json`;
-      const expectedFileName = `${fileName}_iterator.json`;
+        const actualFileName = `${fileName}_iterator_chunks.json`;
+        const expectedFileName = `${fileName}_iterator.json`;
 
-      let frames = [];
-      const chunks = getBuffArray(file, 100);
+        let frames = [];
+        const chunks = getBuffArray(file, 100);
 
-      for (const chunk of chunks) {
-        frames = [...frames, ...codecParser.iterator(chunk)];
-      }
+        for (const chunk of chunks) {
+          frames = [...frames, ...codecParser.iterator(chunk)];
+        }
 
-      await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
-      assertFrames(actualFileName, expectedFileName);
-    }, 20000);
+        assertFrames(actualFileName, expectedFileName);
+      },
+      20000
+    );
 
     /*it.concurrent(`should parse ${fileName} when reading one byte at a time`, async () => {
       const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
@@ -127,5 +135,291 @@ describe("Given the CodecParser", () => {
   describe("Given Ogg Vorbis", () => {
     testParser("ogg.vorbis", "audio/ogg");
     testParser("ogg.vorbis.fishead", "audio/ogg");
+  });
+
+  describe("Synchronization", () => {
+    const mimeType = "audio/mpeg";
+    const fileName = "mpeg.cbr.16k.mp3";
+
+    it.concurrent(
+      "should sync when incoming data starts at a valid frame",
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
+
+        const actualFileName = `${fileName}_iterator_sync_1.json`;
+        const expectedFileName = `${fileName}_iterator_sync_1.json`;
+
+        // [--0x90 bytes--|--0x510 bytes--]
+        // [-- frame 0 ---|-- frame 1-9 --]
+        // [0x50---------------------0x5f0]
+        const frames = [...codecParser.iterator(file.subarray(0x50, 0x5f0))];
+
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+        assertFrames(actualFileName, expectedFileName);
+      },
+      20000
+    );
+
+    it.concurrent(
+      "should sync when the next frame header is detected after the current frame",
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
+
+        const actualFileName = `${fileName}_iterator_sync_2.json`;
+        const expectedFileName = `${fileName}_iterator_sync_2.json`;
+
+        // [--0x90 bytes--|------0x04 bytes------]
+        // [-- frame 0 ---|-- frame 1 (header) --]
+        // [0x50-----------------------------0xe5]
+        const frames = [...codecParser.iterator(file.subarray(0x50, 0xe5))];
+
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+        expect(true).toBeTruthy();
+
+        assertFrames(actualFileName, expectedFileName);
+      },
+      20000
+    );
+
+    it.concurrent(
+      "should only output the synced frame even if the entire next frame is found",
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
+
+        const actualFileName = `${fileName}_iterator_sync_3.json`;
+        const expectedFileName = `${fileName}_iterator_sync_3.json`;
+
+        // [--0x90 bytes--|-----0x04 bytes------]
+        // [-- frame 0 ---|--frame 1 (header) --]
+        // [0x50----------------------------0xe5]
+        const frame1 = file.subarray(0x50, 0xe0);
+        const frame2 = file.subarray(0xe0, 0x170);
+        const frames = [
+          ...codecParser.iterator(Buffer.concat([frame1, frame2])),
+        ];
+
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+        expect(true).toBeTruthy();
+
+        assertFrames(actualFileName, expectedFileName);
+      },
+      20000
+    );
+
+    it.concurrent(
+      "should sync accross multiple iterations while the header is still being parsed",
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
+
+        const actualFileName = `${fileName}_iterator_sync_4.json`;
+        const expectedFileName = `${fileName}_iterator_sync_4.json`;
+
+        // [--0x90 bytes--|------0x01 bytes------]
+        // [-- frame 0 ---|-- frame 1 (header) --]
+        // [0x50-----------------------------0xe1]
+        let frames = [...codecParser.iterator(file.subarray(0x50, 0xe1))];
+
+        // [-----0x02 bytes-------]
+        // [-- frame 1 (header) --]
+        // [0xe1--------------0xe3]
+        frames = [
+          ...frames,
+          ...codecParser.iterator(file.subarray(0xe1, 0xe3)),
+        ];
+
+        // [------------0x02 bytes-----------]
+        // [-- frame 1 (header), frame 1-9 --]
+        // [0xe3-------------------------0xe3]
+        frames = [
+          ...frames,
+          ...codecParser.iterator(file.subarray(0xe3, 0x5f0)),
+        ];
+
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+        expect(true).toBeTruthy();
+
+        assertFrames(actualFileName, expectedFileName);
+      },
+      20000
+    );
+
+    describe("invalid data", () => {
+      it.concurrent(
+        "should sync when invalid data is found at the beginning",
+        async () => {
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          const actualFileName = `${fileName}_iterator_sync_invalid_data_1.json`;
+          const expectedFileName = `${fileName}_iterator_sync_invalid_data_1.json`;
+
+          // [--0x50 bytes--|--0x90 bytes--|--0x510 bytes--]
+          // [-invalid data-|-- frame 0 ---|-- frame 1-9 --]
+          // [0x0-------------------------------------0x5f0]
+          const frames = [...codecParser.iterator(file.subarray(0, 0x5f0))];
+
+          await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+          assertFrames(actualFileName, expectedFileName);
+        },
+        20000
+      );
+
+      it.concurrent(
+        "should sync when invalid data is found inside the stream",
+        async () => {
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          const actualFileName = `${fileName}_iterator_sync_invalid_data_2.json`;
+          const expectedFileName = `${fileName}_iterator_sync_invalid_data_2.json`;
+
+          // [--0x5A0 bytes--|--0x50 bytes--|--0x5A0 bytes--]
+          // [-- frame 0-9 --|-invalid data-|-- frame 0-9 --]
+          // [0x50------0x5f0|0x00---------------------0x5f0]
+          const invalidData = file.subarray(0x00, 0x50);
+          const validFrames = file.subarray(0x50, 0x5f0);
+          const frames = [
+            ...codecParser.iterator(
+              Buffer.concat([validFrames, invalidData, validFrames])
+            ),
+          ];
+
+          await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+          assertFrames(actualFileName, expectedFileName);
+        },
+        20000
+      );
+    });
+
+    describe("false positives", () => {
+      it.concurrent(
+        "should sync when a false positive frame is found at the beginning",
+        async () => {
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          const actualFileName = `${fileName}_iterator_sync_false_pos_1.json`;
+          const expectedFileName = `${fileName}_iterator_sync_false_pos_1.json`;
+
+          // [------0x8f bytes-------|--0x510 bytes--]
+          // [-- frame 0 (-1 byte) --|-- frame 0-9 --]
+          // [0x50---------------0xdf|0xe0------0x5f0]
+          const falsePositiveFrame = file.subarray(0x50, 0xdf);
+          const validFrames = file.subarray(0xe0, 0x5f0);
+          const frames = [
+            ...codecParser.iterator(
+              Buffer.concat([falsePositiveFrame, validFrames])
+            ),
+          ];
+
+          await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+          assertFrames(actualFileName, expectedFileName);
+        },
+        20000
+      );
+
+      it.concurrent(
+        "should sync when multiple false positive frames are found at the beginning",
+        async () => {
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          const actualFileName = `${fileName}_iterator_sync_false_pos_2.json`;
+          const expectedFileName = `${fileName}_iterator_sync_false_pos_2.json`;
+
+          // [-----------0x8d bytes-----------|--0x510 bytes--]
+          // [----- false positive data ------|-- 9 frames ---]
+          // [0x50--0x54|0x50--0xa2|0x50--0x88|0xe0------0x5f0]
+          const falsePositiveFrame1 = file.subarray(0x50, 0x54);
+          const falsePositiveFrame2 = file.subarray(0x50, 0xa2);
+          const falsePositiveFrame3 = file.subarray(0x50, 0x88);
+          const validFrames = file.subarray(0xe0, 0x5f0);
+          const frames = [
+            ...codecParser.iterator(
+              Buffer.concat([
+                falsePositiveFrame1,
+                falsePositiveFrame2,
+                falsePositiveFrame3,
+                validFrames,
+              ])
+            ),
+          ];
+
+          await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+          assertFrames(actualFileName, expectedFileName);
+        },
+        20000
+      );
+
+      it.concurrent(
+        "should sync when false positive frames are found inside the stream",
+        async () => {
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          const actualFileName = `${fileName}_iterator_sync_false_pos_3.json`;
+          const expectedFileName = `${fileName}_iterator_sync_false_pos_3.json`;
+
+          // |--0x510 bytes--|-------0x04 bytes------|--0x510 bytes--]
+          // |-- 9 frames ---|--false positive data--|-- 9 frames ---]
+          // |0xe0------0x5f0|0x50---------------0x54|0xe0------0x5f0]
+          const validFrames = file.subarray(0xe0, 0x5f0);
+          const falsePositiveFrame1 = file.subarray(0x50, 0x54);
+          const frames = [
+            ...codecParser.iterator(
+              Buffer.concat([validFrames, falsePositiveFrame1, validFrames])
+            ),
+          ];
+
+          await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+          assertFrames(actualFileName, expectedFileName);
+        },
+        20000
+      );
+
+      it.concurrent(
+        "should sync when multiple false positive frames are found inside the stream",
+        async () => {
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          const actualFileName = `${fileName}_iterator_sync_false_pos_4.json`;
+          const expectedFileName = `${fileName}_iterator_sync_false_pos_4.json`;
+
+          // |--0x510 bytes--|-------0x04 bytes------|--0x510 bytes--|-------0x52 bytes------|--0x510 bytes--]
+          // |-- 9 frames ---|--false positive data--|-- 9 frames ---|--false positive data--|-- 9 frames ---]
+          // |0xe0------0x5f0|0x50---------------0x54|0xe0------0x5f0|0x50---------------0xa2|0xe0------0x5f0]
+          const validFrames = file.subarray(0xe0, 0x5f0);
+          const falsePositiveFrame1 = file.subarray(0x50, 0x54);
+          const falsePositiveFrame2 = file.subarray(0x50, 0xa2);
+          const frames = [
+            ...codecParser.iterator(
+              Buffer.concat([
+                validFrames,
+                falsePositiveFrame1,
+                validFrames,
+                falsePositiveFrame2,
+                validFrames,
+              ])
+            ),
+          ];
+
+          await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+          assertFrames(actualFileName, expectedFileName);
+        },
+        20000
+      );
+    });
   });
 });
