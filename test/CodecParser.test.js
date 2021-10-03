@@ -3,87 +3,98 @@ import path from "path";
 
 import CodecParser from "../index.js";
 
-const removeDataElements = ({ data, header, ...rest }) => ({
-  header: {
-    ...header,
-    data: undefined,
-    vorbisComments: undefined,
-    vorbisSetup: undefined,
-    streamInfo: undefined,
-  },
-  ...rest,
-});
+const EXPECTED_PATH = new URL("expected-results", import.meta.url).pathname;
+const ACTUAL_PATH = new URL("actual-results", import.meta.url).pathname;
+const TEST_DATA_PATH = new URL("test-data", import.meta.url).pathname;
 
-const removeDataElementsOgg = ({
-  absoluteGranulePosition, // can't serialize BigInt
-  data,
-  rawData,
-  codecFrames,
-  ...rest
-}) => ({
-  codecFrames: codecFrames.map(removeDataElements),
-  ...rest,
-});
+const writeResults = async (frames, mimeType, outputPath, outputFile) => {
+  const removeDataElements = ({ data, header, ...rest }) => ({
+    header: {
+      ...header,
+      data: undefined,
+      vorbisComments: undefined,
+      vorbisSetup: undefined,
+      streamInfo: undefined,
+    },
+    ...rest,
+  });
 
-const generateTestData = async (files) => {
-  const dataPath = new URL("data", import.meta.url).pathname;
-  const resultsPath = new URL("expected-results", import.meta.url).pathname;
+  const removeDataElementsOgg = ({
+    absoluteGranulePosition, // can't serialize BigInt
+    data,
+    rawData,
+    codecFrames,
+    ...rest
+  }) => ({
+    codecFrames: codecFrames.map(removeDataElements),
+    ...rest,
+  });
+
+  const framesWithoutData = frames.map(
+    mimeType === "audio/ogg" ? removeDataElementsOgg : removeDataElements
+  );
+
+  await fs.writeFile(
+    path.join(outputPath, `${outputFile}_iterator.json`),
+    JSON.stringify(framesWithoutData, null, 2)
+  );
+};
+
+const generateTestData = async () => {
+  const files = await fs.readdir(TEST_DATA_PATH);
 
   await Promise.all(
-    files.map(async (testFilePath) => {
-      const testFile = await fs.readFile(path.join(dataPath, testFilePath));
-      const codec = testFilePath.split(".")[0];
-
-      const codecParser = new CodecParser("audio/" + codec);
-
-      const framesWithoutData = [...codecParser.iterator(testFile)].map(
-        codec === "ogg" ? removeDataElementsOgg : removeDataElements
+    files.map(async (testFileName) => {
+      const testFile = await fs.readFile(
+        path.join(TEST_DATA_PATH, testFileName)
       );
+      const mimeType = "audio/" + testFileName.split(".")[0];
 
-      await fs.writeFile(
-        path.join(resultsPath, `${testFilePath}_iterator.json`),
-        JSON.stringify(framesWithoutData, null, 2)
-      );
+      const codecParser = new CodecParser(mimeType);
+      const frames = [...codecParser.iterator(testFile)];
+
+      await writeResults(frames, mimeType, EXPECTED_PATH, testFileName);
     })
   );
 };
 
 describe("Given the CodeParser", () => {
-  let dataPath, resultsPath;
-
-  beforeAll(async () => {
-    dataPath = new URL("data", import.meta.url).pathname;
-    resultsPath = new URL("expected-results", import.meta.url).pathname;
-  });
-
-  const testParser = (testFilePath, mimeType) => {
+  const testParser = (testFileName, mimeType) => {
     let file, codecParser;
 
     beforeAll(async () => {
-      file = await fs.readFile(path.join(dataPath, testFilePath));
+      file = await fs.readFile(path.join(TEST_DATA_PATH, testFileName));
     });
 
     beforeEach(() => {
       codecParser = new CodecParser(mimeType);
     });
 
-    it(`should parse ${testFilePath} header information for each frame`, async () => {
-      const framesWithoutData = [...codecParser.iterator(file)].map(
-        mimeType === "audio/ogg" ? removeDataElementsOgg : removeDataElements
+    it(`should parse ${testFileName} header information for each frame`, async () => {
+      const frames = [...codecParser.iterator(file)];
+
+      await writeResults(frames, mimeType, ACTUAL_PATH, testFileName);
+
+      const expectedFrames = JSON.parse(
+        await fs.readFile(
+          path.join(EXPECTED_PATH, `${testFileName}_iterator.json`)
+        )
       );
 
-      const expectedFrames = await fs.readFile(
-        path.join(resultsPath, `${testFilePath}_iterator.json`)
+      const actualFrames = JSON.parse(
+        await fs.readFile(
+          path.join(ACTUAL_PATH, `${testFileName}_iterator.json`)
+        )
       );
 
-      expect(framesWithoutData).toEqual(JSON.parse(expectedFrames));
+      expect(actualFrames).toEqual(expectedFrames);
     });
   };
 
   // uncomment to regenerate the test data
   /*
   it("should generate the test data", async () => {
-    await generateTestData(await fs.readdir(dataPath));
+    await generateTestData();
 
     expect(true).toBeTruthy();
   }, 10000);
