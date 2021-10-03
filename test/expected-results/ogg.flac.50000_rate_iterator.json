@@ -1,0 +1,4801 @@
+[
+  {
+    "codecFrames": [],
+    "crc32": -1581254849,
+    "duration": 0,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 1,
+    "samples": 0,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "totalBytesOut": 0
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 0
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 0,
+        "totalBytesOut": 0,
+        "totalSamples": 0,
+        "totalDuration": 0,
+        "crc32": -1364914157
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 1
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 1,
+        "totalBytesOut": 15,
+        "totalSamples": 4608,
+        "totalDuration": 92.16000000000001,
+        "crc32": -682522478
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 2
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 2,
+        "totalBytesOut": 30,
+        "totalSamples": 9216,
+        "totalDuration": 184.32000000000002,
+        "crc32": -39989159
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 3
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 3,
+        "totalBytesOut": 1268,
+        "totalSamples": 13824,
+        "totalDuration": 276.48,
+        "crc32": -1971446103
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 4
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 4,
+        "totalBytesOut": 12071,
+        "totalSamples": 18432,
+        "totalDuration": 368.64000000000004,
+        "crc32": -732464476
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 5
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 5,
+        "totalBytesOut": 26004,
+        "totalSamples": 23040,
+        "totalDuration": 460.8,
+        "crc32": 1350829910
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 6
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 6,
+        "totalBytesOut": 40147,
+        "totalSamples": 27648,
+        "totalDuration": 552.96,
+        "crc32": -784560054
+      }
+    ],
+    "crc32": -813363782,
+    "duration": 645.12,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 2,
+    "samples": 32256,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 32256,
+    "totalDuration": 645.12,
+    "totalBytesOut": 54132
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 7
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 7,
+        "totalBytesOut": 54132,
+        "totalSamples": 32256,
+        "totalDuration": 645.12,
+        "crc32": 565218715
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 8
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 8,
+        "totalBytesOut": 67486,
+        "totalSamples": 36864,
+        "totalDuration": 737.2800000000001,
+        "crc32": 1499250352
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 9
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 9,
+        "totalBytesOut": 80890,
+        "totalSamples": 41472,
+        "totalDuration": 829.4399999999999,
+        "crc32": -945814676
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 10
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 10,
+        "totalBytesOut": 94349,
+        "totalSamples": 46080,
+        "totalDuration": 921.6,
+        "crc32": -586288778
+      }
+    ],
+    "crc32": 2127198137,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 3,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 50688,
+    "totalDuration": 1013.76,
+    "totalBytesOut": 107795
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 11
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 11,
+        "totalBytesOut": 107795,
+        "totalSamples": 50688,
+        "totalDuration": 1013.76,
+        "crc32": -1962991642
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 12
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 12,
+        "totalBytesOut": 121962,
+        "totalSamples": 55296,
+        "totalDuration": 1105.92,
+        "crc32": 181280721
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 13
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 13,
+        "totalBytesOut": 135824,
+        "totalSamples": 59904,
+        "totalDuration": 1198.08,
+        "crc32": -1273674730
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 14
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 14,
+        "totalBytesOut": 149449,
+        "totalSamples": 64512,
+        "totalDuration": 1290.24,
+        "crc32": -1980467407
+      }
+    ],
+    "crc32": 491896453,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 4,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 69120,
+    "totalDuration": 1382.4,
+    "totalBytesOut": 161461
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 15
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 15,
+        "totalBytesOut": 161461,
+        "totalSamples": 69120,
+        "totalDuration": 1382.4,
+        "crc32": -1960639461
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 16
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 16,
+        "totalBytesOut": 173204,
+        "totalSamples": 73728,
+        "totalDuration": 1474.5600000000002,
+        "crc32": 128967571
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 17
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 17,
+        "totalBytesOut": 186530,
+        "totalSamples": 78336,
+        "totalDuration": 1566.7199999999998,
+        "crc32": -1017213631
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 18
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 18,
+        "totalBytesOut": 199277,
+        "totalSamples": 82944,
+        "totalDuration": 1658.8799999999999,
+        "crc32": -1848547992
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 19
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 19,
+        "totalBytesOut": 211690,
+        "totalSamples": 87552,
+        "totalDuration": 1751.04,
+        "crc32": -1498501829
+      }
+    ],
+    "crc32": -388033817,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 5,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 92160,
+    "totalDuration": 1843.2,
+    "totalBytesOut": 224789
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 20
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 20,
+        "totalBytesOut": 224789,
+        "totalSamples": 92160,
+        "totalDuration": 1843.2,
+        "crc32": 1672258886
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 21
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 21,
+        "totalBytesOut": 238153,
+        "totalSamples": 96768,
+        "totalDuration": 1935.36,
+        "crc32": 739536866
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 22
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 22,
+        "totalBytesOut": 252228,
+        "totalSamples": 101376,
+        "totalDuration": 2027.52,
+        "crc32": 768004925
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 23
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 23,
+        "totalBytesOut": 265590,
+        "totalSamples": 105984,
+        "totalDuration": 2119.68,
+        "crc32": 484537453
+      }
+    ],
+    "crc32": -1094862933,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 6,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 110592,
+    "totalDuration": 2211.84,
+    "totalBytesOut": 279082
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 24
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 24,
+        "totalBytesOut": 279082,
+        "totalSamples": 110592,
+        "totalDuration": 2211.84,
+        "crc32": -1616367808
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 25
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 25,
+        "totalBytesOut": 291386,
+        "totalSamples": 115200,
+        "totalDuration": 2304,
+        "crc32": -481380452
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 26
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 26,
+        "totalBytesOut": 303291,
+        "totalSamples": 119808,
+        "totalDuration": 2396.16,
+        "crc32": 800179420
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 27
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 27,
+        "totalBytesOut": 316677,
+        "totalSamples": 124416,
+        "totalDuration": 2488.3199999999997,
+        "crc32": -923356851
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 28
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 28,
+        "totalBytesOut": 329846,
+        "totalSamples": 129024,
+        "totalDuration": 2580.48,
+        "crc32": -1169517400
+      }
+    ],
+    "crc32": -1040199295,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 7,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 133632,
+    "totalDuration": 2672.64,
+    "totalBytesOut": 342637
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 29
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 29,
+        "totalBytesOut": 342637,
+        "totalSamples": 133632,
+        "totalDuration": 2672.64,
+        "crc32": 1115753586
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 30
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 30,
+        "totalBytesOut": 355715,
+        "totalSamples": 138240,
+        "totalDuration": 2764.8,
+        "crc32": 1109504450
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 31
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 31,
+        "totalBytesOut": 369042,
+        "totalSamples": 142848,
+        "totalDuration": 2856.96,
+        "crc32": -553649101
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 32
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 32,
+        "totalBytesOut": 382506,
+        "totalSamples": 147456,
+        "totalDuration": 2949.1200000000003,
+        "crc32": -1442806656
+      }
+    ],
+    "crc32": -1747519885,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 8,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 152064,
+    "totalDuration": 3041.28,
+    "totalBytesOut": 395353
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 34
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 33,
+        "totalBytesOut": 395353,
+        "totalSamples": 152064,
+        "totalDuration": 3041.28,
+        "crc32": 648547654
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 35
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 34,
+        "totalBytesOut": 408736,
+        "totalSamples": 156672,
+        "totalDuration": 3133.4399999999996,
+        "crc32": 229384489
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 36
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 35,
+        "totalBytesOut": 422004,
+        "totalSamples": 161280,
+        "totalDuration": 3225.6,
+        "crc32": -1460771538
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 37
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 36,
+        "totalBytesOut": 435783,
+        "totalSamples": 165888,
+        "totalDuration": 3317.7599999999998,
+        "crc32": 851500433
+      }
+    ],
+    "crc32": -1673662720,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 9,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 170496,
+    "totalDuration": 3409.92,
+    "totalBytesOut": 448752
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 38
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 37,
+        "totalBytesOut": 448752,
+        "totalSamples": 170496,
+        "totalDuration": 3409.92,
+        "crc32": 1801120051
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 39
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 38,
+        "totalBytesOut": 461349,
+        "totalSamples": 175104,
+        "totalDuration": 3502.08,
+        "crc32": -125296119
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 40
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 39,
+        "totalBytesOut": 474650,
+        "totalSamples": 179712,
+        "totalDuration": 3594.2400000000002,
+        "crc32": 555436046
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 41
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 40,
+        "totalBytesOut": 487967,
+        "totalSamples": 184320,
+        "totalDuration": 3686.4,
+        "crc32": -1880042933
+      }
+    ],
+    "crc32": 1208113304,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 10,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 188928,
+    "totalDuration": 3778.56,
+    "totalBytesOut": 501623
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 42
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 41,
+        "totalBytesOut": 501623,
+        "totalSamples": 188928,
+        "totalDuration": 3778.56,
+        "crc32": 88515305
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 43
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 42,
+        "totalBytesOut": 515341,
+        "totalSamples": 193536,
+        "totalDuration": 3870.72,
+        "crc32": 1266182478
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 44
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 43,
+        "totalBytesOut": 529105,
+        "totalSamples": 198144,
+        "totalDuration": 3962.88,
+        "crc32": -459620102
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 45
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 44,
+        "totalBytesOut": 542709,
+        "totalSamples": 202752,
+        "totalDuration": 4055.04,
+        "crc32": 1794856666
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 46
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 45,
+        "totalBytesOut": 554787,
+        "totalSamples": 207360,
+        "totalDuration": 4147.2,
+        "crc32": 433680301
+      }
+    ],
+    "crc32": 80855424,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 11,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 211968,
+    "totalDuration": 4239.36,
+    "totalBytesOut": 565923
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 47
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 46,
+        "totalBytesOut": 565923,
+        "totalSamples": 211968,
+        "totalDuration": 4239.36,
+        "crc32": 2072053818
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 48
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 47,
+        "totalBytesOut": 578961,
+        "totalSamples": 216576,
+        "totalDuration": 4331.52,
+        "crc32": -1453531295
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 49
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 48,
+        "totalBytesOut": 591618,
+        "totalSamples": 221184,
+        "totalDuration": 4423.68,
+        "crc32": 658863769
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 50
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 49,
+        "totalBytesOut": 604389,
+        "totalSamples": 225792,
+        "totalDuration": 4515.84,
+        "crc32": 411591710
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 51
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 50,
+        "totalBytesOut": 616055,
+        "totalSamples": 230400,
+        "totalDuration": 4608,
+        "crc32": 904395945
+      }
+    ],
+    "crc32": -153452327,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 12,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 235008,
+    "totalDuration": 4700.160000000001,
+    "totalBytesOut": 627303
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 52
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 51,
+        "totalBytesOut": 627303,
+        "totalSamples": 235008,
+        "totalDuration": 4700.160000000001,
+        "crc32": 1333875082
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 53
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 52,
+        "totalBytesOut": 640557,
+        "totalSamples": 239616,
+        "totalDuration": 4792.32,
+        "crc32": -729164710
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 54
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 53,
+        "totalBytesOut": 653250,
+        "totalSamples": 244224,
+        "totalDuration": 4884.48,
+        "crc32": 1198560361
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 55
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 54,
+        "totalBytesOut": 665958,
+        "totalSamples": 248832,
+        "totalDuration": 4976.639999999999,
+        "crc32": -1738329897
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 56
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 55,
+        "totalBytesOut": 678004,
+        "totalSamples": 253440,
+        "totalDuration": 5068.8,
+        "crc32": 534052746
+      }
+    ],
+    "crc32": 1738711923,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 13,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 258048,
+    "totalDuration": 5160.96,
+    "totalBytesOut": 690607
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 57
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 56,
+        "totalBytesOut": 690607,
+        "totalSamples": 258048,
+        "totalDuration": 5160.96,
+        "crc32": -2128813598
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 58
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 57,
+        "totalBytesOut": 703891,
+        "totalSamples": 262656,
+        "totalDuration": 5253.12,
+        "crc32": 366989558
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 59
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 58,
+        "totalBytesOut": 717023,
+        "totalSamples": 267264,
+        "totalDuration": 5345.28,
+        "crc32": -1526115856
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 60
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 59,
+        "totalBytesOut": 729925,
+        "totalSamples": 271872,
+        "totalDuration": 5437.44,
+        "crc32": 725642431
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 61
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 60,
+        "totalBytesOut": 742114,
+        "totalSamples": 276480,
+        "totalDuration": 5529.6,
+        "crc32": -227253363
+      }
+    ],
+    "crc32": -552389766,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 14,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 281088,
+    "totalDuration": 5621.76,
+    "totalBytesOut": 754012
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 62
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 61,
+        "totalBytesOut": 754012,
+        "totalSamples": 281088,
+        "totalDuration": 5621.76,
+        "crc32": 1879993158
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 63
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 62,
+        "totalBytesOut": 767561,
+        "totalSamples": 285696,
+        "totalDuration": 5713.92,
+        "crc32": -799670522
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 64
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 63,
+        "totalBytesOut": 780617,
+        "totalSamples": 290304,
+        "totalDuration": 5806.08,
+        "crc32": -1608461985
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 65
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 64,
+        "totalBytesOut": 792879,
+        "totalSamples": 294912,
+        "totalDuration": 5898.240000000001,
+        "crc32": -762020335
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 66
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 65,
+        "totalBytesOut": 805055,
+        "totalSamples": 299520,
+        "totalDuration": 5990.400000000001,
+        "crc32": -606712109
+      }
+    ],
+    "crc32": 1837731732,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 15,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 304128,
+    "totalDuration": 6082.56,
+    "totalBytesOut": 817724
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 67
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 66,
+        "totalBytesOut": 817724,
+        "totalSamples": 304128,
+        "totalDuration": 6082.56,
+        "crc32": 356946423
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 68
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 67,
+        "totalBytesOut": 831407,
+        "totalSamples": 308736,
+        "totalDuration": 6174.719999999999,
+        "crc32": -869387954
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 69
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 68,
+        "totalBytesOut": 844699,
+        "totalSamples": 313344,
+        "totalDuration": 6266.879999999999,
+        "crc32": -1427507723
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 70
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 69,
+        "totalBytesOut": 857075,
+        "totalSamples": 317952,
+        "totalDuration": 6359.04,
+        "crc32": 827556814
+      }
+    ],
+    "crc32": 1907606329,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 16,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 322560,
+    "totalDuration": 6451.2,
+    "totalBytesOut": 869968
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 72
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 70,
+        "totalBytesOut": 869968,
+        "totalSamples": 322560,
+        "totalDuration": 6451.2,
+        "crc32": -1865904688
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 73
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 71,
+        "totalBytesOut": 883341,
+        "totalSamples": 327168,
+        "totalDuration": 6543.36,
+        "crc32": -1522035262
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 74
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 72,
+        "totalBytesOut": 896417,
+        "totalSamples": 331776,
+        "totalDuration": 6635.5199999999995,
+        "crc32": -809673316
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 75
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 73,
+        "totalBytesOut": 908992,
+        "totalSamples": 336384,
+        "totalDuration": 6727.68,
+        "crc32": -697212809
+      }
+    ],
+    "crc32": 346216205,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 17,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 340992,
+    "totalDuration": 6819.84,
+    "totalBytesOut": 921870
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 77
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 74,
+        "totalBytesOut": 921870,
+        "totalSamples": 340992,
+        "totalDuration": 6819.84,
+        "crc32": -2117561026
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 78
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 75,
+        "totalBytesOut": 934871,
+        "totalSamples": 345600,
+        "totalDuration": 6912,
+        "crc32": 236076481
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 79
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 76,
+        "totalBytesOut": 947817,
+        "totalSamples": 350208,
+        "totalDuration": 7004.16,
+        "crc32": 1194935504
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 80
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 77,
+        "totalBytesOut": 960990,
+        "totalSamples": 354816,
+        "totalDuration": 7096.320000000001,
+        "crc32": 902260098
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 81
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 78,
+        "totalBytesOut": 973839,
+        "totalSamples": 359424,
+        "totalDuration": 7188.4800000000005,
+        "crc32": 1860020929
+      }
+    ],
+    "crc32": -1976607741,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 18,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 364032,
+    "totalDuration": 7280.64,
+    "totalBytesOut": 985699
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 82
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 79,
+        "totalBytesOut": 985699,
+        "totalSamples": 364032,
+        "totalDuration": 7280.64,
+        "crc32": 1262581702
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 83
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 80,
+        "totalBytesOut": 997561,
+        "totalSamples": 368640,
+        "totalDuration": 7372.8,
+        "crc32": 954398658
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 84
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 81,
+        "totalBytesOut": 1010818,
+        "totalSamples": 373248,
+        "totalDuration": 7464.96,
+        "crc32": 846029391
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 85
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 82,
+        "totalBytesOut": 1023975,
+        "totalSamples": 377856,
+        "totalDuration": 7557.12,
+        "crc32": -1963488473
+      }
+    ],
+    "crc32": -887281447,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 19,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 382464,
+    "totalDuration": 7649.28,
+    "totalBytesOut": 1037236
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 87
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 83,
+        "totalBytesOut": 1037236,
+        "totalSamples": 382464,
+        "totalDuration": 7649.28,
+        "crc32": 224620780
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 88
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 84,
+        "totalBytesOut": 1050391,
+        "totalSamples": 387072,
+        "totalDuration": 7741.44,
+        "crc32": 998710289
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 89
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 85,
+        "totalBytesOut": 1063885,
+        "totalSamples": 391680,
+        "totalDuration": 7833.599999999999,
+        "crc32": 511796074
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 90
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 86,
+        "totalBytesOut": 1076891,
+        "totalSamples": 396288,
+        "totalDuration": 7925.76,
+        "crc32": -1149532175
+      }
+    ],
+    "crc32": 1473529892,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 20,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 400896,
+    "totalDuration": 8017.92,
+    "totalBytesOut": 1089881
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 91
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 87,
+        "totalBytesOut": 1089881,
+        "totalSamples": 400896,
+        "totalDuration": 8017.92,
+        "crc32": 1698000918
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 92
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 88,
+        "totalBytesOut": 1102966,
+        "totalSamples": 405504,
+        "totalDuration": 8110.08,
+        "crc32": 65877664
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 93
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 89,
+        "totalBytesOut": 1116188,
+        "totalSamples": 410112,
+        "totalDuration": 8202.24,
+        "crc32": 1991910644
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 94
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 90,
+        "totalBytesOut": 1130208,
+        "totalSamples": 414720,
+        "totalDuration": 8294.4,
+        "crc32": 281824633
+      }
+    ],
+    "crc32": 1493249237,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 21,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 419328,
+    "totalDuration": 8386.56,
+    "totalBytesOut": 1143917
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 95
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 91,
+        "totalBytesOut": 1143917,
+        "totalSamples": 419328,
+        "totalDuration": 8386.56,
+        "crc32": 1212639861
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 96
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 92,
+        "totalBytesOut": 1157597,
+        "totalSamples": 423936,
+        "totalDuration": 8478.72,
+        "crc32": 954272728
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 97
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 93,
+        "totalBytesOut": 1169463,
+        "totalSamples": 428544,
+        "totalDuration": 8570.880000000001,
+        "crc32": 2115542987
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 98
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 94,
+        "totalBytesOut": 1180848,
+        "totalSamples": 433152,
+        "totalDuration": 8663.04,
+        "crc32": -1986084384
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 99
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 95,
+        "totalBytesOut": 1194070,
+        "totalSamples": 437760,
+        "totalDuration": 8755.2,
+        "crc32": 646379198
+      }
+    ],
+    "crc32": -1656715485,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 22,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 442368,
+    "totalDuration": 8847.36,
+    "totalBytesOut": 1206839
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 100
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 96,
+        "totalBytesOut": 1206839,
+        "totalSamples": 442368,
+        "totalDuration": 8847.36,
+        "crc32": -2009442867
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 101
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 97,
+        "totalBytesOut": 1219125,
+        "totalSamples": 446976,
+        "totalDuration": 8939.52,
+        "crc32": 1470320897
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 102
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 98,
+        "totalBytesOut": 1232161,
+        "totalSamples": 451584,
+        "totalDuration": 9031.68,
+        "crc32": 2139705357
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 103
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 99,
+        "totalBytesOut": 1245417,
+        "totalSamples": 456192,
+        "totalDuration": 9123.84,
+        "crc32": -1129218479
+      }
+    ],
+    "crc32": 796028583,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 23,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 460800,
+    "totalDuration": 9216,
+    "totalBytesOut": 1259488
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 104
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 100,
+        "totalBytesOut": 1259488,
+        "totalSamples": 460800,
+        "totalDuration": 9216,
+        "crc32": 1959025207
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 105
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 101,
+        "totalBytesOut": 1272850,
+        "totalSamples": 465408,
+        "totalDuration": 9308.160000000002,
+        "crc32": 1747806281
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 106
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 102,
+        "totalBytesOut": 1286206,
+        "totalSamples": 470016,
+        "totalDuration": 9400.320000000002,
+        "crc32": 1701751430
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 107
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 103,
+        "totalBytesOut": 1298655,
+        "totalSamples": 474624,
+        "totalDuration": 9492.48,
+        "crc32": -1883087359
+      }
+    ],
+    "crc32": -346868255,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 24,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 479232,
+    "totalDuration": 9584.64,
+    "totalBytesOut": 1310681
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 109
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 104,
+        "totalBytesOut": 1310681,
+        "totalSamples": 479232,
+        "totalDuration": 9584.64,
+        "crc32": -7007940
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 110
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 105,
+        "totalBytesOut": 1323935,
+        "totalSamples": 483840,
+        "totalDuration": 9676.8,
+        "crc32": 1954861480
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 111
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 106,
+        "totalBytesOut": 1336733,
+        "totalSamples": 488448,
+        "totalDuration": 9768.96,
+        "crc32": 1415691860
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 112
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 107,
+        "totalBytesOut": 1349910,
+        "totalSamples": 493056,
+        "totalDuration": 9861.119999999999,
+        "crc32": 1957686314
+      }
+    ],
+    "crc32": 433924261,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 25,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 497664,
+    "totalDuration": 9953.279999999999,
+    "totalBytesOut": 1363146
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 113
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 108,
+        "totalBytesOut": 1363146,
+        "totalSamples": 497664,
+        "totalDuration": 9953.279999999999,
+        "crc32": 1647003057
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 114
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 109,
+        "totalBytesOut": 1376608,
+        "totalSamples": 502272,
+        "totalDuration": 10045.439999999999,
+        "crc32": -1955458700
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 115
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 110,
+        "totalBytesOut": 1389403,
+        "totalSamples": 506880,
+        "totalDuration": 10137.6,
+        "crc32": -914504293
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 116
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 111,
+        "totalBytesOut": 1401817,
+        "totalSamples": 511488,
+        "totalDuration": 10229.76,
+        "crc32": 1461338674
+      }
+    ],
+    "crc32": 39435128,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 26,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 516096,
+    "totalDuration": 10321.92,
+    "totalBytesOut": 1415196
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 117
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 112,
+        "totalBytesOut": 1415196,
+        "totalSamples": 516096,
+        "totalDuration": 10321.92,
+        "crc32": 1331251310
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 118
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 113,
+        "totalBytesOut": 1428299,
+        "totalSamples": 520704,
+        "totalDuration": 10414.08,
+        "crc32": -1415297176
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 119
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 114,
+        "totalBytesOut": 1441978,
+        "totalSamples": 525312,
+        "totalDuration": 10506.24,
+        "crc32": 1558297619
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 120
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 115,
+        "totalBytesOut": 1454896,
+        "totalSamples": 529920,
+        "totalDuration": 10598.4,
+        "crc32": 237059515
+      }
+    ],
+    "crc32": 286058033,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 27,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 534528,
+    "totalDuration": 10690.56,
+    "totalBytesOut": 1468537
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 121
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 116,
+        "totalBytesOut": 1468537,
+        "totalSamples": 534528,
+        "totalDuration": 10690.56,
+        "crc32": 1394619538
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 122
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 117,
+        "totalBytesOut": 1481938,
+        "totalSamples": 539136,
+        "totalDuration": 10782.72,
+        "crc32": -1021923362
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 123
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 118,
+        "totalBytesOut": 1494345,
+        "totalSamples": 543744,
+        "totalDuration": 10874.88,
+        "crc32": 1575533719
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 124
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 119,
+        "totalBytesOut": 1507889,
+        "totalSamples": 548352,
+        "totalDuration": 10967.04,
+        "crc32": -1068989461
+      }
+    ],
+    "crc32": -613235077,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 28,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 552960,
+    "totalDuration": 11059.2,
+    "totalBytesOut": 1521849
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 125
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 120,
+        "totalBytesOut": 1521849,
+        "totalSamples": 552960,
+        "totalDuration": 11059.2,
+        "crc32": 1112665204
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 126
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 121,
+        "totalBytesOut": 1535473,
+        "totalSamples": 557568,
+        "totalDuration": 11151.36,
+        "crc32": 1473886223
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 127
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 122,
+        "totalBytesOut": 1549209,
+        "totalSamples": 562176,
+        "totalDuration": 11243.52,
+        "crc32": -1086902935
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 192
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 123,
+        "totalBytesOut": 1562130,
+        "totalSamples": 566784,
+        "totalDuration": 11335.68,
+        "crc32": -350711192
+      }
+    ],
+    "crc32": -2064513436,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 29,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 571392,
+    "totalDuration": 11427.84,
+    "totalBytesOut": 1573894
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 193
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 124,
+        "totalBytesOut": 1573894,
+        "totalSamples": 571392,
+        "totalDuration": 11427.84,
+        "crc32": 440931190
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 194
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 125,
+        "totalBytesOut": 1587420,
+        "totalSamples": 576000,
+        "totalDuration": 11520,
+        "crc32": 1452093464
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 195
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 126,
+        "totalBytesOut": 1600398,
+        "totalSamples": 580608,
+        "totalDuration": 11612.16,
+        "crc32": 404638186
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 196
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 127,
+        "totalBytesOut": 1613191,
+        "totalSamples": 585216,
+        "totalDuration": 11704.32,
+        "crc32": 1769955331
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 197
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 128,
+        "totalBytesOut": 1624782,
+        "totalSamples": 589824,
+        "totalDuration": 11796.480000000001,
+        "crc32": 2035129334
+      }
+    ],
+    "crc32": -1619616273,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 30,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 594432,
+    "totalDuration": 11888.640000000001,
+    "totalBytesOut": 1636167
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 198
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 129,
+        "totalBytesOut": 1636167,
+        "totalSamples": 594432,
+        "totalDuration": 11888.640000000001,
+        "crc32": 1584302727
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 199
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 130,
+        "totalBytesOut": 1649735,
+        "totalSamples": 599040,
+        "totalDuration": 11980.800000000001,
+        "crc32": 170791948
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 200
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 131,
+        "totalBytesOut": 1662694,
+        "totalSamples": 603648,
+        "totalDuration": 12072.960000000001,
+        "crc32": -2086312694
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 201
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 132,
+        "totalBytesOut": 1675449,
+        "totalSamples": 608256,
+        "totalDuration": 12165.12,
+        "crc32": -1211284097
+      }
+    ],
+    "crc32": -1701653982,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 31,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 612864,
+    "totalDuration": 12257.279999999999,
+    "totalBytesOut": 1687722
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 203
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 133,
+        "totalBytesOut": 1687722,
+        "totalSamples": 612864,
+        "totalDuration": 12257.279999999999,
+        "crc32": 1948705916
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 204
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 134,
+        "totalBytesOut": 1701079,
+        "totalSamples": 617472,
+        "totalDuration": 12349.439999999999,
+        "crc32": -1939573649
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 205
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 135,
+        "totalBytesOut": 1714585,
+        "totalSamples": 622080,
+        "totalDuration": 12441.599999999999,
+        "crc32": -1110246717
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 206
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 136,
+        "totalBytesOut": 1727747,
+        "totalSamples": 626688,
+        "totalDuration": 12533.759999999998,
+        "crc32": -907269690
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 207
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 137,
+        "totalBytesOut": 1739875,
+        "totalSamples": 631296,
+        "totalDuration": 12625.92,
+        "crc32": -1780017258
+      }
+    ],
+    "crc32": -1304600562,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 32,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 635904,
+    "totalDuration": 12718.08,
+    "totalBytesOut": 1751855
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 208
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 138,
+        "totalBytesOut": 1751855,
+        "totalSamples": 635904,
+        "totalDuration": 12718.08,
+        "crc32": -254764305
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 209
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 139,
+        "totalBytesOut": 1765383,
+        "totalSamples": 640512,
+        "totalDuration": 12810.24,
+        "crc32": -411994504
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 210
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 140,
+        "totalBytesOut": 1778529,
+        "totalSamples": 645120,
+        "totalDuration": 12902.4,
+        "crc32": 1746372939
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 211
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 141,
+        "totalBytesOut": 1790988,
+        "totalSamples": 649728,
+        "totalDuration": 12994.56,
+        "crc32": 1754243481
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 212
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 142,
+        "totalBytesOut": 1803476,
+        "totalSamples": 654336,
+        "totalDuration": 13086.72,
+        "crc32": 1598921527
+      }
+    ],
+    "crc32": -1236853386,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 33,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 658944,
+    "totalDuration": 13178.88,
+    "totalBytesOut": 1815673
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 213
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 143,
+        "totalBytesOut": 1815673,
+        "totalSamples": 658944,
+        "totalDuration": 13178.88,
+        "crc32": 1914130728
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 214
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 144,
+        "totalBytesOut": 1829001,
+        "totalSamples": 663552,
+        "totalDuration": 13271.039999999999,
+        "crc32": 1400746704
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 215
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 145,
+        "totalBytesOut": 1842072,
+        "totalSamples": 668160,
+        "totalDuration": 13363.2,
+        "crc32": 1427730264
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 216
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 146,
+        "totalBytesOut": 1854118,
+        "totalSamples": 672768,
+        "totalDuration": 13455.36,
+        "crc32": 1338142598
+      }
+    ],
+    "crc32": 276436948,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 34,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 677376,
+    "totalDuration": 13547.52,
+    "totalBytesOut": 1867444
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 218
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 147,
+        "totalBytesOut": 1867444,
+        "totalSamples": 677376,
+        "totalDuration": 13547.52,
+        "crc32": -988361819
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 219
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 148,
+        "totalBytesOut": 1880851,
+        "totalSamples": 681984,
+        "totalDuration": 13639.68,
+        "crc32": -1364346668
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 220
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 149,
+        "totalBytesOut": 1893961,
+        "totalSamples": 686592,
+        "totalDuration": 13731.84,
+        "crc32": -907391829
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 221
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 150,
+        "totalBytesOut": 1907114,
+        "totalSamples": 691200,
+        "totalDuration": 13824,
+        "crc32": 763676541
+      }
+    ],
+    "crc32": -208988503,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 35,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 695808,
+    "totalDuration": 13916.16,
+    "totalBytesOut": 1920112
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 222
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 151,
+        "totalBytesOut": 1920112,
+        "totalSamples": 695808,
+        "totalDuration": 13916.16,
+        "crc32": -590343204
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 223
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 152,
+        "totalBytesOut": 1932669,
+        "totalSamples": 700416,
+        "totalDuration": 14008.32,
+        "crc32": 167069302
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 224
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 153,
+        "totalBytesOut": 1945449,
+        "totalSamples": 705024,
+        "totalDuration": 14100.48,
+        "crc32": -1711060585
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 225
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 154,
+        "totalBytesOut": 1958267,
+        "totalSamples": 709632,
+        "totalDuration": 14192.640000000001,
+        "crc32": -931424640
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 226
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 155,
+        "totalBytesOut": 1971216,
+        "totalSamples": 714240,
+        "totalDuration": 14284.800000000001,
+        "crc32": -1962271274
+      }
+    ],
+    "crc32": -1843599927,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 36,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 718848,
+    "totalDuration": 14376.960000000001,
+    "totalBytesOut": 1984155
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 227
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 156,
+        "totalBytesOut": 1984155,
+        "totalSamples": 718848,
+        "totalDuration": 14376.960000000001,
+        "crc32": 854724168
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 228
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 157,
+        "totalBytesOut": 1995969,
+        "totalSamples": 723456,
+        "totalDuration": 14469.12,
+        "crc32": -1635900595
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 229
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 158,
+        "totalBytesOut": 2007563,
+        "totalSamples": 728064,
+        "totalDuration": 14561.28,
+        "crc32": -954697371
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 230
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 159,
+        "totalBytesOut": 2021043,
+        "totalSamples": 732672,
+        "totalDuration": 14653.44,
+        "crc32": 1157737249
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 231
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 160,
+        "totalBytesOut": 2034716,
+        "totalSamples": 737280,
+        "totalDuration": 14745.6,
+        "crc32": 727565031
+      }
+    ],
+    "crc32": 2054118492,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 37,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 741888,
+    "totalDuration": 14837.76,
+    "totalBytesOut": 2048554
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 232
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 161,
+        "totalBytesOut": 2048554,
+        "totalSamples": 741888,
+        "totalDuration": 14837.76,
+        "crc32": -1894038318
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 233
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 162,
+        "totalBytesOut": 2063374,
+        "totalSamples": 746496,
+        "totalDuration": 14929.92,
+        "crc32": 2109228210
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 234
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 163,
+        "totalBytesOut": 2077264,
+        "totalSamples": 751104,
+        "totalDuration": 15022.08,
+        "crc32": -1169200437
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 235
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 164,
+        "totalBytesOut": 2091295,
+        "totalSamples": 755712,
+        "totalDuration": 15114.24,
+        "crc32": 97108292
+      }
+    ],
+    "crc32": -1218750890,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 38,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 760320,
+    "totalDuration": 15206.4,
+    "totalBytesOut": 2104617
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 236
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 165,
+        "totalBytesOut": 2104617,
+        "totalSamples": 760320,
+        "totalDuration": 15206.4,
+        "crc32": -1398319313
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 237
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 166,
+        "totalBytesOut": 2117881,
+        "totalSamples": 764928,
+        "totalDuration": 15298.56,
+        "crc32": -1895283531
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 238
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 167,
+        "totalBytesOut": 2130969,
+        "totalSamples": 769536,
+        "totalDuration": 15390.72,
+        "crc32": 583654300
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 239
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 168,
+        "totalBytesOut": 2144195,
+        "totalSamples": 774144,
+        "totalDuration": 15482.88,
+        "crc32": -1888561457
+      }
+    ],
+    "crc32": -1013309064,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 39,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 778752,
+    "totalDuration": 15575.039999999999,
+    "totalBytesOut": 2158183
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 240
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 169,
+        "totalBytesOut": 2158183,
+        "totalSamples": 778752,
+        "totalDuration": 15575.039999999999,
+        "crc32": -458102994
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 241
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 170,
+        "totalBytesOut": 2171872,
+        "totalSamples": 783360,
+        "totalDuration": 15667.199999999999,
+        "crc32": -994382304
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 242
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 171,
+        "totalBytesOut": 2185459,
+        "totalSamples": 787968,
+        "totalDuration": 15759.359999999999,
+        "crc32": -746406920
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 243
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 172,
+        "totalBytesOut": 2197442,
+        "totalSamples": 792576,
+        "totalDuration": 15851.52,
+        "crc32": 1995302555
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 244
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 173,
+        "totalBytesOut": 2208914,
+        "totalSamples": 797184,
+        "totalDuration": 15943.68,
+        "crc32": 1099412046
+      }
+    ],
+    "crc32": -2016345604,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 40,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 801792,
+    "totalDuration": 16035.84,
+    "totalBytesOut": 2222149
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 245
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 174,
+        "totalBytesOut": 2222149,
+        "totalSamples": 801792,
+        "totalDuration": 16035.84,
+        "crc32": -968814338
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 246
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 175,
+        "totalBytesOut": 2234861,
+        "totalSamples": 806400,
+        "totalDuration": 16128,
+        "crc32": -553674448
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 247
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 176,
+        "totalBytesOut": 2247069,
+        "totalSamples": 811008,
+        "totalDuration": 16220.16,
+        "crc32": 1896305593
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 248
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 177,
+        "totalBytesOut": 2260262,
+        "totalSamples": 815616,
+        "totalDuration": 16312.32,
+        "crc32": -1050076246
+      }
+    ],
+    "crc32": -1106748499,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 41,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 820224,
+    "totalDuration": 16404.48,
+    "totalBytesOut": 2273556
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 249
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 178,
+        "totalBytesOut": 2273556,
+        "totalSamples": 820224,
+        "totalDuration": 16404.48,
+        "crc32": 1858216379
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 250
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 179,
+        "totalBytesOut": 2287677,
+        "totalSamples": 824832,
+        "totalDuration": 16496.64,
+        "crc32": 1130728245
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 251
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 180,
+        "totalBytesOut": 2300943,
+        "totalSamples": 829440,
+        "totalDuration": 16588.8,
+        "crc32": 1671798580
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 252
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 181,
+        "totalBytesOut": 2314277,
+        "totalSamples": 834048,
+        "totalDuration": 16680.96,
+        "crc32": -2146473731
+      }
+    ],
+    "crc32": 2094285567,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 42,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 838656,
+    "totalDuration": 16773.12,
+    "totalBytesOut": 2326789
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 253
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 182,
+        "totalBytesOut": 2326789,
+        "totalSamples": 838656,
+        "totalDuration": 16773.12,
+        "crc32": -1324845237
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 254
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 183,
+        "totalBytesOut": 2338855,
+        "totalSamples": 843264,
+        "totalDuration": 16865.28,
+        "crc32": 1962122789
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 255
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 184,
+        "totalBytesOut": 2352037,
+        "totalSamples": 847872,
+        "totalDuration": 16957.44,
+        "crc32": -136511632
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 192
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 185,
+        "totalBytesOut": 2365316,
+        "totalSamples": 852480,
+        "totalDuration": 17049.600000000002,
+        "crc32": -425954979
+      }
+    ],
+    "crc32": -1931149453,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 43,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 857088,
+    "totalDuration": 17141.760000000002,
+    "totalBytesOut": 2378306
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 194
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 186,
+        "totalBytesOut": 2378306,
+        "totalSamples": 857088,
+        "totalDuration": 17141.760000000002,
+        "crc32": -370804674
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 195
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 187,
+        "totalBytesOut": 2390860,
+        "totalSamples": 861696,
+        "totalDuration": 17233.920000000002,
+        "crc32": -621978552
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 196
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 188,
+        "totalBytesOut": 2404134,
+        "totalSamples": 866304,
+        "totalDuration": 17326.08,
+        "crc32": -253653557
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 197
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 189,
+        "totalBytesOut": 2416990,
+        "totalSamples": 870912,
+        "totalDuration": 17418.24,
+        "crc32": 242788697
+      }
+    ],
+    "crc32": 1420390818,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 44,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 875520,
+    "totalDuration": 17510.4,
+    "totalBytesOut": 2430136
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 198
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 190,
+        "totalBytesOut": 2430136,
+        "totalSamples": 875520,
+        "totalDuration": 17510.4,
+        "crc32": 1935960367
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 199
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 191,
+        "totalBytesOut": 2443795,
+        "totalSamples": 880128,
+        "totalDuration": 17602.56,
+        "crc32": -1488212661
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 200
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 192,
+        "totalBytesOut": 2457552,
+        "totalSamples": 884736,
+        "totalDuration": 17694.72,
+        "crc32": 110972397
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 201
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 193,
+        "totalBytesOut": 2471038,
+        "totalSamples": 889344,
+        "totalDuration": 17786.88,
+        "crc32": 1460668116
+      }
+    ],
+    "crc32": 1509809519,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 45,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 893952,
+    "totalDuration": 17879.04,
+    "totalBytesOut": 2484062
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 202
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 194,
+        "totalBytesOut": 2484062,
+        "totalSamples": 893952,
+        "totalDuration": 17879.04,
+        "crc32": 1046619742
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 203
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 195,
+        "totalBytesOut": 2498046,
+        "totalSamples": 898560,
+        "totalDuration": 17971.2,
+        "crc32": 2013243444
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 204
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 196,
+        "totalBytesOut": 2511524,
+        "totalSamples": 903168,
+        "totalDuration": 18063.36,
+        "crc32": 2009522187
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 205
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 197,
+        "totalBytesOut": 2524688,
+        "totalSamples": 907776,
+        "totalDuration": 18155.52,
+        "crc32": 2012299584
+      }
+    ],
+    "crc32": -376457281,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 46,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 912384,
+    "totalDuration": 18247.68,
+    "totalBytesOut": 2538572
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 206
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 198,
+        "totalBytesOut": 2538572,
+        "totalSamples": 912384,
+        "totalDuration": 18247.68,
+        "crc32": -750821477
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 207
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 199,
+        "totalBytesOut": 2551891,
+        "totalSamples": 916992,
+        "totalDuration": 18339.84,
+        "crc32": -208785276
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 208
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 200,
+        "totalBytesOut": 2566401,
+        "totalSamples": 921600,
+        "totalDuration": 18432,
+        "crc32": -22484053
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 209
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 201,
+        "totalBytesOut": 2580341,
+        "totalSamples": 926208,
+        "totalDuration": 18524.16,
+        "crc32": 1599339446
+      }
+    ],
+    "crc32": -643543581,
+    "duration": 368.64000000000004,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 47,
+    "samples": 18432,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 930816,
+    "totalDuration": 18616.320000000003,
+    "totalBytesOut": 2593635
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 210
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 202,
+        "totalBytesOut": 2593635,
+        "totalSamples": 930816,
+        "totalDuration": 18616.320000000003,
+        "crc32": -2139907544
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 211
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 203,
+        "totalBytesOut": 2606304,
+        "totalSamples": 935424,
+        "totalDuration": 18708.480000000003,
+        "crc32": 858508371
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 212
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 204,
+        "totalBytesOut": 2618243,
+        "totalSamples": 940032,
+        "totalDuration": 18800.640000000003,
+        "crc32": 1134228020
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 213
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 205,
+        "totalBytesOut": 2629789,
+        "totalSamples": 944640,
+        "totalDuration": 18892.800000000003,
+        "crc32": 206245229
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 214
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 206,
+        "totalBytesOut": 2640929,
+        "totalSamples": 949248,
+        "totalDuration": 18984.96,
+        "crc32": -904498006
+      }
+    ],
+    "crc32": 471768985,
+    "duration": 460.80000000000007,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 48,
+    "samples": 23040,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 953856,
+    "totalDuration": 19077.12,
+    "totalBytesOut": 2651650
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 215
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 207,
+        "totalBytesOut": 2651650,
+        "totalSamples": 953856,
+        "totalDuration": 19077.12,
+        "crc32": 1600858251
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 216
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 208,
+        "totalBytesOut": 2662012,
+        "totalSamples": 958464,
+        "totalDuration": 19169.28,
+        "crc32": 64230964
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 217
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 209,
+        "totalBytesOut": 2671898,
+        "totalSamples": 963072,
+        "totalDuration": 19261.44,
+        "crc32": 1131196796
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 218
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 210,
+        "totalBytesOut": 2681307,
+        "totalSamples": 967680,
+        "totalDuration": 19353.6,
+        "crc32": 558287561
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 219
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 211,
+        "totalBytesOut": 2690243,
+        "totalSamples": 972288,
+        "totalDuration": 19445.76,
+        "crc32": 1532655983
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 220
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 212,
+        "totalBytesOut": 2698732,
+        "totalSamples": 976896,
+        "totalDuration": 19537.92,
+        "crc32": 1794383045
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 221
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 213,
+        "totalBytesOut": 2706687,
+        "totalSamples": 981504,
+        "totalDuration": 19630.079999999998,
+        "crc32": -867014050
+      }
+    ],
+    "crc32": 335063329,
+    "duration": 645.12,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 49,
+    "samples": 32256,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 986112,
+    "totalDuration": 19722.239999999998,
+    "totalBytesOut": 2714048
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 222
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 214,
+        "totalBytesOut": 2714048,
+        "totalSamples": 986112,
+        "totalDuration": 19722.239999999998,
+        "crc32": 1760714973
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 223
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 215,
+        "totalBytesOut": 2720371,
+        "totalSamples": 990720,
+        "totalDuration": 19814.399999999998,
+        "crc32": 1474380237
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 224
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 216,
+        "totalBytesOut": 2725281,
+        "totalSamples": 995328,
+        "totalDuration": 19906.559999999998,
+        "crc32": -1240820421
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 225
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 217,
+        "totalBytesOut": 2728835,
+        "totalSamples": 999936,
+        "totalDuration": 19998.719999999998,
+        "crc32": -180627555
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 226
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 218,
+        "totalBytesOut": 2730402,
+        "totalSamples": 1004544,
+        "totalDuration": 20090.879999999997,
+        "crc32": -384577656
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 227
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 219,
+        "totalBytesOut": 2730418,
+        "totalSamples": 1009152,
+        "totalDuration": 20183.039999999997,
+        "crc32": -1863887095
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 228
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 220,
+        "totalBytesOut": 2730434,
+        "totalSamples": 1013760,
+        "totalDuration": 20275.2,
+        "crc32": 643406543
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 229
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 221,
+        "totalBytesOut": 2730450,
+        "totalSamples": 1018368,
+        "totalDuration": 20367.36,
+        "crc32": 1605173838
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 230
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 222,
+        "totalBytesOut": 2730466,
+        "totalSamples": 1022976,
+        "totalDuration": 20459.52,
+        "crc32": -709841971
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 231
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 223,
+        "totalBytesOut": 2730482,
+        "totalSamples": 1027584,
+        "totalDuration": 20551.68,
+        "crc32": -1404816564
+      },
+      {
+        "header": {
+          "bitDepth": 16,
+          "channels": 2,
+          "sampleRate": 50000,
+          "channelMode": "left, right",
+          "blockingStrategy": "Fixed",
+          "blockSize": 4608,
+          "frameNumber": 232
+        },
+        "samples": 4608,
+        "duration": 92.16000000000001,
+        "frameNumber": 224,
+        "totalBytesOut": 2730498,
+        "totalSamples": 1032192,
+        "totalDuration": 20643.84,
+        "crc32": 2057766720
+      }
+    ],
+    "crc32": 1063449689,
+    "duration": 1013.7599999999999,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 50,
+    "samples": 50688,
+    "streamSerialNumber": -1296154020,
+    "totalSamples": 1036800,
+    "totalDuration": 20736,
+    "totalBytesOut": 2730514
+  }
+]
