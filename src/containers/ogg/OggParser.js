@@ -29,7 +29,6 @@ export default class OggParser extends Parser {
     this._onCodecUpdate = onCodecUpdate;
     this._onCodec = onCodec;
     this.Frame = OggPage;
-    this._maxHeaderLength = 283;
     this._codec = null;
   }
 

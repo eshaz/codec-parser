@@ -23,7 +23,6 @@ export default class AACParser extends Parser {
   constructor(onCodecUpdate, onCodec) {
     super(onCodecUpdate);
     this.Frame = AACFrame;
-    this._maxHeaderLength = 9;
 
     onCodec(this.codec);
   }

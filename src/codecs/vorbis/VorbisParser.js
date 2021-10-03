@@ -26,7 +26,6 @@ export default class VorbisParser extends Parser {
   constructor(onCodecUpdate) {
     super(onCodecUpdate);
     this.Frame = VorbisFrame;
-    this._maxHeaderLength = 29;
 
     this._identificationHeader = null;
 

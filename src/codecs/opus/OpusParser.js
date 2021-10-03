@@ -26,7 +26,6 @@ export default class OpusParser extends Parser {
     super(onCodecUpdate);
     this.Frame = OpusFrame;
     this._identificationHeader = null;
-    this._maxHeaderLength = 26;
   }
 
   get codec() {
