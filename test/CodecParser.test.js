@@ -1,44 +1,12 @@
 import fs from "fs/promises";
 import path from "path";
+import { getBuffArray, writeResults } from "./utils.js";
 
 import CodecParser from "../index.js";
 
 const EXPECTED_PATH = new URL("expected-results", import.meta.url).pathname;
 const ACTUAL_PATH = new URL("actual-results", import.meta.url).pathname;
 const TEST_DATA_PATH = new URL("test-data", import.meta.url).pathname;
-
-const writeResults = async (frames, mimeType, outputPath, outputFile) => {
-  const removeDataElements = ({ data, header, ...rest }) => ({
-    header: {
-      ...header,
-      data: undefined,
-      vorbisComments: undefined,
-      vorbisSetup: undefined,
-      streamInfo: undefined,
-    },
-    ...rest,
-  });
-
-  const removeDataElementsOgg = ({
-    absoluteGranulePosition, // can't serialize BigInt
-    data,
-    rawData,
-    codecFrames,
-    ...rest
-  }) => ({
-    codecFrames: codecFrames.map(removeDataElements),
-    ...rest,
-  });
-
-  const framesWithoutData = frames.map(
-    mimeType === "audio/ogg" ? removeDataElementsOgg : removeDataElements
-  );
-
-  await fs.writeFile(
-    path.join(outputPath, `${outputFile}_iterator.json`),
-    JSON.stringify(framesWithoutData, null, 2)
-  );
-};
 
 const generateTestData = async () => {
   const files = await fs.readdir(TEST_DATA_PATH);
@@ -53,42 +21,78 @@ const generateTestData = async () => {
       const codecParser = new CodecParser(mimeType);
       const frames = [...codecParser.iterator(testFile)];
 
-      await writeResults(frames, mimeType, EXPECTED_PATH, testFileName);
+      await writeResults(
+        frames,
+        mimeType,
+        EXPECTED_PATH,
+        `${fileName}_iterator.json`
+      );
     })
   );
 };
 
-describe("Given the CodeParser", () => {
-  const testParser = (testFileName, mimeType) => {
-    let file, codecParser;
+describe("Given the CodecParser", () => {
+  const assertFrames = async (actualFileName, expectedFileName) => {
+    const [actualFrames, expectedFrames] = await Promise.all([
+      fs.readFile(path.join(ACTUAL_PATH, actualFileName)).then(JSON.parse),
+      fs.readFile(path.join(EXPECTED_PATH, expectedFileName)).then(JSON.parse)
+    ]);
 
-    beforeAll(async () => {
-      file = await fs.readFile(path.join(TEST_DATA_PATH, testFileName));
-    });
+    expect(actualFrames).toEqual(expectedFrames);
+  };
 
-    beforeEach(() => {
-      codecParser = new CodecParser(mimeType);
-    });
+  const testParser = (fileName, mimeType) => {
+    it.concurrent(`should parse ${fileName}`, async () => {
+      const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+      const codecParser = new CodecParser(mimeType);
 
-    it(`should parse ${testFileName} header information for each frame`, async () => {
+      const actualFileName = `${fileName}_iterator.json`;
+      const expectedFileName = `${fileName}_iterator.json`;
+
       const frames = [...codecParser.iterator(file)];
 
-      await writeResults(frames, mimeType, ACTUAL_PATH, testFileName);
+      await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
-      const expectedFrames = JSON.parse(
-        await fs.readFile(
-          path.join(EXPECTED_PATH, `${testFileName}_iterator.json`)
-        )
-      );
+      assertFrames(actualFileName, expectedFileName);
+    }, 20000);
 
-      const actualFrames = JSON.parse(
-        await fs.readFile(
-          path.join(ACTUAL_PATH, `${testFileName}_iterator.json`)
-        )
-      );
+    it.concurrent(`should parse ${fileName} when reading small chunks`, async () => {
+      const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+      const codecParser = new CodecParser(mimeType);
 
-      expect(actualFrames).toEqual(expectedFrames);
-    });
+      const actualFileName = `${fileName}_iterator_chunks.json`;
+      const expectedFileName = `${fileName}_iterator.json`;
+
+      let frames = [];
+      const chunks = getBuffArray(file, 100);
+
+      for (const chunk of chunks) {
+        frames = [...frames, ...codecParser.iterator(chunk)];
+      }
+
+      await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+      assertFrames(actualFileName, expectedFileName);
+    }, 20000);
+
+    /*it.concurrent(`should parse ${fileName} when reading one byte at a time`, async () => {
+      const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+      const codecParser = new CodecParser(mimeType);
+
+      const actualFileName = `${fileName}_iterator_one_byte.json`;
+      const expectedFileName = `${fileName}_iterator.json`;
+
+      let frames = [];
+      const chunks = getBuffArray(file, 5);
+
+      for (const chunk of chunks) {
+        frames = [...frames, ...codecParser.iterator(chunk)];
+      }
+
+      await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+      assertFrames(actualFileName, expectedFileName);
+    }, 20000);*/
   };
 
   // uncomment to regenerate the test data
