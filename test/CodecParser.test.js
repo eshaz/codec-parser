@@ -8,29 +8,6 @@ const EXPECTED_PATH = new URL("expected-results", import.meta.url).pathname;
 const ACTUAL_PATH = new URL("actual-results", import.meta.url).pathname;
 const TEST_DATA_PATH = new URL("test-data", import.meta.url).pathname;
 
-const generateTestData = async () => {
-  const files = await fs.readdir(TEST_DATA_PATH);
-
-  await Promise.all(
-    files.map(async (testFileName) => {
-      const testFile = await fs.readFile(
-        path.join(TEST_DATA_PATH, testFileName)
-      );
-      const mimeType = "audio/" + testFileName.split(".")[0];
-
-      const codecParser = new CodecParser(mimeType);
-      const frames = [...codecParser.iterator(testFile)];
-
-      await writeResults(
-        frames,
-        mimeType,
-        EXPECTED_PATH,
-        `${fileName}_iterator.json`
-      );
-    })
-  );
-};
-
 describe("Given the CodecParser", () => {
   const assertFrames = async (actualFileName, expectedFileName) => {
     const [actualFrames, expectedFrames] = await Promise.all([
@@ -41,7 +18,7 @@ describe("Given the CodecParser", () => {
     expect(actualFrames).toEqual(expectedFrames);
   };
 
-  const testParser = (fileName, mimeType) => {
+  const testParser = (fileName, mimeType, codec) => {
     it.concurrent(
       `should parse ${fileName}`,
       async () => {
@@ -70,7 +47,7 @@ describe("Given the CodecParser", () => {
         const expectedFileName = `${fileName}_iterator.json`;
 
         let frames = [];
-        const chunks = getBuffArray(file, 100);
+        const chunks = getBuffArray(file, 1000);
 
         for (const chunk of chunks) {
           frames = [...frames, ...codecParser.iterator(chunk)];
@@ -83,58 +60,82 @@ describe("Given the CodecParser", () => {
       20000
     );
 
-    /*it.concurrent(`should parse ${fileName} when reading one byte at a time`, async () => {
+    it.concurrent(`should return ${codec} when .codec is called`, async () => {
       const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
       const codecParser = new CodecParser(mimeType);
 
-      const actualFileName = `${fileName}_iterator_one_byte.json`;
-      const expectedFileName = `${fileName}_iterator.json`;
+      [...codecParser.iterator(file.subarray(0x0, 0xffff))];
 
-      let frames = [];
-      const chunks = getBuffArray(file, 5);
-
-      for (const chunk of chunks) {
-        frames = [...frames, ...codecParser.iterator(chunk)];
-      }
-
-      await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
-
-      assertFrames(actualFileName, expectedFileName);
-    }, 20000);*/
+      expect(codecParser.codec).toEqual(codec);
+    });
   };
 
-  // uncomment to regenerate the test data
-  /*
-  it("should generate the test data", async () => {
-    await generateTestData();
-
-    expect(true).toBeTruthy();
-  }, 10000);
-  */
-
-  describe("Given MP3 CBR", () => {
-    testParser("mpeg.cbr.mp3", "audio/mpeg");
+  describe("MP3 CBR", () => {
+    testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg");
   });
 
-  describe("Given MP3 VBR", () => {
-    testParser("mpeg.vbr.mp3", "audio/mpeg");
+  describe("MP3 VBR", () => {
+    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg");
   });
 
-  describe("Given AAC", () => {
-    testParser("aac.aac", "audio/aac");
+  describe("AAC", () => {
+    testParser("aac.aac", "audio/aac", "aac");
   });
 
-  describe("Given Ogg Flac", () => {
-    testParser("ogg.flac", "audio/ogg");
-  });
+  describe("Ogg", () => {
+    const mimeType = "audio/ogg";
 
-  describe("Given Ogg Opus", () => {
-    testParser("ogg.opus", "audio/ogg");
-  });
+    it.concurrent(
+      "should return empty string when .codec is called before parsing",
+      () => {
+        const codecParser = new CodecParser("application/ogg");
 
-  describe("Given Ogg Vorbis", () => {
-    testParser("ogg.vorbis", "audio/ogg");
-    testParser("ogg.vorbis.fishead", "audio/ogg");
+        expect(codecParser.codec).toEqual("");
+      }
+    );
+
+    describe("Ogg page parsing", () => {
+      it.concurrent(
+        "should invalidate ogg page when it does not start with 'OggS'",
+        async () => {
+          const fileName = "ogg.opus";
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          file.set([0, 0, 0, 0], 0x0);
+          const frames = [...codecParser.iterator(file.subarray(0x0, 0x2e8c))];
+
+          expect(frames).toEqual([]);
+        }
+      );
+
+      it.concurrent(
+        "should invalidate ogg page when the last five bits of the 6th byte of the page is not zero",
+        async () => {
+          const fileName = "ogg.opus";
+          const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+          const codecParser = new CodecParser(mimeType);
+
+          file.set([0b00001000], 0x5);
+          const frames = [...codecParser.iterator(file.subarray(0x0, 0x2e8c))];
+
+          expect(frames).toEqual([]);
+        }
+      );
+    });
+
+    describe("Ogg Flac", () => {
+      testParser("ogg.flac", mimeType, "flac");
+    });
+
+    describe("Ogg Opus", () => {
+      testParser("ogg.opus", mimeType, "opus");
+    });
+
+    describe("Ogg Vorbis", () => {
+      testParser("ogg.vorbis", mimeType, "vorbis");
+      testParser("ogg.vorbis.fishead", mimeType, "vorbis");
+    });
   });
 
   describe("Synchronization", () => {
