@@ -79,14 +79,14 @@ export default class OggPageHeader {
     // * `......D.`: (0 no, 1 yes) first page of logical bitstream (bos)
     // * `.......E`: (0 no, 1 yes) last page of logical bitstream (eos)
     const zeros = data[5] & 0b11111000;
-    const continuePacketBit = data[5] & 0b00000100;
+    const lastPageBit = data[5] & 0b00000100;
     const firstPageBit = data[5] & 0b00000010;
-    const lastPageBit = data[5] & 0b00000001;
+    const continuePacketBit = data[5] & 0b00000001;
 
     if (zeros) return null;
-    header.isContinuedPacket = !!(continuePacketBit >> 2);
+    header.isLastPage = !!(lastPageBit >> 2);
     header.isFirstPage = !!(firstPageBit >> 1);
-    header.isLastPage = !!lastPageBit;
+    header.isContinuedPacket = !!continuePacketBit;
 
     // Byte (7-14 of 28)
     // * `FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF`
