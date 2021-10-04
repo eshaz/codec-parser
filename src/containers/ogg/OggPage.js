@@ -39,13 +39,7 @@ export default class OggPage extends Frame {
       const frame = frameStore.get(this);
 
       frame.length = pageStore.length + pageStore.frameLength;
-
-      let offset = pageStore.length;
-      frame.segments = oggPage.pageSegmentTable.map((segmentLength) => {
-        const segment = data.subarray(offset, offset + segmentLength);
-        offset += segmentLength;
-        return segment;
-      });
+      frame.pageSegmentTable = oggPage.pageSegmentTable;
 
       this.codecFrames = [];
       this.rawData = data.subarray(0, frame.length);

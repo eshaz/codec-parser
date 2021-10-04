@@ -16,6 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { frameStore } from "../../globals.js";
+import { concatBuffers } from "../../utilities.js";
+
 import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
 
@@ -29,8 +32,8 @@ export default class OggParser extends Parser {
     this._onCodecUpdate = onCodecUpdate;
     this._onCodec = onCodec;
     this.Frame = OggPage;
-    this._maxHeaderLength = 283;
     this._codec = null;
+    this._continuedPacket = new Uint8Array();
   }
 
   get codec() {
@@ -72,6 +75,35 @@ export default class OggParser extends Parser {
 
     return {
       frames: oggPages.frames
+        .map((frame) => {
+          const oggPage = frameStore.get(frame);
+
+          let offset = 0;
+
+          oggPage.segments = oggPage.pageSegmentTable.map((segmentLength) =>
+            frame.data.subarray(offset, (offset += segmentLength))
+          );
+
+          if (
+            oggPage.pageSegmentTable[oggPage.pageSegmentTable.length - 1] ===
+            0xff
+          ) {
+            // continued packet
+            this._continuedPacket = concatBuffers(
+              this._continuedPacket,
+              oggPage.segments.pop()
+            );
+          } else if (this._continuedPacket.length) {
+            oggPage.segments[0] = concatBuffers(
+              this._continuedPacket,
+              oggPage.segments[0]
+            );
+
+            this._continuedPacket = new Uint8Array();
+          }
+
+          return frame;
+        })
         .filter((frame) => this.checkForIdentifier(frame) && this._codec)
         .flatMap((oggPage) => this._parser.parseFrames(oggPage).frames),
       remainingData: oggPages.remainingData,

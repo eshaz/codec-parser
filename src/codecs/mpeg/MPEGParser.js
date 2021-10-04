@@ -23,7 +23,6 @@ export default class MPEGParser extends Parser {
   constructor(onCodecUpdate, onCodec) {
     super(onCodecUpdate);
     this.Frame = MPEGFrame;
-    this._maxHeaderLength = 4;
 
     onCodec(this.codec);
   }

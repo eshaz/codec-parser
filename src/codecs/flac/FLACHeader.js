@@ -76,7 +76,7 @@ const blockSize = {
 };
 
 const sampleRate = {
-  0b00000000: "invalid", // (unsupported) get from STREAMINFO metadata block
+  0b00000000: "get from STREAMINFO metadata block",
   0b00000001: 88200,
   0b00000010: 176400,
   0b00000011: 192000,
@@ -185,14 +185,18 @@ export default class FLACHeader extends CodecHeader {
       // * `DDDD....`: Block size in inter-channel samples
       // * `....EEEE`: Sample rate
       header.length++;
-      const blockSizeBits = data[2] & 0b11110000;
-      const sampleRateBits = data[2] & 0b00001111;
+      header.blockSizeBits = data[2] & 0b11110000;
+      header.sampleRateBits = data[2] & 0b00001111;
 
-      header.blockSize = blockSize[blockSizeBits];
-      if (header.blockSize === "reserved") return null;
+      header.blockSize = blockSize[header.blockSizeBits];
+      if (header.blockSize === "reserved") {
+        return null;
+      }
 
-      header.sampleRate = sampleRate[sampleRateBits];
-      if (header.sampleRate === "invalid") return null;
+      header.sampleRate = sampleRate[header.sampleRateBits];
+      if (header.sampleRate === "invalid") {
+        return null;
+      }
 
       // Byte (4 of 6)
       // * `FFFF....`: Channel assignment
@@ -222,7 +226,9 @@ export default class FLACHeader extends CodecHeader {
     // check if there is enough data to parse UTF8
     if (data.length < header.length + 8) return new FLACHeader(header, false);
     const decodedUtf8 = FLACHeader.decodeUTF8Int(data.subarray(4));
-    if (!decodedUtf8) return null;
+    if (!decodedUtf8) {
+      return null;
+    }
 
     if (header.blockingStrategyBits) {
       header.sampleNumber = decodedUtf8.value;
@@ -234,44 +240,39 @@ export default class FLACHeader extends CodecHeader {
 
     // Byte (...)
     // * `JJJJJJJJ|(JJJJJJJJ)`: Blocksize (8/16bit custom value)
-    if (typeof header.blockSize === "string") {
-      if (blockSizeBits === 0b01100000) {
-        // 8 bit
-        if (data.length < header.length) return new FLACHeader(header, false); // out of data
-        header.blockSize = data[header.length - 1] - 1;
-        header.length += 1;
-      } else if (blockSizeBits === 0b01110000) {
-        // 16 bit
-        if (data.length <= header.length) return new FLACHeader(header, false); // out of data
-        header.blockSize =
-          (data[header.length - 1] << 8) + data[header.length] - 1;
-        header.length += 2;
-      }
+    if (header.blockSizeBits === 0b01100000) {
+      // 8 bit
+      if (data.length < header.length) return new FLACHeader(header, false); // out of data
+      header.blockSize = data[header.length - 1] + 1;
+      header.length += 1;
+    } else if (header.blockSizeBits === 0b01110000) {
+      // 16 bit
+      if (data.length <= header.length) return new FLACHeader(header, false); // out of data
+      header.blockSize =
+        (data[header.length - 1] << 8) + data[header.length] + 1;
+      header.length += 2;
     }
 
     header.samples = header.blockSize;
 
     // Byte (...)
     // * `KKKKKKKK|(KKKKKKKK)`: Sample rate (8/16bit custom value)
-    if (typeof header.sampleRate === "string") {
-      if (sampleRateBits === 0b00001100) {
-        // 8 bit
-        if (data.length < header.length) return new FLACHeader(header, false); // out of data
-        header.sampleRate = data[header.length - 1] - 1;
-        header.length += 1;
-      } else if (sampleRateBits === 0b00001101) {
-        // 16 bit
-        if (data.length <= header.length) return new FLACHeader(header, false); // out of data
-        header.sampleRate =
-          (data[header.length - 1] << 8) + data[header.length] - 1;
-        header.length += 2;
-      } else if (sampleRateBits === 0b00001110) {
-        // 16 bit
-        if (data.length <= header.length) return new FLACHeader(header, false); // out of data
-        header.sampleRate =
-          (data[header.length - 1] << 8) + data[header.length] - 1;
-        header.length += 2;
-      }
+    if (header.sampleRateBits === 0b00001100) {
+      // 8 bit
+      if (data.length < header.length) return new FLACHeader(header, false); // out of data
+      header.sampleRate = data[header.length - 1] * 1000;
+      header.length += 1;
+    } else if (header.sampleRateBits === 0b00001101) {
+      // 16 bit
+      if (data.length <= header.length) return new FLACHeader(header, false); // out of data
+      header.sampleRate = (data[header.length - 1] << 8) + data[header.length];
+      header.length += 2;
+    } else if (header.sampleRateBits === 0b00001110) {
+      // 16 bit
+      if (data.length <= header.length) return new FLACHeader(header, false); // out of data
+      header.sampleRate =
+        ((data[header.length - 1] << 8) + data[header.length]) * 10;
+      header.length += 2;
     }
 
     // Byte (...)
@@ -289,6 +290,8 @@ export default class FLACHeader extends CodecHeader {
         frameNumber,
         sampleNumber,
         samples,
+        sampleRateBits,
+        blockSizeBits,
         crc,
         length,
         ...codecUpdateFields

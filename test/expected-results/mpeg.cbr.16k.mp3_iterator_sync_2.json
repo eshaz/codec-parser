@@ -1,0 +1,27 @@
+[
+  {
+    "header": {
+      "bitDepth": 16,
+      "channels": 1,
+      "sampleRate": 8000,
+      "bitrate": 16,
+      "channelMode": "Single channel (Mono)",
+      "emphasis": "none",
+      "framePadding": 0,
+      "isCopyrighted": false,
+      "isOriginal": true,
+      "isPrivate": false,
+      "layer": "Layer III",
+      "modeExtension": "Intensity stereo off, MS stereo off",
+      "mpegVersion": "MPEG Version 2.5 (later extension of MPEG 2)",
+      "protection": "none"
+    },
+    "samples": 576,
+    "duration": 72,
+    "frameNumber": 0,
+    "totalBytesOut": 0,
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "crc32": 1277014292
+  }
+]

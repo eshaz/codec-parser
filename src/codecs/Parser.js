@@ -31,10 +31,7 @@ export default class Parser {
   syncFrame(data, remainingData = 0) {
     let frame = new this.Frame(data.subarray(remainingData), this._headerCache);
 
-    while (
-      !frameStore.get(frame).header &&
-      remainingData + this._maxHeaderLength < data.length
-    ) {
+    while (!frameStore.get(frame).header && remainingData < data.length) {
       remainingData += frameStore.get(frame).length || 1;
       frame = new this.Frame(data.subarray(remainingData), this._headerCache);
     }
@@ -63,8 +60,7 @@ export default class Parser {
 
     while (
       isParsedStore.get(frameStore.get(frame).header) && // was there enough data to parse the header
-      frameStore.get(frame).length + remainingData + this._maxHeaderLength <
-        data.length // is there enough data left to form a frame and check the next frame
+      frameStore.get(frame).length + remainingData < data.length // is there enough data left to form a frame and check the next frame
     ) {
       // check if there is a valid frame immediately after this frame
       const nextFrame = new this.Frame(
@@ -73,20 +69,21 @@ export default class Parser {
       );
 
       if (nextFrame.header || !sync) {
+        if (!isParsedStore.get(frameStore.get(nextFrame).header)) break; // out of data
+
         // start caching when synced
         this._headerCache.enable();
+
         // there is a next frame, so the current frame is valid
         frames.push(frame);
         remainingData += frameStore.get(frame).length;
         frame = nextFrame;
-
-        if (!isParsedStore.get(frameStore.get(frame).header)) break; // out of data
       } else {
         // frame is invalid and must re-sync and clear cache
         this._headerCache.reset();
-        remainingData++; // increment to invalidate the invalid frame
-        const syncResult = this.syncFrame(data, remainingData);
-        remainingData += syncResult.remainingData;
+
+        const syncResult = this.syncFrame(data, remainingData + 1); // increment to invalidate the invalid frame
+        remainingData = syncResult.remainingData;
         frame = syncResult.frame;
       }
     }
