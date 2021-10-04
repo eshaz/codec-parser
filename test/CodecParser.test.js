@@ -144,6 +144,14 @@ describe("Given the CodecParser", () => {
       testParser("ogg.flac.blocksize_65535", mimeType, "flac");
     });
 
+    describe("Ogg Flac", () => {
+      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac");
+    });
+
+    describe("Ogg Flac", () => {
+      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac");
+    });
+
     describe("Ogg Opus", () => {
       testParser("ogg.opus", mimeType, "opus");
     });
