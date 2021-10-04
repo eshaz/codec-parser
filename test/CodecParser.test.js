@@ -129,16 +129,20 @@ describe("Given the CodecParser", () => {
     });
 
     describe("Ogg Flac", () => {
-      testParser("ogg.flac.50000_rate", mimeType, "flac");
+      testParser("ogg.flac.samplerate_50000", mimeType, "flac");
     });
 
     describe("Ogg Flac", () => {
-      testParser("ogg.flac.12345_rate", mimeType, "flac");
+      testParser("ogg.flac.samplerate_12345", mimeType, "flac");
     });
 
-    /*describe("Ogg Flac", () => {
-      testParser("ogg.flac.45678_blocksize", mimeType, "flac");
-    });*/
+    describe("Ogg Flac", () => {
+      testParser("ogg.flac.blocksize_64", mimeType, "flac");
+    });
+
+    describe("Ogg Flac", () => {
+      testParser("ogg.flac.blocksize_65535", mimeType, "flac");
+    });
 
     describe("Ogg Opus", () => {
       testParser("ogg.opus", mimeType, "opus");
