@@ -34,9 +34,9 @@ Ogg Page Header
 Letter  Length (bits)  Description
 A   32  0x4f676753, "OggS"
 B   8   stream_structure_version
-C   1   (0 no, 1 yes) continued packet
+C   1   (0 no, 1 yes) last page of logical bitstream (eos)
 D   1   (0 no, 1 yes) first page of logical bitstream (bos)
-E   1   (0 no, 1 yes) last page of logical bitstream (eos)
+E   1   (0 no, 1 yes) continued packet
 
 F   64  absolute granule position
 G   32  stream serial number
@@ -75,9 +75,9 @@ export default class OggPageHeader {
     // Byte (6 of 28)
     // * `00000CDE`
     // * `00000...`: All zeros
-    // * `.....C..`: (0 no, 1 yes) continued packet
+    // * `.....C..`: (0 no, 1 yes) last page of logical bitstream (eos)
     // * `......D.`: (0 no, 1 yes) first page of logical bitstream (bos)
-    // * `.......E`: (0 no, 1 yes) last page of logical bitstream (eos)
+    // * `.......E`: (0 no, 1 yes) continued packet
     const zeros = data[5] & 0b11111000;
     const lastPageBit = data[5] & 0b00000100;
     const firstPageBit = data[5] & 0b00000010;
@@ -127,11 +127,13 @@ export default class OggPageHeader {
 
     let segmentLength = 0;
 
-    for (const segmentByte of header.pageSegmentBytes) {
+    for (let i = 0; i < header.pageSegmentBytes.length; i++) {
+      const segmentByte = header.pageSegmentBytes[i];
+
       header.frameLength += segmentByte;
       segmentLength += segmentByte;
 
-      if (segmentByte !== 0xff) {
+      if (segmentByte !== 0xff || i === header.pageSegmentBytes.length - 1) {
         header.pageSegmentTable.push(segmentLength);
         segmentLength = 0;
       }
