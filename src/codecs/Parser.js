@@ -40,20 +40,11 @@ export default class Parser {
   }
 
   /**
-   * @description Searches without as much sync logic for more resilient framing
-   * @param {Uint8Array} data Codec data that should contain a sequence of known length frames.
-   * @returns {object} Object containing the actual offset and frame. Frame is undefined if no valid header was found
-   */
-  fixedLengthFrame(data) {
-    return this.fixedLengthFrameSync(data, false);
-  }
-
-  /**
    * @description Searches for Frames within bytes containing a sequence of known codec frames.
    * @param {Uint8Array} data Codec data that should contain a sequence of known length frames.
    * @returns {object} Object containing the actual offset and frame. Frame is undefined if no valid header was found
    */
-  fixedLengthFrameSync(data, sync = true) {
+  fixedLengthFrameSync(data) {
     // initial sync
     let { frame, remainingData } = this.syncFrame(data);
     let frames = [];
@@ -68,7 +59,7 @@ export default class Parser {
         this._headerCache
       );
 
-      if (nextFrame.header || !sync) {
+      if (frameStore.get(nextFrame).header) {
         if (!isParsedStore.get(frameStore.get(nextFrame).header)) break; // out of data
 
         // start caching when synced

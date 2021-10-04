@@ -8,7 +8,7 @@ const EXPECTED_PATH = new URL("expected-results", import.meta.url).pathname;
 const ACTUAL_PATH = new URL("actual-results", import.meta.url).pathname;
 const TEST_DATA_PATH = new URL("test-data", import.meta.url).pathname;
 
-describe("Given the CodecParser", () => {
+describe("CodecParser", () => {
   const assertFrames = async (actualFileName, expectedFileName) => {
     const [actualFrames, expectedFrames] = await Promise.all([
       fs.readFile(path.join(ACTUAL_PATH, actualFileName)).then(JSON.parse),
@@ -126,29 +126,11 @@ describe("Given the CodecParser", () => {
 
     describe("Ogg Flac", () => {
       testParser("ogg.flac", mimeType, "flac");
-    });
-
-    describe("Ogg Flac", () => {
       testParser("ogg.flac.samplerate_50000", mimeType, "flac");
-    });
-
-    describe("Ogg Flac", () => {
       testParser("ogg.flac.samplerate_12345", mimeType, "flac");
-    });
-
-    describe("Ogg Flac", () => {
-      testParser("ogg.flac.blocksize_64", mimeType, "flac");
-    });
-
-    describe("Ogg Flac", () => {
       testParser("ogg.flac.blocksize_65535", mimeType, "flac");
-    });
-
-    describe("Ogg Flac", () => {
+      testParser("ogg.flac.blocksize_64", mimeType, "flac");
       testParser("ogg.flac.blocksize_variable_1", mimeType, "flac");
-    });
-
-    describe("Ogg Flac", () => {
       testParser("ogg.flac.blocksize_variable_2", mimeType, "flac");
     });
 
@@ -158,7 +140,22 @@ describe("Given the CodecParser", () => {
 
     describe("Ogg Vorbis", () => {
       testParser("ogg.vorbis", mimeType, "vorbis");
+      testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis");
       testParser("ogg.vorbis.fishead", mimeType, "vorbis");
+    });
+  });
+
+  describe("Unsupported Codecs", () => {
+    it("should throw an error when an unsupported mimetype is passed in", () => {
+      let error;
+
+      try {
+        new CodecParser("audio/wma");
+      } catch (e) {
+        error = e;
+      }
+
+      expect(error).toBeTruthy();
     });
   });
 
