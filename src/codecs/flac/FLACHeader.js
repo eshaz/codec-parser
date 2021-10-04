@@ -243,13 +243,13 @@ export default class FLACHeader extends CodecHeader {
     if (header.blockSizeBits === 0b01100000) {
       // 8 bit
       if (data.length < header.length) return new FLACHeader(header, false); // out of data
-      header.blockSize = data[header.length - 1] - 1;
+      header.blockSize = data[header.length - 1] + 1;
       header.length += 1;
     } else if (header.blockSizeBits === 0b01110000) {
       // 16 bit
       if (data.length <= header.length) return new FLACHeader(header, false); // out of data
       header.blockSize =
-        (data[header.length - 1] << 8) + data[header.length] - 1;
+        (data[header.length - 1] << 8) + data[header.length] + 1;
       header.length += 2;
     }
 
