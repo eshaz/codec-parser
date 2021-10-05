@@ -71,7 +71,7 @@ export default class OggParser extends Parser {
   }
 
   parseFrames(data) {
-    const oggPages = this.fixedLengthFrameSync(data);
+    const oggPages = this.fixedLengthFrameSync(data, true);
 
     return {
       frames: oggPages.frames

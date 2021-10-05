@@ -44,7 +44,7 @@ export default class Parser {
    * @param {Uint8Array} data Codec data that should contain a sequence of known length frames.
    * @returns {object} Object containing the actual offset and frame. Frame is undefined if no valid header was found
    */
-  fixedLengthFrameSync(data) {
+  fixedLengthFrameSync(data, keepUnsyncedFrames) {
     // initial sync
     let { frame, remainingData } = this.syncFrame(data);
     let frames = [];
@@ -53,25 +53,30 @@ export default class Parser {
       isParsedStore.get(frameStore.get(frame).header) && // was there enough data to parse the header
       frameStore.get(frame).length + remainingData < data.length // is there enough data left to form a frame and check the next frame
     ) {
+      const frameLength = frameStore.get(frame).length
+
       // check if there is a valid frame immediately after this frame
       const nextFrame = new this.Frame(
-        data.subarray(frameStore.get(frame).length + remainingData),
+        data.subarray(frameLength + remainingData),
         this._headerCache
       );
+      const nextFrameHeader = frameStore.get(nextFrame).header;
 
-      if (frameStore.get(nextFrame).header) {
-        if (!isParsedStore.get(frameStore.get(nextFrame).header)) break; // out of data
+      if (nextFrameHeader) {
+        if (!isParsedStore.get(nextFrameHeader)) break; // out of data
 
         // start caching when synced
         this._headerCache.enable();
 
         // there is a next frame, so the current frame is valid
         frames.push(frame);
-        remainingData += frameStore.get(frame).length;
+        remainingData += frameLength;
         frame = nextFrame;
       } else {
         // frame is invalid and must re-sync and clear cache
         this._headerCache.reset();
+
+        if (keepUnsyncedFrames) frames.push(frame);
 
         const syncResult = this.syncFrame(data, remainingData + 1); // increment to invalidate the invalid frame
         remainingData = syncResult.remainingData;
