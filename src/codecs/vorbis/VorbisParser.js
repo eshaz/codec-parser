@@ -23,8 +23,8 @@ import VorbisFrame from "./VorbisFrame.js";
 import VorbisHeader from "./VorbisHeader.js";
 
 export default class VorbisParser extends Parser {
-  constructor(onCodecUpdate) {
-    super(onCodecUpdate);
+  constructor(codecParser, onCodecUpdate) {
+    super(codecParser, onCodecUpdate);
     this.Frame = VorbisFrame;
 
     this._identificationHeader = null;
@@ -40,7 +40,7 @@ export default class VorbisParser extends Parser {
     return "vorbis";
   }
 
-  parseFrames(oggPage) {
+  parseFrame(oggPage) {
     const oggPageSegments = frameStore.get(oggPage).segments;
 
     if (oggPage.pageSequenceNumber === 0) {
@@ -70,10 +70,7 @@ export default class VorbisParser extends Parser {
       );
     }
 
-    return {
-      frames: [oggPage],
-      remainingData: 0,
-    };
+    return oggPage
   }
 
   _getSamples(segment) {

@@ -101,7 +101,7 @@ export default class OggParser extends Parser {
       this._continuedPacket = new Uint8Array();
     }
 
-    if (this._codec || this.checkForIdentifier(oggPage)) {
+    if (this.checkForIdentifier(oggPage) && this._codec) {
       const frame = this._parser.parseFrame(oggPage);
       this._codecParser.mapFrameStats(frame);
       return frame;
