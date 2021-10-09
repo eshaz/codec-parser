@@ -26,6 +26,7 @@ import HeaderCache from "./HeaderCache.js";
 export default class Parser {
   constructor(codecParser, onCodecUpdate) {
     this._codecParser = codecParser;
+    this._onCodecUpdate = onCodecUpdate;
     this._headerCache = new HeaderCache(onCodecUpdate);
   }
 
@@ -64,7 +65,7 @@ export default class Parser {
 
       yield* this._codecParser.incrementAndReadData(frameLength); // increment to invalidate the invalid frame
       this._codecParser.mapFrameStats(frame);
-      yield frame;
+      return frame;
     } else {
       this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
 
@@ -72,7 +73,7 @@ export default class Parser {
 
       if (keepUnsyncedFrames) {
         this._codecParser.mapFrameStats(frame);
-        yield frame;
+        return frame;
       }
     }
   }

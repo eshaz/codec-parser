@@ -22,9 +22,11 @@ import OpusFrame from "./OpusFrame.js";
 import OpusHeader from "./OpusHeader.js";
 
 export default class OpusParser extends Parser {
-  constructor(onCodecUpdate, onCodec) {
-    super(onCodecUpdate);
+  constructor(codecParser, onCodecUpdate) {
+    super(codecParser, onCodecUpdate);
     this.Frame = OpusFrame;
+    this.Header = OpusHeader;
+
     this._identificationHeader = null;
   }
 
@@ -35,7 +37,7 @@ export default class OpusParser extends Parser {
   /**
    * @todo implement continued page support
    */
-  parseFrames(oggPage) {
+  parseFrame(oggPage) {
     if (oggPage.pageSequenceNumber === 0) {
       // Identification header
 
@@ -54,9 +56,6 @@ export default class OpusParser extends Parser {
         );
     }
 
-    return {
-      frames: [oggPage],
-      remainingData: 0,
-    };
+    return oggPage;
   }
 }

@@ -34,6 +34,6 @@ export default class MPEGParser extends Parser {
   }
 
   *parseFrame() {
-    yield* this.fixedLengthFrameSync();
+    return yield* this.fixedLengthFrameSync();
   }
 }

@@ -51,14 +51,14 @@ L   n   Segment table (n=page_segments+26).
 
 const OggS = 0x4f676753;
 
-import { headerStore, isParsedStore } from "../../globals.js";
+import { headerStore } from "../../globals.js";
 
 export default class OggPageHeader {
-  static getHeader(data) {
+  static *getHeader(codecParser, headerCache, readOffset) {
     const header = {};
 
     // Must be at least 28 bytes.
-    if (data.length < 28) return new OggPageHeader(header, false);
+    let data = yield* codecParser.readData(28, readOffset);
 
     const view = new DataView(Uint8Array.of(...data.subarray(0, 28)).buffer);
 
@@ -119,7 +119,7 @@ export default class OggPageHeader {
     const pageSegmentTableLength = data[26];
     header.length = pageSegmentTableLength + 27;
 
-    if (header.length > data.length) return new OggPageHeader(header, false); // out of data
+    data = yield* codecParser.readData(header.length, readOffset); // read in the page segment table
 
     header.frameLength = 0;
     header.pageSegmentTable = [];
@@ -139,16 +139,15 @@ export default class OggPageHeader {
       }
     }
 
-    return new OggPageHeader(header, true);
+    return new OggPageHeader(header);
   }
 
   /**
    * @private
    * Call OggPageHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header, isParsed) {
+  constructor(header) {
     headerStore.set(this, header);
-    isParsedStore.set(this, isParsed);
 
     this.absoluteGranulePosition = header.absoluteGranulePosition;
     this.isContinuedPacket = header.isContinuedPacket;

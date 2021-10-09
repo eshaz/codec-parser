@@ -78,7 +78,8 @@ export default class CodecParser {
   *_generator() {
     // start parsing out frames
     while (true) {
-      yield* this._parser.parseFrame();
+      const frame = yield* this._parser.parseFrame();
+      if (frame) yield frame;
     }
   }
 
