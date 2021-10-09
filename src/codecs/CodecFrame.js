@@ -16,10 +16,32 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../globals.js";
-import Frame from "./Frame.js";
+import { frameStore, headerStore } from "../globals.js";
+import Frame from "../containers/Frame.js";
 
 export default class CodecFrame extends Frame {
+  static *getFrame(Header, Frame, codecParser, headerCache, readOffset) {
+    const header = yield* Header.getHeader(
+      codecParser,
+      headerCache,
+      readOffset
+    );
+
+    if (header) {
+      const frameLength = headerStore.get(header).frameLength;
+      const samples = headerStore.get(header).samples;
+
+      const frame = (yield* codecParser.readRawData(
+        frameLength,
+        readOffset
+      )).subarray(0, frameLength);
+
+      return new Frame(header, frame, samples);
+    } else {
+      return null;
+    }
+  }
+
   constructor(header, data, samples) {
     super(header, data);
 

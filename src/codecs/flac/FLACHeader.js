@@ -247,12 +247,14 @@ export default class FLACHeader extends CodecHeader {
       // 8 bit
       if (data.length < header.length)
         throw new Error("Out of data while inside an Ogg Page");
+
       header.blockSize = data[header.length - 1] + 1;
       header.length += 1;
     } else if (header.blockSizeBits === 0b01110000) {
       // 16 bit
       if (data.length <= header.length)
         throw new Error("Out of data while inside an Ogg Page");
+
       header.blockSize =
         (data[header.length - 1] << 8) + data[header.length] + 1;
       header.length += 2;
@@ -266,18 +268,21 @@ export default class FLACHeader extends CodecHeader {
       // 8 bit
       if (data.length < header.length)
         throw new Error("Out of data while inside an Ogg Page");
+
       header.sampleRate = data[header.length - 1] * 1000;
       header.length += 1;
     } else if (header.sampleRateBits === 0b00001101) {
       // 16 bit
       if (data.length <= header.length)
         throw new Error("Out of data while inside an Ogg Page");
+
       header.sampleRate = (data[header.length - 1] << 8) + data[header.length];
       header.length += 2;
     } else if (header.sampleRateBits === 0b00001110) {
       // 16 bit
       if (data.length <= header.length)
         throw new Error("Out of data while inside an Ogg Page");
+
       header.sampleRate =
         ((data[header.length - 1] << 8) + data[header.length]) * 10;
       header.length += 2;

@@ -39,42 +39,37 @@ export default class Parser {
         this._headerCache,
         0
       );
-      if (!frame) this._codecParser.incrementRawData(1); // increment to invalidate the invalid frame
-    } while (!frame);
-
-    return frame;
+      if (frame) return frame;
+      this._codecParser.incrementRawData(1); // increment to continue syncing
+    } while (true);
   }
 
   /**
    * @description Searches for Frames within bytes containing a sequence of known codec frames.
-   * @param {Uint8Array} data Codec data that should contain a sequence of known length frames.
-   * @returns {object} Object containing the actual offset and frame. Frame is undefined if no valid header was found
+   * @param {boolean} ignoreNextFrame Set to true to return frames even if the next frame may not exist at the expected location
+   * @returns {Frame}
    */
-  *fixedLengthFrameSync(keepUnsyncedFrames) {
+  *fixedLengthFrameSync(ignoreNextFrame) {
     const frame = yield* this.syncFrame();
     const frameLength = frameStore.get(frame).length;
-    const nextFrameHeader = yield* this.Header.getHeader(
-      this._codecParser,
-      this._headerCache,
-      frameLength
-    );
 
-    // check if there is a valid frame header immediately after this frame
-    if (nextFrameHeader) {
+    if (
+      ignoreNextFrame ||
+      // check if there is a frame right after this one
+      (yield* this.Header.getHeader(
+        this._codecParser,
+        this._headerCache,
+        frameLength
+      ))
+    ) {
       this._headerCache.enable(); // start caching when synced
 
-      this._codecParser.incrementRawData(frameLength); // increment to invalidate the invalid frame
+      this._codecParser.incrementRawData(frameLength); // increment to the next frame
       this._codecParser.mapFrameStats(frame);
       return frame;
-    } else {
-      this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
-
-      this._codecParser.incrementRawData(1); // increment to invalidate the invalid frame
-
-      if (keepUnsyncedFrames) {
-        this._codecParser.mapFrameStats(frame);
-        return frame;
-      }
     }
+
+    this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
+    this._codecParser.incrementRawData(1); // increment to invalidate the current frame
   }
 }

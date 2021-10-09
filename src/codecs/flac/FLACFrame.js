@@ -17,7 +17,7 @@
 */
 
 import { headerStore } from "../../globals.js";
-import CodecFrame from "../../containers/CodecFrame.js";
+import CodecFrame from "../CodecFrame.js";
 import FLACHeader from "./FLACHeader.js";
 
 export default class FLACFrame extends CodecFrame {
