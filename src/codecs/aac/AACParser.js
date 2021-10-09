@@ -18,11 +18,13 @@
 
 import Parser from "../Parser.js";
 import AACFrame from "./AACFrame.js";
+import AACHeader from "./AACHeader.js";
 
 export default class AACParser extends Parser {
-  constructor(onCodecUpdate, onCodec) {
-    super(onCodecUpdate);
+  constructor(codecParser, onCodecUpdate, onCodec) {
+    super(codecParser, onCodecUpdate);
     this.Frame = AACFrame;
+    this.Header = AACHeader;
 
     onCodec(this.codec);
   }
@@ -31,7 +33,7 @@ export default class AACParser extends Parser {
     return "aac";
   }
 
-  parseFrames(data) {
-    return this.fixedLengthFrameSync(data);
+  *parseFrame(data) {
+    return yield* this.fixedLengthFrameSync();
   }
 }

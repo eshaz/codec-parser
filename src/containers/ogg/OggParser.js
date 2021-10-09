@@ -16,22 +16,24 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../../globals.js";
+import { headerStore, frameStore } from "../../globals.js";
 import { concatBuffers } from "../../utilities.js";
 
 import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
+import OggPageHeader from "./OggPageHeader.js";
 
 import FLACParser from "../../codecs/flac/FLACParser.js";
 import OpusParser from "../../codecs/opus/OpusParser.js";
 import VorbisParser from "../../codecs/vorbis/VorbisParser.js";
 
 export default class OggParser extends Parser {
-  constructor(onCodecUpdate, onCodec) {
-    super();
-    this._onCodecUpdate = onCodecUpdate;
+  constructor(codecParser, onCodecUpdate, onCodec) {
+    super(codecParser, onCodecUpdate);
+
     this._onCodec = onCodec;
     this.Frame = OggPage;
+    this.Header = OggPageHeader;
     this._codec = null;
     this._continuedPacket = new Uint8Array();
   }
@@ -42,7 +44,7 @@ export default class OggParser extends Parser {
 
   _updateCodec(codec, parser) {
     if (this._codec !== codec) {
-      this._parser = new parser(this._onCodecUpdate);
+      this._parser = new parser(this._codecParser, this._onCodecUpdate);
       this._codec = codec;
       this._onCodec(codec);
     }
@@ -70,43 +72,39 @@ export default class OggParser extends Parser {
     }
   }
 
-  parseFrames(data) {
-    const oggPages = this.fixedLengthFrameSync(data, true);
+  *parseFrame() {
+    const oggPage = yield* this.fixedLengthFrameSync(true);
 
-    return {
-      frames: oggPages.frames
-        .map((frame) => {
-          const oggPage = frameStore.get(frame);
+    const oggPageStore = frameStore.get(oggPage);
+    const pageSegmentTable = headerStore.get(
+      oggPageStore.header
+    ).pageSegmentTable;
 
-          let offset = 0;
+    let offset = 0;
 
-          oggPage.segments = oggPage.pageSegmentTable.map((segmentLength) =>
-            frame.data.subarray(offset, (offset += segmentLength))
-          );
+    oggPageStore.segments = pageSegmentTable.map((segmentLength) =>
+      oggPage.data.subarray(offset, (offset += segmentLength))
+    );
 
-          if (
-            oggPage.pageSegmentTable[oggPage.pageSegmentTable.length - 1] ===
-            0xff
-          ) {
-            // continued packet
-            this._continuedPacket = concatBuffers(
-              this._continuedPacket,
-              oggPage.segments.pop()
-            );
-          } else if (this._continuedPacket.length) {
-            oggPage.segments[0] = concatBuffers(
-              this._continuedPacket,
-              oggPage.segments[0]
-            );
+    if (pageSegmentTable[pageSegmentTable.length - 1] === 0xff) {
+      // continued packet
+      this._continuedPacket = concatBuffers(
+        this._continuedPacket,
+        oggPageStore.segments.pop()
+      );
+    } else if (this._continuedPacket.length) {
+      oggPageStore.segments[0] = concatBuffers(
+        this._continuedPacket,
+        oggPageStore.segments[0]
+      );
 
-            this._continuedPacket = new Uint8Array();
-          }
+      this._continuedPacket = new Uint8Array();
+    }
 
-          return frame;
-        })
-        .filter((frame) => this.checkForIdentifier(frame) && this._codec)
-        .flatMap((oggPage) => this._parser.parseFrames(oggPage).frames),
-      remainingData: oggPages.remainingData,
-    };
+    if (this.checkForIdentifier(oggPage) && this._codec) {
+      const frame = this._parser.parseFrame(oggPage);
+      this._codecParser.mapFrameStats(frame);
+      return frame;
+    }
   }
 }

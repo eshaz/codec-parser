@@ -16,18 +16,21 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore } from "../../globals.js";
-import CodecFrame from "../../containers/CodecFrame.js";
+import CodecFrame from "../CodecFrame.js";
 import MPEGHeader from "./MPEGHeader.js";
 
 export default class MPEGFrame extends CodecFrame {
-  constructor(data, headerCache) {
-    const header = MPEGHeader.getHeader(data, headerCache);
-
-    super(
-      header,
-      header && data.subarray(0, headerStore.get(header).frameLength),
-      header && headerStore.get(header).samples
+  static *getFrame(codecParser, headerCache, readOffset) {
+    return yield* super.getFrame(
+      MPEGHeader,
+      MPEGFrame,
+      codecParser,
+      headerCache,
+      readOffset
     );
+  }
+
+  constructor(header, frame, samples) {
+    super(header, frame, samples);
   }
 }

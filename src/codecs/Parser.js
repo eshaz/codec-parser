@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { isParsedStore, frameStore } from "../globals.js";
+import { frameStore } from "../globals.js";
 import HeaderCache from "./HeaderCache.js";
 
 /**
@@ -24,69 +24,52 @@ import HeaderCache from "./HeaderCache.js";
  * @description Abstract class containing methods for parsing codec frames
  */
 export default class Parser {
-  constructor(onCodecUpdate) {
+  constructor(codecParser, onCodecUpdate) {
+    this._codecParser = codecParser;
+    this._onCodecUpdate = onCodecUpdate;
     this._headerCache = new HeaderCache(onCodecUpdate);
   }
 
-  syncFrame(data, remainingData = 0) {
-    let frame = new this.Frame(data.subarray(remainingData), this._headerCache);
+  *syncFrame() {
+    let frame;
 
-    while (!frameStore.get(frame).header && remainingData < data.length) {
-      remainingData += frameStore.get(frame).length || 1;
-      frame = new this.Frame(data.subarray(remainingData), this._headerCache);
-    }
-
-    return { frame, remainingData };
+    do {
+      frame = yield* this.Frame.getFrame(
+        this._codecParser,
+        this._headerCache,
+        0
+      );
+      if (frame) return frame;
+      this._codecParser.incrementRawData(1); // increment to continue syncing
+    } while (true);
   }
 
   /**
    * @description Searches for Frames within bytes containing a sequence of known codec frames.
-   * @param {Uint8Array} data Codec data that should contain a sequence of known length frames.
-   * @returns {object} Object containing the actual offset and frame. Frame is undefined if no valid header was found
+   * @param {boolean} ignoreNextFrame Set to true to return frames even if the next frame may not exist at the expected location
+   * @returns {Frame}
    */
-  fixedLengthFrameSync(data, keepUnsyncedFrames) {
-    // initial sync
-    let { frame, remainingData } = this.syncFrame(data);
-    let frames = [];
+  *fixedLengthFrameSync(ignoreNextFrame) {
+    const frame = yield* this.syncFrame();
+    const frameLength = frameStore.get(frame).length;
 
-    while (
-      isParsedStore.get(frameStore.get(frame).header) && // was there enough data to parse the header
-      frameStore.get(frame).length + remainingData < data.length // is there enough data left to form a frame and check the next frame
+    if (
+      ignoreNextFrame ||
+      // check if there is a frame right after this one
+      (yield* this.Header.getHeader(
+        this._codecParser,
+        this._headerCache,
+        frameLength
+      ))
     ) {
-      const frameLength = frameStore.get(frame).length
+      this._headerCache.enable(); // start caching when synced
 
-      // check if there is a valid frame immediately after this frame
-      const nextFrame = new this.Frame(
-        data.subarray(frameLength + remainingData),
-        this._headerCache
-      );
-      const nextFrameHeader = frameStore.get(nextFrame).header;
-
-      if (nextFrameHeader) {
-        if (!isParsedStore.get(nextFrameHeader)) break; // out of data
-
-        // start caching when synced
-        this._headerCache.enable();
-
-        // there is a next frame, so the current frame is valid
-        frames.push(frame);
-        remainingData += frameLength;
-        frame = nextFrame;
-      } else {
-        // frame is invalid and must re-sync and clear cache
-        this._headerCache.reset();
-
-        if (keepUnsyncedFrames) frames.push(frame);
-
-        const syncResult = this.syncFrame(data, remainingData + 1); // increment to invalidate the invalid frame
-        remainingData = syncResult.remainingData;
-        frame = syncResult.frame;
-      }
+      this._codecParser.incrementRawData(frameLength); // increment to the next frame
+      this._codecParser.mapFrameStats(frame);
+      return frame;
     }
 
-    return {
-      frames,
-      remainingData,
-    };
+    this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
+    this._codecParser.incrementRawData(1); // increment to invalidate the current frame
   }
 }

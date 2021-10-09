@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import CodecFrame from "../../containers/CodecFrame.js";
+import CodecFrame from "../CodecFrame.js";
 import OpusHeader from "./OpusHeader.js";
 
 //  0 1 2 3 4 5 6 7
@@ -96,9 +96,8 @@ export default class OpusFrame extends CodecFrame {
     super(
       opusHeader,
       data,
-      opusHeader &&
-        ((packet.config.frameSize * packet.frameCount) / 1000) *
-          opusHeader.sampleRate
+      ((packet.config.frameSize * packet.frameCount) / 1000) *
+        opusHeader.sampleRate
     );
   }
 }

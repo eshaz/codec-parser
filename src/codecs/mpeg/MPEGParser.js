@@ -18,11 +18,13 @@
 
 import Parser from "../Parser.js";
 import MPEGFrame from "./MPEGFrame.js";
+import MPEGHeader from "./MPEGHeader.js";
 
 export default class MPEGParser extends Parser {
-  constructor(onCodecUpdate, onCodec) {
-    super(onCodecUpdate);
+  constructor(codecParser, onCodecUpdate, onCodec) {
+    super(codecParser, onCodecUpdate);
     this.Frame = MPEGFrame;
+    this.Header = MPEGHeader;
 
     onCodec(this.codec);
   }
@@ -31,7 +33,7 @@ export default class MPEGParser extends Parser {
     return "mpeg";
   }
 
-  parseFrames(data) {
-    return this.fixedLengthFrameSync(data);
+  *parseFrame() {
+    return yield* this.fixedLengthFrameSync();
   }
 }

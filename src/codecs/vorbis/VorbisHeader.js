@@ -55,12 +55,13 @@ export default class VorbisHeader extends CodecHeader {
     const header = { length: 30 };
 
     // Must be at least 30 bytes.
-    if (data.length < 30) return new VorbisHeader(header, false);
+    if (data.length < 30)
+      throw new Error("Out of data while inside an Ogg Page");
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 30));
     const cachedHeader = headerCache.getHeader(key);
-    if (cachedHeader) return new VorbisHeader(cachedHeader, true);
+    if (cachedHeader) return new VorbisHeader(cachedHeader);
 
     // Bytes (1-7 of 30): /01vorbis - Magic Signature
     if (
@@ -121,15 +122,15 @@ export default class VorbisHeader extends CodecHeader {
       headerCache.setHeader(key, header, codecUpdateFields);
     }
 
-    return new VorbisHeader(header, true);
+    return new VorbisHeader(header);
   }
 
   /**
    * @private
    * Call VorbisHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header, isParsed) {
-    super(header, isParsed);
+  constructor(header) {
+    super(header);
 
     this.bitrateMaximum = header.bitrateMaximum;
     this.bitrateMinimum = header.bitrateMinimum;

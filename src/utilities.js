@@ -41,6 +41,7 @@ const getCrcTable = (crcFunction) => {
 const crc8Table = getCrcTable((crc) =>
   crc & 0x80 ? 0x07 ^ (crc << 1) : crc << 1
 );
+
 const crc32Table = getCrcTable((crc) =>
   crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1
 );

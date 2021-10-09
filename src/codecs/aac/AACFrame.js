@@ -16,18 +16,21 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, frameStore } from "../../globals.js";
-import CodecFrame from "../../containers/CodecFrame.js";
+import CodecFrame from "../CodecFrame.js";
 import AACHeader from "./AACHeader.js";
 
 export default class AACFrame extends CodecFrame {
-  constructor(data, headerCache) {
-    const header = AACHeader.getHeader(data, headerCache);
-
-    super(
-      header,
-      header && data.subarray(0, headerStore.get(header).frameLength),
-      header && headerStore.get(header).samples
+  static *getFrame(codecParser, headerCache, readOffset) {
+    return yield* super.getFrame(
+      AACHeader,
+      AACFrame,
+      codecParser,
+      headerCache,
+      readOffset
     );
+  }
+
+  constructor(header, frame, samples) {
+    super(header, frame, samples);
   }
 }

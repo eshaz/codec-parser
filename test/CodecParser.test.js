@@ -28,7 +28,11 @@ describe("CodecParser", () => {
         const actualFileName = `${fileName}_iterator.json`;
         const expectedFileName = `${fileName}_iterator.json`;
 
-        const frames = [...codecParser.iterator(file)];
+        const frames = [];
+
+        for (const frame of codecParser.iterator(file)) {
+          frames.push(frame);
+        }
 
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 

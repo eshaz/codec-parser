@@ -25,6 +25,6 @@ export default class Frame {
   constructor(header, data) {
     frameStore.set(this, { header });
 
-    this.data = data || [];
+    this.data = data;
   }
 }

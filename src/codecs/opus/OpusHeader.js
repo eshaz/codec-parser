@@ -76,7 +76,8 @@ export default class OpusHeader extends CodecHeader {
   static getHeader(data, headerCache) {
     const header = {};
     // Must be at least 19 bytes.
-    if (data.length < 19) return new OpusHeader(header, false);
+    if (data.length < 19)
+      throw new Error("Out of data while inside an Ogg Page");
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 19));
@@ -162,15 +163,15 @@ export default class OpusHeader extends CodecHeader {
       headerCache.setHeader(key, header, codecUpdateFields);
     }
 
-    return new OpusHeader(header, true);
+    return new OpusHeader(header);
   }
 
   /**
    * @private
    * Call OpusHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header, isParsed) {
-    super(header, isParsed);
+  constructor(header) {
+    super(header);
 
     this.data = header.data;
     this.channelMappingFamily = header.channelMappingFamily;

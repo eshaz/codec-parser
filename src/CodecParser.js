@@ -30,11 +30,11 @@ export default class CodecParser {
     this._onCodec = onCodec || noOp;
 
     if (this._inputMimeType.match(/aac/)) {
-      this._codecParser = new AACParser(this._onCodecUpdate, this._onCodec);
+      this._parser = new AACParser(this, this._onCodecUpdate, this._onCodec);
     } else if (this._inputMimeType.match(/mpeg/)) {
-      this._codecParser = new MPEGParser(this._onCodecUpdate, this._onCodec);
+      this._parser = new MPEGParser(this, this._onCodecUpdate, this._onCodec);
     } else if (this._inputMimeType.match(/ogg/)) {
-      this._codecParser = new OggParser(this._onCodecUpdate, this._onCodec);
+      this._parser = new OggParser(this, this._onCodecUpdate, this._onCodec);
     } else {
       throw new Error(`Unsupported Codec ${mimeType}`);
     }
@@ -44,8 +44,7 @@ export default class CodecParser {
     this._totalSamples = 0;
     this._sampleRate = undefined;
 
-    this._frames = [];
-    this._codecData = new Uint8Array(0);
+    this._rawData = new Uint8Array(0);
 
     this._generator = this._generator();
     this._generator.next();
@@ -56,7 +55,7 @@ export default class CodecParser {
    * @returns The detected codec
    */
   get codec() {
-    return this._codecParser.codec;
+    return this._parser.codec;
   }
 
   /**
@@ -77,32 +76,38 @@ export default class CodecParser {
   }
 
   *_generator() {
-    let frames = [];
     // start parsing out frames
     while (true) {
-      yield* this._sendReceiveData(frames);
-      frames = this._parseFrames();
+      const frame = yield* this._parser.parseFrame();
+      if (frame) yield frame;
     }
   }
 
   /**
-   * @private
+   *
+   * @param {number} minSize Minimum bytes to have present in buffer
+   * @returns {Uint8Array} rawData
    */
-  *_sendReceiveData(frames) {
-    for (const frame of frames) {
-      yield frame;
+  *readRawData(minSize = 0, readOffset = 0) {
+    let rawData;
+
+    while (this._rawData.length <= minSize + readOffset) {
+      rawData = yield;
+      if (rawData) this._rawData = concatBuffers(this._rawData, rawData);
     }
 
-    let codecData;
-
-    do {
-      codecData = yield;
-    } while (!codecData);
-
-    this._codecData = concatBuffers(this._codecData, codecData);
+    return this._rawData.subarray(readOffset);
   }
 
-  _mapFrameStats(frame) {
+  /**
+   *
+   * @param {number} increment Bytes to increment codec data
+   */
+  incrementRawData(increment) {
+    this._rawData = this._rawData.subarray(increment);
+  }
+
+  mapCodecFrameStats(frame) {
     if (this._sampleRate !== frame.header.sampleRate)
       this._sampleRate = frame.header.sampleRate;
 
@@ -116,34 +121,20 @@ export default class CodecParser {
     this._totalSamples += frame.samples;
   }
 
-  /**
-   * @private
-   */
-  _parseFrames() {
-    const { frames, remainingData } = this._codecParser.parseFrames(
-      this._codecData
-    );
+  mapFrameStats(frame) {
+    if (frame.codecFrames) {
+      // Ogg container
+      frame.codecFrames.forEach((codecFrame) => {
+        frame.duration += codecFrame.duration;
+        frame.samples += codecFrame.samples;
+        this.mapCodecFrameStats(codecFrame);
+      });
 
-    this._codecData = this._codecData.subarray(remainingData);
-
-    frames.forEach((frame) => {
-      if (frame.codecFrames) {
-        // Ogg container
-        frame.codecFrames.forEach((codecFrame) => {
-          frame.duration += codecFrame.duration;
-          frame.samples += codecFrame.samples;
-          this._mapFrameStats(codecFrame);
-        });
-
-        frame.totalSamples = this._totalSamples;
-        frame.totalDuration =
-          (this._totalSamples / this._sampleRate) * 1000 || 0;
-        frame.totalBytesOut = this._totalBytesOut;
-      } else {
-        this._mapFrameStats(frame);
-      }
-    });
-
-    return frames;
+      frame.totalSamples = this._totalSamples;
+      frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000 || 0;
+      frame.totalBytesOut = this._totalBytesOut;
+    } else {
+      this.mapCodecFrameStats(frame);
+    }
   }
 }

@@ -22,23 +22,22 @@ import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
 
 export default class FLACParser extends Parser {
-  constructor(onCodecUpdate) {
-    super(onCodecUpdate);
+  constructor(codecParser, onCodecUpdate) {
+    super(codecParser, onCodecUpdate);
     this.Frame = FLACFrame;
+    this.Header = FLACHeader;
   }
 
   get codec() {
     return "flac";
   }
 
-  parseFrames(oggPage) {
+  parseFrame(oggPage) {
     if (oggPage.pageSequenceNumber === 0) {
       // Identification header
 
       this._headerCache.enable();
       this._streamInfo = oggPage.data.subarray(13);
-
-      return { frames: [], remainingData: 0 };
     } else if (oggPage.pageSequenceNumber === 1) {
       // Vorbis comments
     } else {
@@ -55,9 +54,6 @@ export default class FLACParser extends Parser {
         );
     }
 
-    return {
-      frames: [oggPage],
-      remainingData: 0,
-    };
+    return oggPage;
   }
 }
