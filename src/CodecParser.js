@@ -44,7 +44,7 @@ export default class CodecParser {
     this._totalSamples = 0;
     this._sampleRate = undefined;
 
-    this._codecData = new Uint8Array(0);
+    this._rawData = new Uint8Array(0);
 
     this._generator = this._generator();
     this._generator.next();
@@ -86,29 +86,25 @@ export default class CodecParser {
   /**
    *
    * @param {number} minSize Minimum bytes to have present in buffer
-   * @returns {Uint8Array} codecData
+   * @returns {Uint8Array} rawData
    */
-  *readData(minSize = 0, readOffset = 0) {
-    let codecData;
+  *readRawData(minSize = 0, readOffset = 0) {
+    let rawData;
 
-    while (this._codecData.length <= minSize + readOffset) {
-      codecData = yield;
-      if (codecData)
-        this._codecData = concatBuffers(this._codecData, codecData);
+    while (this._rawData.length <= minSize + readOffset) {
+      rawData = yield;
+      if (rawData) this._rawData = concatBuffers(this._rawData, rawData);
     }
 
-    return this._codecData.subarray(readOffset);
+    return this._rawData.subarray(readOffset);
   }
 
   /**
    *
    * @param {number} increment Bytes to increment codec data
-   * @param {number} minSize Minimum bytes to have present in buffer
-   * @returns {Uint8Array} codecData
    */
-  *incrementAndReadData(increment, minSize = 0, readOffset = 0) {
-    this._codecData = this._codecData.subarray(increment);
-    return yield* this.readData(minSize, readOffset);
+  incrementRawData(increment) {
+    this._rawData = this._rawData.subarray(increment);
   }
 
   mapCodecFrameStats(frame) {

@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, frameStore, isParsedStore } from "../../globals.js";
+import { headerStore, frameStore } from "../../globals.js";
 import Frame from "../Frame.js";
 import OggPageHeader from "./OggPageHeader.js";
 
@@ -33,12 +33,12 @@ export default class OggPage extends Frame {
       const headerLength = headerStore.get(header).length;
       const totalLength = headerLength + frameLength;
 
-      const rawData = (yield* codecParser.readData(totalLength, 0)).subarray(
+      const rawData = (yield* codecParser.readRawData(totalLength, 0)).subarray(
         0,
         totalLength
       );
 
-      const frame = (yield* codecParser.readData(
+      const frame = (yield* codecParser.readRawData(
         frameLength,
         headerLength
       )).subarray(0, frameLength);

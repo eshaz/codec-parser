@@ -58,7 +58,7 @@ export default class OggPageHeader {
     const header = {};
 
     // Must be at least 28 bytes.
-    let data = yield* codecParser.readData(28, readOffset);
+    let data = yield* codecParser.readRawData(28, readOffset);
 
     const view = new DataView(Uint8Array.of(...data.subarray(0, 28)).buffer);
 
@@ -119,7 +119,7 @@ export default class OggPageHeader {
     const pageSegmentTableLength = data[26];
     header.length = pageSegmentTableLength + 27;
 
-    data = yield* codecParser.readData(header.length, readOffset); // read in the page segment table
+    data = yield* codecParser.readRawData(header.length, readOffset); // read in the page segment table
 
     header.frameLength = 0;
     header.pageSegmentTable = [];

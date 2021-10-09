@@ -159,7 +159,7 @@ export default class MPEGHeader extends CodecHeader {
   static *getHeader(codecParser, headerCache, readOffset) {
     const header = {};
     // Must be at least four bytes.
-    const data = yield* codecParser.readData(4, readOffset);
+    const data = yield* codecParser.readRawData(4, readOffset);
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 4));

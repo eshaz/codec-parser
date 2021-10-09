@@ -39,7 +39,7 @@ export default class Parser {
         this._headerCache,
         0
       );
-      if (!frame) yield* this._codecParser.incrementAndReadData(1); // increment to invalidate the invalid frame
+      if (!frame) this._codecParser.incrementRawData(1); // increment to invalidate the invalid frame
     } while (!frame);
 
     return frame;
@@ -63,13 +63,13 @@ export default class Parser {
     if (nextFrameHeader) {
       this._headerCache.enable(); // start caching when synced
 
-      yield* this._codecParser.incrementAndReadData(frameLength); // increment to invalidate the invalid frame
+      this._codecParser.incrementRawData(frameLength); // increment to invalidate the invalid frame
       this._codecParser.mapFrameStats(frame);
       return frame;
     } else {
       this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
 
-      yield* this._codecParser.incrementAndReadData(1); // increment to invalidate the invalid frame
+      this._codecParser.incrementRawData(1); // increment to invalidate the invalid frame
 
       if (keepUnsyncedFrames) {
         this._codecParser.mapFrameStats(frame);

@@ -122,7 +122,7 @@ export default class AACHeader extends CodecHeader {
     const header = {};
 
     // Must be at least seven bytes. Out of data
-    const data = yield* codecParser.readData(7, readOffset);
+    const data = yield* codecParser.readRawData(7, readOffset);
 
     // Check header cache
     const key = HeaderCache.getKey([

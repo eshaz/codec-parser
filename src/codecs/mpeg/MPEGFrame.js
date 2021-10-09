@@ -32,7 +32,7 @@ export default class MPEGFrame extends CodecFrame {
       const frameLength = headerStore.get(header).frameLength;
       const samples = headerStore.get(header).samples;
 
-      const frame = (yield* codecParser.readData(
+      const frame = (yield* codecParser.readRawData(
         frameLength,
         readOffset
       )).subarray(0, frameLength);
