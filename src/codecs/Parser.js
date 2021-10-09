@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { isParsedStore, frameStore } from "../globals.js";
+import { frameStore } from "../globals.js";
 import HeaderCache from "./HeaderCache.js";
 
 /**
@@ -52,14 +52,14 @@ export default class Parser {
   *fixedLengthFrameSync(keepUnsyncedFrames) {
     const frame = yield* this.syncFrame();
     const frameLength = frameStore.get(frame).length;
-    const nextFrame = yield* this.Frame.getFrame(
+    const nextFrameHeader = yield* this.Header.getHeader(
       this._codecParser,
       this._headerCache,
       frameLength
     );
 
-    // check if there is a valid frame immediately after this frame
-    if (nextFrame) {
+    // check if there is a valid frame header immediately after this frame
+    if (nextFrameHeader) {
       this._headerCache.enable(); // start caching when synced
 
       yield* this._codecParser.incrementAndReadData(frameLength); // increment to invalidate the invalid frame
