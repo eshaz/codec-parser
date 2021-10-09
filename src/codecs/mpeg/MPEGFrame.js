@@ -21,13 +21,29 @@ import CodecFrame from "../../containers/CodecFrame.js";
 import MPEGHeader from "./MPEGHeader.js";
 
 export default class MPEGFrame extends CodecFrame {
-  constructor(data, headerCache) {
-    const header = MPEGHeader.getHeader(data, headerCache);
-
-    super(
-      header,
-      header && data.subarray(0, headerStore.get(header).frameLength),
-      header && headerStore.get(header).samples
+  static *getFrame(codecParser, headerCache, readOffset) {
+    const header = yield* MPEGHeader.getHeader(
+      codecParser,
+      headerCache,
+      readOffset
     );
+
+    if (header) {
+      const frameLength = headerStore.get(header).frameLength;
+      const samples = headerStore.get(header).samples;
+
+      const frame = (yield* codecParser.readData(
+        frameLength,
+        readOffset
+      )).subarray(0, frameLength);
+
+      return new MPEGFrame(header, frame, samples);
+    } else {
+      return null;
+    }
+  }
+
+  constructor(header, frame, samples) {
+    super(header, frame, samples);
   }
 }

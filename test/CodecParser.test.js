@@ -28,7 +28,11 @@ describe("CodecParser", () => {
         const actualFileName = `${fileName}_iterator.json`;
         const expectedFileName = `${fileName}_iterator.json`;
 
-        const frames = [...codecParser.iterator(file)];
+        const frames = [];
+
+        for (const frame of codecParser.iterator(file)) {
+          frames.push(frame);
+        }
 
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
@@ -37,7 +41,7 @@ describe("CodecParser", () => {
       20000
     );
 
-    it.concurrent(
+    /*it.concurrent(
       `should parse ${fileName} when reading small chunks`,
       async () => {
         const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
@@ -67,12 +71,14 @@ describe("CodecParser", () => {
       [...codecParser.iterator(file.subarray(0x0, 0xffff))];
 
       expect(codecParser.codec).toEqual(codec);
-    });
+    });*/
   };
 
   describe("MP3 CBR", () => {
     testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg");
   });
+
+  /*
 
   describe("MP3 VBR", () => {
     testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg");
@@ -447,4 +453,5 @@ describe("CodecParser", () => {
       );
     });
   });
+  */
 });

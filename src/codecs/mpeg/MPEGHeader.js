@@ -156,15 +156,15 @@ const channelModes = {
 };
 
 export default class MPEGHeader extends CodecHeader {
-  static getHeader(data, headerCache) {
+  static *getHeader(codecParser, headerCache, readOffset) {
     const header = {};
     // Must be at least four bytes.
-    if (data.length < 4) return new MPEGHeader(header, false);
+    const data = yield* codecParser.readData(4, readOffset);
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 4));
     const cachedHeader = headerCache.getHeader(key);
-    if (cachedHeader) return new MPEGHeader(cachedHeader, true);
+    if (cachedHeader) return new MPEGHeader(cachedHeader);
 
     // Frame sync (all bits must be set): `11111111|111`:
     if (data[0] !== 0xff || data[1] < 0xe0) return null;
@@ -250,15 +250,15 @@ export default class MPEGHeader extends CodecHeader {
     const { length, frameLength, samples, ...codecUpdateFields } = header;
 
     headerCache.setHeader(key, header, codecUpdateFields);
-    return new MPEGHeader(header, true);
+    return new MPEGHeader(header);
   }
 
   /**
    * @private
    * Call MPEGHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header, isParsed) {
-    super(header, isParsed);
+  constructor(header) {
+    super(header);
 
     this.bitrate = header.bitrate;
     this.channelMode = header.channelMode;

@@ -25,8 +25,7 @@ export default class CodecFrame extends Frame {
 
     this.header = header;
     this.samples = samples;
-    this.duration =
-      header && samples && (this.samples / this.header.sampleRate) * 1000;
+    this.duration = (samples / this.header.sampleRate) * 1000;
     this.frameNumber = undefined;
     this.totalBytesOut = undefined;
     this.totalSamples = undefined;

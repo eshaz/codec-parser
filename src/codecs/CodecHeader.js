@@ -16,15 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { headerStore, isParsedStore } from "../globals.js";
+import { headerStore } from "../globals.js";
 
 export default class CodecHeader {
   /**
    * @private
    */
-  constructor(header, isParsed) {
+  constructor(header) {
     headerStore.set(this, header);
-    isParsedStore.set(this, isParsed);
 
     this.bitDepth = header.bitDepth;
     this.channels = header.channels;
