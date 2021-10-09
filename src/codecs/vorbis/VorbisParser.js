@@ -70,7 +70,7 @@ export default class VorbisParser extends Parser {
       );
     }
 
-    return oggPage
+    return oggPage;
   }
 
   _getSamples(segment) {

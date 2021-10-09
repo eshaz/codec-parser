@@ -73,7 +73,7 @@ describe("CodecParser", () => {
       expect(codecParser.codec).toEqual(codec);
     });
   };
-  /*
+
   describe("MP3 CBR", () => {
     testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg");
   });
@@ -81,11 +81,11 @@ describe("CodecParser", () => {
   describe("MP3 VBR", () => {
     testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg");
   });
-  
+
   describe("AAC", () => {
     testParser("aac.aac", "audio/aac", "aac");
   });
-*/
+
   describe("Ogg", () => {
     const mimeType = "audio/ogg";
 
@@ -144,15 +144,14 @@ describe("CodecParser", () => {
       testParser("ogg.opus.framesize_60", mimeType, "opus");
       testParser("ogg.opus.surround", mimeType, "opus");
     });
-    
+
     describe("Ogg Vorbis", () => {
       testParser("ogg.vorbis", mimeType, "vorbis");
       testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis");
       testParser("ogg.vorbis.fishead", mimeType, "vorbis");
     });
-    
   });
-  /*
+
   describe("Unsupported Codecs", () => {
     it("should throw an error when an unsupported mimetype is passed in", () => {
       let error;
@@ -451,5 +450,5 @@ describe("CodecParser", () => {
         20000
       );
     });
-  });*/
+  });
 });

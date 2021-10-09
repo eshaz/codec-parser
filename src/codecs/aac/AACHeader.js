@@ -118,11 +118,11 @@ const channelMode = {
 };
 
 export default class AACHeader extends CodecHeader {
-  static getHeader(data, headerCache) {
+  static *getHeader(codecParser, headerCache, readOffset) {
     const header = {};
 
     // Must be at least seven bytes. Out of data
-    if (data.length < 7) return new AACHeader(header, false);
+    const data = yield* codecParser.readData(7, readOffset);
 
     // Check header cache
     const key = HeaderCache.getKey([
@@ -240,8 +240,8 @@ export default class AACHeader extends CodecHeader {
    * @private
    * Call AACHeader.getHeader(Array<Uint8>) to get instance
    */
-  constructor(header, isParsed) {
-    super(header, isParsed);
+  constructor(header) {
+    super(header);
 
     this.copyrightId = header.copyrightId;
     this.copyrightIdStart = header.copyrightIdStart;
