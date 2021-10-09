@@ -126,7 +126,7 @@ describe("CodecParser", () => {
           expect(frames).toEqual([]);
         }
       );
-    });
+    });*/
 
     describe("Ogg Flac", () => {
       testParser("ogg.flac", mimeType, "flac");
@@ -137,14 +137,13 @@ describe("CodecParser", () => {
       testParser("ogg.flac.blocksize_variable_1", mimeType, "flac");
       testParser("ogg.flac.blocksize_variable_2", mimeType, "flac");
     });
-    */
 
-    describe("Ogg Opus", () => {
+    /*describe("Ogg Opus", () => {
       testParser("ogg.opus", mimeType, "opus");
       testParser("ogg.opus.framesize_40", mimeType, "opus");
       testParser("ogg.opus.framesize_60", mimeType, "opus");
       testParser("ogg.opus.surround", mimeType, "opus");
-    });
+    });*/
     /*
     describe("Ogg Vorbis", () => {
       testParser("ogg.vorbis", mimeType, "vorbis");

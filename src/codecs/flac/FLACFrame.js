@@ -28,6 +28,6 @@ export default class FLACFrame extends CodecFrame {
       flacHeader.streamInfo = streamInfo;
     }
 
-    super(flacHeader, data, flacHeader && headerStore.get(flacHeader).samples);
+    super(flacHeader, data, headerStore.get(flacHeader).samples);
   }
 }

@@ -1,6 +1,20 @@
 [
   {
     "codecFrames": [],
+    "crc32": -576629939,
+    "duration": 0,
+    "isContinuedPacket": false,
+    "isFirstPage": true,
+    "isLastPage": false,
+    "pageSequenceNumber": 0,
+    "samples": 0,
+    "streamSerialNumber": -289748674,
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "totalBytesOut": 0
+  },
+  {
+    "codecFrames": [],
     "crc32": -2036696469,
     "duration": 0,
     "isContinuedPacket": false,

@@ -96,9 +96,8 @@ export default class OpusFrame extends CodecFrame {
     super(
       opusHeader,
       data,
-      opusHeader &&
-        ((packet.config.frameSize * packet.frameCount) / 1000) *
-          opusHeader.sampleRate
+      ((packet.config.frameSize * packet.frameCount) / 1000) *
+        opusHeader.sampleRate
     );
   }
 }
