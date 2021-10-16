@@ -34,6 +34,9 @@ describe("CodecParser", () => {
           frames.push(frame);
         }
 
+        // await fs.writeFile("test-output.flac", Buffer.concat(frames.map(frame => frame.data)));
+        // cmp test-output.flac test/test-data/flac.flac 0 8430
+
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
         assertFrames(actualFileName, expectedFileName);
@@ -84,6 +87,10 @@ describe("CodecParser", () => {
 
   describe("AAC", () => {
     testParser("aac.aac", "audio/aac", "aac");
+  });
+
+  describe("Flac", () => {
+    testParser("flac.flac", "audio/flac", "flac");
   });
 
   describe("Ogg", () => {

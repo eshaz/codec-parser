@@ -156,25 +156,36 @@ export default class FLACHeader extends CodecHeader {
     return { value, next };
   }
 
-  static getHeader(data, headerCache) {
-    const header = {};
+  static getHeaderFromUint8Array(data, headerCache) {
+    const codecParserStub = {
+      readRawData: function* (length) {
+        if (length > data.length)
+          throw new Error("Out of data while inside an Ogg Page");
+        return data;
+      },
+    };
 
+    return FLACHeader.getHeader(codecParserStub, headerCache, 0).next().value;
+  }
+
+  static *getHeader(codecParser, headerCache, readOffset) {
     // Must be at least 6 bytes.
-    if (data.length < 6)
-      throw new Error("Out of data while inside an Ogg Page");
+    let data = yield* codecParser.readRawData(6, readOffset);
+
+    // Bytes (1-2 of 6)
+    // * `11111111|111110..`: Frame sync
+    // * `........|......0.`: Reserved 0 - mandatory, 1 - reserved
+    if (data[0] !== 0xff || !(data[1] === 0xf8 || data[1] === 0xf9)) {
+      return null;
+    }
+
+    const header = {};
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 4));
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {
-      // Bytes (1-2 of 6)
-      // * `11111111|111110..`: Frame sync
-      // * `........|......0.`: Reserved 0 - mandatory, 1 - reserved
-      if (data[0] !== 0xff || !(data[1] === 0xf8 || data[1] === 0xf9)) {
-        return null;
-      }
-
       header.length = 2;
 
       // Byte (2 of 6)
@@ -225,8 +236,7 @@ export default class FLACHeader extends CodecHeader {
     header.length = 5;
 
     // check if there is enough data to parse UTF8
-    if (data.length < header.length + 8)
-      throw new Error("Out of data while inside an Ogg Page");
+    data = yield* codecParser.readRawData(header.length + 8, readOffset);
 
     const decodedUtf8 = FLACHeader.decodeUTF8Int(data.subarray(4));
     if (!decodedUtf8) {
@@ -246,14 +256,14 @@ export default class FLACHeader extends CodecHeader {
     if (header.blockSizeBits === 0b01100000) {
       // 8 bit
       if (data.length < header.length)
-        throw new Error("Out of data while inside an Ogg Page");
+        data = yield* codecParser.readRawData(header.length, readOffset);
 
       header.blockSize = data[header.length - 1] + 1;
       header.length += 1;
     } else if (header.blockSizeBits === 0b01110000) {
       // 16 bit
-      if (data.length <= header.length)
-        throw new Error("Out of data while inside an Ogg Page");
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
 
       header.blockSize =
         (data[header.length - 1] << 8) + data[header.length] + 1;
@@ -267,21 +277,21 @@ export default class FLACHeader extends CodecHeader {
     if (header.sampleRateBits === 0b00001100) {
       // 8 bit
       if (data.length < header.length)
-        throw new Error("Out of data while inside an Ogg Page");
+        data = yield* codecParser.readRawData(header.length, readOffset);
 
       header.sampleRate = data[header.length - 1] * 1000;
       header.length += 1;
     } else if (header.sampleRateBits === 0b00001101) {
       // 16 bit
-      if (data.length <= header.length)
-        throw new Error("Out of data while inside an Ogg Page");
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
 
       header.sampleRate = (data[header.length - 1] << 8) + data[header.length];
       header.length += 2;
     } else if (header.sampleRateBits === 0b00001110) {
       // 16 bit
-      if (data.length <= header.length)
-        throw new Error("Out of data while inside an Ogg Page");
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
 
       header.sampleRate =
         ((data[header.length - 1] << 8) + data[header.length]) * 10;
@@ -291,7 +301,7 @@ export default class FLACHeader extends CodecHeader {
     // Byte (...)
     // * `LLLLLLLL`: CRC-8
     if (data.length < header.length)
-      throw new Error("Out of data while inside an Ogg Page");
+      data = yield* codecParser.readRawData(header.length, readOffset);
 
     header.crc = data[header.length - 1];
     if (header.crc !== crc8(data.subarray(0, header.length - 1))) {
@@ -312,7 +322,7 @@ export default class FLACHeader extends CodecHeader {
       } = header;
       headerCache.setHeader(key, header, codecUpdateFields);
     }
-    return header;
+    return new FLACHeader(header);
   }
 
   /**
@@ -323,6 +333,7 @@ export default class FLACHeader extends CodecHeader {
     super(header);
 
     this.channelMode = header.channelMode;
+    this.crc16 = undefined; // set in FLACFrame
     this.blockingStrategy = header.blockingStrategy;
     this.blockSize = header.blockSize;
     this.frameNumber = header.frameNumber;

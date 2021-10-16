@@ -17,17 +17,27 @@
 */
 
 import { headerStore } from "../../globals.js";
+import { flacCrc16 } from "../../utilities.js";
 import CodecFrame from "../CodecFrame.js";
-import FLACHeader from "./FLACHeader.js";
 
 export default class FLACFrame extends CodecFrame {
+  static getFrameFooterCrc16(data) {
+    return (data[data.length - 2] << 8) + data[data.length - 1];
+  }
+
+  // check frame footer crc
+  // https://xiph.org/flac/format.html#frame_footer
+  static checkFrameFooterCrc16(data) {
+    const expectedCrc16 = FLACFrame.getFrameFooterCrc16(data);
+    const actualCrc16 = flacCrc16(data.subarray(0, -2));
+
+    return expectedCrc16 === actualCrc16;
+  }
+
   constructor(data, header, streamInfo) {
-    const flacHeader = new FLACHeader(header, true);
+    header.streamInfo = streamInfo;
+    header.crc16 = FLACFrame.getFrameFooterCrc16(data);
 
-    if (flacHeader) {
-      flacHeader.streamInfo = streamInfo;
-    }
-
-    super(flacHeader, data, headerStore.get(flacHeader).samples);
+    super(header, data, headerStore.get(header).samples);
   }
 }

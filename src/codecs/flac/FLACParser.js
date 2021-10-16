@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../../globals.js";
+import { frameStore, headerStore } from "../../globals.js";
 import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
@@ -32,7 +32,59 @@ export default class FLACParser extends Parser {
     return "flac";
   }
 
-  parseFrame(oggPage) {
+  *parseFrame() {
+    const minFrameLength = 2;
+    const maxFrameLength = 64 * 1024;
+
+    // find the first valid frame header
+    do {
+      const header = yield* FLACHeader.getHeader(
+        this._codecParser,
+        this._headerCache,
+        0
+      );
+
+      if (header) {
+        // found a valid frame header
+        // find the next valid frame header
+        for (
+          let nextHeaderOffset =
+            headerStore.get(header).length + minFrameLength;
+          nextHeaderOffset <= maxFrameLength;
+          nextHeaderOffset++
+        ) {
+          if (
+            yield* FLACHeader.getHeader(
+              this._codecParser,
+              this._headerCache,
+              nextHeaderOffset
+            )
+          ) {
+            // found a valid next frame header
+            // check that this is actually the next header by validating the frame footer crc16
+            const frameData = (yield* this._codecParser.readRawData(
+              nextHeaderOffset
+            )).subarray(0, nextHeaderOffset);
+
+            if (FLACFrame.checkFrameFooterCrc16(frameData)) {
+              // both frame headers, and frame footer crc16 are valid, we are synced (odds are pretty low of a false positive)
+              const frame = new FLACFrame(frameData, header);
+
+              this._headerCache.enable(); // start caching when synced
+              this._codecParser.incrementRawData(nextHeaderOffset); // increment to the next frame
+              this._codecParser.mapFrameStats(frame);
+
+              return frame;
+            }
+          }
+        }
+      }
+      // not synced, increment data to continue syncing
+      this._codecParser.incrementRawData(1);
+    } while (true);
+  }
+
+  parseOggPage(oggPage) {
     if (oggPage.pageSequenceNumber === 0) {
       // Identification header
 
@@ -48,7 +100,7 @@ export default class FLACParser extends Parser {
           (segment) =>
             new FLACFrame(
               segment,
-              FLACHeader.getHeader(segment, this._headerCache),
+              FLACHeader.getHeaderFromUint8Array(segment, this._headerCache),
               this._streamInfo
             )
         );
