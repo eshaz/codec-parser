@@ -169,23 +169,23 @@ export default class FLACHeader extends CodecHeader {
   }
 
   static *getHeader(codecParser, headerCache, readOffset) {
-    const header = {};
-
     // Must be at least 6 bytes.
     let data = yield* codecParser.readRawData(6, readOffset);
+
+    // Bytes (1-2 of 6)
+    // * `11111111|111110..`: Frame sync
+    // * `........|......0.`: Reserved 0 - mandatory, 1 - reserved
+    if (data[0] !== 0xff || !(data[1] === 0xf8 || data[1] === 0xf9)) {
+      return null;
+    }
+
+    const header = {};
 
     // Check header cache
     const key = HeaderCache.getKey(data.subarray(0, 4));
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {
-      // Bytes (1-2 of 6)
-      // * `11111111|111110..`: Frame sync
-      // * `........|......0.`: Reserved 0 - mandatory, 1 - reserved
-      if (data[0] !== 0xff || !(data[1] === 0xf8 || data[1] === 0xf9)) {
-        return null;
-      }
-
       header.length = 2;
 
       // Byte (2 of 6)
