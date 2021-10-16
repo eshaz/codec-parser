@@ -37,7 +37,7 @@ export default class FLACParser extends Parser {
     let header, nextHeaderOffset;
 
     sync: do {
-      header = yield* FLACHeader.getHeaderGenerator(
+      header = yield* FLACHeader.getHeader(
         this._codecParser,
         this._headerCache,
         0
@@ -50,7 +50,7 @@ export default class FLACParser extends Parser {
           nextHeaderOffset++
         ) {
           if (
-            yield* FLACHeader.getHeaderGenerator(
+            yield* FLACHeader.getHeader(
               this._codecParser,
               this._headerCache,
               nextHeaderOffset
@@ -94,7 +94,7 @@ export default class FLACParser extends Parser {
           (segment) =>
             new FLACFrame(
               segment,
-              FLACHeader.getHeader(segment, this._headerCache),
+              FLACHeader.getHeaderFromUint8Array(segment, this._headerCache),
               this._streamInfo
             )
         );

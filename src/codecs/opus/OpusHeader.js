@@ -73,7 +73,7 @@ const channelMappingFamilies = {
 };
 
 export default class OpusHeader extends CodecHeader {
-  static getHeader(data, headerCache) {
+  static getHeaderFromUint8Array(data, headerCache) {
     const header = {};
     // Must be at least 19 bytes.
     if (data.length < 19)

@@ -51,7 +51,7 @@ const blockSizes = {
 };
 
 export default class VorbisHeader extends CodecHeader {
-  static getHeader(data, headerCache) {
+  static getHeaderFromUint8Array(data, headerCache) {
     const header = { length: 30 };
 
     // Must be at least 30 bytes.

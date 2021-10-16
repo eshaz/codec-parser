@@ -77,7 +77,7 @@ describe("CodecParser", () => {
     });
   };
 
-  /*describe("MP3 CBR", () => {
+  describe("MP3 CBR", () => {
     testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg");
   });
 
@@ -87,13 +87,12 @@ describe("CodecParser", () => {
 
   describe("AAC", () => {
     testParser("aac.aac", "audio/aac", "aac");
-  });*/
+  });
 
   describe("Flac", () => {
     testParser("flac.flac", "audio/flac", "flac");
   });
 
-  /*
   describe("Ogg", () => {
     const mimeType = "audio/ogg";
 
@@ -459,5 +458,4 @@ describe("CodecParser", () => {
       );
     });
   });
-  */
 });

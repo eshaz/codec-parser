@@ -42,7 +42,7 @@ export default class OpusParser extends Parser {
       // Identification header
 
       this._headerCache.enable();
-      this._identificationHeader = OpusHeader.getHeader(
+      this._identificationHeader = OpusHeader.getHeaderFromUint8Array(
         oggPage.data,
         this._headerCache
       );
