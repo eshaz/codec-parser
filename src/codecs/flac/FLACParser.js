@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { frameStore } from "../../globals.js";
+import { frameStore, headerStore } from "../../globals.js";
 import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
@@ -32,7 +32,53 @@ export default class FLACParser extends Parser {
     return "flac";
   }
 
-  parseFrame(oggPage) {
+  *parseFrame() {
+    const maxFrameLength = 64 * 1024;
+    let header, nextHeaderOffset;
+
+    sync: do {
+      header = yield* FLACHeader.getHeaderGenerator(
+        this._codecParser,
+        this._headerCache,
+        0
+      );
+
+      if (header) {
+        for (
+          nextHeaderOffset = headerStore.get(header).length + 1;
+          nextHeaderOffset <= maxFrameLength;
+          nextHeaderOffset++
+        ) {
+          if (
+            yield* FLACHeader.getHeaderGenerator(
+              this._codecParser,
+              this._headerCache,
+              nextHeaderOffset
+            )
+          ) {
+            // check previous frame crc16
+            break sync;
+          }
+        }
+      }
+      this._codecParser.incrementRawData(1); // increment to continue syncing
+    } while (true);
+
+    const frameData = (yield* this._codecParser.readRawData()).subarray(
+      0,
+      nextHeaderOffset
+    );
+    const frame = new FLACFrame(frameData, header);
+
+    this._headerCache.enable(); // start caching when synced
+
+    this._codecParser.incrementRawData(nextHeaderOffset); // increment to the next frame
+    this._codecParser.mapFrameStats(frame);
+
+    return frame;
+  }
+
+  parseOggPage(oggPage) {
     if (oggPage.pageSequenceNumber === 0) {
       // Identification header
 

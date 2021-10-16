@@ -315,6 +315,163 @@ export default class FLACHeader extends CodecHeader {
     return new FLACHeader(header);
   }
 
+  static *getHeaderGenerator(codecParser, headerCache, readOffset) {
+    const header = {};
+
+    // Must be at least 6 bytes.
+    let data = yield* codecParser.readRawData(6, readOffset);
+
+    // Check header cache
+    const key = HeaderCache.getKey(data.subarray(0, 4));
+    const cachedHeader = headerCache.getHeader(key);
+
+    if (!cachedHeader) {
+      // Bytes (1-2 of 6)
+      // * `11111111|111110..`: Frame sync
+      // * `........|......0.`: Reserved 0 - mandatory, 1 - reserved
+      if (data[0] !== 0xff || !(data[1] === 0xf8 || data[1] === 0xf9)) {
+        return null;
+      }
+
+      header.length = 2;
+
+      // Byte (2 of 6)
+      // * `.......C`: Blocking strategy, 0 - fixed, 1 - variable
+      header.blockingStrategyBits = data[1] & 0b00000001;
+      header.blockingStrategy = blockingStrategy[header.blockingStrategyBits];
+
+      // Byte (3 of 6)
+      // * `DDDD....`: Block size in inter-channel samples
+      // * `....EEEE`: Sample rate
+      header.length++;
+      header.blockSizeBits = data[2] & 0b11110000;
+      header.sampleRateBits = data[2] & 0b00001111;
+
+      header.blockSize = blockSize[header.blockSizeBits];
+      if (header.blockSize === "reserved") {
+        return null;
+      }
+
+      header.sampleRate = sampleRate[header.sampleRateBits];
+      if (header.sampleRate === "invalid") {
+        return null;
+      }
+
+      // Byte (4 of 6)
+      // * `FFFF....`: Channel assignment
+      // * `....GGG.`: Sample size in bits
+      // * `.......H`: Reserved 0 - mandatory, 1 - reserved
+      header.length++;
+      if (data[3] & 0b00000001) return null;
+      const channelAssignmentBits = data[3] & 0b11110000;
+      const bitDepthBits = data[3] & 0b00001110;
+
+      const channelAssignment = channelAssignments[channelAssignmentBits];
+      if (channelAssignment === "reserved") return null;
+
+      header.channels = channelAssignment.channels;
+      header.channelMode = channelAssignment.description;
+
+      header.bitDepth = bitDepth[bitDepthBits];
+      if (header.bitDepth === "reserved") return null;
+    } else {
+      Object.assign(header, cachedHeader);
+    }
+
+    // Byte (5...)
+    // * `IIIIIIII|...`: VBR block size ? sample number : frame number
+    header.length = 5;
+
+    // check if there is enough data to parse UTF8
+    data = yield* codecParser.readRawData(header.length + 8, readOffset);
+
+    const decodedUtf8 = FLACHeader.decodeUTF8Int(data.subarray(4));
+    if (!decodedUtf8) {
+      return null;
+    }
+
+    if (header.blockingStrategyBits) {
+      header.sampleNumber = decodedUtf8.value;
+    } else {
+      header.frameNumber = decodedUtf8.value;
+    }
+
+    header.length += decodedUtf8.next;
+
+    // Byte (...)
+    // * `JJJJJJJJ|(JJJJJJJJ)`: Blocksize (8/16bit custom value)
+    if (header.blockSizeBits === 0b01100000) {
+      // 8 bit
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
+
+      header.blockSize = data[header.length - 1] + 1;
+      header.length += 1;
+    } else if (header.blockSizeBits === 0b01110000) {
+      // 16 bit
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
+
+      header.blockSize =
+        (data[header.length - 1] << 8) + data[header.length] + 1;
+      header.length += 2;
+    }
+
+    header.samples = header.blockSize;
+
+    // Byte (...)
+    // * `KKKKKKKK|(KKKKKKKK)`: Sample rate (8/16bit custom value)
+    if (header.sampleRateBits === 0b00001100) {
+      // 8 bit
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
+
+      header.sampleRate = data[header.length - 1] * 1000;
+      header.length += 1;
+    } else if (header.sampleRateBits === 0b00001101) {
+      // 16 bit
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
+
+      header.sampleRate = (data[header.length - 1] << 8) + data[header.length];
+      header.length += 2;
+    } else if (header.sampleRateBits === 0b00001110) {
+      // 16 bit
+      if (data.length < header.length)
+        data = yield* codecParser.readRawData(header.length, readOffset);
+
+      header.sampleRate =
+        ((data[header.length - 1] << 8) + data[header.length]) * 10;
+      header.length += 2;
+    }
+
+    // Byte (...)
+    // * `LLLLLLLL`: CRC-8
+    if (data.length < header.length)
+      data = yield* codecParser.readRawData(header.length, readOffset);
+
+    header.crc = data[header.length - 1];
+    if (header.crc !== crc8(data.subarray(0, header.length - 1))) {
+      return null;
+    }
+
+    if (!cachedHeader) {
+      const {
+        blockingStrategyBits,
+        frameNumber,
+        sampleNumber,
+        samples,
+        sampleRateBits,
+        blockSizeBits,
+        crc,
+        length,
+        ...codecUpdateFields
+      } = header;
+      headerCache.setHeader(key, header, codecUpdateFields);
+    }
+    return new FLACHeader(header);
+  }
+
   /**
    * @private
    * Call FLACHeader.getHeader(Array<Uint8>) to get instance

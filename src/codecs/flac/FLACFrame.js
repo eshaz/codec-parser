@@ -21,7 +21,7 @@ import CodecFrame from "../CodecFrame.js";
 
 export default class FLACFrame extends CodecFrame {
   constructor(data, header, streamInfo) {
-    header.streamInfo = streamInfo
+    header.streamInfo = streamInfo;
 
     super(header, data, headerStore.get(header).samples);
   }

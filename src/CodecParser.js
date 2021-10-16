@@ -19,6 +19,7 @@
 import { crc32, concatBuffers } from "./utilities.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
 import AACParser from "./codecs/aac/AACParser.js";
+import FLACParser from "./codecs/flac/FLACParser.js";
 import OggParser from "./containers/ogg/OggParser.js";
 
 const noOp = () => {};
@@ -33,6 +34,8 @@ export default class CodecParser {
       this._parser = new AACParser(this, this._onCodecUpdate, this._onCodec);
     } else if (this._inputMimeType.match(/mpeg/)) {
       this._parser = new MPEGParser(this, this._onCodecUpdate, this._onCodec);
+    } else if (this._inputMimeType.match(/flac/)) {
+      this._parser = new FLACParser(this, this._onCodecUpdate, this._onCodec);
     } else if (this._inputMimeType.match(/ogg/)) {
       this._parser = new OggParser(this, this._onCodecUpdate, this._onCodec);
     } else {

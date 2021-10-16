@@ -37,7 +37,7 @@ export default class OpusParser extends Parser {
   /**
    * @todo implement continued page support
    */
-  parseFrame(oggPage) {
+  parseOggPage(oggPage) {
     if (oggPage.pageSequenceNumber === 0) {
       // Identification header
 

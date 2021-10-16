@@ -40,7 +40,7 @@ export default class VorbisParser extends Parser {
     return "vorbis";
   }
 
-  parseFrame(oggPage) {
+  parseOggPage(oggPage) {
     const oggPageSegments = frameStore.get(oggPage).segments;
 
     if (oggPage.pageSequenceNumber === 0) {
