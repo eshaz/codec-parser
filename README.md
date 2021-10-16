@@ -185,7 +185,7 @@ Depending on the mimetype each iteration of `CodecParser.iterator()` will return
 
 ### CodecFrame
 
-`CodecFrame` describes a single frame for an audio codec. `CodecFrame` will be returned when the mimetype describes audio that is not encapsulated within a container i.e. `audio/mpeg`, `audio/aac` or `audio/flac`.
+`CodecFrame` describes a single frame for an audio codec. `CodecFrame` will be returned when the mimetype describes audio that is not encapsulated within a container i.e. `audio/mpeg`, `audio/aac`, or `audio/flac`.
 
 * `data`: `Uint8Array` containing the audio data within this frame.
 * `header`: [`Header`](#header) object describing the codec information.

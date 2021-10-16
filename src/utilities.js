@@ -27,9 +27,7 @@ const getCrcTable = (crcTable, crcInitialValueFunction, crcFunction) => {
   for (let byte = 0; byte < crcTable.length; byte++) {
     let crc = crcInitialValueFunction(byte);
 
-    for (let bit = 8; bit > 0; bit--) {
-      crc = crcFunction(crc);
-    }
+    for (let bit = 8; bit > 0; bit--) crc = crcFunction(crc);
 
     crcTable[byte] = crc;
   }
@@ -57,8 +55,7 @@ const crc32Table = getCrcTable(
 const crc8 = (data) => {
   const crc = new Uint8Array(1);
 
-  for (let i = 0; i != data.length; i++)
-    crc[0] = crc8Table[(crc[0] ^ data[i]) & 0xff];
+  for (let i = 0; i != data.length; i++) crc[0] = crc8Table[crc[0] ^ data[i]];
 
   return crc[0];
 };
