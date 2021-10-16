@@ -33,6 +33,7 @@ export default class FLACParser extends Parser {
   }
 
   *parseFrame() {
+    const minFrameLength = 2;
     const maxFrameLength = 64 * 1024;
     let header, nextHeaderOffset;
 
@@ -45,7 +46,7 @@ export default class FLACParser extends Parser {
 
       if (header) {
         for (
-          nextHeaderOffset = headerStore.get(header).length + 1;
+          nextHeaderOffset = headerStore.get(header).length + minFrameLength;
           nextHeaderOffset <= maxFrameLength;
           nextHeaderOffset++
         ) {
@@ -56,7 +57,8 @@ export default class FLACParser extends Parser {
               nextHeaderOffset
             )
           ) {
-            // check previous frame crc16
+            // could check previous frame crc16, but likely not needed since both headers are validated using crc8
+            // https://xiph.org/flac/format.html#frame_footer
             break sync;
           }
         }
@@ -64,11 +66,10 @@ export default class FLACParser extends Parser {
       this._codecParser.incrementRawData(1); // increment to continue syncing
     } while (true);
 
-    const frameData = (yield* this._codecParser.readRawData()).subarray(
-      0,
-      nextHeaderOffset
+    const frame = new FLACFrame(
+      (yield* this._codecParser.readRawData()).subarray(0, nextHeaderOffset),
+      header
     );
-    const frame = new FLACFrame(frameData, header);
 
     this._headerCache.enable(); // start caching when synced
 
