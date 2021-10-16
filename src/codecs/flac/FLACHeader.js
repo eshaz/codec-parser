@@ -312,7 +312,7 @@ export default class FLACHeader extends CodecHeader {
       } = header;
       headerCache.setHeader(key, header, codecUpdateFields);
     }
-    return header;
+    return new FLACHeader(header);
   }
 
   /**

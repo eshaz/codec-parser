@@ -18,16 +18,11 @@
 
 import { headerStore } from "../../globals.js";
 import CodecFrame from "../CodecFrame.js";
-import FLACHeader from "./FLACHeader.js";
 
 export default class FLACFrame extends CodecFrame {
   constructor(data, header, streamInfo) {
-    const flacHeader = new FLACHeader(header, true);
+    header.streamInfo = streamInfo
 
-    if (flacHeader) {
-      flacHeader.streamInfo = streamInfo;
-    }
-
-    super(flacHeader, data, headerStore.get(flacHeader).samples);
+    super(header, data, headerStore.get(header).samples);
   }
 }
