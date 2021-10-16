@@ -17,6 +17,7 @@
 */
 
 import { frameStore, headerStore } from "../../globals.js";
+import { flacCrc16 } from "../../utilities.js";
 import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
@@ -57,9 +58,16 @@ export default class FLACParser extends Parser {
               nextHeaderOffset
             )
           ) {
-            // could check previous frame crc16, but likely not needed since both headers are validated using crc8
+            // check frame footer crc
             // https://xiph.org/flac/format.html#frame_footer
-            break sync;
+            const frameData = (yield* this._codecParser.readRawData(
+              nextHeaderOffset
+            )).subarray(0, nextHeaderOffset);
+
+            const expectedCrc16 = FLACFrame.getFrameFooterCrc16(frameData);
+            const actualCrc16 = flacCrc16(frameData.subarray(0, -2));
+
+            if (expectedCrc16 === actualCrc16) break sync;
           }
         }
       }

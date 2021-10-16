@@ -20,6 +20,10 @@ import { headerStore } from "../../globals.js";
 import CodecFrame from "../CodecFrame.js";
 
 export default class FLACFrame extends CodecFrame {
+  static getFrameFooterCrc16(data) {
+    return (data[data.length - 2] << 8) + data[data.length - 1];
+  }
+
   constructor(data, header, streamInfo) {
     header.streamInfo = streamInfo;
 

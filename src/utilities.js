@@ -23,11 +23,9 @@ const logError = (...messages) => {
   );
 };
 
-const getCrcTable = (crcFunction) => {
-  let crcTable = new Int32Array(256);
-
-  for (let byte = 0; byte < 256; byte++) {
-    let crc = byte;
+const getCrcTable = (crcTable, crcInitialValueFunction, crcFunction) => {
+  for (let byte = 0; byte < crcTable.length; byte++) {
+    let crc = crcInitialValueFunction(byte);
 
     for (let bit = 8; bit > 0; bit--) {
       crc = crcFunction(crc);
@@ -38,32 +36,49 @@ const getCrcTable = (crcFunction) => {
   return crcTable;
 };
 
-const crc8Table = getCrcTable((crc) =>
-  crc & 0x80 ? 0x07 ^ (crc << 1) : crc << 1
+const crc8Table = getCrcTable(
+  new Uint8Array(256),
+  (b) => b,
+  (crc) => (crc & 0x80 ? 0x07 ^ (crc << 1) : crc << 1)
 );
 
-const crc32Table = getCrcTable((crc) =>
-  crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1
+const flacCrc16Table = getCrcTable(
+  new Uint16Array(256),
+  (b) => b << 8,
+  (crc) => (crc << 1) ^ (crc & (1 << 15) ? 0x8005 : 0)
 );
 
-const crc8 = (buf) => {
-  let crc;
+const crc32Table = getCrcTable(
+  new Uint32Array(256),
+  (b) => b,
+  (crc) => (crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1)
+);
 
-  for (const byte of buf) {
-    crc = crc8Table[(crc ^ byte) & 0xff] & 0xff;
-  }
+const crc8 = (data) => {
+  const crc = new Uint8Array(1);
 
-  return crc;
+  for (let i = 0; i != data.length; i++)
+    crc[0] = crc8Table[(crc[0] ^ data[i]) & 0xff];
+
+  return crc[0];
 };
 
-const crc32 = (buf) => {
-  let crc;
+const flacCrc16 = (data) => {
+  const crc = new Uint16Array(1);
 
-  for (const byte of buf) {
-    crc = crc32Table[(crc ^ byte) & 0xff] ^ (crc >>> 8);
-  }
+  for (let i = 0; i != data.length; i++)
+    crc[0] = (crc[0] << 8) ^ flacCrc16Table[(crc[0] >> 8) ^ data[i]];
 
-  return crc ^ -1;
+  return crc[0];
+};
+
+const crc32 = (data) => {
+  const crc = new Uint32Array(1);
+
+  for (let i = 0; i != data.length; i++)
+    crc[0] = crc32Table[(crc[0] ^ data[i]) & 0xff] ^ (crc[0] >>> 8);
+
+  return crc[0] ^ -1;
 };
 
 const concatBuffers = (...buffers) => {
@@ -110,4 +125,4 @@ class BitReader {
   }
 }
 
-export { crc8, crc32, reverse, logError, concatBuffers, BitReader };
+export { crc8, flacCrc16, crc32, reverse, logError, concatBuffers, BitReader };
