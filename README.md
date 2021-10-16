@@ -3,8 +3,9 @@
 `codec-parser` is a JavaScript library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.
 
 ### Supports:
-  * **MPEG (MP3)** - `audio/mpeg`
+  * **MPEG Layer I/II/III (MP3)** - `audio/mpeg`
   * **AAC** - `audio/aac`, `audio/aacp`
+  * **FLAC** - `audio/flac`
   * **Ogg FLAC** - `application/ogg`, `audio/ogg`
   * **Ogg Opus** - `application/ogg`, `audio/ogg`
   * **Ogg Vorbis** - `application/ogg`, `audio/ogg`
@@ -133,6 +134,7 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
   * `mimetype` *required* Incoming audio codec or container
     * MP3 - `audio/mpeg`
     * AAC - `audio/aac`, `audio/aacp`
+    * FLAC - `audio/flac`
     * Ogg FLAC - `application/ogg`, `audio/ogg`
     * Ogg Opus - `application/ogg`, `audio/ogg`
     * Ogg Vorbis - `application/ogg`, `audio/ogg`
@@ -163,7 +165,7 @@ Depending on the mimetype each iteration of `CodecParser.iterator()` will return
 
 ### OggPage
 
-`OggPage` describes a single ogg page. An `OggPage` may contain zero to many `CodecFrame`. `OggPage` will be returned when the mimetype is `audio/ogg` or `application/ogg`.
+`OggPage` describes a single ogg page. An `OggPage` may contain zero to many `CodecFrame` objects. `OggPage` will be returned when the mimetype is `audio/ogg` or `application/ogg`.
 
 * `absoluteGranulePosition`: Total audio samples in the ogg stream up to the end of this `OggPage`.
 * `codecFrames`: Array of `CodecFrame`(s) contained within this `OggPage`.
@@ -183,7 +185,7 @@ Depending on the mimetype each iteration of `CodecParser.iterator()` will return
 
 ### CodecFrame
 
-`CodecFrame` describes a single frame for an audio codec. `CodecFrame` will be returned when the mimetype describes audio that is not encapsulated within a container i.e. `audio/mpeg` or `audio/aac`.
+`CodecFrame` describes a single frame for an audio codec. `CodecFrame` will be returned when the mimetype describes audio that is not encapsulated within a container i.e. `audio/mpeg`, `audio/aac` or `audio/flac`.
 
 * `data`: `Uint8Array` containing the audio data within this frame.
 * `header`: [`Header`](#header) object describing the codec information.
