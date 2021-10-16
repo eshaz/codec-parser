@@ -314,6 +314,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   blockingStrategy: "Fixed",
   blockSize: 4096,
   frameNumber: 15183508,
+  crc16: 56624,
   streamInfo: `Uint8Array`
 }
 ```

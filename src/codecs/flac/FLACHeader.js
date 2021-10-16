@@ -333,6 +333,7 @@ export default class FLACHeader extends CodecHeader {
     super(header);
 
     this.channelMode = header.channelMode;
+    this.crc16 = undefined; // set in FLACFrame
     this.blockingStrategy = header.blockingStrategy;
     this.blockSize = header.blockSize;
     this.frameNumber = header.frameNumber;

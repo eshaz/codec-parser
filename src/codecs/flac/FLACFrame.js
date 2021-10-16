@@ -36,6 +36,7 @@ export default class FLACFrame extends CodecFrame {
 
   constructor(data, header, streamInfo) {
     header.streamInfo = streamInfo;
+    header.crc16 = FLACFrame.getFrameFooterCrc16(data);
 
     super(header, data, headerStore.get(header).samples);
   }

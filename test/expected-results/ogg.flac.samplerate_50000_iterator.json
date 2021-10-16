@@ -37,7 +37,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 0
+          "frameNumber": 0,
+          "crc16": 4491
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -55,7 +56,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 1
+          "frameNumber": 1,
+          "crc16": 955
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -73,7 +75,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 2
+          "frameNumber": 2,
+          "crc16": 5493
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -91,7 +94,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 3
+          "frameNumber": 3,
+          "crc16": 40811
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -109,7 +113,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 4
+          "frameNumber": 4,
+          "crc16": 21484
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -127,7 +132,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 5
+          "frameNumber": 5,
+          "crc16": 57749
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -145,7 +151,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 6
+          "frameNumber": 6,
+          "crc16": 63003
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -178,7 +185,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 7
+          "frameNumber": 7,
+          "crc16": 31152
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -196,7 +204,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 8
+          "frameNumber": 8,
+          "crc16": 4497
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -214,7 +223,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 9
+          "frameNumber": 9,
+          "crc16": 34415
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -232,7 +242,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 10
+          "frameNumber": 10,
+          "crc16": 32000
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -265,7 +276,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 11
+          "frameNumber": 11,
+          "crc16": 36860
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -283,7 +295,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 12
+          "frameNumber": 12,
+          "crc16": 28091
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -301,7 +314,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 13
+          "frameNumber": 13,
+          "crc16": 8295
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -319,7 +333,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 14
+          "frameNumber": 14,
+          "crc16": 21290
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -352,7 +367,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 15
+          "frameNumber": 15,
+          "crc16": 15722
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -370,7 +386,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 16
+          "frameNumber": 16,
+          "crc16": 37633
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -388,7 +405,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 17
+          "frameNumber": 17,
+          "crc16": 56297
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -406,7 +424,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 18
+          "frameNumber": 18,
+          "crc16": 53009
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -424,7 +443,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 19
+          "frameNumber": 19,
+          "crc16": 58342
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -457,7 +477,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 20
+          "frameNumber": 20,
+          "crc16": 12278
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -475,7 +496,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 21
+          "frameNumber": 21,
+          "crc16": 16265
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -493,7 +515,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 22
+          "frameNumber": 22,
+          "crc16": 45677
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -511,7 +534,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 23
+          "frameNumber": 23,
+          "crc16": 16298
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -544,7 +568,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 24
+          "frameNumber": 24,
+          "crc16": 26310
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -562,7 +587,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 25
+          "frameNumber": 25,
+          "crc16": 9187
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -580,7 +606,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 26
+          "frameNumber": 26,
+          "crc16": 47268
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -598,7 +625,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 27
+          "frameNumber": 27,
+          "crc16": 26126
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -616,7 +644,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 28
+          "frameNumber": 28,
+          "crc16": 19747
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -649,7 +678,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 29
+          "frameNumber": 29,
+          "crc16": 54019
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -667,7 +697,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 30
+          "frameNumber": 30,
+          "crc16": 41502
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -685,7 +716,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 31
+          "frameNumber": 31,
+          "crc16": 27573
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -703,7 +735,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 32
+          "frameNumber": 32,
+          "crc16": 13235
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -721,7 +754,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 33
+          "frameNumber": 33,
+          "crc16": 9368
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -754,7 +788,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 34
+          "frameNumber": 34,
+          "crc16": 64678
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -772,7 +807,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 35
+          "frameNumber": 35,
+          "crc16": 57496
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -790,7 +826,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 36
+          "frameNumber": 36,
+          "crc16": 10795
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -808,7 +845,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 37
+          "frameNumber": 37,
+          "crc16": 31096
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -841,7 +879,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 38
+          "frameNumber": 38,
+          "crc16": 13593
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -859,7 +898,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 39
+          "frameNumber": 39,
+          "crc16": 56630
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -877,7 +917,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 40
+          "frameNumber": 40,
+          "crc16": 29129
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -895,7 +936,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 41
+          "frameNumber": 41,
+          "crc16": 25540
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -928,7 +970,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 42
+          "frameNumber": 42,
+          "crc16": 18119
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -946,7 +989,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 43
+          "frameNumber": 43,
+          "crc16": 27868
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -964,7 +1008,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 44
+          "frameNumber": 44,
+          "crc16": 10986
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -982,7 +1027,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 45
+          "frameNumber": 45,
+          "crc16": 961
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1000,7 +1046,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 46
+          "frameNumber": 46,
+          "crc16": 44217
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1033,7 +1080,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 47
+          "frameNumber": 47,
+          "crc16": 1934
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1051,7 +1099,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 48
+          "frameNumber": 48,
+          "crc16": 4105
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1069,7 +1118,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 49
+          "frameNumber": 49,
+          "crc16": 64886
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1087,7 +1137,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 50
+          "frameNumber": 50,
+          "crc16": 59698
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1105,7 +1156,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 51
+          "frameNumber": 51,
+          "crc16": 60485
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1138,7 +1190,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 52
+          "frameNumber": 52,
+          "crc16": 22209
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1156,7 +1209,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 53
+          "frameNumber": 53,
+          "crc16": 17820
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1174,7 +1228,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 54
+          "frameNumber": 54,
+          "crc16": 35867
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1192,7 +1247,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 55
+          "frameNumber": 55,
+          "crc16": 14913
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1210,7 +1266,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 56
+          "frameNumber": 56,
+          "crc16": 26255
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1243,7 +1300,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 57
+          "frameNumber": 57,
+          "crc16": 43317
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1261,7 +1319,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 58
+          "frameNumber": 58,
+          "crc16": 31411
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1279,7 +1338,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 59
+          "frameNumber": 59,
+          "crc16": 58877
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1297,7 +1357,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 60
+          "frameNumber": 60,
+          "crc16": 62463
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1315,7 +1376,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 61
+          "frameNumber": 61,
+          "crc16": 43416
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1348,7 +1410,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 62
+          "frameNumber": 62,
+          "crc16": 22442
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1366,7 +1429,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 63
+          "frameNumber": 63,
+          "crc16": 30321
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1384,7 +1448,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 64
+          "frameNumber": 64,
+          "crc16": 55052
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1402,7 +1467,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 65
+          "frameNumber": 65,
+          "crc16": 8032
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1420,7 +1486,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 66
+          "frameNumber": 66,
+          "crc16": 3227
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1453,7 +1520,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 67
+          "frameNumber": 67,
+          "crc16": 16759
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1471,7 +1539,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 68
+          "frameNumber": 68,
+          "crc16": 12362
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1489,7 +1558,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 69
+          "frameNumber": 69,
+          "crc16": 54602
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1507,7 +1577,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 70
+          "frameNumber": 70,
+          "crc16": 30103
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1525,7 +1596,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 71
+          "frameNumber": 71,
+          "crc16": 59667
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1558,7 +1630,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 72
+          "frameNumber": 72,
+          "crc16": 22927
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1576,7 +1649,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 73
+          "frameNumber": 73,
+          "crc16": 6631
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1594,7 +1668,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 74
+          "frameNumber": 74,
+          "crc16": 7371
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1612,7 +1687,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 75
+          "frameNumber": 75,
+          "crc16": 42439
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1630,7 +1706,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 76
+          "frameNumber": 76,
+          "crc16": 3703
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1663,7 +1740,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 77
+          "frameNumber": 77,
+          "crc16": 7714
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1681,7 +1759,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 78
+          "frameNumber": 78,
+          "crc16": 12348
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1699,7 +1778,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 79
+          "frameNumber": 79,
+          "crc16": 39232
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1717,7 +1797,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 80
+          "frameNumber": 80,
+          "crc16": 25585
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1735,7 +1816,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 81
+          "frameNumber": 81,
+          "crc16": 32607
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1768,7 +1850,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 82
+          "frameNumber": 82,
+          "crc16": 13543
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1786,7 +1869,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 83
+          "frameNumber": 83,
+          "crc16": 9251
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1804,7 +1888,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 84
+          "frameNumber": 84,
+          "crc16": 32760
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1822,7 +1907,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 85
+          "frameNumber": 85,
+          "crc16": 64808
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1840,7 +1926,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 86
+          "frameNumber": 86,
+          "crc16": 46101
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1873,7 +1960,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 87
+          "frameNumber": 87,
+          "crc16": 50826
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1891,7 +1979,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 88
+          "frameNumber": 88,
+          "crc16": 55571
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1909,7 +1998,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 89
+          "frameNumber": 89,
+          "crc16": 61397
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1927,7 +2017,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 90
+          "frameNumber": 90,
+          "crc16": 53492
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1960,7 +2051,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 91
+          "frameNumber": 91,
+          "crc16": 36372
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1978,7 +2070,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 92
+          "frameNumber": 92,
+          "crc16": 54217
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -1996,7 +2089,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 93
+          "frameNumber": 93,
+          "crc16": 6118
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2014,7 +2108,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 94
+          "frameNumber": 94,
+          "crc16": 14457
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2047,7 +2142,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 95
+          "frameNumber": 95,
+          "crc16": 49567
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2065,7 +2161,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 96
+          "frameNumber": 96,
+          "crc16": 13648
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2083,7 +2180,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 97
+          "frameNumber": 97,
+          "crc16": 32310
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2101,7 +2199,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 98
+          "frameNumber": 98,
+          "crc16": 47976
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2119,7 +2218,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 99
+          "frameNumber": 99,
+          "crc16": 480
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2152,7 +2252,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 100
+          "frameNumber": 100,
+          "crc16": 17380
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2170,7 +2271,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 101
+          "frameNumber": 101,
+          "crc16": 23497
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2188,7 +2290,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 102
+          "frameNumber": 102,
+          "crc16": 33544
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2206,7 +2309,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 103
+          "frameNumber": 103,
+          "crc16": 38818
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2239,7 +2343,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 104
+          "frameNumber": 104,
+          "crc16": 51103
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2257,7 +2362,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 105
+          "frameNumber": 105,
+          "crc16": 26274
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2275,7 +2381,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 106
+          "frameNumber": 106,
+          "crc16": 11046
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2293,7 +2400,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 107
+          "frameNumber": 107,
+          "crc16": 64249
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2311,7 +2419,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 108
+          "frameNumber": 108,
+          "crc16": 13025
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2344,7 +2453,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 109
+          "frameNumber": 109,
+          "crc16": 10095
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2362,7 +2472,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 110
+          "frameNumber": 110,
+          "crc16": 23606
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2380,7 +2491,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 111
+          "frameNumber": 111,
+          "crc16": 50556
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2398,7 +2510,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 112
+          "frameNumber": 112,
+          "crc16": 20569
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2431,7 +2544,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 113
+          "frameNumber": 113,
+          "crc16": 43954
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2449,7 +2563,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 114
+          "frameNumber": 114,
+          "crc16": 59445
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2467,7 +2582,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 115
+          "frameNumber": 115,
+          "crc16": 50430
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2485,7 +2601,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 116
+          "frameNumber": 116,
+          "crc16": 41829
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2518,7 +2635,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 117
+          "frameNumber": 117,
+          "crc16": 27697
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2536,7 +2654,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 118
+          "frameNumber": 118,
+          "crc16": 52741
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2554,7 +2673,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 119
+          "frameNumber": 119,
+          "crc16": 61115
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2572,7 +2692,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 120
+          "frameNumber": 120,
+          "crc16": 6252
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2605,7 +2726,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 121
+          "frameNumber": 121,
+          "crc16": 23565
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2623,7 +2745,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 122
+          "frameNumber": 122,
+          "crc16": 30504
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2641,7 +2764,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 123
+          "frameNumber": 123,
+          "crc16": 11026
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2659,7 +2783,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 124
+          "frameNumber": 124,
+          "crc16": 15520
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2692,7 +2817,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 125
+          "frameNumber": 125,
+          "crc16": 18848
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2710,7 +2836,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 126
+          "frameNumber": 126,
+          "crc16": 50230
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2728,7 +2855,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 127
+          "frameNumber": 127,
+          "crc16": 23276
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2746,7 +2874,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 192
+          "frameNumber": 192,
+          "crc16": 47864
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2779,7 +2908,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 193
+          "frameNumber": 193,
+          "crc16": 39990
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2797,7 +2927,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 194
+          "frameNumber": 194,
+          "crc16": 53822
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2815,7 +2946,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 195
+          "frameNumber": 195,
+          "crc16": 32829
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2833,7 +2965,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 196
+          "frameNumber": 196,
+          "crc16": 32113
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2851,7 +2984,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 197
+          "frameNumber": 197,
+          "crc16": 29990
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2884,7 +3018,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 198
+          "frameNumber": 198,
+          "crc16": 5215
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2902,7 +3037,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 199
+          "frameNumber": 199,
+          "crc16": 21463
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2920,7 +3056,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 200
+          "frameNumber": 200,
+          "crc16": 764
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2938,7 +3075,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 201
+          "frameNumber": 201,
+          "crc16": 35386
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2956,7 +3094,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 202
+          "frameNumber": 202,
+          "crc16": 44371
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -2989,7 +3128,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 203
+          "frameNumber": 203,
+          "crc16": 19643
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3007,7 +3147,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 204
+          "frameNumber": 204,
+          "crc16": 1535
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3025,7 +3166,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 205
+          "frameNumber": 205,
+          "crc16": 56931
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3043,7 +3185,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 206
+          "frameNumber": 206,
+          "crc16": 63524
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3061,7 +3204,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 207
+          "frameNumber": 207,
+          "crc16": 55351
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3094,7 +3238,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 208
+          "frameNumber": 208,
+          "crc16": 165
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3112,7 +3257,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 209
+          "frameNumber": 209,
+          "crc16": 48170
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3130,7 +3276,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 210
+          "frameNumber": 210,
+          "crc16": 32635
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3148,7 +3295,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 211
+          "frameNumber": 211,
+          "crc16": 16264
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3166,7 +3314,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 212
+          "frameNumber": 212,
+          "crc16": 13009
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3199,7 +3348,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 213
+          "frameNumber": 213,
+          "crc16": 12057
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3217,7 +3367,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 214
+          "frameNumber": 214,
+          "crc16": 609
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3235,7 +3386,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 215
+          "frameNumber": 215,
+          "crc16": 9456
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3253,7 +3405,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 216
+          "frameNumber": 216,
+          "crc16": 43206
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3271,7 +3424,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 217
+          "frameNumber": 217,
+          "crc16": 21727
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3304,7 +3458,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 218
+          "frameNumber": 218,
+          "crc16": 9481
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3322,7 +3477,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 219
+          "frameNumber": 219,
+          "crc16": 57799
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3340,7 +3496,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 220
+          "frameNumber": 220,
+          "crc16": 3898
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3358,7 +3515,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 221
+          "frameNumber": 221,
+          "crc16": 44496
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3391,7 +3549,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 222
+          "frameNumber": 222,
+          "crc16": 10108
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3409,7 +3568,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 223
+          "frameNumber": 223,
+          "crc16": 38523
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3427,7 +3587,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 224
+          "frameNumber": 224,
+          "crc16": 46042
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3445,7 +3606,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 225
+          "frameNumber": 225,
+          "crc16": 22925
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3463,7 +3625,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 226
+          "frameNumber": 226,
+          "crc16": 11029
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3496,7 +3659,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 227
+          "frameNumber": 227,
+          "crc16": 25918
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3514,7 +3678,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 228
+          "frameNumber": 228,
+          "crc16": 45102
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3532,7 +3697,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 229
+          "frameNumber": 229,
+          "crc16": 11271
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3550,7 +3716,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 230
+          "frameNumber": 230,
+          "crc16": 61761
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3568,7 +3735,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 231
+          "frameNumber": 231,
+          "crc16": 4883
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3601,7 +3769,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 232
+          "frameNumber": 232,
+          "crc16": 30194
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3619,7 +3788,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 233
+          "frameNumber": 233,
+          "crc16": 15591
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3637,7 +3807,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 234
+          "frameNumber": 234,
+          "crc16": 11857
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3655,7 +3826,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 235
+          "frameNumber": 235,
+          "crc16": 47743
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3688,7 +3860,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 236
+          "frameNumber": 236,
+          "crc16": 36584
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3706,7 +3879,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 237
+          "frameNumber": 237,
+          "crc16": 13250
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3724,7 +3898,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 238
+          "frameNumber": 238,
+          "crc16": 26196
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3742,7 +3917,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 239
+          "frameNumber": 239,
+          "crc16": 46699
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3775,7 +3951,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 240
+          "frameNumber": 240,
+          "crc16": 40044
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3793,7 +3970,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 241
+          "frameNumber": 241,
+          "crc16": 14958
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3811,7 +3989,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 242
+          "frameNumber": 242,
+          "crc16": 8494
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3829,7 +4008,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 243
+          "frameNumber": 243,
+          "crc16": 55153
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3847,7 +4027,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 244
+          "frameNumber": 244,
+          "crc16": 16932
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3880,7 +4061,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 245
+          "frameNumber": 245,
+          "crc16": 4692
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3898,7 +4080,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 246
+          "frameNumber": 246,
+          "crc16": 50772
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3916,7 +4099,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 247
+          "frameNumber": 247,
+          "crc16": 42470
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3934,7 +4118,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 248
+          "frameNumber": 248,
+          "crc16": 50260
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3967,7 +4152,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 249
+          "frameNumber": 249,
+          "crc16": 9874
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -3985,7 +4171,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 250
+          "frameNumber": 250,
+          "crc16": 63085
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4003,7 +4190,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 251
+          "frameNumber": 251,
+          "crc16": 11374
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4021,7 +4209,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 252
+          "frameNumber": 252,
+          "crc16": 8310
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4054,7 +4243,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 253
+          "frameNumber": 253,
+          "crc16": 4301
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4072,7 +4262,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 254
+          "frameNumber": 254,
+          "crc16": 57332
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4090,7 +4281,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 255
+          "frameNumber": 255,
+          "crc16": 14267
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4108,7 +4300,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 192
+          "frameNumber": 192,
+          "crc16": 12115
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4126,7 +4319,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 193
+          "frameNumber": 193,
+          "crc16": 38066
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4159,7 +4353,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 194
+          "frameNumber": 194,
+          "crc16": 63720
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4177,7 +4372,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 195
+          "frameNumber": 195,
+          "crc16": 23679
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4195,7 +4391,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 196
+          "frameNumber": 196,
+          "crc16": 29107
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4213,7 +4410,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 197
+          "frameNumber": 197,
+          "crc16": 59093
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4246,7 +4444,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 198
+          "frameNumber": 198,
+          "crc16": 28271
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4264,7 +4463,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 199
+          "frameNumber": 199,
+          "crc16": 14204
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4282,7 +4482,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 200
+          "frameNumber": 200,
+          "crc16": 56789
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4300,7 +4501,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 201
+          "frameNumber": 201,
+          "crc16": 54743
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4333,7 +4535,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 202
+          "frameNumber": 202,
+          "crc16": 27207
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4351,7 +4554,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 203
+          "frameNumber": 203,
+          "crc16": 26232
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4369,7 +4573,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 204
+          "frameNumber": 204,
+          "crc16": 19022
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4387,7 +4592,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 205
+          "frameNumber": 205,
+          "crc16": 32967
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4420,7 +4626,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 206
+          "frameNumber": 206,
+          "crc16": 52829
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4438,7 +4645,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 207
+          "frameNumber": 207,
+          "crc16": 33032
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4456,7 +4664,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 208
+          "frameNumber": 208,
+          "crc16": 37124
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4474,7 +4683,8 @@
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 209
+          "frameNumber": 209,
+          "crc16": 41782
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4507,7 +4717,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 210
+          "frameNumber": 210,
+          "crc16": 22859
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4525,7 +4736,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 211
+          "frameNumber": 211,
+          "crc16": 45944
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4543,7 +4755,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 212
+          "frameNumber": 212,
+          "crc16": 57903
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4561,7 +4774,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 213
+          "frameNumber": 213,
+          "crc16": 11676
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4579,7 +4793,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 214
+          "frameNumber": 214,
+          "crc16": 22642
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4612,7 +4827,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 215
+          "frameNumber": 215,
+          "crc16": 48886
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4630,7 +4846,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 216
+          "frameNumber": 216,
+          "crc16": 14821
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4648,7 +4865,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 217
+          "frameNumber": 217,
+          "crc16": 8683
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4666,7 +4884,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 218
+          "frameNumber": 218,
+          "crc16": 614
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4684,7 +4903,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 219
+          "frameNumber": 219,
+          "crc16": 10825
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4702,7 +4922,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 220
+          "frameNumber": 220,
+          "crc16": 10923
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4720,7 +4941,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 221
+          "frameNumber": 221,
+          "crc16": 17952
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4753,7 +4975,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 222
+          "frameNumber": 222,
+          "crc16": 10025
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4771,7 +4994,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 223
+          "frameNumber": 223,
+          "crc16": 59477
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4789,7 +5013,8 @@
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 224
+          "frameNumber": 224,
+          "crc16": 1678
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4807,7 +5032,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 225
+          "frameNumber": 225,
+          "crc16": 35834
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4825,7 +5051,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 226
+          "frameNumber": 226,
+          "crc16": 41609
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4843,7 +5070,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 227
+          "frameNumber": 227,
+          "crc16": 45241
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4861,7 +5089,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 228
+          "frameNumber": 228,
+          "crc16": 52777
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4879,7 +5108,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 229
+          "frameNumber": 229,
+          "crc16": 56345
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4897,7 +5127,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 230
+          "frameNumber": 230,
+          "crc16": 59977
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4915,7 +5146,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 231
+          "frameNumber": 231,
+          "crc16": 63609
         },
         "samples": 4608,
         "duration": 92.16000000000001,
@@ -4933,7 +5165,8 @@
           "channelMode": "left, right",
           "blockingStrategy": "Fixed",
           "blockSize": 4608,
-          "frameNumber": 232
+          "frameNumber": 232,
+          "crc16": 5993
         },
         "samples": 4608,
         "duration": 92.16000000000001,
