@@ -17,7 +17,6 @@
 */
 
 import { frameStore, headerStore } from "../../globals.js";
-import { flacCrc16 } from "../../utilities.js";
 import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
@@ -36,18 +35,21 @@ export default class FLACParser extends Parser {
   *parseFrame() {
     const minFrameLength = 2;
     const maxFrameLength = 64 * 1024;
-    let header, nextHeaderOffset;
 
-    sync: do {
-      header = yield* FLACHeader.getHeader(
+    // find the first valid frame header
+    do {
+      const header = yield* FLACHeader.getHeader(
         this._codecParser,
         this._headerCache,
         0
       );
 
       if (header) {
+        // found a valid frame header
+        // find the next valid frame header
         for (
-          nextHeaderOffset = headerStore.get(header).length + minFrameLength;
+          let nextHeaderOffset =
+            headerStore.get(header).length + minFrameLength;
           nextHeaderOffset <= maxFrameLength;
           nextHeaderOffset++
         ) {
@@ -58,33 +60,28 @@ export default class FLACParser extends Parser {
               nextHeaderOffset
             )
           ) {
-            // check frame footer crc
-            // https://xiph.org/flac/format.html#frame_footer
+            // found a valid next frame header
+            // check that this is actually the next header by validating the frame footer crc16
             const frameData = (yield* this._codecParser.readRawData(
               nextHeaderOffset
             )).subarray(0, nextHeaderOffset);
 
-            const expectedCrc16 = FLACFrame.getFrameFooterCrc16(frameData);
-            const actualCrc16 = flacCrc16(frameData.subarray(0, -2));
+            if (FLACFrame.checkFrameFooterCrc16(frameData)) {
+              // both frame headers, and frame footer crc16 are valid, we are synced (odds are pretty low of a false positive)
+              const frame = new FLACFrame(frameData, header);
 
-            if (expectedCrc16 === actualCrc16) break sync;
+              this._headerCache.enable(); // start caching when synced
+              this._codecParser.incrementRawData(nextHeaderOffset); // increment to the next frame
+              this._codecParser.mapFrameStats(frame);
+
+              return frame;
+            }
           }
         }
       }
-      this._codecParser.incrementRawData(1); // increment to continue syncing
+      // not synced, increment data to continue syncing
+      this._codecParser.incrementRawData(1);
     } while (true);
-
-    const frame = new FLACFrame(
-      (yield* this._codecParser.readRawData()).subarray(0, nextHeaderOffset),
-      header
-    );
-
-    this._headerCache.enable(); // start caching when synced
-
-    this._codecParser.incrementRawData(nextHeaderOffset); // increment to the next frame
-    this._codecParser.mapFrameStats(frame);
-
-    return frame;
   }
 
   parseOggPage(oggPage) {
