@@ -98,14 +98,22 @@ export default class FLACParser extends Parser {
       oggPage.codecFrames = frameStore
         .get(oggPage)
         .segments.filter((segment) => segment[0] === 0xff) // filter out padding and other metadata frames
-        .map(
-          (segment) =>
-            new FLACFrame(
-              segment,
-              FLACHeader.getHeaderFromUint8Array(segment, this._headerCache),
-              this._streamInfo
-            )
-        );
+        .map((segment) => {
+          const header = FLACHeader.getHeaderFromUint8Array(
+            segment,
+            this._headerCache
+          );
+
+          if (header) {
+            return new FLACFrame(segment, header, this._streamInfo);
+          } else {
+            this._codecParser.logWarning(
+              "Failed to parse Ogg FLAC frame",
+              "Skipping invalid FLAC frame"
+            );
+          }
+        })
+        .filter((frame) => Boolean(frame));
     }
 
     return oggPage;

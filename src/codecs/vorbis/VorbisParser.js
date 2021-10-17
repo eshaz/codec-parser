@@ -52,6 +52,12 @@ export default class VorbisParser extends Parser {
         oggPage.data,
         this._headerCache
       );
+
+      if (!this._identificationHeader)
+        this._codecParser.logError(
+          "Failed to parse Ogg Vorbis Identification Header",
+          "Not a valid Ogg Vorbis file"
+        );
     } else if (oggPage.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
 
