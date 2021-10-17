@@ -77,7 +77,8 @@ export default class OggParser extends Parser {
   checkPageSequenceNumber(oggPage) {
     if (
       oggPage.pageSequenceNumber !== this._pageSequenceNumber + 1 &&
-      oggPage.pageSequenceNumber > 2
+      this._pageSequenceNumber > 1 &&
+      oggPage.pageSequenceNumber > 1
     ) {
       this._codecParser.logWarning(
         "Unexpected gap in Ogg Page Sequence Number.",

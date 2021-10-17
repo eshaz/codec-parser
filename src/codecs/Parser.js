@@ -70,7 +70,7 @@ export default class Parser {
     }
 
     this._codecParser.logWarning(
-      `Missing frame frame at: ${frameLength} bytes from current position.`,
+      `Missing frame frame at ${frameLength} bytes from current position.`,
       "Dropping current frame and trying again."
     );
     this._headerCache.reset(); // frame is invalid and must re-sync and clear cache

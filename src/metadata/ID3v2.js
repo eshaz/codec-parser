@@ -16,6 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+// https://id3.org/Developer%20Information
+
 export default class ID3v2 {
   static *getID3v2Header(codecParser, headerCache, readOffset) {
     const header = { headerLength: 10 };
