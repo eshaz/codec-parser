@@ -39,7 +39,7 @@ export default class ID3v2 {
     if (data[5] & 0b00001111) return null;
 
     // Byte (5 of 9)
-    // * `CDE00000`: Flags
+    // * `CDEF0000`: Flags
     // * `C.......`: Unsynchronisation (indicates whether or not unsynchronisation is used)
     // * `.D......`: Extended header (indicates whether or not the header is followed by an extended header)
     // * `..E.....`: Experimental indicator (indicates whether or not the tag is in an experimental stage)

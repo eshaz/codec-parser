@@ -153,8 +153,8 @@ export default class CodecParser {
       const stats = [
         `codec:         ${this.codec}`,
         `inputMimeType: ${this._inputMimeType}`,
+        `readPosition:  ${this._currentReadPosition}`,
         `totalBytesIn:  ${this._totalBytesIn}`,
-        `currPosition:  ${this._currentReadPosition}`,
         `totalBytesOut: ${this._totalBytesOut}`,
       ];
 
