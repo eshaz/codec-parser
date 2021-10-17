@@ -25,7 +25,7 @@ import OggParser from "./containers/ogg/OggParser.js";
 const noOp = () => {};
 
 export default class CodecParser {
-  constructor(mimeType, { onCodecUpdate, onCodec, enableLogging = true } = {}) {
+  constructor(mimeType, { onCodecUpdate, onCodec, enableLogging } = {}) {
     this._inputMimeType = mimeType;
     this._onCodecUpdate = onCodecUpdate || noOp;
     this._onCodec = onCodec || noOp;
