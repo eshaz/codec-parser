@@ -69,6 +69,10 @@ export default class Parser {
       return frame;
     }
 
+    this._codecParser.logWarning(
+      `Missing frame frame at: ${frameLength} bytes from current position.`,
+      "Dropping current frame and trying again.",
+    );
     this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
     this._codecParser.incrementRawData(1); // increment to invalidate the current frame
   }

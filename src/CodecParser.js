@@ -25,10 +25,11 @@ import OggParser from "./containers/ogg/OggParser.js";
 const noOp = () => {};
 
 export default class CodecParser {
-  constructor(mimeType, { onCodecUpdate, onCodec } = {}) {
+  constructor(mimeType, { onCodecUpdate, onCodec, enableLogging = true } = {}) {
     this._inputMimeType = mimeType;
     this._onCodecUpdate = onCodecUpdate || noOp;
     this._onCodec = onCodec || noOp;
+    this._enableLogging = enableLogging;
 
     if (this._inputMimeType.match(/aac/)) {
       this._parser = new AACParser(this, this._onCodecUpdate, this._onCodec);
@@ -43,6 +44,8 @@ export default class CodecParser {
     }
 
     this._frameNumber = 0;
+    this._currentReadPosition = 0;
+    this._totalBytesIn = 0;
     this._totalBytesOut = 0;
     this._totalSamples = 0;
     this._sampleRate = undefined;
@@ -96,7 +99,10 @@ export default class CodecParser {
 
     while (this._rawData.length <= minSize + readOffset) {
       rawData = yield;
-      if (rawData) this._rawData = concatBuffers(this._rawData, rawData);
+      if (rawData) {
+        this._totalBytesIn += rawData.length;
+        this._rawData = concatBuffers(this._rawData, rawData);
+      }
     }
 
     return this._rawData.subarray(readOffset);
@@ -107,6 +113,7 @@ export default class CodecParser {
    * @param {number} increment Bytes to increment codec data
    */
   incrementRawData(increment) {
+    this._currentReadPosition += increment;
     this._rawData = this._rawData.subarray(increment);
   }
 
@@ -139,5 +146,38 @@ export default class CodecParser {
     } else {
       this.mapCodecFrameStats(frame);
     }
+  }
+
+  _log(logger, messages) {
+    if (this._enableLogging) {
+      const stats = [
+        `codec:         ${this.codec}`,
+        `inputMimeType: ${this._inputMimeType}`,
+        `totalBytesIn:  ${this._totalBytesIn}`,
+        `currPosition:  ${this._currentReadPosition}`,
+        `totalBytesOut: ${this._totalBytesOut}`,
+      ];
+
+      const width = Math.max(...stats.map((s) => s.length));
+
+      messages.push(
+        `--stats--${"-".repeat(width - 9)}`,
+        ...stats,
+        "-".repeat(width)
+      );
+
+      logger(
+        "codec-parser",
+        messages.reduce((acc, message) => acc + "\n  " + message, "")
+      );
+    }
+  }
+
+  logWarning(...messages) {
+    this._log(console.warn, messages);
+  }
+
+  logError(...messages) {
+    this._log(console.error, messages);
   }
 }

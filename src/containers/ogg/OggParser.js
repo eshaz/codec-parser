@@ -36,6 +36,8 @@ export default class OggParser extends Parser {
     this.Header = OggPageHeader;
     this._codec = null;
     this._continuedPacket = new Uint8Array();
+
+    this._pageSequenceNumber = 0;
   }
 
   get codec() {
@@ -72,8 +74,26 @@ export default class OggParser extends Parser {
     }
   }
 
+  checkPageSequenceNumber(oggPage) {
+    if (
+      oggPage.pageSequenceNumber !== this._pageSequenceNumber + 1 &&
+      oggPage.pageSequenceNumber > 2
+    ) {
+      this._codecParser.logWarning(
+        "Unexpected gap in Ogg Page Sequence Number.",
+        `Expected: ${this._pageSequenceNumber + 1}, Got: ${
+          oggPage.pageSequenceNumber
+        }`
+      );
+    }
+
+    this._pageSequenceNumber = oggPage.pageSequenceNumber;
+  }
+
   *parseFrame() {
     const oggPage = yield* this.fixedLengthFrameSync(true);
+
+    this.checkPageSequenceNumber(oggPage);
 
     const oggPageStore = frameStore.get(oggPage);
     const pageSegmentTable = headerStore.get(

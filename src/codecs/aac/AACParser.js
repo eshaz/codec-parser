@@ -33,7 +33,7 @@ export default class AACParser extends Parser {
     return "aac";
   }
 
-  *parseFrame(data) {
+  *parseFrame() {
     return yield* this.fixedLengthFrameSync();
   }
 }

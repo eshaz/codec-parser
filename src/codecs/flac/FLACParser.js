@@ -21,6 +21,9 @@ import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
 
+const MIN_FLAC_FRAME_SIZE = 2;
+const MAX_FLAC_FRAME_SIZE = 512 * 1024;
+
 export default class FLACParser extends Parser {
   constructor(codecParser, onCodecUpdate) {
     super(codecParser, onCodecUpdate);
@@ -33,9 +36,6 @@ export default class FLACParser extends Parser {
   }
 
   *parseFrame() {
-    const minFrameLength = 2;
-    const maxFrameLength = 64 * 1024;
-
     // find the first valid frame header
     do {
       const header = yield* FLACHeader.getHeader(
@@ -49,8 +49,8 @@ export default class FLACParser extends Parser {
         // find the next valid frame header
         for (
           let nextHeaderOffset =
-            headerStore.get(header).length + minFrameLength;
-          nextHeaderOffset <= maxFrameLength;
+            headerStore.get(header).length + MIN_FLAC_FRAME_SIZE;
+          nextHeaderOffset <= MAX_FLAC_FRAME_SIZE;
           nextHeaderOffset++
         ) {
           if (
@@ -78,6 +78,8 @@ export default class FLACParser extends Parser {
             }
           }
         }
+
+        this._codecParser.logWarning("Unable to sync FLAC frame.");
       }
       // not synced, increment data to continue syncing
       this._codecParser.incrementRawData(1);
