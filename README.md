@@ -43,13 +43,14 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
     *Note: For directly reading from a HTTP response, use the mimetype contained in the `Content-Type` header*
     
-    ```
+    ```javascript
     import CodecParser from "codec-parser";
 
     const mimeType = "audio/mpeg";
     const options = {
-        onCodec: () => {}
-        onCodecUpdate: () => {}
+        onCodec: () => {},
+        onCodecUpdate: () => {},
+        enableLogging: true
     };
 
     const parser = new CodecParser(mimeType, options);
@@ -57,13 +58,13 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
     
 1. To begin processing audio data, pass in a Uint8Array of audio data into the instance's `.iterator()`. This method returns an iterator that can be consumed using a `for ...of` or `for await...of` loop.
 
-    ```    
+    ```javascript
     for (const frame of parser.iterator(audioData)) {
       // Do something with each frame
     }
     ```
     ***or***
-    ```
+    ```javascript
     const frames = [...parser.iterator(audioData)]
     ```
 
@@ -142,6 +143,7 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
     * `options.onCodec()` *optional* Called when the output codec is determined.
       * See `parser.codec` for a list of the possible output codecs
     * `options.onCodecUpdate()` *optional* Called when there is a change in the codec header.
+    * `options.enableLogging` *optional* Set to true to enable warning and error messages.
 
 ### Methods
 
@@ -198,7 +200,7 @@ Depending on the mimetype each iteration of `CodecParser.iterator()` will return
 * `totalDuration`: Total audio duration in milliseconds output by `CodecParer` not including this frame.
 
 #### Example
-```
+```javascript
 // First CodecFrame
 MPEGFrame {
   data: Uint8Array(417),
@@ -262,7 +264,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 
 ### MPEGHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/mpeg/MPEGHeader.js)
-```
+```javascript
 {
   bitDepth: 16,
   channels: 2,
@@ -282,7 +284,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```
 ### AACHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/aac/AACHeader.js)
-```
+```javascript
 {
   bitDepth: 16,
   channels: 2,
@@ -305,7 +307,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 
 ### FLACHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/flac/FLACHeader.js)
-```
+```javascript
 {
   bitDepth: 16,
   channels: 2,
@@ -315,18 +317,18 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   blockSize: 4096,
   frameNumber: 15183508,
   crc16: 56624,
-  streamInfo: `Uint8Array`
+  streamInfo: Uint8Array
 }
 ```
 
 ### OpusHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/opus/OpusHeader.js)
-```
+```javascript
 {
   bitDepth: 16,
   channels: 2,
   sampleRate: 48000,
-  data: `Uint8Array`,
+  data: Uint8Array,
   channelMappingFamily: 0,
   channelMode: "stereo (left, right)",
   preSkip: 312,
@@ -336,7 +338,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```
 ### VorbisHeader
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/vorbis/VorbisHeader.js)
-```
+```javascript
 {
   bitDepth: 32,
   channels: 2,
@@ -346,8 +348,8 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   bitrateNominal: 160000,
   blocksize0: 256,
   blocksize1: 2048,
-  data: `Uint8Array`,
-  vorbisComments: `Uint8Array`,
-  vorbisSetup: `Uint8Array`
+  data: Uint8Array,
+  vorbisComments: Uint8Array,
+  vorbisSetup: Uint8Array
 }
 ```

@@ -16,6 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import ID3v2 from "../../metadata/ID3v2.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
@@ -158,6 +159,20 @@ const channelModes = {
 export default class MPEGHeader extends CodecHeader {
   static *getHeader(codecParser, headerCache, readOffset) {
     const header = {};
+
+    // check for id3 header
+    const id3v2Header = yield* ID3v2.getID3v2Header(
+      codecParser,
+      headerCache,
+      readOffset
+    );
+
+    if (id3v2Header) {
+      // throw away the data. id3 parsing is not implemented yet.
+      yield* codecParser.readRawData(id3v2Header.length, readOffset);
+      codecParser.incrementRawData(id3v2Header.length);
+    }
+
     // Must be at least four bytes.
     const data = yield* codecParser.readRawData(4, readOffset);
 

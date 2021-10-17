@@ -17,7 +17,7 @@
 */
 
 import { frameStore } from "../../globals.js";
-import { BitReader, reverse, logError } from "../../utilities.js";
+import { BitReader, reverse } from "../../utilities.js";
 import Parser from "../Parser.js";
 import VorbisFrame from "./VorbisFrame.js";
 import VorbisHeader from "./VorbisHeader.js";
@@ -52,6 +52,12 @@ export default class VorbisParser extends Parser {
         oggPage.data,
         this._headerCache
       );
+
+      if (!this._identificationHeader)
+        this._codecParser.logError(
+          "Failed to parse Ogg Vorbis Identification Header",
+          "Not a valid Ogg Vorbis file"
+        );
     } else if (oggPage.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
 
@@ -151,7 +157,7 @@ export default class VorbisParser extends Parser {
         mapping in mode &&
         !(mode.count === 1 && mapping === 0) // allows for the possibility of only one mode
       ) {
-        logError(
+        this._codecParser.logError(
           "received duplicate mode mapping, failed to parse vorbis modes"
         );
         throw new Error("Failed to read Vorbis stream");
@@ -171,7 +177,7 @@ export default class VorbisParser extends Parser {
         // transform type and window type were not all zeros
         // check for mode count using previous iteration modeBits
         if (((reverse(modeBits) & 0b01111110) >> 1) + 1 !== mode.count) {
-          logError(
+          this._codecParser.logError(
             "mode count did not match actual modes, failed to parse vorbis modes"
           );
           throw new Error("Failed to read Vorbis stream");

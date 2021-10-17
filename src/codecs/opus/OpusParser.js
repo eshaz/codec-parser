@@ -46,6 +46,12 @@ export default class OpusParser extends Parser {
         oggPage.data,
         this._headerCache
       );
+
+      if (!this._identificationHeader)
+        this._codecParser.logError(
+          "Failed to parse Ogg Opus Identification Header",
+          "Not a valid Ogg Opus file"
+        );
     } else if (oggPage.pageSequenceNumber === 1) {
       // OpusTags
     } else {

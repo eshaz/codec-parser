@@ -16,13 +16,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-const logError = (...messages) => {
-  console.error(
-    "codec-parser",
-    messages.reduce((acc, message) => acc + "\n  " + message, "")
-  );
-};
-
 const getCrcTable = (crcTable, crcInitialValueFunction, crcFunction) => {
   for (let byte = 0; byte < crcTable.length; byte++) {
     let crc = crcInitialValueFunction(byte);
@@ -122,4 +115,4 @@ class BitReader {
   }
 }
 
-export { crc8, flacCrc16, crc32, reverse, logError, concatBuffers, BitReader };
+export { crc8, flacCrc16, crc32, reverse, concatBuffers, BitReader };
