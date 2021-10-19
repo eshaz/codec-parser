@@ -29,7 +29,7 @@ export default class CodecParser {
   constructor(mimeType, { onCodecUpdate, onCodec, enableLogging } = {}) {
     this._inputMimeType = mimeType;
     this._onCodec = onCodec || noOp;
-    this._headerCache = new HeaderCache(onCodecUpdate || noOp);
+    this._headerCache = new HeaderCache(onCodecUpdate);
     this._enableLogging = enableLogging;
 
     if (this._inputMimeType.match(/aac/)) {
