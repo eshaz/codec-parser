@@ -45,12 +45,15 @@ export default class HeaderCache {
     }
 
     if (this._codecShouldUpdate) {
-      this._onCodecUpdate({
-        bitrate,
-        ...this._codecUpdateData.get(
-          this._headerCache.get(this._currentHeader)
-        ),
-      }, totalDuration);
+      this._onCodecUpdate(
+        {
+          bitrate,
+          ...this._codecUpdateData.get(
+            this._headerCache.get(this._currentHeader)
+          ),
+        },
+        totalDuration
+      );
     }
 
     this._codecShouldUpdate = false;

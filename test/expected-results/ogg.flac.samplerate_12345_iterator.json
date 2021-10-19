@@ -32,13 +32,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 45979,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 0,
-          "crc16": 45979
+          "frameNumber": 0
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -51,13 +52,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 48703,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 1,
-          "crc16": 48703
+          "frameNumber": 1
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -70,13 +72,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 32,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 14215,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 2,
-          "crc16": 14215
+          "frameNumber": 2
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -89,13 +92,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 280,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 29311,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 3,
-          "crc16": 29311
+          "frameNumber": 3
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -108,13 +112,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 21681,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 4,
-          "crc16": 21681
+          "frameNumber": 4
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -127,13 +132,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 48365,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 5,
-          "crc16": 48365
+          "frameNumber": 5
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -146,13 +152,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 29319,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 6,
-          "crc16": 29319
+          "frameNumber": 6
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -165,13 +172,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 8220,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 7,
-          "crc16": 8220
+          "frameNumber": 7
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -184,13 +192,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 53434,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 8,
-          "crc16": 53434
+          "frameNumber": 8
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -203,13 +212,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 39074,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 9,
-          "crc16": 39074
+          "frameNumber": 9
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -222,13 +232,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 13366,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 10,
-          "crc16": 13366
+          "frameNumber": 10
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -256,13 +267,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 53734,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 11,
-          "crc16": 53734
+          "frameNumber": 11
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -275,13 +287,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 61000,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 12,
-          "crc16": 61000
+          "frameNumber": 12
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -294,13 +307,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 51174,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 13,
-          "crc16": 51174
+          "frameNumber": 13
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -313,13 +327,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 6146,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 14,
-          "crc16": 6146
+          "frameNumber": 14
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -332,13 +347,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 6269,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 15,
-          "crc16": 6269
+          "frameNumber": 15
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -351,13 +367,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 40652,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 16,
-          "crc16": 40652
+          "frameNumber": 16
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -370,13 +387,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 288,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 33241,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 17,
-          "crc16": 33241
+          "frameNumber": 17
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -389,13 +407,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 44926,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 18,
-          "crc16": 44926
+          "frameNumber": 18
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -408,13 +427,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 21640,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 19,
-          "crc16": 21640
+          "frameNumber": 19
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -427,13 +447,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 23439,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 20,
-          "crc16": 23439
+          "frameNumber": 20
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -446,13 +467,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 3991,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 21,
-          "crc16": 3991
+          "frameNumber": 21
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -480,13 +502,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 21852,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 22,
-          "crc16": 21852
+          "frameNumber": 22
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -499,13 +522,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 63680,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 23,
-          "crc16": 63680
+          "frameNumber": 23
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -518,13 +542,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 7318,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 24,
-          "crc16": 7318
+          "frameNumber": 24
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -537,13 +562,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 19041,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 25,
-          "crc16": 19041
+          "frameNumber": 25
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -556,13 +582,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 853,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 26,
-          "crc16": 853
+          "frameNumber": 26
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -575,13 +602,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 60558,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 27,
-          "crc16": 60558
+          "frameNumber": 27
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -594,13 +622,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 17659,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 28,
-          "crc16": 17659
+          "frameNumber": 28
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -613,13 +642,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 39370,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 29,
-          "crc16": 39370
+          "frameNumber": 29
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -632,13 +662,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 674,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 30,
-          "crc16": 674
+          "frameNumber": 30
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -651,13 +682,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 3676,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 31,
-          "crc16": 3676
+          "frameNumber": 31
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -670,13 +702,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 46974,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 32,
-          "crc16": 46974
+          "frameNumber": 32
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -704,13 +737,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 62245,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 33,
-          "crc16": 62245
+          "frameNumber": 33
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -723,13 +757,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 12552,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 34,
-          "crc16": 12552
+          "frameNumber": 34
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -742,13 +777,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 53371,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 35,
-          "crc16": 53371
+          "frameNumber": 35
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -761,13 +797,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 13051,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 36,
-          "crc16": 13051
+          "frameNumber": 36
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -780,13 +817,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 29102,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 37,
-          "crc16": 29102
+          "frameNumber": 37
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -799,13 +837,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 65063,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 38,
-          "crc16": 65063
+          "frameNumber": 38
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -818,13 +857,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 1625,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 39,
-          "crc16": 1625
+          "frameNumber": 39
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -837,13 +877,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 64688,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 40,
-          "crc16": 64688
+          "frameNumber": 40
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -856,13 +897,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 35754,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 41,
-          "crc16": 35754
+          "frameNumber": 41
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -875,13 +917,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 32241,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 42,
-          "crc16": 32241
+          "frameNumber": 42
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -894,13 +937,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 57363,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 43,
-          "crc16": 57363
+          "frameNumber": 43
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -928,13 +972,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 30447,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 44,
-          "crc16": 30447
+          "frameNumber": 44
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -947,13 +992,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 13529,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 45,
-          "crc16": 13529
+          "frameNumber": 45
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -966,13 +1012,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 27050,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 46,
-          "crc16": 27050
+          "frameNumber": 46
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -985,13 +1032,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 288,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 61541,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 47,
-          "crc16": 61541
+          "frameNumber": 47
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1004,13 +1052,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 29934,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 48,
-          "crc16": 29934
+          "frameNumber": 48
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1023,13 +1072,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 28785,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 49,
-          "crc16": 28785
+          "frameNumber": 49
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1042,13 +1092,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 34945,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 50,
-          "crc16": 34945
+          "frameNumber": 50
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1061,13 +1112,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 37313,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 51,
-          "crc16": 37313
+          "frameNumber": 51
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1080,13 +1132,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 280,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 38001,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 52,
-          "crc16": 38001
+          "frameNumber": 52
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1099,13 +1152,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 280,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 3318,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 53,
-          "crc16": 3318
+          "frameNumber": 53
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1118,13 +1172,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 19101,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 54,
-          "crc16": 19101
+          "frameNumber": 54
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1152,13 +1207,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 59,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 55,
-          "crc16": 59
+          "frameNumber": 55
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1171,13 +1227,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 17249,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 56,
-          "crc16": 17249
+          "frameNumber": 56
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1190,13 +1247,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 17740,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 57,
-          "crc16": 17740
+          "frameNumber": 57
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1209,13 +1267,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 491,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 58,
-          "crc16": 491
+          "frameNumber": 58
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1228,13 +1287,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 37354,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 59,
-          "crc16": 37354
+          "frameNumber": 59
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1247,13 +1307,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 16949,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 60,
-          "crc16": 16949
+          "frameNumber": 60
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1266,13 +1327,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 41956,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 61,
-          "crc16": 41956
+          "frameNumber": 61
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1285,13 +1347,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 13887,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 62,
-          "crc16": 13887
+          "frameNumber": 62
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1304,13 +1367,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "right/side stereo: channel 0 is the side(difference) channel, channel 1 is the right channel",
+          "crc16": 32717,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 63,
-          "crc16": 32717
+          "frameNumber": 63
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1323,13 +1387,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 39736,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 64,
-          "crc16": 39736
+          "frameNumber": 64
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1342,13 +1407,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 25564,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 65,
-          "crc16": 25564
+          "frameNumber": 65
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1376,13 +1442,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 3698,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 66,
-          "crc16": 3698
+          "frameNumber": 66
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1395,13 +1462,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 35715,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 67,
-          "crc16": 35715
+          "frameNumber": 67
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1414,13 +1482,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 22381,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 68,
-          "crc16": 22381
+          "frameNumber": 68
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1433,13 +1502,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 9272,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 69,
-          "crc16": 9272
+          "frameNumber": 69
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1452,13 +1522,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 42739,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 70,
-          "crc16": 42739
+          "frameNumber": 70
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1471,13 +1542,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 33928,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 71,
-          "crc16": 33928
+          "frameNumber": 71
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1490,13 +1562,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 45485,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 72,
-          "crc16": 45485
+          "frameNumber": 72
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1509,13 +1582,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 49222,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 73,
-          "crc16": 49222
+          "frameNumber": 73
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1528,13 +1602,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 42965,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 74,
-          "crc16": 42965
+          "frameNumber": 74
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1547,13 +1622,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 53725,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 75,
-          "crc16": 53725
+          "frameNumber": 75
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1566,13 +1642,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 2234,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 76,
-          "crc16": 2234
+          "frameNumber": 76
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1600,13 +1677,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 65415,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 77,
-          "crc16": 65415
+          "frameNumber": 77
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1619,13 +1697,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 32837,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 78,
-          "crc16": 32837
+          "frameNumber": 78
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1638,13 +1717,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 43022,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 79,
-          "crc16": 43022
+          "frameNumber": 79
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1657,13 +1737,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 41685,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 80,
-          "crc16": 41685
+          "frameNumber": 80
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1676,13 +1757,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 50519,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 81,
-          "crc16": 50519
+          "frameNumber": 81
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1695,13 +1777,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 27135,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 82,
-          "crc16": 27135
+          "frameNumber": 82
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1714,13 +1797,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 47564,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 83,
-          "crc16": 47564
+          "frameNumber": 83
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1733,13 +1817,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 50273,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 84,
-          "crc16": 50273
+          "frameNumber": 84
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1752,13 +1837,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 19104,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 85,
-          "crc16": 19104
+          "frameNumber": 85
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1771,13 +1857,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 36875,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 86,
-          "crc16": 36875
+          "frameNumber": 86
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1790,13 +1877,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 57781,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 87,
-          "crc16": 57781
+          "frameNumber": 87
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1824,13 +1912,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 14317,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 88,
-          "crc16": 14317
+          "frameNumber": 88
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1843,13 +1932,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 48881,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 89,
-          "crc16": 48881
+          "frameNumber": 89
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1862,13 +1952,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 29735,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 90,
-          "crc16": 29735
+          "frameNumber": 90
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1881,13 +1972,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 54554,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 91,
-          "crc16": 54554
+          "frameNumber": 91
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1900,13 +1992,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 791,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 92,
-          "crc16": 791
+          "frameNumber": 92
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1919,13 +2012,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 27030,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 93,
-          "crc16": 27030
+          "frameNumber": 93
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1938,13 +2032,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 32427,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 94,
-          "crc16": 32427
+          "frameNumber": 94
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1957,13 +2052,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 63251,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 95,
-          "crc16": 63251
+          "frameNumber": 95
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1976,13 +2072,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 18286,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 96,
-          "crc16": 18286
+          "frameNumber": 96
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -1995,13 +2092,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 10750,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 97,
-          "crc16": 10750
+          "frameNumber": 97
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2014,13 +2112,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 288,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 40423,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 98,
-          "crc16": 40423
+          "frameNumber": 98
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2048,13 +2147,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 43180,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 99,
-          "crc16": 43180
+          "frameNumber": 99
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2067,13 +2167,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 40174,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 100,
-          "crc16": 40174
+          "frameNumber": 100
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2086,13 +2187,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 21632,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 101,
-          "crc16": 21632
+          "frameNumber": 101
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2105,13 +2207,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 51551,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 102,
-          "crc16": 51551
+          "frameNumber": 102
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2124,13 +2227,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 47594,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 103,
-          "crc16": 47594
+          "frameNumber": 103
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2143,13 +2247,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 31309,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 104,
-          "crc16": 31309
+          "frameNumber": 104
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2162,13 +2267,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 32675,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 105,
-          "crc16": 32675
+          "frameNumber": 105
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2181,13 +2287,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 30940,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 106,
-          "crc16": 30940
+          "frameNumber": 106
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2200,13 +2307,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 9912,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 107,
-          "crc16": 9912
+          "frameNumber": 107
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2219,13 +2327,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 42559,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 108,
-          "crc16": 42559
+          "frameNumber": 108
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2238,13 +2347,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 42005,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 109,
-          "crc16": 42005
+          "frameNumber": 109
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2272,13 +2382,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 14804,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 110,
-          "crc16": 14804
+          "frameNumber": 110
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2291,13 +2402,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 5083,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 111,
-          "crc16": 5083
+          "frameNumber": 111
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2310,13 +2422,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 42447,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 112,
-          "crc16": 42447
+          "frameNumber": 112
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2329,13 +2442,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 58198,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 113,
-          "crc16": 58198
+          "frameNumber": 113
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2348,13 +2462,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 61168,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 114,
-          "crc16": 61168
+          "frameNumber": 114
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2367,13 +2482,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 17475,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 115,
-          "crc16": 17475
+          "frameNumber": 115
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2386,13 +2502,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 43147,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 116,
-          "crc16": 43147
+          "frameNumber": 116
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2405,13 +2522,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 26517,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 117,
-          "crc16": 26517
+          "frameNumber": 117
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2424,13 +2542,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 56521,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 118,
-          "crc16": 56521
+          "frameNumber": 118
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2443,13 +2562,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 29462,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 119,
-          "crc16": 29462
+          "frameNumber": 119
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2462,13 +2582,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 17436,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 120,
-          "crc16": 17436
+          "frameNumber": 120
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2496,13 +2617,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 10181,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 121,
-          "crc16": 10181
+          "frameNumber": 121
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2515,13 +2637,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 61301,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 122,
-          "crc16": 61301
+          "frameNumber": 122
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2534,13 +2657,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 41576,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 123,
-          "crc16": 41576
+          "frameNumber": 123
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2553,13 +2677,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 61098,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 124,
-          "crc16": 61098
+          "frameNumber": 124
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2572,13 +2697,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 40882,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 125,
-          "crc16": 40882
+          "frameNumber": 125
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2591,13 +2717,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 41156,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 126,
-          "crc16": 41156
+          "frameNumber": 126
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2610,13 +2737,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 24017,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 127,
-          "crc16": 24017
+          "frameNumber": 127
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2629,13 +2757,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 14145,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 192,
-          "crc16": 14145
+          "frameNumber": 192
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2648,13 +2777,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 44623,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 193,
-          "crc16": 44623
+          "frameNumber": 193
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2667,13 +2797,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 41471,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 194,
-          "crc16": 41471
+          "frameNumber": 194
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2686,13 +2817,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 59077,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 195,
-          "crc16": 59077
+          "frameNumber": 195
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2720,13 +2852,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 48791,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 196,
-          "crc16": 48791
+          "frameNumber": 196
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2739,13 +2872,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 41315,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 197,
-          "crc16": 41315
+          "frameNumber": 197
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2758,13 +2892,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 28651,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 198,
-          "crc16": 28651
+          "frameNumber": 198
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2777,13 +2912,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 35550,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 199,
-          "crc16": 35550
+          "frameNumber": 199
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2796,13 +2932,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 35393,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 200,
-          "crc16": 35393
+          "frameNumber": 200
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2815,13 +2952,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 59907,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 201,
-          "crc16": 59907
+          "frameNumber": 201
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2834,13 +2972,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 12705,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 202,
-          "crc16": 12705
+          "frameNumber": 202
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2853,13 +2992,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 46686,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 203,
-          "crc16": 46686
+          "frameNumber": 203
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2872,13 +3012,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 44799,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 204,
-          "crc16": 44799
+          "frameNumber": 204
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2891,13 +3032,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 34933,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 205,
-          "crc16": 34933
+          "frameNumber": 205
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2910,13 +3052,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 6951,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 206,
-          "crc16": 6951
+          "frameNumber": 206
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2944,13 +3087,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 58149,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 207,
-          "crc16": 58149
+          "frameNumber": 207
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2963,13 +3107,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 27824,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 208,
-          "crc16": 27824
+          "frameNumber": 208
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -2982,13 +3127,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 11899,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 209,
-          "crc16": 11899
+          "frameNumber": 209
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3001,13 +3147,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "right/side stereo: channel 0 is the side(difference) channel, channel 1 is the right channel",
+          "crc16": 26691,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 210,
-          "crc16": 26691
+          "frameNumber": 210
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3020,13 +3167,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "right/side stereo: channel 0 is the side(difference) channel, channel 1 is the right channel",
+          "crc16": 18708,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 211,
-          "crc16": 18708
+          "frameNumber": 211
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3039,13 +3187,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 57493,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 212,
-          "crc16": 57493
+          "frameNumber": 212
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3058,13 +3207,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 34442,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 213,
-          "crc16": 34442
+          "frameNumber": 213
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3077,13 +3227,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 46275,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 214,
-          "crc16": 46275
+          "frameNumber": 214
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3096,13 +3247,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 7901,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 215,
-          "crc16": 7901
+          "frameNumber": 215
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3115,13 +3267,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 6876,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 216,
-          "crc16": 6876
+          "frameNumber": 216
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3134,13 +3287,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 30877,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 217,
-          "crc16": 30877
+          "frameNumber": 217
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3168,13 +3322,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 61505,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 218,
-          "crc16": 61505
+          "frameNumber": 218
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3187,13 +3342,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 40759,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 219,
-          "crc16": 40759
+          "frameNumber": 219
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3206,13 +3362,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 46855,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 220,
-          "crc16": 46855
+          "frameNumber": 220
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3225,13 +3382,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 47098,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 221,
-          "crc16": 47098
+          "frameNumber": 221
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3244,13 +3402,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 5379,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 222,
-          "crc16": 5379
+          "frameNumber": 222
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3263,13 +3422,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 54796,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 223,
-          "crc16": 54796
+          "frameNumber": 223
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3282,13 +3442,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 838,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 224,
-          "crc16": 838
+          "frameNumber": 224
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3301,13 +3462,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 54034,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 225,
-          "crc16": 54034
+          "frameNumber": 225
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3320,13 +3482,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 65485,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 226,
-          "crc16": 65485
+          "frameNumber": 226
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3339,13 +3502,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 38664,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 227,
-          "crc16": 38664
+          "frameNumber": 227
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3358,13 +3522,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 55525,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 228,
-          "crc16": 55525
+          "frameNumber": 228
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3392,13 +3557,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 3658,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 229,
-          "crc16": 3658
+          "frameNumber": 229
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3411,13 +3577,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 352,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 59438,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 230,
-          "crc16": 59438
+          "frameNumber": 230
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3430,13 +3597,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 22918,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 231,
-          "crc16": 22918
+          "frameNumber": 231
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3449,13 +3617,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 31388,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 232,
-          "crc16": 31388
+          "frameNumber": 232
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3468,13 +3637,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 15503,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 233,
-          "crc16": 15503
+          "frameNumber": 233
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3487,13 +3657,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 62480,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 234,
-          "crc16": 62480
+          "frameNumber": 234
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3506,13 +3677,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 19218,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 235,
-          "crc16": 19218
+          "frameNumber": 235
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3525,13 +3697,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 47508,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 236,
-          "crc16": 47508
+          "frameNumber": 236
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3544,13 +3717,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 1321,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 237,
-          "crc16": 1321
+          "frameNumber": 237
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3563,13 +3737,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 36139,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 238,
-          "crc16": 36139
+          "frameNumber": 238
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3582,13 +3757,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 18651,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 239,
-          "crc16": 18651
+          "frameNumber": 239
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3616,13 +3792,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 5298,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 240,
-          "crc16": 5298
+          "frameNumber": 240
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3635,13 +3812,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 34827,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 241,
-          "crc16": 34827
+          "frameNumber": 241
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3654,13 +3832,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 21395,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 242,
-          "crc16": 21395
+          "frameNumber": 242
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3673,13 +3852,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 288,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 25845,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 243,
-          "crc16": 25845
+          "frameNumber": 243
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3692,13 +3872,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 42946,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 244,
-          "crc16": 42946
+          "frameNumber": 244
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3711,13 +3892,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 6318,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 245,
-          "crc16": 6318
+          "frameNumber": 245
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3730,13 +3912,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 21209,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 246,
-          "crc16": 21209
+          "frameNumber": 246
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3749,13 +3932,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 47155,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 247,
-          "crc16": 47155
+          "frameNumber": 247
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3768,13 +3952,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 62935,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 248,
-          "crc16": 62935
+          "frameNumber": 248
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3787,13 +3972,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 63558,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 249,
-          "crc16": 63558
+          "frameNumber": 249
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3806,13 +3992,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 16199,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 250,
-          "crc16": 16199
+          "frameNumber": 250
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3840,13 +4027,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 43604,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 251,
-          "crc16": 43604
+          "frameNumber": 251
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3859,13 +4047,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 35584,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 252,
-          "crc16": 35584
+          "frameNumber": 252
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3878,13 +4067,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 58125,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 253,
-          "crc16": 58125
+          "frameNumber": 253
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3897,13 +4087,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 57857,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 254,
-          "crc16": 57857
+          "frameNumber": 254
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3916,13 +4107,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 54306,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 255,
-          "crc16": 54306
+          "frameNumber": 255
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3935,13 +4127,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 63405,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 192,
-          "crc16": 63405
+          "frameNumber": 192
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3954,13 +4147,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 16963,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 193,
-          "crc16": 16963
+          "frameNumber": 193
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3973,13 +4167,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 312,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 57817,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 194,
-          "crc16": 57817
+          "frameNumber": 194
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -3992,13 +4187,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 45791,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 195,
-          "crc16": 45791
+          "frameNumber": 195
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4011,13 +4207,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 3121,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 196,
-          "crc16": 3121
+          "frameNumber": 196
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4030,13 +4227,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 37393,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 197,
-          "crc16": 37393
+          "frameNumber": 197
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4064,13 +4262,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 51657,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 198,
-          "crc16": 51657
+          "frameNumber": 198
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4083,13 +4282,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 328,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel",
+          "crc16": 44979,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 199,
-          "crc16": 44979
+          "frameNumber": 199
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4102,13 +4302,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 26307,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 200,
-          "crc16": 26307
+          "frameNumber": 200
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4121,13 +4322,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 52046,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 201,
-          "crc16": 52046
+          "frameNumber": 201
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4140,13 +4342,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 11882,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 202,
-          "crc16": 11882
+          "frameNumber": 202
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4159,13 +4362,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 55043,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 203,
-          "crc16": 55043
+          "frameNumber": 203
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4178,13 +4382,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 336,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 11378,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 204,
-          "crc16": 11378
+          "frameNumber": 204
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4197,13 +4402,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 344,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 62823,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 205,
-          "crc16": 62823
+          "frameNumber": 205
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4216,13 +4422,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 320,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 6070,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 206,
-          "crc16": 6070
+          "frameNumber": 206
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4235,13 +4442,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 304,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 34187,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 207,
-          "crc16": 34187
+          "frameNumber": 207
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4254,13 +4462,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 296,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 50011,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 208,
-          "crc16": 50011
+          "frameNumber": 208
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4288,13 +4497,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 280,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 59257,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 209,
-          "crc16": 59257
+          "frameNumber": 209
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4307,13 +4517,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 280,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 22390,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 210,
-          "crc16": 22390
+          "frameNumber": 210
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4326,13 +4537,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 264,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 21676,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 211,
-          "crc16": 21676
+          "frameNumber": 211
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4345,13 +4557,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 256,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 25803,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 212,
-          "crc16": 25803
+          "frameNumber": 212
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4364,13 +4577,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 248,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 8718,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 213,
-          "crc16": 8718
+          "frameNumber": 213
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4383,13 +4597,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 240,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 39950,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 214,
-          "crc16": 39950
+          "frameNumber": 214
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4402,13 +4617,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 232,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 36296,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 215,
-          "crc16": 36296
+          "frameNumber": 215
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4421,13 +4637,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 216,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 39504,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 216,
-          "crc16": 39504
+          "frameNumber": 216
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4440,13 +4657,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 208,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 33835,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 217,
-          "crc16": 33835
+          "frameNumber": 217
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4459,13 +4677,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 192,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 12351,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 218,
-          "crc16": 12351
+          "frameNumber": 218
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4478,13 +4697,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 176,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 43061,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 219,
-          "crc16": 43061
+          "frameNumber": 219
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4512,13 +4732,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 144,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 9465,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 220,
-          "crc16": 9465
+          "frameNumber": 220
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4531,13 +4752,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 96,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 13626,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 221,
-          "crc16": 13626
+          "frameNumber": 221
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4550,13 +4772,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 48,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 39238,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 222,
-          "crc16": 39238
+          "frameNumber": 222
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4569,13 +4792,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 32,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 12779,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 223,
-          "crc16": 12779
+          "frameNumber": 223
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4588,13 +4812,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 50132,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 224,
-          "crc16": 50132
+          "frameNumber": 224
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4607,13 +4832,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 52848,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 225,
-          "crc16": 52848
+          "frameNumber": 225
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4626,13 +4852,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 55452,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 226,
-          "crc16": 55452
+          "frameNumber": 226
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4645,13 +4872,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 54584,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 227,
-          "crc16": 54584
+          "frameNumber": 227
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4664,13 +4892,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 25137,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 228,
-          "crc16": 25137
+          "frameNumber": 228
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4683,13 +4912,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 28565,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 229,
-          "crc16": 28565
+          "frameNumber": 229
         },
         "samples": 1152,
         "duration": 93.31713244228433,
@@ -4702,13 +4932,14 @@
       {
         "header": {
           "bitDepth": 16,
+          "bitrate": 0,
           "channels": 2,
           "sampleRate": 12345,
           "channelMode": "left, right",
+          "crc16": 31097,
           "blockingStrategy": "Fixed",
           "blockSize": 1152,
-          "frameNumber": 230,
-          "crc16": 31097
+          "frameNumber": 230
         },
         "samples": 1152,
         "duration": 93.31713244228433,

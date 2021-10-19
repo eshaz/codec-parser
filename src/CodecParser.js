@@ -129,7 +129,10 @@ export default class CodecParser {
     frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000;
     frame.crc32 = crc32(frame.data);
 
-    this._headerCache.checkCodecUpdate(frame.header.bitrate, frame.totalDuration);
+    this._headerCache.checkCodecUpdate(
+      frame.header.bitrate,
+      frame.totalDuration
+    );
 
     this._totalBytesOut += frame.data.length;
     this._totalSamples += frame.samples;
