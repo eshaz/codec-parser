@@ -33,17 +33,46 @@ export default class HeaderCache {
   reset() {
     this._headerCache = new Map();
     this._codecUpdateData = new WeakMap();
+    this._codecShouldUpdate = false;
+    this._bitrate = null;
     this._isEnabled = false;
+  }
+
+  checkCodecUpdate(bitrate, totalDuration) {
+    if (this._onCodecUpdate) {
+      if (this._bitrate !== bitrate) {
+        this._bitrate = bitrate;
+        this._codecShouldUpdate = true;
+      }
+
+      if (this._codecShouldUpdate) {
+        this._onCodecUpdate(
+          {
+            bitrate,
+            ...this._codecUpdateData.get(
+              this._headerCache.get(this._currentHeader)
+            ),
+          },
+          totalDuration
+        );
+      }
+
+      this._codecShouldUpdate = false;
+    }
+  }
+
+  updateCurrentHeader(key) {
+    if (this._onCodecUpdate && key !== this._currentHeader) {
+      this._codecShouldUpdate = true;
+      this._currentHeader = key;
+    }
   }
 
   getHeader(key) {
     const header = this._headerCache.get(key);
 
     if (header) {
-      if (key !== this._currentHeader) {
-        this._currentHeader = key;
-        this._onCodecUpdate({ ...this._codecUpdateData.get(header) });
-      }
+      this.updateCurrentHeader(key);
     }
 
     return header;
@@ -51,10 +80,7 @@ export default class HeaderCache {
 
   setHeader(key, header, codecUpdateFields) {
     if (this._isEnabled) {
-      if (key !== this._currentHeader) {
-        this._currentHeader = key;
-        this._onCodecUpdate({ ...codecUpdateFields });
-      }
+      this.updateCurrentHeader(key);
 
       this._headerCache.set(key, header);
       this._codecUpdateData.set(header, codecUpdateFields);

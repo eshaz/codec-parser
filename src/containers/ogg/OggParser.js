@@ -28,8 +28,8 @@ import OpusParser from "../../codecs/opus/OpusParser.js";
 import VorbisParser from "../../codecs/vorbis/VorbisParser.js";
 
 export default class OggParser extends Parser {
-  constructor(codecParser, onCodecUpdate, onCodec) {
-    super(codecParser, onCodecUpdate);
+  constructor(codecParser, headerCache, onCodec) {
+    super(codecParser, headerCache);
 
     this._onCodec = onCodec;
     this.Frame = OggPage;
@@ -44,9 +44,9 @@ export default class OggParser extends Parser {
     return this._codec || "";
   }
 
-  _updateCodec(codec, parser) {
+  _updateCodec(codec, Parser) {
     if (this._codec !== codec) {
-      this._parser = new parser(this._codecParser, this._onCodecUpdate);
+      this._parser = new Parser(this._codecParser, this._headerCache);
       this._codec = codec;
       this._onCodec(codec);
     }

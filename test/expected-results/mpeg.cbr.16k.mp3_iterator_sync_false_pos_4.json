@@ -2,9 +2,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -27,9 +27,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -52,9 +52,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -77,9 +77,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -102,9 +102,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -127,9 +127,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -152,9 +152,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -177,9 +177,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -202,9 +202,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -227,9 +227,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -252,9 +252,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -277,9 +277,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -302,9 +302,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -327,9 +327,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -352,9 +352,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -377,9 +377,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -402,9 +402,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -427,9 +427,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -452,9 +452,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -477,9 +477,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -502,9 +502,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -527,9 +527,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -552,9 +552,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -577,9 +577,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -602,9 +602,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
@@ -627,9 +627,9 @@
   {
     "header": {
       "bitDepth": 16,
+      "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "bitrate": 16,
       "channelMode": "Single channel (Mono)",
       "emphasis": "none",
       "framePadding": 0,
