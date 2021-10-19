@@ -142,7 +142,9 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
   * `options` *optional*
     * `options.onCodec()` *optional* Called when the output codec is determined.
       * See `parser.codec` for a list of the possible output codecs
-    * `options.onCodecUpdate()` *optional* Called when there is a change in the codec header.
+    * `options.onCodecUpdate(codecHeaderData, updateTimestamp)` *optional* Called when there is a change in the codec header.
+      * `codecHeaderData` Object containing codec header information that was updated.
+      * `updateTimestamp` Timestamp in milliseconds when the codec information was updated.
     * `options.enableLogging` *optional* Set to true to enable warning and error messages.
 
 ### Methods
@@ -267,9 +269,9 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 16,
+  bitrate: 192,
   channels: 2,
   sampleRate: 44100,
-  bitrate: 192,
   channelMode: "Joint stereo",
   emphasis: "none",
   framePadding: 1,
@@ -287,6 +289,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 16,
+  bitrate: 128,
   channels: 2,
   sampleRate: 22050,
   copyrightId: false,
@@ -310,6 +313,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 16,
+  bitrate: 400,
   channels: 2,
   sampleRate: 44100,
   channelMode: "left, right",
@@ -326,6 +330,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 16,
+  bitrate: 160,
   channels: 2,
   sampleRate: 48000,
   data: Uint8Array,
@@ -341,6 +346,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 32,
+  bitrate: 160,
   channels: 2,
   sampleRate: 44100,
   bitrateMaximum: 0,

@@ -17,17 +17,15 @@
 */
 
 import { frameStore } from "../globals.js";
-import HeaderCache from "./HeaderCache.js";
 
 /**
  * @abstract
  * @description Abstract class containing methods for parsing codec frames
  */
 export default class Parser {
-  constructor(codecParser, onCodecUpdate) {
+  constructor(codecParser, headerCache) {
     this._codecParser = codecParser;
-    this._onCodecUpdate = onCodecUpdate;
-    this._headerCache = new HeaderCache(onCodecUpdate);
+    this._headerCache = headerCache;
   }
 
   *syncFrame() {

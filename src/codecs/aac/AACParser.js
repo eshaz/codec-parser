@@ -21,8 +21,8 @@ import AACFrame from "./AACFrame.js";
 import AACHeader from "./AACHeader.js";
 
 export default class AACParser extends Parser {
-  constructor(codecParser, onCodecUpdate, onCodec) {
-    super(codecParser, onCodecUpdate);
+  constructor(codecParser, headerCache, onCodec) {
+    super(codecParser, headerCache);
     this.Frame = AACFrame;
     this.Header = AACHeader;
 

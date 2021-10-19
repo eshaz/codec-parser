@@ -17,6 +17,7 @@
 */
 
 import { crc32, concatBuffers } from "./utilities.js";
+import HeaderCache from "./codecs/HeaderCache.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
 import AACParser from "./codecs/aac/AACParser.js";
 import FLACParser from "./codecs/flac/FLACParser.js";
@@ -27,18 +28,18 @@ const noOp = () => {};
 export default class CodecParser {
   constructor(mimeType, { onCodecUpdate, onCodec, enableLogging } = {}) {
     this._inputMimeType = mimeType;
-    this._onCodecUpdate = onCodecUpdate || noOp;
     this._onCodec = onCodec || noOp;
+    this._headerCache = new HeaderCache(onCodecUpdate || noOp);
     this._enableLogging = enableLogging;
 
     if (this._inputMimeType.match(/aac/)) {
-      this._parser = new AACParser(this, this._onCodecUpdate, this._onCodec);
+      this._parser = new AACParser(this, this._headerCache, this._onCodec);
     } else if (this._inputMimeType.match(/mpeg/)) {
-      this._parser = new MPEGParser(this, this._onCodecUpdate, this._onCodec);
+      this._parser = new MPEGParser(this, this._headerCache, this._onCodec);
     } else if (this._inputMimeType.match(/flac/)) {
-      this._parser = new FLACParser(this, this._onCodecUpdate, this._onCodec);
+      this._parser = new FLACParser(this, this._headerCache, this._onCodec);
     } else if (this._inputMimeType.match(/ogg/)) {
-      this._parser = new OggParser(this, this._onCodecUpdate, this._onCodec);
+      this._parser = new OggParser(this, this._headerCache, this._onCodec);
     } else {
       throw new Error(`Unsupported Codec ${mimeType}`);
     }
@@ -121,11 +122,14 @@ export default class CodecParser {
     if (this._sampleRate !== frame.header.sampleRate)
       this._sampleRate = frame.header.sampleRate;
 
+    frame.header.bitrate = Math.round(frame.data.length / frame.duration) * 8;
     frame.frameNumber = this._frameNumber++;
     frame.totalBytesOut = this._totalBytesOut;
     frame.totalSamples = this._totalSamples;
     frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000;
     frame.crc32 = crc32(frame.data);
+
+    this._headerCache.checkCodecUpdate(frame.header.bitrate, frame.totalDuration);
 
     this._totalBytesOut += frame.data.length;
     this._totalSamples += frame.samples;

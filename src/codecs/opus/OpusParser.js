@@ -22,8 +22,8 @@ import OpusFrame from "./OpusFrame.js";
 import OpusHeader from "./OpusHeader.js";
 
 export default class OpusParser extends Parser {
-  constructor(codecParser, onCodecUpdate) {
-    super(codecParser, onCodecUpdate);
+  constructor(codecParser, headerCache) {
+    super(codecParser, headerCache);
     this.Frame = OpusFrame;
     this.Header = OpusHeader;
 
