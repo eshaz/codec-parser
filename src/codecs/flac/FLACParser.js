@@ -97,8 +97,7 @@ export default class FLACParser extends Parser {
     } else {
       oggPage.codecFrames = frameStore
         .get(oggPage)
-        .segments.filter((segment) => segment[0] === 0xff) // filter out padding and other metadata frames
-        .map((segment) => {
+        .segments.map((segment) => {
           const header = FLACHeader.getHeaderFromUint8Array(
             segment,
             this._headerCache
