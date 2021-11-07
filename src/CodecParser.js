@@ -29,29 +29,8 @@ export default class CodecParser {
   constructor(mimeType, { onCodecUpdate, onCodec, enableLogging } = {}) {
     this._inputMimeType = mimeType;
     this._onCodec = onCodec || noOp;
-    this._headerCache = new HeaderCache(onCodecUpdate);
+    this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
-
-    if (this._inputMimeType.match(/aac/)) {
-      this._parser = new AACParser(this, this._headerCache, this._onCodec);
-    } else if (this._inputMimeType.match(/mpeg/)) {
-      this._parser = new MPEGParser(this, this._headerCache, this._onCodec);
-    } else if (this._inputMimeType.match(/flac/)) {
-      this._parser = new FLACParser(this, this._headerCache, this._onCodec);
-    } else if (this._inputMimeType.match(/ogg/)) {
-      this._parser = new OggParser(this, this._headerCache, this._onCodec);
-    } else {
-      throw new Error(`Unsupported Codec ${mimeType}`);
-    }
-
-    this._frameNumber = 0;
-    this._currentReadPosition = 0;
-    this._totalBytesIn = 0;
-    this._totalBytesOut = 0;
-    this._totalSamples = 0;
-    this._sampleRate = undefined;
-
-    this._rawData = new Uint8Array(0);
 
     this._generator = this._generator();
     this._generator.next();
@@ -82,7 +61,33 @@ export default class CodecParser {
     }
   }
 
+  /**
+   * @private
+   */
   *_generator() {
+    this._headerCache = new HeaderCache(this._onCodecUpdate);
+
+    if (this._inputMimeType.match(/aac/)) {
+      this._parser = new AACParser(this, this._headerCache, this._onCodec);
+    } else if (this._inputMimeType.match(/mpeg/)) {
+      this._parser = new MPEGParser(this, this._headerCache, this._onCodec);
+    } else if (this._inputMimeType.match(/flac/)) {
+      this._parser = new FLACParser(this, this._headerCache, this._onCodec);
+    } else if (this._inputMimeType.match(/ogg/)) {
+      this._parser = new OggParser(this, this._headerCache, this._onCodec);
+    } else {
+      throw new Error(`Unsupported Codec ${mimeType}`);
+    }
+
+    this._frameNumber = 0;
+    this._currentReadPosition = 0;
+    this._totalBytesIn = 0;
+    this._totalBytesOut = 0;
+    this._totalSamples = 0;
+    this._sampleRate = undefined;
+
+    this._rawData = new Uint8Array(0);
+
     // start parsing out frames
     while (true) {
       const frame = yield* this._parser.parseFrame();
@@ -91,7 +96,7 @@ export default class CodecParser {
   }
 
   /**
-   *
+   * @protected
    * @param {number} minSize Minimum bytes to have present in buffer
    * @returns {Uint8Array} rawData
    */
@@ -110,7 +115,7 @@ export default class CodecParser {
   }
 
   /**
-   *
+   * @protected
    * @param {number} increment Bytes to increment codec data
    */
   incrementRawData(increment) {
@@ -118,6 +123,9 @@ export default class CodecParser {
     this._rawData = this._rawData.subarray(increment);
   }
 
+  /**
+   * @protected
+   */
   mapCodecFrameStats(frame) {
     if (this._sampleRate !== frame.header.sampleRate)
       this._sampleRate = frame.header.sampleRate;
@@ -138,6 +146,9 @@ export default class CodecParser {
     this._totalSamples += frame.samples;
   }
 
+  /**
+   * @protected
+   */
   mapFrameStats(frame) {
     if (frame.codecFrames) {
       // Ogg container
@@ -155,6 +166,9 @@ export default class CodecParser {
     }
   }
 
+  /**
+   * @private
+   */
   _log(logger, messages) {
     if (this._enableLogging) {
       const stats = [
@@ -180,10 +194,16 @@ export default class CodecParser {
     }
   }
 
+  /**
+   * @protected
+   */
   logWarning(...messages) {
     this._log(console.warn, messages);
   }
 
+  /**
+   * @protected
+   */
   logError(...messages) {
     this._log(console.error, messages);
   }
