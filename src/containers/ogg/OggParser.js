@@ -97,9 +97,9 @@ export default class OggParser extends Parser {
     this.checkPageSequenceNumber(oggPage);
 
     const oggPageStore = frameStore.get(oggPage);
-    const pageSegmentTable = headerStore.get(
+    const { pageSegmentBytes, pageSegmentTable } = headerStore.get(
       oggPageStore.header
-    ).pageSegmentTable;
+    );
 
     let offset = 0;
 
@@ -107,7 +107,7 @@ export default class OggParser extends Parser {
       oggPage.data.subarray(offset, (offset += segmentLength))
     );
 
-    if (pageSegmentTable[pageSegmentTable.length - 1] === 0xff) {
+    if (pageSegmentBytes[pageSegmentBytes.length - 1] === 0xff) {
       // continued packet
       this._continuedPacket = concatBuffers(
         this._continuedPacket,

@@ -28,39 +28,18 @@
     "totalBytesOut": 0
   },
   {
-    "codecFrames": [
-      {
-        "header": {
-          "bitDepth": 16,
-          "bitrate": 384,
-          "channels": 2,
-          "sampleRate": 48000,
-          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 56624,
-          "blockingStrategy": "Fixed",
-          "blockSize": 65535,
-          "frameNumber": 0
-        },
-        "samples": 65535,
-        "duration": 1365.3125,
-        "frameNumber": 0,
-        "totalBytesOut": 0,
-        "totalSamples": 0,
-        "totalDuration": 0,
-        "crc32": -2024138764
-      }
-    ],
+    "codecFrames": [],
     "crc32": -538422156,
-    "duration": 1365.3125,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 2,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 65535,
-    "totalDuration": 1365.3125,
-    "totalBytesOut": 65025
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "totalBytesOut": 0
   },
   {
     "codecFrames": [],
@@ -72,58 +51,58 @@
     "pageSequenceNumber": 3,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 65535,
-    "totalDuration": 1365.3125,
-    "totalBytesOut": 65025
-  },
-  {
-    "codecFrames": [],
-    "crc32": -1846300876,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 4,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 65535,
-    "totalDuration": 1365.3125,
-    "totalBytesOut": 65025
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "totalBytesOut": 0
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1144,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 19394,
+          "crc16": 51014,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 1
+          "frameNumber": 0
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 1,
-        "totalBytesOut": 65025,
-        "totalSamples": 65535,
-        "totalDuration": 1365.3125,
-        "crc32": 198918019
+        "frameNumber": 0,
+        "totalBytesOut": 0,
+        "totalSamples": 0,
+        "totalDuration": 0,
+        "crc32": 1187803347
       }
     ],
-    "crc32": -46034851,
+    "crc32": -1846300876,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 4,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 65535,
+    "totalDuration": 1365.3125,
+    "totalBytesOut": 194577
+  },
+  {
+    "codecFrames": [],
+    "crc32": -46034851,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 5,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 131070,
-    "totalDuration": 2730.625,
-    "totalBytesOut": 130050
+    "totalSamples": 65535,
+    "totalDuration": 1365.3125,
+    "totalBytesOut": 194577
   },
   {
     "codecFrames": [],
@@ -135,58 +114,58 @@
     "pageSequenceNumber": 6,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 131070,
-    "totalDuration": 2730.625,
-    "totalBytesOut": 130050
-  },
-  {
-    "codecFrames": [],
-    "crc32": 1136230185,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 7,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 131070,
-    "totalDuration": 2730.625,
-    "totalBytesOut": 130050
+    "totalSamples": 65535,
+    "totalDuration": 1365.3125,
+    "totalBytesOut": 194577
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1128,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 14482,
+          "crc16": 11939,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 2
+          "frameNumber": 1
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 2,
-        "totalBytesOut": 130050,
-        "totalSamples": 131070,
-        "totalDuration": 2730.625,
-        "crc32": -1182945264
+        "frameNumber": 1,
+        "totalBytesOut": 194577,
+        "totalSamples": 65535,
+        "totalDuration": 1365.3125,
+        "crc32": 1214567570
       }
     ],
-    "crc32": 743507316,
+    "crc32": 1136230185,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 7,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 131070,
+    "totalDuration": 2730.625,
+    "totalBytesOut": 386826
+  },
+  {
+    "codecFrames": [],
+    "crc32": 743507316,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 8,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 196605,
-    "totalDuration": 4095.9375,
-    "totalBytesOut": 195075
+    "totalSamples": 131070,
+    "totalDuration": 2730.625,
+    "totalBytesOut": 386826
   },
   {
     "codecFrames": [],
@@ -198,58 +177,58 @@
     "pageSequenceNumber": 9,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 196605,
-    "totalDuration": 4095.9375,
-    "totalBytesOut": 195075
-  },
-  {
-    "codecFrames": [],
-    "crc32": 231215228,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 10,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 196605,
-    "totalDuration": 4095.9375,
-    "totalBytesOut": 195075
+    "totalSamples": 131070,
+    "totalDuration": 2730.625,
+    "totalBytesOut": 386826
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1144,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 49181,
+          "crc16": 3904,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 3
+          "frameNumber": 2
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 3,
-        "totalBytesOut": 195075,
-        "totalSamples": 196605,
-        "totalDuration": 4095.9375,
-        "crc32": -2375003
+        "frameNumber": 2,
+        "totalBytesOut": 386826,
+        "totalSamples": 131070,
+        "totalDuration": 2730.625,
+        "crc32": 984365439
       }
     ],
-    "crc32": -1211529149,
+    "crc32": 231215228,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 10,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 196605,
+    "totalDuration": 4095.9375,
+    "totalBytesOut": 581786
+  },
+  {
+    "codecFrames": [],
+    "crc32": -1211529149,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 11,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 262140,
-    "totalDuration": 5461.25,
-    "totalBytesOut": 260100
+    "totalSamples": 196605,
+    "totalDuration": 4095.9375,
+    "totalBytesOut": 581786
   },
   {
     "codecFrames": [],
@@ -261,58 +240,58 @@
     "pageSequenceNumber": 12,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 262140,
-    "totalDuration": 5461.25,
-    "totalBytesOut": 260100
-  },
-  {
-    "codecFrames": [],
-    "crc32": 2041512921,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 13,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 262140,
-    "totalDuration": 5461.25,
-    "totalBytesOut": 260100
+    "totalSamples": 196605,
+    "totalDuration": 4095.9375,
+    "totalBytesOut": 581786
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1104,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 29822,
+          "crc16": 47562,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 4
+          "frameNumber": 3
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 4,
-        "totalBytesOut": 260100,
-        "totalSamples": 262140,
-        "totalDuration": 5461.25,
-        "crc32": -1975296858
+        "frameNumber": 3,
+        "totalBytesOut": 581786,
+        "totalSamples": 196605,
+        "totalDuration": 4095.9375,
+        "crc32": 244735639
       }
     ],
-    "crc32": 2048753449,
+    "crc32": 2041512921,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 13,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 262140,
+    "totalDuration": 5461.25,
+    "totalBytesOut": 769987
+  },
+  {
+    "codecFrames": [],
+    "crc32": 2048753449,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 14,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 327675,
-    "totalDuration": 6826.5625,
-    "totalBytesOut": 325125
+    "totalSamples": 262140,
+    "totalDuration": 5461.25,
+    "totalBytesOut": 769987
   },
   {
     "codecFrames": [],
@@ -324,58 +303,58 @@
     "pageSequenceNumber": 15,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 327675,
-    "totalDuration": 6826.5625,
-    "totalBytesOut": 325125
-  },
-  {
-    "codecFrames": [],
-    "crc32": -1206286501,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 16,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 327675,
-    "totalDuration": 6826.5625,
-    "totalBytesOut": 325125
+    "totalSamples": 262140,
+    "totalDuration": 5461.25,
+    "totalBytesOut": 769987
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1112,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 2604,
+          "crc16": 57278,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 5
+          "frameNumber": 4
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 5,
-        "totalBytesOut": 325125,
-        "totalSamples": 327675,
-        "totalDuration": 6826.5625,
-        "crc32": -158630473
+        "frameNumber": 4,
+        "totalBytesOut": 769987,
+        "totalSamples": 262140,
+        "totalDuration": 5461.25,
+        "crc32": -374516794
       }
     ],
-    "crc32": 1594201478,
+    "crc32": -1206286501,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 16,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 327675,
+    "totalDuration": 6826.5625,
+    "totalBytesOut": 959580
+  },
+  {
+    "codecFrames": [],
+    "crc32": 1594201478,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 17,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 393210,
-    "totalDuration": 8191.875,
-    "totalBytesOut": 390150
+    "totalSamples": 327675,
+    "totalDuration": 6826.5625,
+    "totalBytesOut": 959580
   },
   {
     "codecFrames": [],
@@ -387,58 +366,58 @@
     "pageSequenceNumber": 18,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 393210,
-    "totalDuration": 8191.875,
-    "totalBytesOut": 390150
-  },
-  {
-    "codecFrames": [],
-    "crc32": -783336588,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 19,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 393210,
-    "totalDuration": 8191.875,
-    "totalBytesOut": 390150
+    "totalSamples": 327675,
+    "totalDuration": 6826.5625,
+    "totalBytesOut": 959580
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1128,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 49446,
+          "crc16": 21564,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 6
+          "frameNumber": 5
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 6,
-        "totalBytesOut": 390150,
-        "totalSamples": 393210,
-        "totalDuration": 8191.875,
-        "crc32": -1192363199
+        "frameNumber": 5,
+        "totalBytesOut": 959580,
+        "totalSamples": 327675,
+        "totalDuration": 6826.5625,
+        "crc32": 1855301806
       }
     ],
-    "crc32": -1898002373,
+    "crc32": -783336588,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 19,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 393210,
+    "totalDuration": 8191.875,
+    "totalBytesOut": 1152079
+  },
+  {
+    "codecFrames": [],
+    "crc32": -1898002373,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 20,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 458745,
-    "totalDuration": 9557.1875,
-    "totalBytesOut": 455175
+    "totalSamples": 393210,
+    "totalDuration": 8191.875,
+    "totalBytesOut": 1152079
   },
   {
     "codecFrames": [],
@@ -450,58 +429,58 @@
     "pageSequenceNumber": 21,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 458745,
-    "totalDuration": 9557.1875,
-    "totalBytesOut": 455175
-  },
-  {
-    "codecFrames": [],
-    "crc32": 1257522030,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 22,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 458745,
-    "totalDuration": 9557.1875,
-    "totalBytesOut": 455175
+    "totalSamples": 393210,
+    "totalDuration": 8191.875,
+    "totalBytesOut": 1152079
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1128,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 41063,
+          "crc16": 21800,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 7
+          "frameNumber": 6
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 7,
-        "totalBytesOut": 455175,
-        "totalSamples": 458745,
-        "totalDuration": 9557.1875,
-        "crc32": -348601532
+        "frameNumber": 6,
+        "totalBytesOut": 1152079,
+        "totalSamples": 393210,
+        "totalDuration": 8191.875,
+        "crc32": -1672897788
       }
     ],
-    "crc32": -1738986964,
+    "crc32": 1257522030,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 22,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 458745,
+    "totalDuration": 9557.1875,
+    "totalBytesOut": 1345104
+  },
+  {
+    "codecFrames": [],
+    "crc32": -1738986964,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 23,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 524280,
-    "totalDuration": 10922.5,
-    "totalBytesOut": 520200
+    "totalSamples": 458745,
+    "totalDuration": 9557.1875,
+    "totalBytesOut": 1345104
   },
   {
     "codecFrames": [],
@@ -513,58 +492,58 @@
     "pageSequenceNumber": 24,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 524280,
-    "totalDuration": 10922.5,
-    "totalBytesOut": 520200
-  },
-  {
-    "codecFrames": [],
-    "crc32": -394013513,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 25,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 524280,
-    "totalDuration": 10922.5,
-    "totalBytesOut": 520200
+    "totalSamples": 458745,
+    "totalDuration": 9557.1875,
+    "totalBytesOut": 1345104
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1128,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 1806,
+          "crc16": 53730,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 8
+          "frameNumber": 7
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 8,
-        "totalBytesOut": 520200,
-        "totalSamples": 524280,
-        "totalDuration": 10922.5,
-        "crc32": -217553347
+        "frameNumber": 7,
+        "totalBytesOut": 1345104,
+        "totalSamples": 458745,
+        "totalDuration": 9557.1875,
+        "crc32": 1930085416
       }
     ],
-    "crc32": -1021245454,
+    "crc32": -394013513,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 25,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 524280,
+    "totalDuration": 10922.5,
+    "totalBytesOut": 1538097
+  },
+  {
+    "codecFrames": [],
+    "crc32": -1021245454,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 26,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 589815,
-    "totalDuration": 12287.8125,
-    "totalBytesOut": 585225
+    "totalSamples": 524280,
+    "totalDuration": 10922.5,
+    "totalBytesOut": 1538097
   },
   {
     "codecFrames": [],
@@ -576,58 +555,58 @@
     "pageSequenceNumber": 27,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 589815,
-    "totalDuration": 12287.8125,
-    "totalBytesOut": 585225
-  },
-  {
-    "codecFrames": [],
-    "crc32": 314040667,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 28,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 589815,
-    "totalDuration": 12287.8125,
-    "totalBytesOut": 585225
+    "totalSamples": 524280,
+    "totalDuration": 10922.5,
+    "totalBytesOut": 1538097
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1136,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 903,
+          "crc16": 46130,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 9
+          "frameNumber": 8
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 9,
-        "totalBytesOut": 585225,
-        "totalSamples": 589815,
-        "totalDuration": 12287.8125,
-        "crc32": -529795007
+        "frameNumber": 8,
+        "totalBytesOut": 1538097,
+        "totalSamples": 524280,
+        "totalDuration": 10922.5,
+        "crc32": 564204144
       }
     ],
-    "crc32": -1664616255,
+    "crc32": 314040667,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 28,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 589815,
+    "totalDuration": 12287.8125,
+    "totalBytesOut": 1731785
+  },
+  {
+    "codecFrames": [],
+    "crc32": -1664616255,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 29,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 655350,
-    "totalDuration": 13653.125,
-    "totalBytesOut": 650250
+    "totalSamples": 589815,
+    "totalDuration": 12287.8125,
+    "totalBytesOut": 1731785
   },
   {
     "codecFrames": [],
@@ -639,58 +618,58 @@
     "pageSequenceNumber": 30,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 655350,
-    "totalDuration": 13653.125,
-    "totalBytesOut": 650250
-  },
-  {
-    "codecFrames": [],
-    "crc32": 149825838,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 31,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 655350,
-    "totalDuration": 13653.125,
-    "totalBytesOut": 650250
+    "totalSamples": 589815,
+    "totalDuration": 12287.8125,
+    "totalBytesOut": 1731785
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1112,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 40791,
+          "crc16": 23520,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 10
+          "frameNumber": 9
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 10,
-        "totalBytesOut": 650250,
-        "totalSamples": 655350,
-        "totalDuration": 13653.125,
-        "crc32": -1030830898
+        "frameNumber": 9,
+        "totalBytesOut": 1731785,
+        "totalSamples": 589815,
+        "totalDuration": 12287.8125,
+        "crc32": 1942716772
       }
     ],
-    "crc32": 1703826825,
+    "crc32": 149825838,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 31,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 655350,
+    "totalDuration": 13653.125,
+    "totalBytesOut": 1921908
+  },
+  {
+    "codecFrames": [],
+    "crc32": 1703826825,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 32,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 720885,
-    "totalDuration": 15018.4375,
-    "totalBytesOut": 715275
+    "totalSamples": 655350,
+    "totalDuration": 13653.125,
+    "totalBytesOut": 1921908
   },
   {
     "codecFrames": [],
@@ -702,58 +681,58 @@
     "pageSequenceNumber": 33,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 720885,
-    "totalDuration": 15018.4375,
-    "totalBytesOut": 715275
-  },
-  {
-    "codecFrames": [],
-    "crc32": 281869799,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 34,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 720885,
-    "totalDuration": 15018.4375,
-    "totalBytesOut": 715275
+    "totalSamples": 655350,
+    "totalDuration": 13653.125,
+    "totalBytesOut": 1921908
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1120,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 11786,
+          "crc16": 29646,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 11
+          "frameNumber": 10
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 11,
-        "totalBytesOut": 715275,
-        "totalSamples": 720885,
-        "totalDuration": 15018.4375,
-        "crc32": -1883406876
+        "frameNumber": 10,
+        "totalBytesOut": 1921908,
+        "totalSamples": 655350,
+        "totalDuration": 13653.125,
+        "crc32": 269536620
       }
     ],
-    "crc32": -1699302935,
+    "crc32": 281869799,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 34,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 720885,
+    "totalDuration": 15018.4375,
+    "totalBytesOut": 2113278
+  },
+  {
+    "codecFrames": [],
+    "crc32": -1699302935,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 35,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 786420,
-    "totalDuration": 16383.75,
-    "totalBytesOut": 780300
+    "totalSamples": 720885,
+    "totalDuration": 15018.4375,
+    "totalBytesOut": 2113278
   },
   {
     "codecFrames": [],
@@ -765,9 +744,9 @@
     "pageSequenceNumber": 36,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 786420,
-    "totalDuration": 16383.75,
-    "totalBytesOut": 780300
+    "totalSamples": 720885,
+    "totalDuration": 15018.4375,
+    "totalBytesOut": 2113278
   },
   {
     "codecFrames": [],
@@ -779,58 +758,58 @@
     "pageSequenceNumber": 37,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 786420,
-    "totalDuration": 16383.75,
-    "totalBytesOut": 780300
-  },
-  {
-    "codecFrames": [],
-    "crc32": -989026628,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 38,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 786420,
-    "totalDuration": 16383.75,
-    "totalBytesOut": 780300
+    "totalSamples": 720885,
+    "totalDuration": 15018.4375,
+    "totalBytesOut": 2113278
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1168,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 631,
+          "crc16": 16395,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 12
+          "frameNumber": 11
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 12,
-        "totalBytesOut": 780300,
-        "totalSamples": 786420,
-        "totalDuration": 16383.75,
-        "crc32": -1869832586
+        "frameNumber": 11,
+        "totalBytesOut": 2113278,
+        "totalSamples": 720885,
+        "totalDuration": 15018.4375,
+        "crc32": -575143997
       }
     ],
-    "crc32": -2113127353,
+    "crc32": -989026628,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 38,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 786420,
+    "totalDuration": 16383.75,
+    "totalBytesOut": 2312472
+  },
+  {
+    "codecFrames": [],
+    "crc32": -2113127353,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 39,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 851955,
-    "totalDuration": 17749.0625,
-    "totalBytesOut": 845325
+    "totalSamples": 786420,
+    "totalDuration": 16383.75,
+    "totalBytesOut": 2312472
   },
   {
     "codecFrames": [],
@@ -842,58 +821,58 @@
     "pageSequenceNumber": 40,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 851955,
-    "totalDuration": 17749.0625,
-    "totalBytesOut": 845325
-  },
-  {
-    "codecFrames": [],
-    "crc32": -996682955,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 41,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 851955,
-    "totalDuration": 17749.0625,
-    "totalBytesOut": 845325
+    "totalSamples": 786420,
+    "totalDuration": 16383.75,
+    "totalBytesOut": 2312472
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1120,
           "channels": 2,
           "sampleRate": 48000,
           "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
-          "crc16": 6988,
+          "crc16": 30551,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 13
+          "frameNumber": 12
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 13,
-        "totalBytesOut": 845325,
-        "totalSamples": 851955,
-        "totalDuration": 17749.0625,
-        "crc32": 772175692
+        "frameNumber": 12,
+        "totalBytesOut": 2312472,
+        "totalSamples": 786420,
+        "totalDuration": 16383.75,
+        "crc32": -983718879
       }
     ],
-    "crc32": 571102688,
+    "crc32": -996682955,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 41,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 851955,
+    "totalDuration": 17749.0625,
+    "totalBytesOut": 2504248
+  },
+  {
+    "codecFrames": [],
+    "crc32": 571102688,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 42,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 917490,
-    "totalDuration": 19114.375,
-    "totalBytesOut": 910350
+    "totalSamples": 851955,
+    "totalDuration": 17749.0625,
+    "totalBytesOut": 2504248
   },
   {
     "codecFrames": [],
@@ -905,9 +884,9 @@
     "pageSequenceNumber": 43,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 917490,
-    "totalDuration": 19114.375,
-    "totalBytesOut": 910350
+    "totalSamples": 851955,
+    "totalDuration": 17749.0625,
+    "totalBytesOut": 2504248
   },
   {
     "codecFrames": [],
@@ -919,58 +898,58 @@
     "pageSequenceNumber": 44,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 917490,
-    "totalDuration": 19114.375,
-    "totalBytesOut": 910350
-  },
-  {
-    "codecFrames": [],
-    "crc32": 134311944,
-    "duration": 0,
-    "isContinuedPacket": true,
-    "isFirstPage": false,
-    "isLastPage": false,
-    "pageSequenceNumber": 45,
-    "samples": 0,
-    "streamSerialNumber": -141165295,
-    "totalSamples": 917490,
-    "totalDuration": 19114.375,
-    "totalBytesOut": 910350
+    "totalSamples": 851955,
+    "totalDuration": 17749.0625,
+    "totalBytesOut": 2504248
   },
   {
     "codecFrames": [
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 384,
+          "bitrate": 1152,
           "channels": 2,
           "sampleRate": 48000,
-          "channelMode": "left, right",
-          "crc16": 3350,
+          "channelMode": "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel",
+          "crc16": 635,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
-          "frameNumber": 14
+          "frameNumber": 13
         },
         "samples": 65535,
         "duration": 1365.3125,
-        "frameNumber": 14,
-        "totalBytesOut": 910350,
-        "totalSamples": 917490,
-        "totalDuration": 19114.375,
-        "crc32": 128553543
+        "frameNumber": 13,
+        "totalBytesOut": 2504248,
+        "totalSamples": 851955,
+        "totalDuration": 17749.0625,
+        "crc32": 1603727618
       }
     ],
-    "crc32": 723845307,
+    "crc32": 134311944,
     "duration": 1365.3125,
+    "isContinuedPacket": true,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 45,
+    "samples": 65535,
+    "streamSerialNumber": -141165295,
+    "totalSamples": 917490,
+    "totalDuration": 19114.375,
+    "totalBytesOut": 2700799
+  },
+  {
+    "codecFrames": [],
+    "crc32": 723845307,
+    "duration": 0,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 46,
-    "samples": 65535,
+    "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 983025,
-    "totalDuration": 20479.6875,
-    "totalBytesOut": 975375
+    "totalSamples": 917490,
+    "totalDuration": 19114.375,
+    "totalBytesOut": 2700799
   },
   {
     "codecFrames": [],
@@ -982,22 +961,43 @@
     "pageSequenceNumber": 47,
     "samples": 0,
     "streamSerialNumber": -141165295,
-    "totalSamples": 983025,
-    "totalDuration": 20479.6875,
-    "totalBytesOut": 975375
+    "totalSamples": 917490,
+    "totalDuration": 19114.375,
+    "totalBytesOut": 2700799
   },
   {
-    "codecFrames": [],
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 16,
+          "bitrate": 1024,
+          "channels": 2,
+          "sampleRate": 48000,
+          "channelMode": "left, right",
+          "crc16": 4111,
+          "blockingStrategy": "Fixed",
+          "blockSize": 65535,
+          "frameNumber": 14
+        },
+        "samples": 65535,
+        "duration": 1365.3125,
+        "frameNumber": 14,
+        "totalBytesOut": 2700799,
+        "totalSamples": 917490,
+        "totalDuration": 19114.375,
+        "crc32": -1516782466
+      }
+    ],
     "crc32": -1861950969,
-    "duration": 0,
+    "duration": 1365.3125,
     "isContinuedPacket": true,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 48,
-    "samples": 0,
+    "samples": 65535,
     "streamSerialNumber": -141165295,
     "totalSamples": 983025,
     "totalDuration": 20479.6875,
-    "totalBytesOut": 975375
+    "totalBytesOut": 2874965
   }
 ]

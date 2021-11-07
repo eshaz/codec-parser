@@ -17,7 +17,7 @@
 */
 
 /*
-https://xiph.org/ogg/doc/framing.html
+https://xiph.org/flac/format.html
 
 AAAAAAAA AAAAAABC DDDDEEEE FFFFGGGH 
 (IIIIIIII...)
@@ -126,34 +126,42 @@ const bitDepth = {
 };
 
 export default class FLACHeader extends CodecHeader {
+  // https://datatracker.ietf.org/doc/html/rfc3629#section-3
+  //    Char. number range  |        UTF-8 octet sequence
+  //    (hexadecimal)    |              (binary)
+  // --------------------+---------------------------------------------
+  // 0000 0000-0000 007F | 0xxxxxxx
+  // 0000 0080-0000 07FF | 110xxxxx 10xxxxxx
+  // 0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx
+  // 0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
   static decodeUTF8Int(data) {
-    if (data[0] < 0x80) return { value: data[0], next: 1 };
+    if (data[0] < 0x80) return { value: data[0], length: 1 };
 
-    if (data === 0xff) return null; // invalid
+    if (data[0] > 0xfe) return null; // invalid
 
-    let next = 2,
-      mask = 0xe0,
-      value;
+    let length = 1,
+      value = 0;
 
-    // determine length of utf-8 character
-    while ((data[0] & mask) !== ((mask << 1) & 0xff) && next < 7) {
-      next++;
-      mask |= mask >> 1;
+    for (let zeroMask = 0x40; zeroMask & data[0]; zeroMask >>= 1) length++;
+
+    let encodedBitsRead = 0;
+
+    // sum together the encoded bits
+    // 1110xxxx 10[cccccc] 10[bbbbbb] 10[aaaaaa]
+    //
+    //    value = [cccccc] | [bbbbbb] | [aaaaaa]
+    for (let idx = length - 1; idx > 0; idx--) {
+      value += (data[idx] & 0x3f) << encodedBitsRead;
+      encodedBitsRead += 6;
     }
 
-    if (next === 7) return null; // invalid
+    // read the final encoded bits in the length byte
+    //     1110[dddd] 10[cccccc] 10[bbbbbb] 10[aaaaaa]
+    //
+    // value = [dddd] | [cccccc] | [bbbbbb] | [aaaaaa]
+    value += (data[0] & (0x7f >> length)) << encodedBitsRead;
 
-    const offset = (next - 1) * 6;
-
-    // set value for the remaining bits in the length character
-    value = data[0] & ((mask ^ 0xff) << offset);
-
-    // set the remaining values
-    for (let idx = 1; idx < next; idx++) {
-      value |= (data[idx] & 0x3f) << (offset - 6 * idx);
-    }
-
-    return { value, next };
+    return { value, length };
   }
 
   static getHeaderFromUint8Array(data, headerCache) {
@@ -249,7 +257,7 @@ export default class FLACHeader extends CodecHeader {
       header.frameNumber = decodedUtf8.value;
     }
 
-    header.length += decodedUtf8.next;
+    header.length += decodedUtf8.length;
 
     // Byte (...)
     // * `JJJJJJJJ|(JJJJJJJJ)`: Blocksize (8/16bit custom value)
