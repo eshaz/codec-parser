@@ -67,8 +67,13 @@ describe("CodecParser", () => {
       20000
     );
 
+    const outputShouldMatchInput = dataOffset !== undefined;
+    const flushTestName = outputShouldMatchInput
+      ? `should parse ${fileName}, flush any buffered frames, and output should match input`
+      : `should parse ${fileName} and flush any buffered frames`;
+
     it.concurrent(
-      `should parse ${fileName} and return the buffered frames when flush is called`,
+      flushTestName,
       async () => {
         const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
         const codecParser = new CodecParser(mimeType);
@@ -93,8 +98,8 @@ describe("CodecParser", () => {
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
         assertFrames(actualFileName, expectedFileName);
-        
-        if (dataOffset !== undefined) {
+
+        if (outputShouldMatchInput) {
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
