@@ -18,7 +18,7 @@ describe("CodecParser", () => {
     expect(actualFrames).toEqual(expectedFrames);
   };
 
-  const testParser = (fileName, mimeType, codec) => {
+  const testParser = (fileName, mimeType, codec, dataOffset) => {
     it.concurrent(
       `should parse ${fileName}`,
       async () => {
@@ -67,6 +67,40 @@ describe("CodecParser", () => {
       20000
     );
 
+    it.concurrent(
+      `should parse ${fileName} and return the buffered frames when flush is called`,
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
+
+        const actualFileName = `${fileName}_iterator_flush.json`;
+        const expectedFileName = `${fileName}_iterator_flush.json`;
+
+        const frames = [];
+
+        for (const frame of codecParser.iterator(file)) {
+          frames.push(frame);
+        }
+
+        for (const frame of codecParser.flush()) {
+          frames.push(frame);
+        }
+
+        const data = Buffer.concat(
+          frames.map((frame) => frame.rawData || frame.data)
+        );
+
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+        //assertFrames(actualFileName, expectedFileName);
+        if (dataOffset !== undefined) {
+          const fileWithOffset = file.subarray(dataOffset);
+          expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
+        }
+      },
+      20000
+    );
+
     it.concurrent(`should return ${codec} when .codec is called`, async () => {
       const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
       const codecParser = new CodecParser(mimeType);
@@ -78,19 +112,19 @@ describe("CodecParser", () => {
   };
 
   describe("MP3 CBR", () => {
-    testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg");
+    testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg", 45);
   });
 
   describe("MP3 VBR", () => {
-    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg");
+    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg", 45);
   });
 
   describe("AAC", () => {
-    testParser("aac.aac", "audio/aac", "aac");
+    testParser("aac.aac", "audio/aac", "aac", 0);
   });
 
   describe("Flac", () => {
-    testParser("flac.flac", "audio/flac", "flac");
+    testParser("flac.flac", "audio/flac", "flac", 8430);
   });
 
   describe("Ogg", () => {
@@ -136,25 +170,25 @@ describe("CodecParser", () => {
     });
 
     describe("Ogg Flac", () => {
-      testParser("ogg.flac", mimeType, "flac");
-      testParser("ogg.flac.samplerate_50000", mimeType, "flac");
-      testParser("ogg.flac.samplerate_12345", mimeType, "flac");
-      testParser("ogg.flac.blocksize_65535", mimeType, "flac");
-      testParser("ogg.flac.blocksize_64", mimeType, "flac");
-      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac");
-      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac");
-      testParser("ogg.flac.utf8_frame_number", mimeType, "flac");
+      testParser("ogg.flac", mimeType, "flac", 0);
+      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 0);
+      testParser("ogg.flac.samplerate_12345", mimeType, "flac", 0);
+      testParser("ogg.flac.blocksize_65535", mimeType, "flac", 0);
+      testParser("ogg.flac.blocksize_64", mimeType, "flac", 0);
+      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 0);
+      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac", 0);
+      testParser("ogg.flac.utf8_frame_number", mimeType, "flac", 0);
     });
 
     describe("Ogg Opus", () => {
-      testParser("ogg.opus", mimeType, "opus");
-      testParser("ogg.opus.framesize_40", mimeType, "opus");
-      testParser("ogg.opus.framesize_60", mimeType, "opus");
-      testParser("ogg.opus.surround", mimeType, "opus");
+      testParser("ogg.opus", mimeType, "opus", 0);
+      testParser("ogg.opus.framesize_40", mimeType, "opus", 0);
+      testParser("ogg.opus.framesize_60", mimeType, "opus", 0);
+      testParser("ogg.opus.surround", mimeType, "opus", 0);
     });
 
     describe("Ogg Vorbis", () => {
-      testParser("ogg.vorbis", mimeType, "vorbis");
+      testParser("ogg.vorbis", mimeType, "vorbis", 0);
       testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis");
       testParser("ogg.vorbis.fishead", mimeType, "vorbis");
     });

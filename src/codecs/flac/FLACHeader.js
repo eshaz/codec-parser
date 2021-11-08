@@ -168,8 +168,6 @@ export default class FLACHeader extends CodecHeader {
   static getHeaderFromUint8Array(data, headerCache) {
     const codecParserStub = {
       readRawData: function* (length) {
-        if (length > data.length)
-          throw new Error("Out of data while inside an Ogg Page");
         return data;
       },
     };

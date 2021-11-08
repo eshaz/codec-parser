@@ -62,6 +62,22 @@ export default class CodecParser {
   }
 
   /**
+   * @public
+   * @description Returns an iterator that returns any buffered CodecFrames.
+   * @returns {IterableIterator} Iterator that operates over the codec data.
+   * @yields {Uint8Array} CodecFrames
+   */
+  *flush() {
+    this._flushing = true;
+
+    for (let i = this._generator.next(); i.value; i = this._generator.next()) {
+      yield i.value;
+    }
+
+    this._flushing = false;
+  }
+
+  /**
    * @private
    */
   *_generator() {
@@ -105,6 +121,9 @@ export default class CodecParser {
 
     while (this._rawData.length <= minSize + readOffset) {
       rawData = yield;
+
+      if (this._flushing) return this._rawData;
+
       if (rawData) {
         this._totalBytesIn += rawData.length;
         this._rawData = concatBuffers(this._rawData, rawData);

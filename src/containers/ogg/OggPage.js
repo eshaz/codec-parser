@@ -38,10 +38,7 @@ export default class OggPage extends Frame {
         totalLength
       );
 
-      const frame = (yield* codecParser.readRawData(
-        frameLength,
-        headerLength
-      )).subarray(0, frameLength);
+      const frame = rawData.subarray(headerLength, totalLength);
 
       return new OggPage(header, frame, rawData);
     } else {
