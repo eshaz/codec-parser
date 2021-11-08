@@ -92,7 +92,8 @@ describe("CodecParser", () => {
 
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
-        //assertFrames(actualFileName, expectedFileName);
+        assertFrames(actualFileName, expectedFileName);
+        
         if (dataOffset !== undefined) {
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);

@@ -122,7 +122,7 @@ export default class CodecParser {
     while (this._rawData.length <= minSize + readOffset) {
       rawData = yield;
 
-      if (this._flushing) return this._rawData;
+      if (this._flushing) return this._rawData.subarray(readOffset);
 
       if (rawData) {
         this._totalBytesIn += rawData.length;

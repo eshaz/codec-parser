@@ -167,7 +167,7 @@ export default class FLACHeader extends CodecHeader {
 
   static getHeaderFromUint8Array(data, headerCache) {
     const codecParserStub = {
-      readRawData: function* (length) {
+      readRawData: function* () {
         return data;
       },
     };
