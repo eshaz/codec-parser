@@ -74,59 +74,72 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
     ### Example:
 
-  * 1st `.iterator()` call
-    * Input
+    * 1st `.iterator()` call
+      * Input
+          ```
+          [MPEG frame 0 (partial)],
+          [MPEG frame 1 (partial)], 
+          ```
+      * Output (no iterations)
         ```
-        [MPEG frame 0 (partial)],
-        [MPEG frame 1 (partial)], 
+        (none)
         ```
-    * Output (no iterations)
-      ```
-      (none)
-      ```
-    * `Frame 0` is dropped since it doesn't start with a valid header.
-    * `Frame 1` is parsed and stored internally until enough data is passed in to properly sync.
-  * 2nd `.iterator()` call
-    * Input
+      * `Frame 0` is dropped since it doesn't start with a valid header.
+      * `Frame 1` is parsed and stored internally until enough data is passed in to properly sync.
+    * 2nd `.iterator()` call
+      * Input
+          ```
+          [MPEG frame 1 (partial)], 
+          [MPEG frame 2 (partial)]
+          ```
+      * Output (1 iteration)
         ```
-        [MPEG frame 1 (partial)], 
-        [MPEG frame 2 (partial)]
+        MPEG Frame 1 {
+            data,
+            header
+            ...
+        }
         ```
-    * Output (1 iteration)
-      ```
-      MPEG Frame 1 {
-          data,
-          header
-          ...
-      }
-      ```
-    * `Frame 1` is joined with the partial data and returned since it was immediately followed by `Frame 2`.
-    * `Frame 2` is stored internally as partial data.
-  * 3rd `.iterator()` call
-    * Input
-      ```
-      [MPEG frame 2 (partial)],
-      [MPEG frame 3 (full)], 
-      [MPEG frame 4 (partial)]
-      ```
-    * Output (2 iterations)
-      ```
-      MPEG Frame 2 {
-          data,
-          header
-          ...
-      }
-      ```
-      ```
-      MPEG Frame 3 {
-          data,
-          header
-          ...
-      }
-      ```
-    * `Frame 2` is joined with the partial data and returned since it was immediately followed by `Frame 3`.
-    * `Frame 3` is returned since it was immediately followed by `Frame 4`.
-    * `Frame 4` is stored internally as partial data.
+      * `Frame 1` is joined with the partial data and returned since it was immediately followed by `Frame 2`.
+      * `Frame 2` is stored internally as partial data.
+    * 3rd `.iterator()` call
+      * Input
+        ```
+        [MPEG frame 2 (partial)],
+        [MPEG frame 3 (full)], 
+        [MPEG frame 4 (partial)]
+        ```
+      * Output (2 iterations)
+        ```
+        MPEG Frame 2 {
+            data,
+            header
+            ...
+        }
+        ```
+        ```
+        MPEG Frame 3 {
+            data,
+            header
+            ...
+        }
+        ```
+      * `Frame 2` is joined with the partial data and returned since it was immediately followed by `Frame 3`.
+      * `Frame 3` is returned since it was immediately followed by `Frame 4`.
+      * `Frame 4` is stored internally as partial data.
+
+1. When you have come to the end of the stream or file, you may call the instance's `flush()` method to return another iterator that will yield any remaining frames that are buffered. Once `flush()` is called, you will need to create a new instance of `CodecParser` to continue parsing frames.
+
+    ```javascript
+    for (const frame of parser.flush()) {
+      // Do something the buffered frames
+    }
+    ```
+    ***or***
+    ```javascript
+    const frames = [...parser.flush()]
+    ```
+
 
 ### Instantiation
 
@@ -151,6 +164,8 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
 * `parser.iterator(data)` Returns an iterator where each iteration returns an audio frame.
   * `data` Uint8Array of audio data to wrap
+* `parser.flush()` Returns an iterator that yields any remaining buffered frames.
+  * Note: When `flush()` is called, you must create a new instance of `CodecParser` to continue parsing data.
 
 ### Properties
 

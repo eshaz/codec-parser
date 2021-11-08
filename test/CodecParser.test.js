@@ -91,15 +91,15 @@ describe("CodecParser", () => {
           frames.push(frame);
         }
 
-        const data = Buffer.concat(
-          frames.map((frame) => frame.rawData || frame.data)
-        );
-
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
         assertFrames(actualFileName, expectedFileName);
 
         if (outputShouldMatchInput) {
+          const data = Buffer.concat(
+            frames.map((frame) => frame.rawData || frame.data)
+          );
+
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
