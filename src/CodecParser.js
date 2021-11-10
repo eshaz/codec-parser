@@ -32,7 +32,7 @@ export default class CodecParser {
     this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
 
-    this._generator = this._generator();
+    this._generator = this._getGenerator();
     this._generator.next();
   }
 
@@ -46,12 +46,43 @@ export default class CodecParser {
 
   /**
    * @public
-   * @description Returns an iterator for the passed in codec data.
+   * @deprecated Use `parseChunk()` instead
+   * @description Generator function takes in a Uint8Array of data and returns a CodecFrame from the data for each iteration
    * @param {Uint8Array} chunk Next chunk of codec data to read
-   * @returns {IterableIterator} Iterator that operates over the codec data.
-   * @yields {Uint8Array} Codec Frames
+   * @returns {Iterable<CodecFrame|OggPage>} Iterator that operates over the codec data.
+   * @yields {CodecFrame|OggPage} Parsed codec or ogg page data
    */
   *iterator(chunk) {
+    yield* this.parseChunk(chunk);
+  }
+
+  /**
+   * @public
+   * @description Generator function that yields any buffered CodecFrames and resets the CodecParser
+   * @returns {Iterable<CodecFrame|OggPage>} Iterator that operates over the codec data.
+   * @yields {CodecFrame|OggPage} Parsed codec or ogg page data
+   */
+  *flush() {
+    this._flushing = true;
+
+    for (let i = this._generator.next(); i.value; i = this._generator.next()) {
+      yield i.value;
+    }
+
+    this._flushing = false;
+
+    this._generator = this._getGenerator();
+    this._generator.next();
+  }
+
+  /**
+   * @public
+   * @description Generator function takes in a Uint8Array of data and returns a CodecFrame from the data for each iteration
+   * @param {Uint8Array} chunk Next chunk of codec data to read
+   * @returns {Iterable<CodecFrame|OggPage>} Iterator that operates over the codec data.
+   * @yields {CodecFrame|OggPage} Parsed codec or ogg page data
+   */
+  *parseChunk(chunk) {
     for (
       let i = this._generator.next(chunk);
       i.value;
@@ -63,24 +94,18 @@ export default class CodecParser {
 
   /**
    * @public
-   * @description Returns an iterator that returns any buffered CodecFrames.
-   * @returns {IterableIterator} Iterator that operates over the codec data.
-   * @yields {Uint8Array} CodecFrames
+   * @description Parses an entire file and returns all of the contained frames.
+   * @param {Uint8Array} fileData Coded data to read
+   * @returns {Array<CodecFrame|OggPage>} CodecFrames
    */
-  *flush() {
-    this._flushing = true;
-
-    for (let i = this._generator.next(); i.value; i = this._generator.next()) {
-      yield i.value;
-    }
-
-    this._flushing = false;
+  parseAll(fileData) {
+    return [...this.parseChunk(fileData), ...this.flush()];
   }
 
   /**
    * @private
    */
-  *_generator() {
+  *_getGenerator() {
     this._headerCache = new HeaderCache(this._onCodecUpdate);
 
     if (this._inputMimeType.match(/aac/)) {

@@ -30,7 +30,7 @@ describe("CodecParser", () => {
 
         const frames = [];
 
-        for (const frame of codecParser.iterator(file)) {
+        for (const frame of codecParser.parseChunk(file)) {
           frames.push(frame);
         }
 
@@ -57,7 +57,7 @@ describe("CodecParser", () => {
         const chunks = getBuffArray(file, 1000);
 
         for (const chunk of chunks) {
-          frames = [...frames, ...codecParser.iterator(chunk)];
+          frames = [...frames, ...codecParser.parseChunk(chunk)];
         }
 
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
@@ -107,11 +107,42 @@ describe("CodecParser", () => {
       20000
     );
 
+    const parseAllTestName = outputShouldMatchInput
+      ? `should parse ${fileName} when parseAll() is called, and output should match input`
+      : `should parse ${fileName} when parseAll() is called`;
+
+    it.concurrent(
+      parseAllTestName,
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+        const codecParser = new CodecParser(mimeType);
+
+        const actualFileName = `${fileName}_iterator_parseAll.json`;
+        const expectedFileName = `${fileName}_iterator_flush.json`;
+
+        const frames = codecParser.parseAll(file);
+
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
+
+        assertFrames(actualFileName, expectedFileName);
+
+        if (outputShouldMatchInput) {
+          const data = Buffer.concat(
+            frames.map((frame) => frame.rawData || frame.data)
+          );
+
+          const fileWithOffset = file.subarray(dataOffset);
+          expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
+        }
+      },
+      20000
+    );
+
     it.concurrent(`should return ${codec} when .codec is called`, async () => {
       const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
       const codecParser = new CodecParser(mimeType);
 
-      [...codecParser.iterator(file.subarray(0x0, 0xffff))];
+      [...codecParser.parseChunk(file.subarray(0x0, 0xffff))];
 
       expect(codecParser.codec).toEqual(codec);
     });
@@ -154,7 +185,9 @@ describe("CodecParser", () => {
           const codecParser = new CodecParser(mimeType);
 
           file.set([0, 0, 0, 0], 0x0);
-          const frames = [...codecParser.iterator(file.subarray(0x0, 0x2e8c))];
+          const frames = [
+            ...codecParser.parseChunk(file.subarray(0x0, 0x2e8c)),
+          ];
 
           expect(frames).toEqual([]);
         }
@@ -168,7 +201,9 @@ describe("CodecParser", () => {
           const codecParser = new CodecParser(mimeType);
 
           file.set([0b00001000], 0x5);
-          const frames = [...codecParser.iterator(file.subarray(0x0, 0x2e8c))];
+          const frames = [
+            ...codecParser.parseChunk(file.subarray(0x0, 0x2e8c)),
+          ];
 
           expect(frames).toEqual([]);
         }
@@ -232,7 +267,7 @@ describe("CodecParser", () => {
       // [--0x90 bytes--|--0x510 bytes--]
       // [-- frame 0 ---|-- frame 1-9 --]
       // [0x50---------------------0x5f0]
-      const frames = [...codecParser.iterator(file.subarray(0x50, 0x5f0))];
+      const frames = [...codecParser.parseChunk(file.subarray(0x50, 0x5f0))];
 
       await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
@@ -248,7 +283,7 @@ describe("CodecParser", () => {
       // [--0x90 bytes--|------0x04 bytes------]
       // [-- frame 0 ---|-- frame 1 (header) --]
       // [0x50-----------------------------0xe5]
-      const frames = [...codecParser.iterator(file.subarray(0x50, 0xe5))];
+      const frames = [...codecParser.parseChunk(file.subarray(0x50, 0xe5))];
 
       await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
@@ -266,7 +301,9 @@ describe("CodecParser", () => {
       // [0x50----------------------------0xe5]
       const frame1 = file.subarray(0x50, 0xe0);
       const frame2 = file.subarray(0xe0, 0x170);
-      const frames = [...codecParser.iterator(Buffer.concat([frame1, frame2]))];
+      const frames = [
+        ...codecParser.parseChunk(Buffer.concat([frame1, frame2])),
+      ];
 
       await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
@@ -282,17 +319,23 @@ describe("CodecParser", () => {
       // [--0x90 bytes--|------0x01 bytes------]
       // [-- frame 0 ---|-- frame 1 (header) --]
       // [0x50-----------------------------0xe1]
-      let frames = [...codecParser.iterator(file.subarray(0x50, 0xe1))];
+      let frames = [...codecParser.parseChunk(file.subarray(0x50, 0xe1))];
 
       // [-----0x02 bytes-------]
       // [-- frame 1 (header) --]
       // [0xe1--------------0xe3]
-      frames = [...frames, ...codecParser.iterator(file.subarray(0xe1, 0xe3))];
+      frames = [
+        ...frames,
+        ...codecParser.parseChunk(file.subarray(0xe1, 0xe3)),
+      ];
 
       // [------------0x02 bytes-----------]
       // [-- frame 1 (header), frame 1-9 --]
       // [0xe3-------------------------0xe3]
-      frames = [...frames, ...codecParser.iterator(file.subarray(0xe3, 0x5f0))];
+      frames = [
+        ...frames,
+        ...codecParser.parseChunk(file.subarray(0xe3, 0x5f0)),
+      ];
 
       await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
@@ -309,7 +352,7 @@ describe("CodecParser", () => {
         // [--0x50 bytes--|--0x90 bytes--|--0x510 bytes--]
         // [-invalid data-|-- frame 0 ---|-- frame 1-9 --]
         // [0x0-------------------------------------0x5f0]
-        const frames = [...codecParser.iterator(file.subarray(0, 0x5f0))];
+        const frames = [...codecParser.parseChunk(file.subarray(0, 0x5f0))];
 
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
@@ -328,7 +371,7 @@ describe("CodecParser", () => {
         const invalidData = file.subarray(0x00, 0x50);
         const validFrames = file.subarray(0x50, 0x5f0);
         const frames = [
-          ...codecParser.iterator(
+          ...codecParser.parseChunk(
             Buffer.concat([validFrames, invalidData, validFrames])
           ),
         ];
@@ -352,7 +395,7 @@ describe("CodecParser", () => {
         const falsePositiveFrame = file.subarray(0x50, 0xdf);
         const validFrames = file.subarray(0xe0, 0x5f0);
         const frames = [
-          ...codecParser.iterator(
+          ...codecParser.parseChunk(
             Buffer.concat([falsePositiveFrame, validFrames])
           ),
         ];
@@ -376,7 +419,7 @@ describe("CodecParser", () => {
         const falsePositiveFrame3 = file.subarray(0x50, 0x88);
         const validFrames = file.subarray(0xe0, 0x5f0);
         const frames = [
-          ...codecParser.iterator(
+          ...codecParser.parseChunk(
             Buffer.concat([
               falsePositiveFrame1,
               falsePositiveFrame2,
@@ -403,7 +446,7 @@ describe("CodecParser", () => {
         const validFrames = file.subarray(0xe0, 0x5f0);
         const falsePositiveFrame1 = file.subarray(0x50, 0x54);
         const frames = [
-          ...codecParser.iterator(
+          ...codecParser.parseChunk(
             Buffer.concat([validFrames, falsePositiveFrame1, validFrames])
           ),
         ];
@@ -426,7 +469,7 @@ describe("CodecParser", () => {
         const falsePositiveFrame1 = file.subarray(0x50, 0x54);
         const falsePositiveFrame2 = file.subarray(0x50, 0xa2);
         const frames = [
-          ...codecParser.iterator(
+          ...codecParser.parseChunk(
             Buffer.concat([
               validFrames,
               falsePositiveFrame1,
