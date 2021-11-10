@@ -54,18 +54,22 @@ export default class FLACParser extends Parser {
           nextHeaderOffset++
         ) {
           if (
-            yield* FLACHeader.getHeader(
+            this._codecParser._flushing ||
+            (yield* FLACHeader.getHeader(
               this._codecParser,
               this._headerCache,
               nextHeaderOffset
-            )
+            ))
           ) {
             // found a valid next frame header
-            // check that this is actually the next header by validating the frame footer crc16
-            const frameData = (yield* this._codecParser.readRawData(
+            let frameData = yield* this._codecParser.readRawData(
               nextHeaderOffset
-            )).subarray(0, nextHeaderOffset);
+            );
 
+            if (!this._codecParser._flushing)
+              frameData = frameData.subarray(0, nextHeaderOffset);
+
+            // check that this is actually the next header by validating the frame footer crc16
             if (FLACFrame.checkFrameFooterCrc16(frameData)) {
               // both frame headers, and frame footer crc16 are valid, we are synced (odds are pretty low of a false positive)
               const frame = new FLACFrame(frameData, header);

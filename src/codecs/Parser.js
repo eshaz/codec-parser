@@ -48,11 +48,12 @@ export default class Parser {
    * @returns {Frame}
    */
   *fixedLengthFrameSync(ignoreNextFrame) {
-    const frame = yield* this.syncFrame();
+    let frame = yield* this.syncFrame();
     const frameLength = frameStore.get(frame).length;
 
     if (
       ignoreNextFrame ||
+      this._codecParser._flushing ||
       // check if there is a frame right after this one
       (yield* this.Header.getHeader(
         this._codecParser,

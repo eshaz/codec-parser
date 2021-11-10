@@ -39,7 +39,7 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
 ## Usage
 
-1. To use `CodecParser`, create a new instance of the class by passing in the mimetype of your audio data along with the options object.
+1. Create a new instance of `CodecParser` by passing in the mimetype of your audio data along with the options object.
 
     *Note: For directly reading from a HTTP response, use the mimetype contained in the `Content-Type` header*
     
@@ -55,17 +55,29 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
     const parser = new CodecParser(mimeType, options);
     ```
-    
-1. To begin processing audio data, pass in a Uint8Array of audio data into the instance's `.iterator()`. This method returns an iterator that can be consumed using a `for ...of` or `for await...of` loop.
+
+### Parsing an entire file
+
+1. To parse an entire audio file, pass in a Uint8Array of the entire audio file into the instance's `.parseAll()`. This method will read the all of the data and return an array of [`CodecFrame`](#codecframe)s or [`OggPage`](#oggpage)s.
 
     ```javascript
-    for (const frame of parser.iterator(audioData)) {
+    const frames = parser.parseAll(audioData);
+
+    // Do something with the frames
+    ```
+
+### Parsing chunks of audio
+
+1. To begin processing chunks of audio data, pass in a Uint8Array of audio data into the instance's `.parseChunk()`. This method returns an iterator that can be consumed using a `for ...of` or `for await...of` loop.
+
+    ```javascript
+    for (const frame of parser.parseChunk(audioData)) {
       // Do something with each frame
     }
     ```
     ***or***
     ```javascript
-    const frames = [...parser.iterator(audioData)]
+    const frames = [...parser.parseChunk(audioData)]
     ```
 
     `CodecParser` will read the passed in data and attempt to parse audio frames according to the passed in `mimeType`. Any partial data will be stored until enough data is passed in for a complete frame can be formed. Iterations will begin to return frames once at least two consecutive frames have been detected in the passed in data.
@@ -74,59 +86,72 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
     ### Example:
 
-  * 1st `.iterator()` call
-    * Input
+    * 1st `.parseChunk()` call
+      * Input
+          ```
+          [MPEG frame 0 (partial)],
+          [MPEG frame 1 (partial)], 
+          ```
+      * Output (no iterations)
         ```
-        [MPEG frame 0 (partial)],
-        [MPEG frame 1 (partial)], 
+        (none)
         ```
-    * Output (no iterations)
-      ```
-      (none)
-      ```
-    * `Frame 0` is dropped since it doesn't start with a valid header.
-    * `Frame 1` is parsed and stored internally until enough data is passed in to properly sync.
-  * 2nd `.iterator()` call
-    * Input
+      * `Frame 0` is dropped since it doesn't start with a valid header.
+      * `Frame 1` is parsed and stored internally until enough data is passed in to properly sync.
+    * 2nd `.parseChunk()` call
+      * Input
+          ```
+          [MPEG frame 1 (partial)], 
+          [MPEG frame 2 (partial)]
+          ```
+      * Output (1 iteration)
         ```
-        [MPEG frame 1 (partial)], 
-        [MPEG frame 2 (partial)]
+        MPEG Frame 1 {
+            data,
+            header
+            ...
+        }
         ```
-    * Output (1 iteration)
-      ```
-      MPEG Frame 1 {
-          data,
-          header
-          ...
-      }
-      ```
-    * `Frame 1` is joined with the partial data and returned since it was immediately followed by `Frame 2`.
-    * `Frame 2` is stored internally as partial data.
-  * 3rd `.iterator()` call
-    * Input
-      ```
-      [MPEG frame 2 (partial)],
-      [MPEG frame 3 (full)], 
-      [MPEG frame 4 (partial)]
-      ```
-    * Output (2 iterations)
-      ```
-      MPEG Frame 2 {
-          data,
-          header
-          ...
-      }
-      ```
-      ```
-      MPEG Frame 3 {
-          data,
-          header
-          ...
-      }
-      ```
-    * `Frame 2` is joined with the partial data and returned since it was immediately followed by `Frame 3`.
-    * `Frame 3` is returned since it was immediately followed by `Frame 4`.
-    * `Frame 4` is stored internally as partial data.
+      * `Frame 1` is joined with the partial data and returned since it was immediately followed by `Frame 2`.
+      * `Frame 2` is stored internally as partial data.
+    * 3rd `.parseChunk()` call
+      * Input
+        ```
+        [MPEG frame 2 (partial)],
+        [MPEG frame 3 (full)], 
+        [MPEG frame 4 (partial)]
+        ```
+      * Output (2 iterations)
+        ```
+        MPEG Frame 2 {
+            data,
+            header
+            ...
+        }
+        ```
+        ```
+        MPEG Frame 3 {
+            data,
+            header
+            ...
+        }
+        ```
+      * `Frame 2` is joined with the partial data and returned since it was immediately followed by `Frame 3`.
+      * `Frame 3` is returned since it was immediately followed by `Frame 4`.
+      * `Frame 4` is stored internally as partial data.
+
+1. When you have come to the end of the stream or file, you may call the instance's `flush()` method to return another iterator that will yield any remaining frames that are buffered. Calling `flush()` will reset the internal state of the `CodecParser` instance and may re-use the instance to parse additional streams.
+
+    ```javascript
+    for (const frame of parser.flush()) {
+      // Do something the buffered frames
+    }
+    ```
+    ***or***
+    ```javascript
+    const frames = [...parser.flush()]
+    ```
+
 
 ### Instantiation
 
@@ -149,8 +174,17 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
 ### Methods
 
-* `parser.iterator(data)` Returns an iterator where each iteration returns an audio frame.
-  * `data` Uint8Array of audio data to wrap
+* `parser.parseAll(data)` Function that takes a audio data for an entire file.
+  * `data` `Uint8Array` of audio data for a complete audio stream / file
+  * Returns an Array of [`CodecFrame`](#codecframe)s or [`OggPage`](#oggpage)s for the entire file
+* `parser.parseChunk(chunk)` Generator function that yields frames for a partial chunk of audio data from an audio stream or file
+  * `chunk` `Uint8Array` of audio data
+  * Returns `Iterator` that yields a parsed [`CodecFrame`](#codecframe) or [`OggPage`](#oggpage) for each iteration.
+* `parser.flush()` Generator function that yields any buffered frames that are stored after `parseChunk()` completes
+  * Returns `Iterator` that yields a parsed [`CodecFrame`](#codecframe) or [`OggPage`](#oggpage) for each iteration.
+  * This function can be used after `parseChunk` has been called with all of the audio data you intend to parse. The final iterator returned by `parseChunk()` must be consumed before calling `flush()`.
+  * Calling `flush()` will reset the internal state of the `CodecParser` instance. You may re-use the instance to parse additional streams.
+* `parser.iterator(chunk)` **deprecated** (use `parseChunk()` instead)
 
 ### Properties
 
@@ -165,9 +199,9 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
 
 ## Data Types
 
-Depending on the mimetype each iteration of `CodecParser.iterator()` will return a single `CodecFrame` or a single `OggPage`.
+Depending on the mimetype each iteration of `CodecParser.parseChunk()` will return a single `CodecFrame` or a single `OggPage`.
 
-### OggPage
+### `OggPage`
 
 `OggPage` describes a single ogg page. An `OggPage` may contain zero to many `CodecFrame` objects. `OggPage` will be returned when the mimetype is `audio/ogg` or `application/ogg`.
 
@@ -187,7 +221,7 @@ Depending on the mimetype each iteration of `CodecParser.iterator()` will return
 * `totalDuration`: Total audio samples output by `CodecParer` at the end of this ogg page.
 * `totalSamples`: Total audio duration in milliseconds output by `CodecParer` at the end of this ogg page.
 
-### CodecFrame
+### `CodecFrame`
 
 `CodecFrame` describes a single frame for an audio codec. `CodecFrame` will be returned when the mimetype describes audio that is not encapsulated within a container i.e. `audio/mpeg`, `audio/aac`, or `audio/flac`.
 
@@ -264,7 +298,7 @@ MPEGFrame {
 
 Each codec has it's own `CodecHeader` data type. See each class below for documentation on each codec specific header.
 
-### MPEGHeader
+### `MPEGHeader`
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/mpeg/MPEGHeader.js)
 ```javascript
 {
@@ -284,7 +318,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   protection: "16bit CRC"
 }
 ```
-### AACHeader
+### `AACHeader`
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/aac/AACHeader.js)
 ```javascript
 {
@@ -308,7 +342,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 }
 ```
 
-### FLACHeader
+### `FLACHeader`
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/flac/FLACHeader.js)
 ```javascript
 {
@@ -325,7 +359,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 }
 ```
 
-### OpusHeader
+### `OpusHeader`
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/opus/OpusHeader.js)
 ```javascript
 {
@@ -341,7 +375,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   inputSampleRate: 48000
 }
 ```
-### VorbisHeader
+### `VorbisHeader`
 [***Documentation***](https://github.com/eshaz/codec-parser/blob/master/src/codecs/vorbis/VorbisHeader.js)
 ```javascript
 {

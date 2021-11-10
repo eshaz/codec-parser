@@ -137,38 +137,37 @@ export default class FLACHeader extends CodecHeader {
   static decodeUTF8Int(data) {
     if (data[0] < 0x80) return { value: data[0], length: 1 };
 
-    if (data[0] > 0xfe) return null; // invalid
+    if (data[0] > 0xfe) return null; // length byte must have at least one zero as the lsb
 
-    let length = 1,
-      value = 0;
-
+    // get length by counting the number of msb that are set to 1
+    let length = 1;
     for (let zeroMask = 0x40; zeroMask & data[0]; zeroMask >>= 1) length++;
 
-    let encodedBitsRead = 0;
+    let idx = length - 1,
+      value = 0,
+      shift = 0;
 
-    // sum together the encoded bits
+    // sum together the encoded bits in bytes 2 to length
     // 1110xxxx 10[cccccc] 10[bbbbbb] 10[aaaaaa]
     //
     //    value = [cccccc] | [bbbbbb] | [aaaaaa]
-    for (let idx = length - 1; idx > 0; idx--) {
-      value += (data[idx] & 0x3f) << encodedBitsRead;
-      encodedBitsRead += 6;
+    for (; idx > 0; shift += 6, idx--) {
+      if ((data[idx] & 0xc0) !== 0x80) return null; // each byte should have leading 10xxxxxx
+      value |= (data[idx] & 0x3f) << shift; // add the encoded bits
     }
 
-    // read the final encoded bits in the length byte
+    // read the final encoded bits in byte 1
     //     1110[dddd] 10[cccccc] 10[bbbbbb] 10[aaaaaa]
     //
     // value = [dddd] | [cccccc] | [bbbbbb] | [aaaaaa]
-    value += (data[0] & (0x7f >> length)) << encodedBitsRead;
+    value |= (data[idx] & (0x7f >> length)) << shift;
 
     return { value, length };
   }
 
   static getHeaderFromUint8Array(data, headerCache) {
     const codecParserStub = {
-      readRawData: function* (length) {
-        if (length > data.length)
-          throw new Error("Out of data while inside an Ogg Page");
+      readRawData: function* () {
         return data;
       },
     };
