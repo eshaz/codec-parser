@@ -125,15 +125,13 @@ export default class OggPageHeader {
     header.pageSegmentTable = [];
     header.pageSegmentBytes = data.subarray(27, header.length);
 
-    let segmentLength = 0;
-
-    for (let i = 0; i < header.pageSegmentBytes.length; i++) {
+    for (let i = 0, segmentLength = 0; i < pageSegmentTableLength; i++) {
       const segmentByte = header.pageSegmentBytes[i];
 
       header.frameLength += segmentByte;
       segmentLength += segmentByte;
 
-      if (segmentByte !== 0xff || i === header.pageSegmentBytes.length - 1) {
+      if (segmentByte !== 0xff || i === pageSegmentTableLength - 1) {
         header.pageSegmentTable.push(segmentLength);
         segmentLength = 0;
       }
