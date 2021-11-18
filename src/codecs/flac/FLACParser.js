@@ -35,6 +35,25 @@ export default class FLACParser extends Parser {
     return "flac";
   }
 
+  *getNextFrameSyncOffset(offset) {
+    const data = yield* this._codecParser.readRawData(2, 0);
+    const dataLength = data.length - 2;
+
+    while (offset < dataLength) {
+      // * `11111111|111110..`: Frame sync
+      // * `........|......0.`: Reserved 0 - mandatory, 1 - reserved
+      const firstByte = data[offset];
+      if (firstByte === 0xff) {
+        const secondByte = data[offset + 1];
+        if (secondByte === 0xf8 || secondByte === 0xf9) break;
+        if (secondByte !== 0xff) offset++; // might as well check for the next sync byte
+      }
+      offset++;
+    }
+
+    return offset;
+  }
+
   *parseFrame() {
     // find the first valid frame header
     do {
@@ -47,12 +66,10 @@ export default class FLACParser extends Parser {
       if (header) {
         // found a valid frame header
         // find the next valid frame header
-        for (
-          let nextHeaderOffset =
-            headerStore.get(header).length + MIN_FLAC_FRAME_SIZE;
-          nextHeaderOffset <= MAX_FLAC_FRAME_SIZE;
-          nextHeaderOffset++
-        ) {
+        let nextHeaderOffset =
+          headerStore.get(header).length + MIN_FLAC_FRAME_SIZE;
+
+        while (nextHeaderOffset <= MAX_FLAC_FRAME_SIZE) {
           if (
             this._codecParser._flushing ||
             (yield* FLACHeader.getHeader(
@@ -81,12 +98,22 @@ export default class FLACParser extends Parser {
               return frame;
             }
           }
+
+          nextHeaderOffset = yield* this.getNextFrameSyncOffset(
+            nextHeaderOffset + 1
+          );
         }
 
-        this._codecParser.logWarning("Unable to sync FLAC frame.");
+        this._codecParser.logWarning(
+          `Unable to sync FLAC frame after searching ${nextHeaderOffset} bytes.`
+        );
+        this._codecParser.incrementRawData(nextHeaderOffset);
+      } else {
+        // not synced, increment data to continue syncing
+        this._codecParser.incrementRawData(
+          yield* this.getNextFrameSyncOffset(1)
+        );
       }
-      // not synced, increment data to continue syncing
-      this._codecParser.incrementRawData(1);
     } while (true);
   }
 
