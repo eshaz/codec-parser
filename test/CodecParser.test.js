@@ -158,6 +158,7 @@ describe("CodecParser", () => {
 
   describe("AAC", () => {
     testParser("aac.aac", "audio/aac", "aac", 0);
+    testParser("aac.320", "audio/aac", "aac");
   });
 
   describe("Flac", () => {

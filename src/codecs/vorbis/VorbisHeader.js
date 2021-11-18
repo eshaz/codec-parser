@@ -76,7 +76,7 @@ export default class VorbisHeader extends CodecHeader {
       return null;
     }
 
-    header.data = Uint8Array.of(...data.subarray(0, 30));
+    header.data = Uint8Array.from(data.subarray(0, 30));
     const view = new DataView(header.data.buffer);
 
     // Byte (8-11 of 30)
@@ -112,7 +112,7 @@ export default class VorbisHeader extends CodecHeader {
 
     // Byte (29 of 30)
     // * `00000001` Framing bit
-    if (data[29 !== 0x01]) return null;
+    if (data[29] !== 0x01) return null;
 
     header.bitDepth = 32;
 

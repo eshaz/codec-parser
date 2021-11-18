@@ -189,17 +189,13 @@ export default class MPEGHeader extends CodecHeader {
     // * `...BB...`: MPEG Audio version ID
     // * `.....CC.`: Layer description
     // * `.......D`: Protection bit (0 - Protected by CRC (16bit CRC follows header), 1 = Not protected)
-    const mpegVersionBits = data[1] & 0b00011000;
-    const layerBits = data[1] & 0b00000110;
-    const protectionBit = data[1] & 0b00000001;
-
-    header.length = 4;
 
     // Mpeg version (1, 2, 2.5)
-    const mpegVersion = mpegVersions[mpegVersionBits];
+    const mpegVersion = mpegVersions[data[1] & 0b00011000];
     if (mpegVersion.description === "reserved") return null;
 
     // Layer (I, II, III)
+    const layerBits = data[1] & 0b00000110;
     if (layers[layerBits].description === "reserved") return null;
     const layer = {
       ...layers[layerBits],
@@ -209,7 +205,9 @@ export default class MPEGHeader extends CodecHeader {
     header.mpegVersion = mpegVersion.description;
     header.layer = layer.description;
     header.samples = layer.samples;
-    header.protection = protection[protectionBit];
+    header.protection = protection[data[1] & 0b00000001];
+
+    header.length = 4;
 
     // Byte (3 of 4)
     // * `EEEEFFGH`
@@ -217,19 +215,14 @@ export default class MPEGHeader extends CodecHeader {
     // * `....FF..`: Sample rate
     // * `......G.`: Padding bit, 0=frame not padded, 1=frame padded
     // * `.......H`: Private bit.
-    const bitrateBits = data[2] & 0b11110000;
-    const sampleRateBits = data[2] & 0b00001100;
-    const paddingBit = data[2] & 0b00000010;
-    const privateBit = data[2] & 0b00000001;
-
-    header.bitrate = bitrateMatrix[bitrateBits][layer.bitrateIndex];
+    header.bitrate = bitrateMatrix[data[2] & 0b11110000][layer.bitrateIndex];
     if (header.bitrate === "bad") return null;
 
-    header.sampleRate = mpegVersion.sampleRates[sampleRateBits];
+    header.sampleRate = mpegVersion.sampleRates[data[2] & 0b00001100];
     if (header.sampleRate === "reserved") return null;
 
-    header.framePadding = paddingBit >> 1 && layer.framePadding;
-    header.isPrivate = !!privateBit;
+    header.framePadding = data[2] & 0b00000010 && layer.framePadding;
+    header.isPrivate = Boolean(data[2] & 0b00000001);
 
     header.frameLength = Math.floor(
       (125 * header.bitrate * header.samples) / header.sampleRate +
@@ -245,18 +238,14 @@ export default class MPEGHeader extends CodecHeader {
     // * `.....L..`: Original
     // * `......MM`: Emphasis
     const channelModeBits = data[3] & 0b11000000;
-    const modeExtensionBits = data[3] & 0b00110000;
-    const copyrightBit = data[3] & 0b00001000;
-    const originalBit = data[3] & 0b00000100;
-    const emphasisBits = data[3] & 0b00000011;
-
     header.channelMode = channelModes[channelModeBits].description;
     header.channels = channelModes[channelModeBits].channels;
-    header.modeExtension = layer.modeExtensions[modeExtensionBits];
-    header.isCopyrighted = !!(copyrightBit >> 3);
-    header.isOriginal = !!(originalBit >> 2);
 
-    header.emphasis = emphasis[emphasisBits];
+    header.modeExtension = layer.modeExtensions[data[3] & 0b00110000];
+    header.isCopyrighted = Boolean(data[3] & 0b00001000);
+    header.isOriginal = Boolean(data[3] & 0b00000100);
+
+    header.emphasis = emphasis[data[3] & 0b00000011];
     if (header.emphasis === "reserved") return null;
 
     header.bitDepth = 16;

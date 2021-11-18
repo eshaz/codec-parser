@@ -49,8 +49,6 @@ L   n   Segment table (n=page_segments+26).
         
 */
 
-const OggS = 0x4f676753;
-
 import { headerStore } from "../../globals.js";
 
 export default class OggPageHeader {
@@ -60,11 +58,14 @@ export default class OggPageHeader {
     // Must be at least 28 bytes.
     let data = yield* codecParser.readRawData(28, readOffset);
 
-    const view = new DataView(Uint8Array.of(...data.subarray(0, 28)).buffer);
-
     // Bytes (1-4 of 28)
     // Frame sync (must equal OggS): `AAAAAAAA|AAAAAAAA|AAAAAAAA|AAAAAAAA`:
-    if (view.getUint32(0) !== OggS) {
+    if (
+      data[0] !== 0x4f || // O
+      data[1] !== 0x67 || // g
+      data[2] !== 0x67 || // g
+      data[3] !== 0x53 //    S
+    ) {
       return null;
     }
 
@@ -79,14 +80,13 @@ export default class OggPageHeader {
     // * `......D.`: (0 no, 1 yes) first page of logical bitstream (bos)
     // * `.......E`: (0 no, 1 yes) continued packet
     const zeros = data[5] & 0b11111000;
-    const lastPageBit = data[5] & 0b00000100;
-    const firstPageBit = data[5] & 0b00000010;
-    const continuePacketBit = data[5] & 0b00000001;
-
     if (zeros) return null;
-    header.isLastPage = !!(lastPageBit >> 2);
-    header.isFirstPage = !!(firstPageBit >> 1);
-    header.isContinuedPacket = !!continuePacketBit;
+
+    header.isLastPage = Boolean(data[5] & 0b00000100);
+    header.isFirstPage = Boolean(data[5] & 0b00000010);
+    header.isContinuedPacket = Boolean(data[5] & 0b00000001);
+
+    const view = new DataView(Uint8Array.from(data.subarray(0, 28)).buffer);
 
     // Byte (7-14 of 28)
     // * `FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF`

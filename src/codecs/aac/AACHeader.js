@@ -142,15 +142,12 @@ export default class AACHeader extends CodecHeader {
       // * `....B...`: MPEG Version: 0 for MPEG-4, 1 for MPEG-2
       // * `.....CC.`: Layer: always 0
       // * `.......D`: protection absent, Warning, set to 1 if there is no CRC and 0 if there is CRC
-      const mpegVersionBits = data[1] & 0b00001000;
-      const layerBits = data[1] & 0b00000110;
-      const protectionBit = data[1] & 0b00000001;
+      header.mpegVersion = mpegVersion[data[1] & 0b00001000];
 
-      header.mpegVersion = mpegVersion[mpegVersionBits];
-
-      header.layer = layer[layerBits];
+      header.layer = layer[data[1] & 0b00000110];
       if (header.layer === "bad") return null;
 
+      const protectionBit = data[1] & 0b00000001;
       header.protection = protection[protectionBit];
       header.length = protectionBit ? 7 : 9;
 
@@ -168,13 +165,11 @@ export default class AACHeader extends CodecHeader {
       header.sampleRate = sampleRates[header.sampleRateBits];
       if (header.sampleRate === "reserved") return null;
 
-      header.isPrivate = !!(privateBit >> 1);
+      header.isPrivate = Boolean(privateBit);
 
       // Byte (3,4 of 7)
       // * `.......H|HH......`: MPEG-4 Channel Configuration (in the case of 0, the channel configuration is sent via an inband PCE)
-      header.channelModeBits =
-        new DataView(Uint8Array.of(data[2], data[3]).buffer).getUint16() &
-        0b111000000;
+      header.channelModeBits = ((data[2] << 8) | data[3]) & 0b111000000;
       header.channelMode = channelMode[header.channelModeBits].description;
       header.channels = channelMode[header.channelModeBits].channels;
 
@@ -184,15 +179,10 @@ export default class AACHeader extends CodecHeader {
       // * `...J....`: home, set to 0 when encoding, ignore when decoding
       // * `....K...`: copyrighted id bit, the next bit of a centrally registered copyright identifier, set to 0 when encoding, ignore when decoding
       // * `.....L..`: copyright id start, signals that this frame's copyright id bit is the first bit of the copyright id, set to 0 when encoding, ignore when decoding
-      const originalBit = data[3] & 0b00100000;
-      const homeBit = data[3] & 0b00001000;
-      const copyrightIdBit = data[3] & 0b00001000;
-      const copyrightIdStartBit = data[3] & 0b00000100;
-
-      header.isOriginal = !!(originalBit >> 5);
-      header.isHome = !!(homeBit >> 4);
-      header.copyrightId = !!(copyrightIdBit >> 3);
-      header.copyrightIdStart = !!(copyrightIdStartBit >> 2);
+      header.isOriginal = Boolean(data[3] & 0b00100000);
+      header.isHome = Boolean(data[3] & 0b00001000);
+      header.copyrightId = Boolean(data[3] & 0b00001000);
+      header.copyrightIdStart = Boolean(data[3] & 0b00000100);
       header.bitDepth = 16;
     } else {
       Object.assign(header, cachedHeader);
@@ -200,19 +190,15 @@ export default class AACHeader extends CodecHeader {
 
     // Byte (4,5,6 of 7)
     // * `.......MM|MMMMMMMM|MMM.....`: frame length, this value must include 7 or 9 bytes of header length: FrameLength = (ProtectionAbsent == 1 ? 7 : 9) + size(AACFrame)
-    const frameLengthBits =
-      new DataView(
-        Uint8Array.of(0x00, data[3], data[4], data[5]).buffer
-      ).getUint32() & 0x3ffe0;
-    header.frameLength = frameLengthBits >> 5;
+    header.frameLength =
+      ((data[3] << 11) | (data[4] << 3) | (data[5] >> 5)) & 0x1fff;
     if (!header.frameLength) return null;
 
     // Byte (6,7 of 7)
     // * `...OOOOO|OOOOOO..`: Buffer fullness
-    const bufferFullnessBits =
-      new DataView(Uint8Array.of(data[5], data[6]).buffer).getUint16() & 0x1ffc;
+    const bufferFullnessBits = ((data[5] << 6) | (data[6] >> 2)) & 0x7ff;
     header.bufferFullness =
-      bufferFullnessBits === 0x1ffc ? "VBR" : bufferFullnessBits >> 2;
+      bufferFullnessBits === 0x7ff ? "VBR" : bufferFullnessBits;
 
     // Byte (7 of 7)
     // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame

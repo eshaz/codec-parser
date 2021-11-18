@@ -102,7 +102,7 @@ export default class OpusHeader extends CodecHeader {
       // * `00000001`: Version number
       if (data[8] !== 1) return null;
 
-      const view = new DataView(Uint8Array.of(...data.subarray(0, 19)).buffer);
+      const view = new DataView(Uint8Array.from(data.subarray(0, 19)).buffer);
       header.bitDepth = 16;
 
       header.length = 19;
@@ -153,7 +153,7 @@ export default class OpusHeader extends CodecHeader {
       header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
-    header.data = Uint8Array.of(...data.subarray(0, header.length));
+    header.data = Uint8Array.from(data.subarray(0, header.length));
 
     if (!cachedHeader) {
       // set header cache

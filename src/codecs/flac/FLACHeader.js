@@ -223,16 +223,14 @@ export default class FLACHeader extends CodecHeader {
       // * `.......H`: Reserved 0 - mandatory, 1 - reserved
       header.length++;
       if (data[3] & 0b00000001) return null;
-      const channelAssignmentBits = data[3] & 0b11110000;
-      const bitDepthBits = data[3] & 0b00001110;
 
-      const channelAssignment = channelAssignments[channelAssignmentBits];
+      const channelAssignment = channelAssignments[data[3] & 0b11110000];
       if (channelAssignment === "reserved") return null;
 
       header.channels = channelAssignment.channels;
       header.channelMode = channelAssignment.description;
 
-      header.bitDepth = bitDepth[bitDepthBits];
+      header.bitDepth = bitDepth[data[3] & 0b00001110];
       if (header.bitDepth === "reserved") return null;
     } else {
       Object.assign(header, cachedHeader);
