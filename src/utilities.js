@@ -33,25 +33,35 @@ const crc8Table = getCrcTable(
   (crc) => (crc & 0x80 ? 0x07 ^ (crc << 1) : crc << 1)
 );
 
-const flacCrc16Table = getCrcTable(
-  new Uint16Array(256),
-  (b) => b << 8,
-  (crc) => (crc << 1) ^ (crc & (1 << 15) ? 0x8005 : 0)
-);
+const flacCrc16Table = [
+  getCrcTable(
+    new Uint16Array(256),
+    (b) => b << 8,
+    (crc) => (crc << 1) ^ (crc & (1 << 15) ? 0x8005 : 0)
+  ),
+];
 
 const crc32Table = [
   getCrcTable(
     new Uint32Array(256),
     (b) => b,
-    (crc) => (crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1)
+    (crc) => (crc >>> 1) ^ ((crc & 1) * 0xedb88320)
   ),
 ];
 
+// build crc tables
 for (let i = 0; i < 15; i++) {
+  flacCrc16Table.push(new Uint16Array(256));
   crc32Table.push(new Uint32Array(256));
-  for (let j = 0; j <= 0xff; j++)
+
+  for (let j = 0; j <= 0xff; j++) {
+    flacCrc16Table[i + 1][j] =
+      flacCrc16Table[0][flacCrc16Table[i][j] >>> 8] ^
+      (flacCrc16Table[i][j] << 8);
+
     crc32Table[i + 1][j] =
       (crc32Table[i][j] >>> 8) ^ crc32Table[0][crc32Table[i][j] & 0xff];
+  }
 }
 
 const crc8 = (data) => {
@@ -64,11 +74,34 @@ const crc8 = (data) => {
 };
 
 const flacCrc16 = (data) => {
-  let crc = 0;
   const dataLength = data.length;
+  const crcChunkSize = dataLength - 16;
+  let crc = 0;
+  let i = 0;
 
-  for (let i = 0; i !== dataLength; i++)
-    crc = ((crc & 0xff) << 8) ^ flacCrc16Table[(crc >> 8) ^ data[i]];
+  while (i <= crcChunkSize) {
+    crc ^= (data[i++] << 8) | data[i++];
+    crc =
+      flacCrc16Table[15][crc >> 8] ^
+      flacCrc16Table[14][crc & 0xff] ^
+      flacCrc16Table[13][data[i++]] ^
+      flacCrc16Table[12][data[i++]] ^
+      flacCrc16Table[11][data[i++]] ^
+      flacCrc16Table[10][data[i++]] ^
+      flacCrc16Table[9][data[i++]] ^
+      flacCrc16Table[8][data[i++]] ^
+      flacCrc16Table[7][data[i++]] ^
+      flacCrc16Table[6][data[i++]] ^
+      flacCrc16Table[5][data[i++]] ^
+      flacCrc16Table[4][data[i++]] ^
+      flacCrc16Table[3][data[i++]] ^
+      flacCrc16Table[2][data[i++]] ^
+      flacCrc16Table[1][data[i++]] ^
+      flacCrc16Table[0][data[i++]];
+  }
+
+  while (i !== dataLength)
+    crc = ((crc & 0xff) << 8) ^ flacCrc16Table[0][(crc >> 8) ^ data[i++]];
 
   return crc;
 };
