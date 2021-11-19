@@ -39,11 +39,20 @@ const flacCrc16Table = getCrcTable(
   (crc) => (crc << 1) ^ (crc & (1 << 15) ? 0x8005 : 0)
 );
 
-const crc32Table = getCrcTable(
-  new Uint32Array(256),
-  (b) => b,
-  (crc) => (crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1)
-);
+const crc32Table = [
+  getCrcTable(
+    new Uint32Array(256),
+    (b) => b,
+    (crc) => (crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1)
+  ),
+];
+
+for (let i = 0; i < 15; i++) {
+  crc32Table.push(new Uint32Array(256));
+  for (let j = 0; j <= 0xff; j++)
+    crc32Table[i + 1][j] =
+      (crc32Table[i][j] >>> 8) ^ crc32Table[0][crc32Table[i][j] & 0xff];
+}
 
 const crc8 = (data) => {
   let crc = 0;
@@ -65,11 +74,32 @@ const flacCrc16 = (data) => {
 };
 
 const crc32 = (data) => {
-  let crc = 0;
   const dataLength = data.length;
+  const crcChunkSize = dataLength - 16;
+  let crc = 0;
+  let i = 0;
 
-  for (let i = 0; i !== dataLength; i++)
-    crc = crc32Table[(crc ^ data[i]) & 0xff] ^ (crc >>> 8);
+  while (i <= crcChunkSize)
+    crc =
+      crc32Table[15][(data[i++] ^ crc) & 0xff] ^
+      crc32Table[14][(data[i++] ^ (crc >>> 8)) & 0xff] ^
+      crc32Table[13][(data[i++] ^ (crc >>> 16)) & 0xff] ^
+      crc32Table[12][data[i++] ^ (crc >>> 24)] ^
+      crc32Table[11][data[i++]] ^
+      crc32Table[10][data[i++]] ^
+      crc32Table[9][data[i++]] ^
+      crc32Table[8][data[i++]] ^
+      crc32Table[7][data[i++]] ^
+      crc32Table[6][data[i++]] ^
+      crc32Table[5][data[i++]] ^
+      crc32Table[4][data[i++]] ^
+      crc32Table[3][data[i++]] ^
+      crc32Table[2][data[i++]] ^
+      crc32Table[1][data[i++]] ^
+      crc32Table[0][data[i++]];
+
+  while (i !== dataLength)
+    crc = crc32Table[0][(crc ^ data[i++]) & 0xff] ^ (crc >>> 8);
 
   return crc ^ -1;
 };
