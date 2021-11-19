@@ -72,10 +72,58 @@ const channelMappingFamilies = {
   ]
 };
 
+const silkOnly = "SILK-only";
+const celtOnly = "CELT-only";
+const hybrid = "Hybrid";
+
+const narrowBand = "narrowband";
+const mediumBand = "medium-band";
+const wideBand = "wideband";
+const superWideBand = "super-wideband";
+const fullBand = "fullband";
+
+//  0 1 2 3 4 5 6 7
+// +-+-+-+-+-+-+-+-+
+// | config  |s| c |
+// +-+-+-+-+-+-+-+-+
+const configTable = {
+  0b00000000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 10 },
+  0b00001000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 20 },
+  0b00010000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 40 },
+  0b00011000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 60 },
+  0b00100000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 10 },
+  0b00101000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 20 },
+  0b00110000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 40 },
+  0b00111000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 60 },
+  0b01000000: { mode: silkOnly, bandwidth: wideBand, frameSize: 10 },
+  0b01001000: { mode: silkOnly, bandwidth: wideBand, frameSize: 20 },
+  0b01010000: { mode: silkOnly, bandwidth: wideBand, frameSize: 40 },
+  0b01011000: { mode: silkOnly, bandwidth: wideBand, frameSize: 60 },
+  0b01100000: { mode: hybrid, bandwidth: superWideBand, frameSize: 10 },
+  0b01101000: { mode: hybrid, bandwidth: superWideBand, frameSize: 20 },
+  0b01110000: { mode: hybrid, bandwidth: fullBand, frameSize: 10 },
+  0b01111000: { mode: hybrid, bandwidth: fullBand, frameSize: 20 },
+  0b10000000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 2.5 },
+  0b10001000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 5 },
+  0b10010000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 10 },
+  0b10011000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 20 },
+  0b10100000: { mode: celtOnly, bandwidth: wideBand, frameSize: 2.5 },
+  0b10101000: { mode: celtOnly, bandwidth: wideBand, frameSize: 5 },
+  0b10110000: { mode: celtOnly, bandwidth: wideBand, frameSize: 10 },
+  0b10111000: { mode: celtOnly, bandwidth: wideBand, frameSize: 20 },
+  0b11000000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 2.5 },
+  0b11001000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 5 },
+  0b11010000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 10 },
+  0b11011000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 20 },
+  0b11100000: { mode: celtOnly, bandwidth: fullBand, frameSize: 2.5 },
+  0b11101000: { mode: celtOnly, bandwidth: fullBand, frameSize: 5 },
+  0b11110000: { mode: celtOnly, bandwidth: fullBand, frameSize: 10 },
+  0b11111000: { mode: celtOnly, bandwidth: fullBand, frameSize: 20 },
+};
+
 export default class OpusHeader extends CodecHeader {
   static getHeaderFromUint8Array(data, headerCache) {
     const header = {};
-    // packet data 1 to 2 bytes
 
     // get length of header
     // Byte (10 of 19)
@@ -92,8 +140,8 @@ export default class OpusHeader extends CodecHeader {
       throw new Error("Out of data while inside an Ogg Page");
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, header.length));
-    const cachedHeader = headerCache.getHeader(key);
+    header.key = HeaderCache.getKey(data.subarray(0, header.length));
+    const cachedHeader = headerCache.getHeader(header.key);
 
     if (!cachedHeader) {
       // Bytes (1-8 of 19): OpusHead - Magic Signature
@@ -169,7 +217,7 @@ export default class OpusHeader extends CodecHeader {
       const { length, data, channelMappingFamily, ...codecUpdateFields } =
         header;
 
-      headerCache.setHeader(key, header, codecUpdateFields);
+      headerCache.setHeader(header.key, header, codecUpdateFields);
     }
 
     return new OpusHeader(header);
@@ -184,18 +232,46 @@ export default class OpusHeader extends CodecHeader {
 
     this.data = header.data;
     this.channelMappingFamily = header.channelMappingFamily;
-    this.channelMode = header.channelMode;
-    this.coupledStreamCount = header.coupledStreamCount;
-    this.preSkip = header.preSkip;
-    this.outputGain = header.outputGain;
-    this.inputSampleRate = header.inputSampleRate;
-    this.streamCount = header.streamCount;
     this.channelMappingTable = header.channelMappingTable;
-    //this.frameCount = undefined; // set in frame constructor
-    //this.isVbr = undefined; // set in frame constructor
-    //this.hasOpusPadding = undefined; // set in frame constructor
-    //this.configMode = undefined; // set in frame constructor
-    //this.configBandwidth = undefined; // set in frame constructor
-    //this.configFrameSize = undefined; // set in frame constructor
+    this.channelMode = header.channelMode;
+    this.configBandwidth = undefined; // set in packet data
+    this.configFrameSize = undefined; // set in packet data
+    this.configMode = undefined; // set in packet data
+    this.coupledStreamCount = header.coupledStreamCount;
+    this.frameCount = undefined; // set in packet data
+    this.hasOpusPadding = undefined; // set in packet data
+    this.inputSampleRate = header.inputSampleRate;
+    this.isVbr = undefined; // set in packet data
+    this.outputGain = header.outputGain;
+    this.preSkip = header.preSkip;
+    this.streamCount = header.streamCount;
+  }
+
+  set packetData(data) {
+    const config = configTable[0b11111000 & data[0]];
+
+    this.configMode = config.mode;
+    this.configBandwidth = config.bandwidth;
+    this.configFrameSize = config.frameSize;
+
+    // https://tools.ietf.org/html/rfc6716#appendix-B
+    switch (0b00000011 & data[0]) {
+      case 0:
+        // 0: 1 frame in the packet
+        this.frameCount = 1;
+        break;
+      case 1:
+      case 2:
+        // 1: 2 frames in the packet, each with equal compressed size
+        // 2: 2 frames in the packet, with different compressed sizes
+        this.frameCount = 2;
+        break;
+      case 3:
+        // 3: an arbitrary number of frames in the packet
+        this.isVbr = Boolean(0b10000000 & data[1]);
+        this.hasOpusPadding = Boolean(0b01000000 & data[1]);
+        this.frameCount = 0b00111111 & data[1];
+        break;
+    }
   }
 }
