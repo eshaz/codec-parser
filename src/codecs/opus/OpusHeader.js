@@ -122,7 +122,7 @@ const configTable = {
 };
 
 export default class OpusHeader extends CodecHeader {
-  static getHeaderFromUint8Array(data, headerCache) {
+  static getHeaderFromUint8Array(data, packetData, headerCache) {
     const header = {};
 
     // get length of header
@@ -139,9 +139,18 @@ export default class OpusHeader extends CodecHeader {
     if (data.length < header.length)
       throw new Error("Out of data while inside an Ogg Page");
 
+    // Page Segment Bytes (1-2)
+    // * `AAAAA...`: Packet config
+    // * `.....B..`:
+    // * `......CC`: Packet code
+    const packetMode = packetData[0] & 0b00000011;
+    const packetLength = packetMode === 3 ? 2 : 1;
+
     // Check header cache
-    header.key = HeaderCache.getKey(data.subarray(0, header.length));
-    const cachedHeader = headerCache.getHeader(header.key);
+    const key =
+      HeaderCache.getKey(data.subarray(0, header.length)) +
+      HeaderCache.getKey(packetData.subarray(0, packetLength));
+    const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {
       // Bytes (1-8 of 19): OpusHead - Magic Signature
@@ -206,6 +215,33 @@ export default class OpusHeader extends CodecHeader {
         // * `JJJJJJJJ|...` Channel Mapping table
         header.channelMappingTable = data.subarray(21, header.channels + 21);
       }
+
+      const packetConfig = configTable[0b11111000 & packetData[0]];
+      header.mode = packetConfig.mode;
+      header.bandwidth = packetConfig.bandwidth;
+      header.frameSize = packetConfig.frameSize;
+
+      // https://tools.ietf.org/html/rfc6716#appendix-B
+      switch (packetMode) {
+        case 0:
+          // 0: 1 frame in the packet
+          header.frameCount = 1;
+          break;
+        case 1:
+        // 1: 2 frames in the packet, each with equal compressed size
+        case 2:
+          // 2: 2 frames in the packet, with different compressed sizes
+          header.frameCount = 2;
+          break;
+        case 3:
+          // 3: an arbitrary number of frames in the packet
+          header.isVbr = Boolean(0b10000000 & packetData[1]);
+          header.hasOpusPadding = Boolean(0b01000000 & packetData[1]);
+          header.frameCount = 0b00111111 & packetData[1];
+          break;
+        default:
+          return null;
+      }
     } else {
       Object.assign(header, cachedHeader);
     }
@@ -217,7 +253,7 @@ export default class OpusHeader extends CodecHeader {
       const { length, data, channelMappingFamily, ...codecUpdateFields } =
         header;
 
-      headerCache.setHeader(header.key, header, codecUpdateFields);
+      headerCache.setHeader(key, header, codecUpdateFields);
     }
 
     return new OpusHeader(header);
@@ -231,47 +267,19 @@ export default class OpusHeader extends CodecHeader {
     super(header);
 
     this.data = header.data;
+    this.bandwidth = header.bandwidth;
     this.channelMappingFamily = header.channelMappingFamily;
     this.channelMappingTable = header.channelMappingTable;
     this.channelMode = header.channelMode;
-    this.configBandwidth = undefined; // set in packet data
-    this.configFrameSize = undefined; // set in packet data
-    this.configMode = undefined; // set in packet data
     this.coupledStreamCount = header.coupledStreamCount;
-    this.frameCount = undefined; // set in packet data
-    this.hasOpusPadding = undefined; // set in packet data
+    this.frameCount = header.frameCount;
+    this.frameSize = header.frameSize;
+    this.hasOpusPadding = header.hasOpusPadding;
     this.inputSampleRate = header.inputSampleRate;
-    this.isVbr = undefined; // set in packet data
+    this.isVbr = header.isVbr;
+    this.mode = header.mode;
     this.outputGain = header.outputGain;
     this.preSkip = header.preSkip;
     this.streamCount = header.streamCount;
-  }
-
-  set packetData(data) {
-    const config = configTable[0b11111000 & data[0]];
-
-    this.configMode = config.mode;
-    this.configBandwidth = config.bandwidth;
-    this.configFrameSize = config.frameSize;
-
-    // https://tools.ietf.org/html/rfc6716#appendix-B
-    switch (0b00000011 & data[0]) {
-      case 0:
-        // 0: 1 frame in the packet
-        this.frameCount = 1;
-        break;
-      case 1:
-      case 2:
-        // 1: 2 frames in the packet, each with equal compressed size
-        // 2: 2 frames in the packet, with different compressed sizes
-        this.frameCount = 2;
-        break;
-      case 3:
-        // 3: an arbitrary number of frames in the packet
-        this.isVbr = Boolean(0b10000000 & data[1]);
-        this.hasOpusPadding = Boolean(0b01000000 & data[1]);
-        this.frameCount = 0b00111111 & data[1];
-        break;
-    }
   }
 }

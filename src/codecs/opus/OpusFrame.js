@@ -17,18 +17,13 @@
 */
 
 import CodecFrame from "../CodecFrame.js";
-import OpusHeader from "./OpusHeader.js";
 
 export default class OpusFrame extends CodecFrame {
   constructor(data, header) {
-    let opusHeader = new OpusHeader(header);
-    opusHeader.packetData = data;
-
     super(
-      opusHeader,
+      header,
       data,
-      ((opusHeader.configFrameSize * opusHeader.frameCount) / 1000) *
-        opusHeader.sampleRate
+      ((header.frameSize * header.frameCount) / 1000) * header.sampleRate
     );
   }
 }
