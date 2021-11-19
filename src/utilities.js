@@ -46,32 +46,32 @@ const crc32Table = getCrcTable(
 );
 
 const crc8 = (data) => {
-  const crc = new Uint8Array(1);
+  let crc = 0;
   const dataLength = data.length;
 
-  for (let i = 0; i !== dataLength; i++) crc[0] = crc8Table[crc[0] ^ data[i]];
+  for (let i = 0; i !== dataLength; i++) crc = crc8Table[crc ^ data[i]];
 
-  return crc[0];
+  return crc;
 };
 
 const flacCrc16 = (data) => {
-  const crc = new Uint16Array(1);
+  let crc = 0;
   const dataLength = data.length;
 
   for (let i = 0; i !== dataLength; i++)
-    crc[0] = (crc[0] << 8) ^ flacCrc16Table[(crc[0] >> 8) ^ data[i]];
+    crc = ((crc & 0xff) << 8) ^ flacCrc16Table[(crc >> 8) ^ data[i]];
 
-  return crc[0];
+  return crc;
 };
 
 const crc32 = (data) => {
-  const crc = new Uint32Array(1);
+  let crc = 0;
   const dataLength = data.length;
 
   for (let i = 0; i !== dataLength; i++)
-    crc[0] = crc32Table[(crc[0] ^ data[i]) & 0xff] ^ (crc[0] >>> 8);
+    crc = crc32Table[(crc ^ data[i]) & 0xff] ^ (crc >>> 8);
 
-  return crc[0] ^ -1;
+  return crc ^ -1;
 };
 
 const concatBuffers = (...buffers) => {
