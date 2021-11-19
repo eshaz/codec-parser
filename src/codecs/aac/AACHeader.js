@@ -129,7 +129,7 @@ export default class AACHeader extends CodecHeader {
       data[0],
       data[1],
       data[2],
-      data[3] & 111111100, // frame length varies so don't cache it
+      (data[3] & 0b11111100) | (data[6] & 0b00000011), // frame length, buffer fullness varies so don't cache it
     ]);
     const cachedHeader = headerCache.getHeader(key);
 
@@ -184,6 +184,23 @@ export default class AACHeader extends CodecHeader {
       header.copyrightId = Boolean(data[3] & 0b00001000);
       header.copyrightIdStart = Boolean(data[3] & 0b00000100);
       header.bitDepth = 16;
+      header.samples = 1024;
+
+      // Byte (7 of 7)
+      // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
+      header.numberAACFrames = data[6] & 0b00000011;
+
+      const {
+        length,
+        channelModeBits,
+        profileBits,
+        sampleRateBits,
+        frameLength,
+        samples,
+        numberAACFrames,
+        ...codecUpdateFields
+      } = header;
+      headerCache.setHeader(key, header, codecUpdateFields);
     } else {
       Object.assign(header, cachedHeader);
     }
@@ -200,26 +217,7 @@ export default class AACHeader extends CodecHeader {
     header.bufferFullness =
       bufferFullnessBits === 0x7ff ? "VBR" : bufferFullnessBits;
 
-    // Byte (7 of 7)
-    // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
-    header.numberAACFrames = data[6] & 0b00000011;
-    header.samples = 1024;
-
-    if (!cachedHeader) {
-      const {
-        length,
-        channelModeBits,
-        profileBits,
-        sampleRateBits,
-        frameLength,
-        bufferFullness,
-        numberAACFrames,
-        samples,
-        ...codecUpdateFields
-      } = header;
-      headerCache.setHeader(key, header, codecUpdateFields);
-    }
-    return new AACHeader(header, true);
+    return new AACHeader(header);
   }
 
   /**

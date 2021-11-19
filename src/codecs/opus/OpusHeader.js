@@ -244,7 +244,12 @@ export default class OpusHeader extends CodecHeader {
     }
 
     // set header cache
-    const { length, data: headerData, channelMappingFamily, ...codecUpdateFields } = header;
+    const {
+      length,
+      data: headerData,
+      channelMappingFamily,
+      ...codecUpdateFields
+    } = header;
 
     headerCache.setHeader(key, header, codecUpdateFields);
 
