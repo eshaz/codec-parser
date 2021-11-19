@@ -62,7 +62,6 @@ export default class OpusFrame extends CodecFrame {
   static getPacket(data) {
     const packet = {
       config: configTable[0b11111000 & data[0]],
-      channels: 0b00000100 & data[0] ? 2 : 1,
       // 0: 1 frame in the packet
       // 1: 2 frames in the packet, each with equal compressed size
       // 2: 2 frames in the packet, with different compressed sizes
@@ -90,8 +89,15 @@ export default class OpusFrame extends CodecFrame {
   }
 
   constructor(data, header) {
-    let opusHeader = new OpusHeader(header, true);
+    let opusHeader = new OpusHeader(header);
     const packet = OpusFrame.getPacket(data);
+
+    //header.frameCount = packet.frameCount
+    //header.isVbr = packet.isVbr
+    //header.hasOpusPadding = packet.hasOpusPadding
+    //header.configMode = packet.config.mode
+    //header.configBandwidth = packet.config.bandwidth
+    //header.configFrameSize = packet.config.frameSize
 
     super(
       opusHeader,

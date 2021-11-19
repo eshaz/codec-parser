@@ -52,7 +52,7 @@ export default class OggParser extends Parser {
     }
   }
 
-  checkForIdentifier({ data }) {
+  _checkForIdentifier({ data }) {
     const idString = String.fromCharCode(...data.subarray(0, 8));
 
     switch (idString) {
@@ -74,7 +74,7 @@ export default class OggParser extends Parser {
     }
   }
 
-  checkPageSequenceNumber(oggPage) {
+  _checkPageSequenceNumber(oggPage) {
     if (
       oggPage.pageSequenceNumber !== this._pageSequenceNumber + 1 &&
       this._pageSequenceNumber > 1 &&
@@ -94,7 +94,7 @@ export default class OggParser extends Parser {
   *parseFrame() {
     const oggPage = yield* this.fixedLengthFrameSync(true);
 
-    this.checkPageSequenceNumber(oggPage);
+    this._checkPageSequenceNumber(oggPage);
 
     const oggPageStore = frameStore.get(oggPage);
     const { pageSegmentBytes, pageSegmentTable } = headerStore.get(
@@ -122,7 +122,7 @@ export default class OggParser extends Parser {
       this._continuedPacket = new Uint8Array();
     }
 
-    if (this.checkForIdentifier(oggPage) && this._codec) {
+    if (this._checkForIdentifier(oggPage) && this._codec) {
       const frame = this._parser.parseOggPage(oggPage);
       this._codecParser.mapFrameStats(frame);
       return frame;

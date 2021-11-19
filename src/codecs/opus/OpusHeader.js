@@ -75,12 +75,24 @@ const channelMappingFamilies = {
 export default class OpusHeader extends CodecHeader {
   static getHeaderFromUint8Array(data, headerCache) {
     const header = {};
-    // Must be at least 19 bytes.
-    if (data.length < 19)
+    // packet data 1 to 2 bytes
+
+    // get length of header
+    // Byte (10 of 19)
+    // * `CCCCCCCC`: Channel Count
+    header.channels = data[9];
+    // Byte (19 of 19)
+    // * `GGGGGGGG`: Channel Mapping Family
+    header.channelMappingFamily = data[18];
+
+    header.length =
+      header.channelMappingFamily !== 0 ? 21 + header.channels : 19;
+
+    if (data.length < header.length)
       throw new Error("Out of data while inside an Ogg Page");
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 19));
+    const key = HeaderCache.getKey(data.subarray(0, header.length));
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {
@@ -102,14 +114,14 @@ export default class OpusHeader extends CodecHeader {
       // * `00000001`: Version number
       if (data[8] !== 1) return null;
 
-      const view = new DataView(Uint8Array.from(data.subarray(0, 19)).buffer);
+      const view = new DataView(
+        Uint8Array.from(data.subarray(0, header.length)).buffer
+      );
       header.bitDepth = 16;
-
-      header.length = 19;
 
       // Byte (10 of 19)
       // * `CCCCCCCC`: Channel Count
-      header.channels = data[9];
+      // set earlier to determine length
 
       // Byte (11-12 of 19)
       // * `DDDDDDDD|DDDDDDDD`: Pre skip
@@ -127,7 +139,7 @@ export default class OpusHeader extends CodecHeader {
 
       // Byte (19 of 19)
       // * `GGGGGGGG`: Channel Mapping Family
-      header.channelMappingFamily = data[18];
+      // set earlier to determine length
       if (!header.channelMappingFamily in channelMappingFamilies) return null;
 
       header.channelMode =
@@ -135,22 +147,19 @@ export default class OpusHeader extends CodecHeader {
           header.channels - 1
         ];
       if (!header.channelMode) return null;
+
+      if (header.channelMappingFamily !== 0) {
+        // * `HHHHHHHH`: Stream count
+        header.streamCount = data[19];
+
+        // * `IIIIIIII`: Coupled Stream count
+        header.coupledStreamCount = data[20];
+
+        // * `JJJJJJJJ|...` Channel Mapping table
+        header.channelMappingTable = data.subarray(21, header.channels + 21);
+      }
     } else {
       Object.assign(header, cachedHeader);
-    }
-
-    if (header.channelMappingFamily !== 0) {
-      header.length += 2 + header.channels;
-      if (data.length < header.length) return new OpusHeader(header, false); // out of data
-
-      // * `HHHHHHHH`: Stream count
-      header.streamCount = data[19];
-
-      // * `IIIIIIII`: Coupled Stream count
-      header.coupledStreamCount = data[20];
-
-      // * `JJJJJJJJ|...` Channel Mapping table
-      header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
     header.data = Uint8Array.from(data.subarray(0, header.length));
@@ -182,5 +191,11 @@ export default class OpusHeader extends CodecHeader {
     this.inputSampleRate = header.inputSampleRate;
     this.streamCount = header.streamCount;
     this.channelMappingTable = header.channelMappingTable;
+    //this.frameCount = undefined; // set in frame constructor
+    //this.isVbr = undefined; // set in frame constructor
+    //this.hasOpusPadding = undefined; // set in frame constructor
+    //this.configMode = undefined; // set in frame constructor
+    //this.configBandwidth = undefined; // set in frame constructor
+    //this.configFrameSize = undefined; // set in frame constructor
   }
 }

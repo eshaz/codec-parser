@@ -35,7 +35,7 @@ export default class FLACParser extends Parser {
     return "flac";
   }
 
-  *getNextFrameSyncOffset(offset) {
+  *_getNextFrameSyncOffset(offset) {
     const data = yield* this._codecParser.readRawData(2, 0);
     const dataLength = data.length - 2;
 
@@ -99,7 +99,7 @@ export default class FLACParser extends Parser {
             }
           }
 
-          nextHeaderOffset = yield* this.getNextFrameSyncOffset(
+          nextHeaderOffset = yield* this._getNextFrameSyncOffset(
             nextHeaderOffset + 1
           );
         }
@@ -111,7 +111,7 @@ export default class FLACParser extends Parser {
       } else {
         // not synced, increment data to continue syncing
         this._codecParser.incrementRawData(
-          yield* this.getNextFrameSyncOffset(1)
+          yield* this._getNextFrameSyncOffset(1)
         );
       }
     } while (true);
