@@ -16,6 +16,22 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import {
+  reserved,
+  bad,
+  free,
+  none,
+  sixteenBitCRC,
+  rate44100,
+  rate48000,
+  rate32000,
+  rate22050,
+  rate24000,
+  rate16000,
+  rate11025,
+  rate12000,
+  rate8000,
+} from "../../constants.js";
 import ID3v2 from "../../metadata/ID3v2.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
@@ -24,7 +40,7 @@ import HeaderCache from "../HeaderCache.js";
 
 const bitrateMatrix = {
   // bits | V1,L1 | V1,L2 | V1,L3 | V2,L1 | V2, L2 & L3
-  0b00000000: ["free", "free", "free", "free", "free"],
+  0b00000000: [free, free, free, free, free],
   0b00010000: [32, 32, 32, 32, 8],
   0b00100000: [64, 48, 40, 48, 16],
   0b00110000: [96, 56, 48, 56, 24],
@@ -39,7 +55,7 @@ const bitrateMatrix = {
   0b11000000: [384, 256, 224, 192, 128],
   0b11010000: [416, 320, 256, 224, 144],
   0b11100000: [448, 384, 320, 256, 160],
-  0b11110000: ["bad", "bad", "bad", "bad", "bad"],
+  0b11110000: [bad, bad, bad, bad, bad],
 };
 
 const v1Layer1 = 0;
@@ -48,24 +64,31 @@ const v1Layer3 = 2;
 const v2Layer1 = 3;
 const v2Layer23 = 4;
 
+const bands = "bands ";
+const to31 = " to 31";
 const layer12ModeExtensions = {
-  0b00000000: "bands 4 to 31",
-  0b00010000: "bands 8 to 31",
-  0b00100000: "bands 12 to 31",
-  0b00110000: "bands 16 to 31",
+  0b00000000: `${bands}4${to31}`,
+  0b00010000: `${bands}8${to31}`,
+  0b00100000: `${bands}12${to31}`,
+  0b00110000: `${bands}16${to31}`,
 };
 
+const intensityStereo = "Intensity stereo ";
+const msStereo = ", MS stereo ";
+const on = "on";
+const off = "off";
 const layer3ModeExtensions = {
-  0b00000000: "Intensity stereo off, MS stereo off",
-  0b00010000: "Intensity stereo on, MS stereo off",
-  0b00100000: "Intensity stereo off, MS stereo on",
-  0b00110000: "Intensity stereo on, MS stereo on",
+  0b00000000: `${intensityStereo}${off}${msStereo}${off}`,
+  0b00010000: `${intensityStereo}${on}${msStereo}${off}`,
+  0b00100000: `${intensityStereo}${off}${msStereo}${on}`,
+  0b00110000: `${intensityStereo}${on}${msStereo}${on}`,
 };
 
+const layer = "Layer ";
 const layers = {
-  0b00000000: { description: "reserved" },
+  0b00000000: { description: reserved },
   0b00000010: {
-    description: "Layer III",
+    description: `${layer}III`,
     framePadding: 1,
     modeExtensions: layer3ModeExtensions,
     v1: {
@@ -78,7 +101,7 @@ const layers = {
     },
   },
   0b00000100: {
-    description: "Layer II",
+    description: `${layer}II`,
     framePadding: 1,
     modeExtensions: layer12ModeExtensions,
     samples: 1152,
@@ -90,7 +113,7 @@ const layers = {
     },
   },
   0b00000110: {
-    description: "Layer I",
+    description: `${layer}I`,
     framePadding: 4,
     modeExtensions: layer12ModeExtensions,
     samples: 384,
@@ -103,49 +126,53 @@ const layers = {
   },
 };
 
+const mpegVersion = "MPEG Version ";
+const isoIec = "ISO/IEC ";
+const v2 = "v2";
+const v1 = "v1";
 const mpegVersions = {
   0b00000000: {
-    description: "MPEG Version 2.5 (later extension of MPEG 2)",
-    layers: "v2",
+    description: `${mpegVersion}2.5 (later extension of MPEG 2)`,
+    layers: v2,
     sampleRates: {
-      0b00000000: 11025,
-      0b00000100: 12000,
-      0b00001000: 8000,
-      0b00001100: "reserved",
+      0b00000000: rate11025,
+      0b00000100: rate12000,
+      0b00001000: rate8000,
+      0b00001100: reserved,
     },
   },
-  0b00001000: { description: "reserved" },
+  0b00001000: { description: reserved },
   0b00010000: {
-    description: "MPEG Version 2 (ISO/IEC 13818-3)",
-    layers: "v2",
+    description: `${mpegVersion}2 (${isoIec}13818-3)`,
+    layers: v2,
     sampleRates: {
-      0b00000000: 22050,
-      0b00000100: 24000,
-      0b00001000: 16000,
-      0b00001100: "reserved",
+      0b00000000: rate22050,
+      0b00000100: rate24000,
+      0b00001000: rate16000,
+      0b00001100: reserved,
     },
   },
   0b00011000: {
-    description: "MPEG Version 1 (ISO/IEC 11172-3)",
-    layers: "v1",
+    description: `${mpegVersion}1 (${isoIec}11172-3)`,
+    layers: v1,
     sampleRates: {
-      0b00000000: 44100,
-      0b00000100: 48000,
-      0b00001000: 32000,
-      0b00001100: "reserved",
+      0b00000000: rate44100,
+      0b00000100: rate48000,
+      0b00001000: rate32000,
+      0b00001100: reserved,
     },
   },
 };
 
 const protection = {
-  0b00000000: "16bit CRC",
-  0b00000001: "none",
+  0b00000000: sixteenBitCRC,
+  0b00000001: none,
 };
 
 const emphasis = {
-  0b00000000: "none",
+  0b00000000: none,
   0b00000001: "50/15 ms",
-  0b00000010: "reserved",
+  0b00000010: reserved,
   0b00000011: "CCIT J.17",
 };
 
@@ -192,11 +219,11 @@ export default class MPEGHeader extends CodecHeader {
 
     // Mpeg version (1, 2, 2.5)
     const mpegVersion = mpegVersions[data[1] & 0b00011000];
-    if (mpegVersion.description === "reserved") return null;
+    if (mpegVersion.description === reserved) return null;
 
     // Layer (I, II, III)
     const layerBits = data[1] & 0b00000110;
-    if (layers[layerBits].description === "reserved") return null;
+    if (layers[layerBits].description === reserved) return null;
     const layer = {
       ...layers[layerBits],
       ...layers[layerBits][mpegVersion.layers],
@@ -216,10 +243,10 @@ export default class MPEGHeader extends CodecHeader {
     // * `......G.`: Padding bit, 0=frame not padded, 1=frame padded
     // * `.......H`: Private bit.
     header.bitrate = bitrateMatrix[data[2] & 0b11110000][layer.bitrateIndex];
-    if (header.bitrate === "bad") return null;
+    if (header.bitrate === bad) return null;
 
     header.sampleRate = mpegVersion.sampleRates[data[2] & 0b00001100];
-    if (header.sampleRate === "reserved") return null;
+    if (header.sampleRate === reserved) return null;
 
     header.framePadding = data[2] & 0b00000010 && layer.framePadding;
     header.isPrivate = Boolean(data[2] & 0b00000001);
@@ -246,7 +273,7 @@ export default class MPEGHeader extends CodecHeader {
     header.isOriginal = Boolean(data[3] & 0b00000100);
 
     header.emphasis = emphasis[data[3] & 0b00000011];
-    if (header.emphasis === "reserved") return null;
+    if (header.emphasis === reserved) return null;
 
     header.bitDepth = 16;
 

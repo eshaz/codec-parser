@@ -47,6 +47,21 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
         
 */
 
+import {
+  reserved,
+  invalid,
+  rate88200,
+  rate176400,
+  rate192000,
+  rate8000,
+  rate16000,
+  rate22050,
+  rate24000,
+  rate32000,
+  rate44100,
+  rate48000,
+  rate96000,
+} from "../../constants.js";
 import { crc8 } from "../../utilities.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
@@ -57,7 +72,7 @@ const blockingStrategy = {
 };
 
 const blockSize = {
-  0b00000000: "reserved",
+  0b00000000: reserved,
   0b00010000: 192,
   0b00100000: 576,
   0b00110000: 1152,
@@ -77,21 +92,21 @@ const blockSize = {
 
 const sampleRate = {
   0b00000000: "get from STREAMINFO metadata block",
-  0b00000001: 88200,
-  0b00000010: 176400,
-  0b00000011: 192000,
-  0b00000100: 8000,
-  0b00000101: 16000,
-  0b00000110: 22050,
-  0b00000111: 24000,
-  0b00001000: 32000,
-  0b00001001: 44100,
-  0b00001010: 48000,
-  0b00001011: 96000,
+  0b00000001: rate88200,
+  0b00000010: rate176400,
+  0b00000011: rate192000,
+  0b00000100: rate8000,
+  0b00000101: rate16000,
+  0b00000110: rate22050,
+  0b00000111: rate24000,
+  0b00001000: rate32000,
+  0b00001001: rate44100,
+  0b00001010: rate48000,
+  0b00001011: rate96000,
   0b00001100: "get 8 bit sample rate (in kHz) from end of header",
   0b00001101: "get 16 bit sample rate (in Hz) from end of header",
   0b00001110: "get 16 bit sample rate (in tens of Hz) from end of header",
-  0b00001111: "invalid",
+  0b00001111: invalid,
 };
 
 /* prettier-ignore */
@@ -107,22 +122,22 @@ const channelAssignments = {
   0b10000000: {channels: 2, description: "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel"},
   0b10010000: {channels: 2, description: "right/side stereo: channel 0 is the side(difference) channel, channel 1 is the right channel"},
   0b10100000: {channels: 2, description: "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel"},
-  0b10110000: "reserved",
-  0b11000000: "reserved",
-  0b11010000: "reserved",
-  0b11100000: "reserved",
-  0b11110000: "reserved",
+  0b10110000: reserved,
+  0b11000000: reserved,
+  0b11010000: reserved,
+  0b11100000: reserved,
+  0b11110000: reserved,
 }
 
 const bitDepth = {
   0b00000000: "get from STREAMINFO metadata block",
   0b00000010: 8,
   0b00000100: 12,
-  0b00000110: "reserved",
+  0b00000110: reserved,
   0b00001000: 16,
   0b00001010: 20,
   0b00001100: 24,
-  0b00001110: "reserved",
+  0b00001110: reserved,
 };
 
 export default class FLACHeader extends CodecHeader {
@@ -208,12 +223,12 @@ export default class FLACHeader extends CodecHeader {
       header.sampleRateBits = data[2] & 0b00001111;
 
       header.blockSize = blockSize[header.blockSizeBits];
-      if (header.blockSize === "reserved") {
+      if (header.blockSize === reserved) {
         return null;
       }
 
       header.sampleRate = sampleRate[header.sampleRateBits];
-      if (header.sampleRate === "invalid") {
+      if (header.sampleRate === invalid) {
         return null;
       }
 
@@ -225,13 +240,13 @@ export default class FLACHeader extends CodecHeader {
       if (data[3] & 0b00000001) return null;
 
       const channelAssignment = channelAssignments[data[3] & 0b11110000];
-      if (channelAssignment === "reserved") return null;
+      if (channelAssignment === reserved) return null;
 
       header.channels = channelAssignment.channels;
       header.channelMode = channelAssignment.description;
 
       header.bitDepth = bitDepth[data[3] & 0b00001110];
-      if (header.bitDepth === "reserved") return null;
+      if (header.bitDepth === reserved) return null;
     } else {
       Object.assign(header, cachedHeader);
     }

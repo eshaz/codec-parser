@@ -51,24 +51,35 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
+import {
+  rate48000,
+  monophonicMapping,
+  stereoMapping,
+  linearSurroundMapping,
+  quadraphonicMapping,
+  fivePointZeroSurroundMapping,
+  fivePointOneSurroundMapping,
+  sixPointOneSurroundMapping,
+  sevenPointOneSurroundMapping,
+} from "../../constants.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
 /* prettier-ignore */
 const channelMappingFamilies = {
   0b00000000: [
-    "monophonic (mono)",
-    "stereo (left, right)"
+    monophonicMapping,
+    stereoMapping,
   ],
   0b00000001: [
-    "monophonic (mono)",
-    "stereo (left, right)",
-    "linear surround (left, center, right)",
-    "quadraphonic (front left, front right, rear left, rear right)",
-    "5.0 surround (front left, front center, front right, rear left, rear right)",
-    "5.1 surround (front left, front center, front right, rear left, rear right, LFE)",
-    "6.1 surround (front left, front center, front right, side left, side right, rear center, LFE)",
-    "7.1 surround (front left, front center, front right, side left, side right, rear left, rear right, LFE)",
+    monophonicMapping,
+    stereoMapping,
+    linearSurroundMapping,
+    quadraphonicMapping,
+    fivePointZeroSurroundMapping,
+    fivePointOneSurroundMapping,
+    sixPointOneSurroundMapping,
+    sevenPointOneSurroundMapping,
   ]
 };
 
@@ -190,7 +201,7 @@ export default class OpusHeader extends CodecHeader {
     // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
     header.inputSampleRate = view.getUint32(12, true);
     // Opus is always decoded at 48kHz
-    header.sampleRate = 48000;
+    header.sampleRate = rate48000;
 
     // Byte (17-18 of 19)
     // * `FFFFFFFF|FFFFFFFF`: Output Gain

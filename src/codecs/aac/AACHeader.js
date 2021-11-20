@@ -42,7 +42,33 @@ Q  16  CRC if protection absent is 0
 */
 
 import { headerStore } from "../../globals.js";
-
+import {
+  reserved,
+  bad,
+  valid,
+  none,
+  sixteenBitCRC,
+  rate96000,
+  rate88200,
+  rate64000,
+  rate48000,
+  rate44100,
+  rate32000,
+  rate24000,
+  rate22050,
+  rate16000,
+  rate12000,
+  rate11025,
+  rate8000,
+  rate7350,
+  monophonicMapping,
+  stereoMapping,
+  linearSurroundMapping,
+  quadraphonicMapping,
+  fivePointZeroSurroundMapping,
+  fivePointOneSurroundMapping,
+  sevenPointOneSurroundMapping,
+} from "../../constants.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
@@ -52,15 +78,15 @@ const mpegVersion = {
 };
 
 const layer = {
-  0b00000000: "valid",
-  0b00000010: "bad",
-  0b00000100: "bad",
-  0b00000110: "bad",
+  0b00000000: valid,
+  0b00000010: bad,
+  0b00000100: bad,
+  0b00000110: bad,
 };
 
 const protection = {
-  0b00000000: "16bit CRC",
-  0b00000001: "none",
+  0b00000000: sixteenBitCRC,
+  0b00000001: none,
 };
 
 const profile = {
@@ -71,50 +97,34 @@ const profile = {
 };
 
 const sampleRates = {
-  0b00000000: 96000,
-  0b00000100: 88200,
-  0b00001000: 64000,
-  0b00001100: 48000,
-  0b00010000: 44100,
-  0b00010100: 32000,
-  0b00011000: 24000,
-  0b00011100: 22050,
-  0b00100000: 16000,
-  0b00100100: 12000,
-  0b00101000: 11025,
-  0b00101100: 8000,
-  0b00110000: 7350,
-  0b00110100: "reserved",
-  0b00111000: "reserved",
+  0b00000000: rate96000,
+  0b00000100: rate88200,
+  0b00001000: rate64000,
+  0b00001100: rate48000,
+  0b00010000: rate44100,
+  0b00010100: rate32000,
+  0b00011000: rate24000,
+  0b00011100: rate22050,
+  0b00100000: rate16000,
+  0b00100100: rate12000,
+  0b00101000: rate11025,
+  0b00101100: rate8000,
+  0b00110000: rate7350,
+  0b00110100: reserved,
+  0b00111000: reserved,
   0b00111100: "frequency is written explicitly",
 };
 
+// prettier-ignore
 const channelMode = {
   0b000000000: { channels: 0, description: "Defined in AOT Specific Config" },
-  0b001000000: { channels: 1, description: "front-center" },
-  0b010000000: { channels: 2, description: "front-left, front-right" },
-  0b011000000: {
-    channels: 3,
-    description: "front-center, front-left, front-right",
-  },
-  0b100000000: {
-    channels: 4,
-    description: "front-center, front-left, front-right, back-center",
-  },
-  0b101000000: {
-    channels: 5,
-    description: "front-center, front-left, front-right, back-left, back-right",
-  },
-  0b110000000: {
-    channels: 6,
-    description:
-      "front-center, front-left, front-right, back-left, back-right, LFE-channel",
-  },
-  0b111000000: {
-    channels: 8,
-    description:
-      "front-center, front-left, front-right, side-left, side-right, back-left, back-right, LFE-channel",
-  },
+  0b001000000: { channels: 1, description: monophonicMapping },
+  0b010000000: { channels: 2, description: stereoMapping },
+  0b011000000: { channels: 3, description: linearSurroundMapping, },
+  0b100000000: { channels: 4, description: quadraphonicMapping, },
+  0b101000000: { channels: 5, description: fivePointZeroSurroundMapping, },
+  0b110000000: { channels: 6, description: fivePointOneSurroundMapping, },
+  0b111000000: { channels: 8, description: sevenPointOneSurroundMapping, },
 };
 
 export default class AACHeader extends CodecHeader {
@@ -145,7 +155,7 @@ export default class AACHeader extends CodecHeader {
       header.mpegVersion = mpegVersion[data[1] & 0b00001000];
 
       header.layer = layer[data[1] & 0b00000110];
-      if (header.layer === "bad") return null;
+      if (header.layer === bad) return null;
 
       const protectionBit = data[1] & 0b00000001;
       header.protection = protection[protectionBit];
@@ -163,7 +173,7 @@ export default class AACHeader extends CodecHeader {
       header.profile = profile[header.profileBits];
 
       header.sampleRate = sampleRates[header.sampleRateBits];
-      if (header.sampleRate === "reserved") return null;
+      if (header.sampleRate === reserved) return null;
 
       header.isPrivate = Boolean(privateBit);
 
