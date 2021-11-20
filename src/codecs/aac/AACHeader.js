@@ -45,7 +45,6 @@ import { headerStore } from "../../globals.js";
 import {
   reserved,
   bad,
-  valid,
   none,
   sixteenBitCRC,
   rate96000,
@@ -61,13 +60,10 @@ import {
   rate11025,
   rate8000,
   rate7350,
-  monophonicMapping,
-  stereoMapping,
-  linearSurroundMapping,
-  quadraphonicMapping,
-  fivePointZeroSurroundMapping,
-  fivePointOneSurroundMapping,
-  sevenPointOneSurroundMapping,
+  channelMappings,
+  getChannelMapping,
+  monophonic,
+  lfe,
 } from "../../constants.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
@@ -78,7 +74,7 @@ const mpegVersion = {
 };
 
 const layer = {
-  0b00000000: valid,
+  0b00000000: "valid",
   0b00000010: bad,
   0b00000100: bad,
   0b00000110: bad,
@@ -118,13 +114,22 @@ const sampleRates = {
 // prettier-ignore
 const channelMode = {
   0b000000000: { channels: 0, description: "Defined in AOT Specific Config" },
-  0b001000000: { channels: 1, description: monophonicMapping },
-  0b010000000: { channels: 2, description: stereoMapping },
-  0b011000000: { channels: 3, description: linearSurroundMapping, },
-  0b100000000: { channels: 4, description: quadraphonicMapping, },
-  0b101000000: { channels: 5, description: fivePointZeroSurroundMapping, },
-  0b110000000: { channels: 6, description: fivePointOneSurroundMapping, },
-  0b111000000: { channels: 8, description: sevenPointOneSurroundMapping, },
+  /*
+  'monophonic (mono)'
+  'stereo (left, right)'
+  'linear surround (front center, front left, front right)'
+  'quadraphonic (front center, front left, front right, rear center)'
+  '5.0 surround (front center, front left, front right, rear left, rear right)'
+  '5.1 surround (front center, front left, front right, rear left, rear right, LFE)'
+  '7.1 surround (front center, front left, front right, side left, side right, rear left, rear right, LFE)'
+  */
+  0b001000000: { channels: 1, description: monophonic },
+  0b010000000: { channels: 2, description: getChannelMapping(2,channelMappings[0][0]) },
+  0b011000000: { channels: 3, description: getChannelMapping(3,channelMappings[1][3]), },
+  0b100000000: { channels: 4, description: getChannelMapping(4,channelMappings[1][3],channelMappings[3][4]), },
+  0b101000000: { channels: 5, description: getChannelMapping(5,channelMappings[1][3],channelMappings[3][0]), },
+  0b110000000: { channels: 6, description: getChannelMapping(6,channelMappings[1][3],channelMappings[3][0],lfe), },
+  0b111000000: { channels: 8, description: getChannelMapping(8,channelMappings[1][3],channelMappings[2][0],channelMappings[3][0],lfe), },
 };
 
 export default class AACHeader extends CodecHeader {

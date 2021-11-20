@@ -31,6 +31,8 @@ import {
   rate11025,
   rate12000,
   rate8000,
+  monophonic,
+  stereo,
 } from "../../constants.js";
 import ID3v2 from "../../metadata/ID3v2.js";
 import CodecHeader from "../CodecHeader.js";
@@ -67,10 +69,10 @@ const v2Layer23 = 4;
 const bands = "bands ";
 const to31 = " to 31";
 const layer12ModeExtensions = {
-  0b00000000: `${bands}4${to31}`,
-  0b00010000: `${bands}8${to31}`,
-  0b00100000: `${bands}12${to31}`,
-  0b00110000: `${bands}16${to31}`,
+  0b00000000: bands + 4 + to31,
+  0b00010000: bands + 8 + to31,
+  0b00100000: bands + 12 + to31,
+  0b00110000: bands + 16 + to31,
 };
 
 const intensityStereo = "Intensity stereo ";
@@ -78,17 +80,17 @@ const msStereo = ", MS stereo ";
 const on = "on";
 const off = "off";
 const layer3ModeExtensions = {
-  0b00000000: `${intensityStereo}${off}${msStereo}${off}`,
-  0b00010000: `${intensityStereo}${on}${msStereo}${off}`,
-  0b00100000: `${intensityStereo}${off}${msStereo}${on}`,
-  0b00110000: `${intensityStereo}${on}${msStereo}${on}`,
+  0b00000000: intensityStereo + off + msStereo + off,
+  0b00010000: intensityStereo + on + msStereo + off,
+  0b00100000: intensityStereo + off + msStereo + on,
+  0b00110000: intensityStereo + on + msStereo + on,
 };
 
 const layer = "Layer ";
 const layers = {
   0b00000000: { description: reserved },
   0b00000010: {
-    description: `${layer}III`,
+    description: "Layer III",
     framePadding: 1,
     modeExtensions: layer3ModeExtensions,
     v1: {
@@ -101,7 +103,7 @@ const layers = {
     },
   },
   0b00000100: {
-    description: `${layer}II`,
+    description: "Layer II",
     framePadding: 1,
     modeExtensions: layer12ModeExtensions,
     samples: 1152,
@@ -113,7 +115,7 @@ const layers = {
     },
   },
   0b00000110: {
-    description: `${layer}I`,
+    description: "Layer I",
     framePadding: 4,
     modeExtensions: layer12ModeExtensions,
     samples: 384,
@@ -177,10 +179,10 @@ const emphasis = {
 };
 
 const channelModes = {
-  0b00000000: { channels: 2, description: "Stereo" },
-  0b01000000: { channels: 2, description: "Joint stereo" },
-  0b10000000: { channels: 2, description: "Dual channel" },
-  0b11000000: { channels: 1, description: "Single channel (Mono)" },
+  0b00000000: { channels: 2, description: stereo },
+  0b01000000: { channels: 2, description: "joint " + stereo },
+  0b10000000: { channels: 2, description: "dual channel" },
+  0b11000000: { channels: 1, description: monophonic },
 };
 
 export default class MPEGHeader extends CodecHeader {

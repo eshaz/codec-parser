@@ -49,7 +49,7 @@ L   8   CRC-8 (polynomial = x^8 + x^2 + x^1 + x^0, initialized with 0) of everyt
 
 import {
   reserved,
-  invalid,
+  bad,
   rate88200,
   rate176400,
   rate192000,
@@ -61,10 +61,17 @@ import {
   rate44100,
   rate48000,
   rate96000,
+  channelMappings,
+  getChannelMapping,
+  monophonic,
+  stereo,
+  lfe,
 } from "../../constants.js";
 import { crc8 } from "../../utilities.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
+
+const getFromStreamInfo = "get from STREAMINFO metadata block";
 
 const blockingStrategy = {
   0b00000000: "Fixed",
@@ -78,8 +85,8 @@ const blockSize = {
   0b00110000: 1152,
   0b01000000: 2304,
   0b01010000: 4608,
-  0b01100000: "8-bit (blocksize-1) end of header",
-  0b01110000: "16-bit (blocksize-1) end of header",
+  // 0b01100000: "8-bit (blocksize-1) from end of header",
+  // 0b01110000: "16-bit (blocksize-1) from end of header",
   0b10000000: 256,
   0b10010000: 512,
   0b10100000: 1024,
@@ -91,7 +98,7 @@ const blockSize = {
 };
 
 const sampleRate = {
-  0b00000000: "get from STREAMINFO metadata block",
+  0b00000000: getFromStreamInfo,
   0b00000001: rate88200,
   0b00000010: rate176400,
   0b00000011: rate192000,
@@ -103,25 +110,35 @@ const sampleRate = {
   0b00001001: rate44100,
   0b00001010: rate48000,
   0b00001011: rate96000,
-  0b00001100: "get 8 bit sample rate (in kHz) from end of header",
-  0b00001101: "get 16 bit sample rate (in Hz) from end of header",
-  0b00001110: "get 16 bit sample rate (in tens of Hz) from end of header",
-  0b00001111: invalid,
+  // 0b00001100: "8-bit sample rate (in kHz) from end of header",
+  // 0b00001101: "16-bit sample rate (in Hz) from end of header",
+  // 0b00001110: "16-bit sample rate (in tens of Hz) from end of header",
+  0b00001111: bad,
 };
 
 /* prettier-ignore */
 const channelAssignments = {
-  0b00000000: {channels: 1, description: "mono"},
-  0b00010000: {channels: 2, description: "left, right"},
-  0b00100000: {channels: 3, description: "left, right, center"},
-  0b00110000: {channels: 4, description: "front left, front right, back left, back right"},
-  0b01000000: {channels: 5, description: "front left, front right, front center, back/surround left, back/surround right"},
-  0b01010000: {channels: 6, description: "front left, front right, front center, LFE, back/surround left, back/surround right"},
-  0b01100000: {channels: 7, description: "front left, front right, front center, LFE, back center, side left, side right"},
-  0b01110000: {channels: 8, description: "front left, front right, front center, LFE, back left, back right, side left, side right"},
-  0b10000000: {channels: 2, description: "left/side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel"},
-  0b10010000: {channels: 2, description: "right/side stereo: channel 0 is the side(difference) channel, channel 1 is the right channel"},
-  0b10100000: {channels: 2, description: "mid/side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel"},
+  /*'
+  'monophonic (mono)'
+  'stereo (left, right)'
+  'linear surround (left, right, center)'
+  'quadraphonic (front left, front right, rear left, rear right)'
+  '5.0 surround (front left, front right, front center, rear left, rear right)'
+  '5.1 surround (front left, front right, front center, LFE, rear left, rear right)'
+  '6.1 surround (front left, front right, front center, LFE, rear center, side left, side right)'
+  '7.1 surround (front left, front right, front center, LFE, rear left, rear right, side left, side right)'
+  */
+  0b00000000: {channels: 1, description: monophonic},
+  0b00010000: {channels: 2, description: getChannelMapping(2,channelMappings[0][0])},
+  0b00100000: {channels: 3, description: getChannelMapping(3,channelMappings[0][1])},
+  0b00110000: {channels: 4, description: getChannelMapping(4,channelMappings[1][0],channelMappings[3][0])},
+  0b01000000: {channels: 5, description: getChannelMapping(5,channelMappings[1][1],channelMappings[3][0])},
+  0b01010000: {channels: 6, description: getChannelMapping(6,channelMappings[1][1],lfe,channelMappings[3][0])},
+  0b01100000: {channels: 7, description: getChannelMapping(7,channelMappings[1][1],lfe,channelMappings[3][4],channelMappings[2][0])},
+  0b01110000: {channels: 8, description: getChannelMapping(8,channelMappings[1][1],lfe,channelMappings[3][0],channelMappings[2][0])},
+  0b10000000: {channels: 2, description: `${stereo} (left, diff)`},
+  0b10010000: {channels: 2, description: `${stereo} (diff, right)`},
+  0b10100000: {channels: 2, description: `${stereo} (avg, diff)`},
   0b10110000: reserved,
   0b11000000: reserved,
   0b11010000: reserved,
@@ -130,7 +147,7 @@ const channelAssignments = {
 }
 
 const bitDepth = {
-  0b00000000: "get from STREAMINFO metadata block",
+  0b00000000: getFromStreamInfo,
   0b00000010: 8,
   0b00000100: 12,
   0b00000110: reserved,
@@ -228,7 +245,7 @@ export default class FLACHeader extends CodecHeader {
       }
 
       header.sampleRate = sampleRate[header.sampleRateBits];
-      if (header.sampleRate === invalid) {
+      if (header.sampleRate === bad) {
         return null;
       }
 

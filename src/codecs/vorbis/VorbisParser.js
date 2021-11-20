@@ -140,6 +140,8 @@ export default class VorbisParser extends Parser {
    */
   _parseSetupHeader(setup) {
     const bitReader = new BitReader(setup);
+    const failedToParseVorbisStream = "Failed to read Vorbis stream";
+    const failedToParseVorbisModes = ", failed to parse vorbis modes";
 
     let mode = {
       count: 0,
@@ -158,9 +160,9 @@ export default class VorbisParser extends Parser {
         !(mode.count === 1 && mapping === 0) // allows for the possibility of only one mode
       ) {
         this._codecParser.logError(
-          "received duplicate mode mapping, failed to parse vorbis modes"
+          "received duplicate mode mapping" + failedToParseVorbisModes
         );
-        throw new Error("Failed to read Vorbis stream");
+        throw new Error(failedToParseVorbisStream);
       }
 
       // 16 bits transform type, 16 bits window type, all values must be zero
@@ -178,9 +180,9 @@ export default class VorbisParser extends Parser {
         // check for mode count using previous iteration modeBits
         if (((reverse(modeBits) & 0b01111110) >> 1) + 1 !== mode.count) {
           this._codecParser.logError(
-            "mode count did not match actual modes, failed to parse vorbis modes"
+            "mode count did not match actual modes" + failedToParseVorbisModes
           );
-          throw new Error("Failed to read Vorbis stream");
+          throw new Error(failedToParseVorbisStream);
         }
 
         break;

@@ -38,8 +38,7 @@ K      1    Framing flag
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
 
-/* prettier-ignore */
-const blockSizes = {
+/*const blockSizes = {
   0b0110: 64,
   0b0111: 128,
   0b1000: 256,
@@ -48,7 +47,9 @@ const blockSizes = {
   0b1011: 2048,
   0b1100: 4096,
   0b1101: 8192
-};
+};*/
+const blockSizes = {};
+for (let i = 0; i < 8; i++) blockSizes[i + 6] = 2 ** (6 + i);
 
 export default class VorbisHeader extends CodecHeader {
   static getHeaderFromUint8Array(data, headerCache) {

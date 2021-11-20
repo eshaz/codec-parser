@@ -53,14 +53,10 @@ J  8*C Channel Mapping
 
 import {
   rate48000,
-  monophonicMapping,
-  stereoMapping,
-  linearSurroundMapping,
-  quadraphonicMapping,
-  fivePointZeroSurroundMapping,
-  fivePointOneSurroundMapping,
-  sixPointOneSurroundMapping,
-  sevenPointOneSurroundMapping,
+  channelMappings,
+  getChannelMapping,
+  monophonic,
+  lfe,
 } from "../../constants.js";
 import CodecHeader from "../CodecHeader.js";
 import HeaderCache from "../HeaderCache.js";
@@ -68,18 +64,32 @@ import HeaderCache from "../HeaderCache.js";
 /* prettier-ignore */
 const channelMappingFamilies = {
   0b00000000: [
-    monophonicMapping,
-    stereoMapping,
+    /*
+    0: "monophonic (mono)"
+    1: "stereo (left, right)"
+    */
+    monophonic,
+    getChannelMapping(2,channelMappings[0][0]),
   ],
   0b00000001: [
-    monophonicMapping,
-    stereoMapping,
-    linearSurroundMapping,
-    quadraphonicMapping,
-    fivePointZeroSurroundMapping,
-    fivePointOneSurroundMapping,
-    sixPointOneSurroundMapping,
-    sevenPointOneSurroundMapping,
+    /*
+    0: "monophonic (mono)"
+    1: "stereo (left, right)"
+    2: "linear surround (left, center, right)"
+    3: "quadraphonic (front left, front right, rear left, rear right)"
+    4: "5.0 surround (front left, front center, front right, rear left, rear right)"
+    5: "5.1 surround (front left, front center, front right, rear left, rear right, LFE)"
+    6: "6.1 surround (front left, front center, front right, side left, side right, rear center, LFE)"
+    7: "7.1 surround (front left, front center, front right, side left, side right, rear left, rear right, LFE)"
+    */
+    monophonic,
+    getChannelMapping(2,channelMappings[0][0]),
+    getChannelMapping(3,channelMappings[0][2]),
+    getChannelMapping(4,channelMappings[1][0],channelMappings[3][0]),
+    getChannelMapping(5,channelMappings[1][2],channelMappings[3][0]),
+    getChannelMapping(6,channelMappings[1][2],channelMappings[3][0],lfe),
+    getChannelMapping(7,channelMappings[1][2],channelMappings[2][0],channelMappings[3][4],lfe),
+    getChannelMapping(8,channelMappings[1][2],channelMappings[2][0],channelMappings[3][0],lfe),
   ]
 };
 

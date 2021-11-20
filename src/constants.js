@@ -1,47 +1,86 @@
 export const reserved = "reserved";
 export const bad = "bad";
 export const free = "free";
-export const valid = "valid";
-export const invalid = "invalid";
 export const none = "none";
 export const sixteenBitCRC = "16bit CRC";
 
 // channel mappings
-const left = "left";
-const center = "center";
-const right = "right";
+const mappingJoin = ", ";
+
 const front = "front";
 const side = "side";
 const rear = "rear";
-const lfe = "LFE";
+const left = "left";
+const center = "center";
+const right = "right";
 
-const stereo = "stereo";
-const linear = "linear";
-const quadraphonic = "quadraphonic";
-const surround = "surround";
-
-// ['front left', 'front center', 'front right', 'side left', 'side center', 'side right', 'rear left', 'rear center', 'rear right']
-const c = [front, side, rear].flatMap((x) =>
-  [left, center, right].map((y) => x + " " + y)
+// prettier-ignore
+/*
+[
+  [
+    "left, right",
+    "left, right, center",
+    "left, center, right",
+    "center, left, right",
+    "center"
+  ],
+  [
+    "front left, front right",
+    "front left, front right, front center",
+    "front left, front center, front right",
+    "front center, front left, front right",
+    "front center"
+  ],
+  [
+    "side left, side right",
+    "side left, side right, side center",
+    "side left, side center, side right",
+    "side center, side left, side right",
+    "side center"
+  ],
+  [
+    "rear left, rear right",
+    "rear left, rear right, rear center",
+    "rear left, rear center, rear right",
+    "rear center, rear left, rear right",
+    "rear center"
+  ]
+]
+*/
+export const channelMappings = 
+  [
+    "", 
+    front + " ",
+    side + " ",
+    rear + " "
+  ].map((x) =>
+  [
+    [left, right],
+    [left, right, center],
+    [left, center, right],
+    [center, left, right],
+    [center],
+  ].flatMap((y) => y.map((z) => x + z).join(mappingJoin))
 );
 
-const channelMappingJoin = ", ";
-// prettier-ignore
-export const monophonicMapping = "monophonic (mono)";
-// prettier-ignore
-export const stereoMapping = `${stereo} (${[left,right].join(channelMappingJoin)})`;
-// prettier-ignore
-export const linearSurroundMapping = `${linear} ${surround} (${[left,center,right].join(channelMappingJoin)})`;
-// prettier-ignore
-export const quadraphonicMapping = `${quadraphonic} (${[c[0],c[2],c[6],c[8]].join(channelMappingJoin)})`;
-// prettier-ignore
-export const fivePointZeroSurroundMapping = `5.0 ${surround} (${[c[0],c[1],c[2],c[6],c[8]].join(channelMappingJoin)})`;
-// prettier-ignore
-export const fivePointOneSurroundMapping = `5.1 ${surround} (${[c[0],c[1],c[2],c[6],c[8],lfe].join(channelMappingJoin)})`;
-// prettier-ignore
-export const sixPointOneSurroundMapping = `6.1 ${surround} (${[c[0],c[1],c[2],c[3],c[5],c[7],lfe].join(channelMappingJoin)})`;
-// prettier-ignore
-export const sevenPointOneSurroundMapping = `7.1 ${surround} (${[c[0],c[1],c[2],c[3],c[5],c[6],c[8],lfe].join(channelMappingJoin)})`;
+export const lfe = "LFE";
+export const monophonic = "monophonic (mono)";
+export const stereo = "stereo";
+const surround = "surround";
+
+const channels = [
+  monophonic,
+  stereo,
+  `linear ${surround}`,
+  "quadraphonic",
+  `5.0 ${surround}`,
+  `5.1 ${surround}`,
+  `6.1 ${surround}`,
+  `7.1 ${surround}`,
+];
+
+export const getChannelMapping = (channelCount, ...mappings) =>
+  `${channels[channelCount - 1]} (${mappings.join(mappingJoin)})`;
 
 // sampleRates
 export const rate192000 = 192000;
