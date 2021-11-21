@@ -82,6 +82,18 @@ const channels = [
 export const getChannelMapping = (channelCount, ...mappings) =>
   `${channels[channelCount - 1]} (${mappings.join(mappingJoin)})`;
 
+// prettier-ignore
+export const vorbisOpusChannelMapping = [
+  monophonic,
+  getChannelMapping(2,channelMappings[0][0]),
+  getChannelMapping(3,channelMappings[0][2]),
+  getChannelMapping(4,channelMappings[1][0],channelMappings[3][0]),
+  getChannelMapping(5,channelMappings[1][2],channelMappings[3][0]),
+  getChannelMapping(6,channelMappings[1][2],channelMappings[3][0],lfe),
+  getChannelMapping(7,channelMappings[1][2],channelMappings[2][0],channelMappings[3][4],lfe),
+  getChannelMapping(8,channelMappings[1][2],channelMappings[2][0],channelMappings[3][0],lfe),
+]
+
 // sampleRates
 export const rate192000 = 192000;
 export const rate176400 = 176400;

@@ -311,7 +311,6 @@ export default class MPEGHeader extends CodecHeader {
     super(header);
 
     this.bitrate = header.bitrate;
-    this.channelMode = header.channelMode;
     this.emphasis = header.emphasis;
     this.framePadding = header.framePadding;
     this.isCopyrighted = header.isCopyrighted;

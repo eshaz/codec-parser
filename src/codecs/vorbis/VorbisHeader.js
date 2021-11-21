@@ -35,6 +35,7 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
+import { vorbisOpusChannelMapping } from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
 import CodecHeader from "../CodecHeader.js";
@@ -80,6 +81,8 @@ export default class VorbisHeader extends CodecHeader {
     // Byte (12 of 30)
     // * `DDDDDDDD`: Channel Count
     header.channels = data[11];
+    header.channelMode =
+      vorbisOpusChannelMapping[header.channels - 1] || "application defined";
 
     // Byte (13-16 of 30)
     // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
@@ -102,6 +105,7 @@ export default class VorbisHeader extends CodecHeader {
     // * `....JJJJ` Blocksize 0
     header.blocksize1 = blockSizes[(data[28] & 0b11110000) >> 4];
     header.blocksize0 = blockSizes[data[28] & 0b00001111];
+    if (header.blocksize0 > header.blocksize1) return null;
 
     // Byte (29 of 30)
     // * `00000001` Framing bit

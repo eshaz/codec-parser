@@ -51,28 +51,19 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
-import {
-  rate48000,
-  channelMappings,
-  getChannelMapping,
-  monophonic,
-  lfe,
-} from "../../constants.js";
+import { rate48000, vorbisOpusChannelMapping } from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
 import CodecHeader from "../CodecHeader.js";
 
 /* prettier-ignore */
 const channelMappingFamilies = {
-  0b00000000: [
+  0b00000000: vorbisOpusChannelMapping.slice(0,2),
     /*
     0: "monophonic (mono)"
     1: "stereo (left, right)"
     */
-    monophonic,
-    getChannelMapping(2,channelMappings[0][0]),
-  ],
-  0b00000001: [
+  0b00000001: vorbisOpusChannelMapping
     /*
     0: "monophonic (mono)"
     1: "stereo (left, right)"
@@ -83,15 +74,6 @@ const channelMappingFamilies = {
     6: "6.1 surround (front left, front center, front right, side left, side right, rear center, LFE)"
     7: "7.1 surround (front left, front center, front right, side left, side right, rear left, rear right, LFE)"
     */
-    monophonic,
-    getChannelMapping(2,channelMappings[0][0]),
-    getChannelMapping(3,channelMappings[0][2]),
-    getChannelMapping(4,channelMappings[1][0],channelMappings[3][0]),
-    getChannelMapping(5,channelMappings[1][2],channelMappings[3][0]),
-    getChannelMapping(6,channelMappings[1][2],channelMappings[3][0],lfe),
-    getChannelMapping(7,channelMappings[1][2],channelMappings[2][0],channelMappings[3][4],lfe),
-    getChannelMapping(8,channelMappings[1][2],channelMappings[2][0],channelMappings[3][0],lfe),
-  ]
 };
 
 const silkOnly = "SILK-only";
@@ -280,7 +262,6 @@ export default class OpusHeader extends CodecHeader {
     this.bandwidth = header.bandwidth;
     this.channelMappingFamily = header.channelMappingFamily;
     this.channelMappingTable = header.channelMappingTable;
-    this.channelMode = header.channelMode;
     this.coupledStreamCount = header.coupledStreamCount;
     this.frameCount = header.frameCount;
     this.frameSize = header.frameSize;

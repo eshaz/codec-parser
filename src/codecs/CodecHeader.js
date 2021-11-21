@@ -28,6 +28,7 @@ export default class CodecHeader {
     this.bitDepth = header.bitDepth;
     this.bitrate = undefined; // set during frame mapping
     this.channels = header.channels;
+    this.channelMode = header.channelMode;
     this.sampleRate = header.sampleRate;
   }
 }

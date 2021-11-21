@@ -171,8 +171,7 @@ export default class CodecParser {
    * @protected
    */
   mapCodecFrameStats(frame) {
-    if (this._sampleRate !== frame.header.sampleRate)
-      this._sampleRate = frame.header.sampleRate;
+    this._sampleRate = frame.header.sampleRate;
 
     frame.header.bitrate = Math.round(frame.data.length / frame.duration) * 8;
     frame.frameNumber = this._frameNumber++;

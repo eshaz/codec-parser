@@ -245,7 +245,6 @@ export default class AACHeader extends CodecHeader {
 
     this.copyrightId = header.copyrightId;
     this.copyrightIdStart = header.copyrightIdStart;
-    this.channelMode = header.channelMode;
     this.bufferFullness = header.bufferFullness;
     this.isHome = header.isHome;
     this.isOriginal = header.isOriginal;
