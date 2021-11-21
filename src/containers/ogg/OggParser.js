@@ -17,7 +17,7 @@
 */
 
 import { headerStore, frameStore } from "../../globals.js";
-import { concatBuffers } from "../../utilities.js";
+import { bytesToString, concatBuffers } from "../../utilities.js";
 
 import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
@@ -53,7 +53,7 @@ export default class OggParser extends Parser {
   }
 
   _checkForIdentifier({ data }) {
-    const idString = String.fromCharCode(...data.subarray(0, 8));
+    const idString = bytesToString(data.subarray(0, 8));
 
     switch (idString) {
       case "fishead\0":

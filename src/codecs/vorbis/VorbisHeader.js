@@ -35,20 +35,20 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
-import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
+import { bytesToString } from "../../utilities.js";
 
-/*const blockSizes = {
-  0b0110: 64,
-  0b0111: 128,
-  0b1000: 256,
-  0b1001: 512,
-  0b1010: 1024,
-  0b1011: 2048,
-  0b1100: 4096,
-  0b1101: 8192
-};*/
-const blockSizes = {};
+import CodecHeader from "../CodecHeader.js";
+
+const blockSizes = {
+  // 0b0110: 64,
+  // 0b0111: 128,
+  // 0b1000: 256,
+  // 0b1001: 512,
+  // 0b1010: 1024,
+  // 0b1011: 2048,
+  // 0b1100: 4096,
+  // 0b1101: 8192
+};
 for (let i = 0; i < 8; i++) blockSizes[i + 6] = 2 ** (6 + i);
 
 export default class VorbisHeader extends CodecHeader {
@@ -60,20 +60,12 @@ export default class VorbisHeader extends CodecHeader {
       throw new Error("Out of data while inside an Ogg Page");
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 30));
+    const key = bytesToString(data.subarray(0, 30));
     const cachedHeader = headerCache.getHeader(key);
     if (cachedHeader) return new VorbisHeader(cachedHeader);
 
     // Bytes (1-7 of 30): /01vorbis - Magic Signature
-    if (
-      data[0] !== 0x01 || // identification header packet type
-      data[1] !== 0x76 || // v
-      data[2] !== 0x6f || // o
-      data[3] !== 0x72 || // r
-      data[4] !== 0x62 || // b
-      data[5] !== 0x69 || // i
-      data[6] !== 0x73 //    s
-    ) {
+    if (key.substr(0, 7) !== "\x01vorbis") {
       return null;
     }
 

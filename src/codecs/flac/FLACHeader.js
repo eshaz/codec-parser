@@ -67,9 +67,8 @@ import {
   stereo,
   lfe,
 } from "../../constants.js";
-import { crc8 } from "../../utilities.js";
+import { bytesToString, crc8 } from "../../utilities.js";
 import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
 
 const getFromStreamInfo = "get from STREAMINFO metadata block";
 
@@ -96,8 +95,8 @@ const blockSize = {
   // 0b11100000: 16384,
   // 0b11110000: 32768,
 };
-for (let i = 2; i < 5; i++) blockSize[i << 4] = 576 * 2 ** (i-2);
-for (let i = 8; i < 16; i++) blockSize[i << 4] = 2 ** i;
+for (let i = 2; i < 16; i++)
+  blockSize[i << 4] = i < 6 ? 576 * 2 ** (i - 2) : 2 ** i;
 
 const sampleRate = {
   0b00000000: getFromStreamInfo,
@@ -223,7 +222,7 @@ export default class FLACHeader extends CodecHeader {
     const header = {};
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 4));
+    const key = bytesToString(data.subarray(0, 4));
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {

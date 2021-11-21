@@ -34,9 +34,10 @@ import {
   monophonic,
   stereo,
 } from "../../constants.js";
+import { bytesToString } from "../../utilities.js";
+
 import ID3v2 from "../../metadata/ID3v2.js";
 import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
 
 // http://www.mp3-tech.org/programmer/frame_header.html
 
@@ -222,7 +223,7 @@ export default class MPEGHeader extends CodecHeader {
     const data = yield* codecParser.readRawData(4, readOffset);
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 4));
+    const key = bytesToString(data.subarray(0, 4));
     const cachedHeader = headerCache.getHeader(key);
     if (cachedHeader) return new MPEGHeader(cachedHeader);
 

@@ -42,6 +42,7 @@ Q  16  CRC if protection absent is 0
 */
 
 import { headerStore } from "../../globals.js";
+import { bytesToString } from "../../utilities.js";
 import {
   reserved,
   bad,
@@ -65,8 +66,8 @@ import {
   monophonic,
   lfe,
 } from "../../constants.js";
+
 import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
 
 const mpegVersion = {
   0b00000000: "MPEG-4",
@@ -140,7 +141,7 @@ export default class AACHeader extends CodecHeader {
     const data = yield* codecParser.readRawData(7, readOffset);
 
     // Check header cache
-    const key = HeaderCache.getKey([
+    const key = bytesToString([
       data[0],
       data[1],
       data[2],

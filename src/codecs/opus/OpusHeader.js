@@ -58,8 +58,9 @@ import {
   monophonic,
   lfe,
 } from "../../constants.js";
+import { bytesToString } from "../../utilities.js";
+
 import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
 
 /* prettier-ignore */
 const channelMappingFamilies = {
@@ -169,23 +170,14 @@ export default class OpusHeader extends CodecHeader {
 
     // Check header cache
     const key =
-      HeaderCache.getKey(data.subarray(0, header.length)) +
-      HeaderCache.getKey(packetData.subarray(0, packetLength));
+      bytesToString(data.subarray(0, header.length)) +
+      bytesToString(packetData.subarray(0, packetLength));
     const cachedHeader = headerCache.getHeader(key);
 
     if (cachedHeader) return new OpusHeader(cachedHeader);
 
     // Bytes (1-8 of 19): OpusHead - Magic Signature
-    if (
-      data[0] !== 0x4f ||
-      data[1] !== 0x70 ||
-      data[2] !== 0x75 ||
-      data[3] !== 0x73 ||
-      data[4] !== 0x48 ||
-      data[5] !== 0x65 ||
-      data[6] !== 0x61 ||
-      data[7] !== 0x64
-    ) {
+    if (key.substr(0, 8) !== "OpusHead") {
       return null;
     }
 
