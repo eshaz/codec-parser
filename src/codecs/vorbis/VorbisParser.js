@@ -60,11 +60,12 @@ export default class VorbisParser extends Parser {
         );
     } else if (oggPage.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
+      if (oggPageSegments[1]) {
+        this._identificationHeader.vorbisComments = oggPageSegments[0];
+        this._identificationHeader.vorbisSetup = oggPageSegments[1];
 
-      this._identificationHeader.vorbisComments = oggPageSegments[0];
-      this._identificationHeader.vorbisSetup = oggPageSegments[1];
-
-      this._mode = this._parseSetupHeader(oggPageSegments[1]);
+        this._mode = this._parseSetupHeader(oggPageSegments[1]);
+      }
     } else {
       oggPage.codecFrames = oggPageSegments.map(
         (segment) =>

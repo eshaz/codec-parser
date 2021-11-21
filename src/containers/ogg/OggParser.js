@@ -57,8 +57,8 @@ export default class OggParser extends Parser {
 
     switch (idString) {
       case "fishead\0":
-        return false; // ignore ogg skeleton packets
       case "fisbone\0":
+      case "index\0\0\0":
         return false; // ignore ogg skeleton packets
       case "OpusHead":
         this._updateCodec("opus", OpusParser);
@@ -68,8 +68,6 @@ export default class OggParser extends Parser {
         return true;
       case /^\x01vorbis/.test(idString) && idString:
         this._updateCodec("vorbis", VorbisParser);
-        return true;
-      default:
         return true;
     }
   }
@@ -122,7 +120,7 @@ export default class OggParser extends Parser {
       this._continuedPacket = new Uint8Array();
     }
 
-    if (this._checkForIdentifier(oggPage) && this._codec) {
+    if (this._codec || this._checkForIdentifier(oggPage)) {
       const frame = this._parser.parseOggPage(oggPage);
       this._codecParser.mapFrameStats(frame);
       return frame;
