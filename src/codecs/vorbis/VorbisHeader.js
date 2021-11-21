@@ -54,8 +54,6 @@ for (let i = 0; i < 8; i++) blockSizes[i + 6] = 2 ** (6 + i);
 
 export default class VorbisHeader extends CodecHeader {
   static getHeaderFromUint8Array(data, headerCache) {
-    const header = { length: 30 };
-
     // Must be at least 30 bytes.
     if (data.length < 30)
       throw new Error("Out of data while inside an Ogg Page");
@@ -64,6 +62,8 @@ export default class VorbisHeader extends CodecHeader {
     const key = bytesToString(data.subarray(0, 30));
     const cachedHeader = headerCache.getHeader(key);
     if (cachedHeader) return new VorbisHeader(cachedHeader);
+
+    const header = { length: 30 };
 
     // Bytes (1-7 of 30): /01vorbis - Magic Signature
     if (key.substr(0, 7) !== "\x01vorbis") {
@@ -135,7 +135,7 @@ export default class VorbisHeader extends CodecHeader {
     this.blocksize0 = header.blocksize0;
     this.blocksize1 = header.blocksize1;
     this.data = header.data;
-    this.vorbisComments = undefined; // set during ogg parsing
-    this.vorbisSetup = undefined; // set during ogg parsing
+    this.vorbisComments = null; // set during ogg parsing
+    this.vorbisSetup = null; // set during ogg parsing
   }
 }

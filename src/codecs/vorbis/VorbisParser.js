@@ -47,40 +47,44 @@ export default class VorbisParser extends Parser {
       // Identification header
 
       this._headerCache.enable();
-
-      this._identificationHeader = VorbisHeader.getHeaderFromUint8Array(
-        oggPage.data,
-        this._headerCache
-      );
-
-      if (!this._identificationHeader)
-        this._codecParser.logError(
-          "Failed to parse Ogg Vorbis Identification Header",
-          "Not a valid Ogg Vorbis file"
-        );
+      this._identificationHeader = oggPage.data;
     } else if (oggPage.pageSequenceNumber === 1) {
       // gather WEBM CodecPrivate data
       if (oggPageSegments[1]) {
-        this._identificationHeader.vorbisComments = oggPageSegments[0];
-        this._identificationHeader.vorbisSetup = oggPageSegments[1];
+        this._vorbisComments = oggPageSegments[0];
+        this._vorbisSetup = oggPageSegments[1];
 
         this._mode = this._parseSetupHeader(oggPageSegments[1]);
       }
     } else {
-      oggPage.codecFrames = oggPageSegments.map(
-        (segment) =>
-          new VorbisFrame(
+      oggPage.codecFrames = oggPageSegments.map((segment) => {
+        const header = VorbisHeader.getHeaderFromUint8Array(
+          this._identificationHeader,
+          this._headerCache
+        );
+
+        if (header) {
+          header.vorbisComments = this._vorbisComments;
+          header.vorbisSetup = this._vorbisSetup;
+
+          return new VorbisFrame(
             segment,
-            this._identificationHeader,
-            this._getSamples(segment)
-          )
-      );
+            header,
+            this._getSamples(segment, header)
+          );
+        }
+
+        this._codecParser.logError(
+          "Failed to parse Ogg Vorbis Header",
+          "Not a valid Ogg Vorbis file"
+        );
+      });
     }
 
     return oggPage;
   }
 
-  _getSamples(segment) {
+  _getSamples(segment, header) {
     const byte = segment[0] >> 1;
 
     const blockFlag = this._mode[byte & this._mode.mask];
@@ -88,14 +92,10 @@ export default class VorbisParser extends Parser {
     // is this a large window
     if (blockFlag) {
       this._prevBlockSize =
-        byte & this._mode.prevMask
-          ? this._identificationHeader.blocksize1
-          : this._identificationHeader.blocksize0;
+        byte & this._mode.prevMask ? header.blocksize1 : header.blocksize0;
     }
 
-    this._currBlockSize = blockFlag
-      ? this._identificationHeader.blocksize1
-      : this._identificationHeader.blocksize0;
+    this._currBlockSize = blockFlag ? header.blocksize1 : header.blocksize0;
 
     const samples = (this._prevBlockSize + this._currBlockSize) >> 2;
     this._prevBlockSize = this._currBlockSize;

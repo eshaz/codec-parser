@@ -370,11 +370,11 @@ export default class FLACHeader extends CodecHeader {
   constructor(header) {
     super(header);
 
-    this.crc16 = undefined; // set in FLACFrame
+    this.crc16 = null; // set in FLACFrame
     this.blockingStrategy = header.blockingStrategy;
     this.blockSize = header.blockSize;
     this.frameNumber = header.frameNumber;
     this.sampleNumber = header.sampleNumber;
-    this.streamInfo = undefined; // set during ogg parsing
+    this.streamInfo = null; // set during ogg parsing
   }
 }
