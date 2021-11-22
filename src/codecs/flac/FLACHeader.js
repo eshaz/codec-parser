@@ -168,9 +168,11 @@ export default class FLACHeader extends CodecHeader {
   // 0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx
   // 0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
   static decodeUTF8Int(data) {
-    if (data[0] < 0x80) return { value: data[0], length: 1 };
+    if (data[0] > 0xfe) {
+      return null; // length byte must have at least one zero as the lsb
+    }
 
-    if (data[0] > 0xfe) return null; // length byte must have at least one zero as the lsb
+    if (data[0] < 0x80) return { value: data[0], length: 1 };
 
     // get length by counting the number of msb that are set to 1
     let length = 1;
@@ -185,7 +187,9 @@ export default class FLACHeader extends CodecHeader {
     //
     //    value = [cccccc] | [bbbbbb] | [aaaaaa]
     for (; idx > 0; shift += 6, idx--) {
-      if ((data[idx] & 0xc0) !== 0x80) return null; // each byte should have leading 10xxxxxx
+      if ((data[idx] & 0xc0) !== 0x80) {
+        return null; // each byte should have leading 10xxxxxx
+      }
       value |= (data[idx] & 0x3f) << shift; // add the encoded bits
     }
 
@@ -226,8 +230,6 @@ export default class FLACHeader extends CodecHeader {
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {
-      header.length = 2;
-
       // Byte (2 of 6)
       // * `.......C`: Blocking strategy, 0 - fixed, 1 - variable
       header.blockingStrategyBits = data[1] & 0b00000001;
@@ -236,7 +238,6 @@ export default class FLACHeader extends CodecHeader {
       // Byte (3 of 6)
       // * `DDDD....`: Block size in inter-channel samples
       // * `....EEEE`: Sample rate
-      header.length++;
       header.blockSizeBits = data[2] & 0b11110000;
       header.sampleRateBits = data[2] & 0b00001111;
 
@@ -254,17 +255,22 @@ export default class FLACHeader extends CodecHeader {
       // * `FFFF....`: Channel assignment
       // * `....GGG.`: Sample size in bits
       // * `.......H`: Reserved 0 - mandatory, 1 - reserved
-      header.length++;
-      if (data[3] & 0b00000001) return null;
+      if (data[3] & 0b00000001) {
+        return null;
+      }
 
       const channelAssignment = channelAssignments[data[3] & 0b11110000];
-      if (channelAssignment === reserved) return null;
+      if (channelAssignment === reserved) {
+        return null;
+      }
 
       header.channels = channelAssignment.channels;
       header.channelMode = channelAssignment.description;
 
       header.bitDepth = bitDepth[data[3] & 0b00001110];
-      if (header.bitDepth === reserved) return null;
+      if (header.bitDepth === reserved) {
+        return null;
+      }
     } else {
       Object.assign(header, cachedHeader);
     }
