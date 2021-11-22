@@ -184,7 +184,6 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
   * Returns `Iterator` that yields a parsed [`CodecFrame`](#codecframe) or [`OggPage`](#oggpage) for each iteration.
   * This function can be used after `parseChunk` has been called with all of the audio data you intend to parse. The final iterator returned by `parseChunk()` must be consumed before calling `flush()`.
   * Calling `flush()` will reset the internal state of the `CodecParser` instance. You may re-use the instance to parse additional streams.
-* `parser.iterator(chunk)` **deprecated** (use `parseChunk()` instead)
 
 ### Properties
 
@@ -245,7 +244,7 @@ MPEGFrame {
     channels: 2,
     sampleRate: 44100,
     bitrate: 128,
-    channelMode: "Joint stereo",
+    channelMode: "joint stereo",
     emphasis: "none",
     framePadding: 1,
     isCopyrighted: false,
@@ -273,7 +272,7 @@ MPEGFrame {
     channels: 2,
     sampleRate: 44100,
     bitrate: 128,
-    channelMode: "Joint stereo",
+    channelMode: "joint stereo",
     emphasis: "none",
     framePadding: 0,
     isCopyrighted: false,
@@ -306,7 +305,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   bitrate: 192,
   channels: 2,
   sampleRate: 44100,
-  channelMode: "Joint stereo",
+  channelMode: "joint stereo",
   emphasis: "none",
   framePadding: 1,
   isCopyrighted: false,
@@ -323,13 +322,13 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 16,
-  bitrate: 128,
+  bitrate: 312,
   channels: 2,
-  sampleRate: 22050,
+  sampleRate: 44100,
   copyrightId: false,
   copyrightIdStart: false,
-  channelMode: "front-left, front-right",
-  bufferFullness: 98,
+  channelMode: "stereo (left, right)",
+  bufferFullness: "VBR",
   isHome: false,
   isOriginal: false,
   isPrivate: false,
@@ -350,7 +349,7 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
   bitrate: 400,
   channels: 2,
   sampleRate: 44100,
-  channelMode: "left, right",
+  channelMode: "stereo (left, right)",
   blockingStrategy: "Fixed",
   blockSize: 4096,
   frameNumber: 15183508,
@@ -364,15 +363,19 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 16,
-  bitrate: 160,
+  bitrate: 192,
   channels: 2,
-  sampleRate: 48000,
   data: Uint8Array,
+  sampleRate: 48000,
+  bandwidth: "fullband",
   channelMappingFamily: 0,
   channelMode: "stereo (left, right)",
-  preSkip: 312,
+  frameCount: 1,
+  frameSize: 20,
+  inputSampleRate: 48000,
+  mode: "CELT-only",
   outputGain: 0,
-  inputSampleRate: 48000
+  preSkip: 312
 }
 ```
 ### `VorbisHeader`
@@ -380,14 +383,15 @@ Each codec has it's own `CodecHeader` data type. See each class below for docume
 ```javascript
 {
   bitDepth: 32,
-  bitrate: 160,
+  bitrate: 272,
   channels: 2,
+  channelMode: "stereo (left, right)",
   sampleRate: 44100,
   bitrateMaximum: 0,
   bitrateMinimum: 0,
-  bitrateNominal: 160000,
+  bitrateNominal: 320000,
   blocksize0: 256,
-  blocksize1: 2048,
+  blocksize1: 2048
   data: Uint8Array,
   vorbisComments: Uint8Array,
   vorbisSetup: Uint8Array
