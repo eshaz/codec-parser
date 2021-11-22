@@ -22,10 +22,6 @@ export default class HeaderCache {
     this.reset();
   }
 
-  static getKey(bytes) {
-    return String.fromCharCode(...bytes);
-  }
-
   enable() {
     this._isEnabled = true;
   }

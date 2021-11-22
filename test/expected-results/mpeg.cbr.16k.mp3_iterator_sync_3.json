@@ -5,7 +5,7 @@
       "bitrate": 16,
       "channels": 1,
       "sampleRate": 8000,
-      "channelMode": "Single channel (Mono)",
+      "channelMode": "monophonic (mono)",
       "emphasis": "none",
       "framePadding": 0,
       "isCopyrighted": false,

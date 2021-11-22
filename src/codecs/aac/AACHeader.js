@@ -42,9 +42,32 @@ Q  16  CRC if protection absent is 0
 */
 
 import { headerStore } from "../../globals.js";
+import { bytesToString } from "../../utilities.js";
+import {
+  reserved,
+  bad,
+  none,
+  sixteenBitCRC,
+  rate96000,
+  rate88200,
+  rate64000,
+  rate48000,
+  rate44100,
+  rate32000,
+  rate24000,
+  rate22050,
+  rate16000,
+  rate12000,
+  rate11025,
+  rate8000,
+  rate7350,
+  channelMappings,
+  getChannelMapping,
+  monophonic,
+  lfe,
+} from "../../constants.js";
 
 import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
 
 const mpegVersion = {
   0b00000000: "MPEG-4",
@@ -53,14 +76,14 @@ const mpegVersion = {
 
 const layer = {
   0b00000000: "valid",
-  0b00000010: "bad",
-  0b00000100: "bad",
-  0b00000110: "bad",
+  0b00000010: bad,
+  0b00000100: bad,
+  0b00000110: bad,
 };
 
 const protection = {
-  0b00000000: "16bit CRC",
-  0b00000001: "none",
+  0b00000000: sixteenBitCRC,
+  0b00000001: none,
 };
 
 const profile = {
@@ -71,50 +94,43 @@ const profile = {
 };
 
 const sampleRates = {
-  0b00000000: 96000,
-  0b00000100: 88200,
-  0b00001000: 64000,
-  0b00001100: 48000,
-  0b00010000: 44100,
-  0b00010100: 32000,
-  0b00011000: 24000,
-  0b00011100: 22050,
-  0b00100000: 16000,
-  0b00100100: 12000,
-  0b00101000: 11025,
-  0b00101100: 8000,
-  0b00110000: 7350,
-  0b00110100: "reserved",
-  0b00111000: "reserved",
+  0b00000000: rate96000,
+  0b00000100: rate88200,
+  0b00001000: rate64000,
+  0b00001100: rate48000,
+  0b00010000: rate44100,
+  0b00010100: rate32000,
+  0b00011000: rate24000,
+  0b00011100: rate22050,
+  0b00100000: rate16000,
+  0b00100100: rate12000,
+  0b00101000: rate11025,
+  0b00101100: rate8000,
+  0b00110000: rate7350,
+  0b00110100: reserved,
+  0b00111000: reserved,
   0b00111100: "frequency is written explicitly",
 };
 
+// prettier-ignore
 const channelMode = {
   0b000000000: { channels: 0, description: "Defined in AOT Specific Config" },
-  0b001000000: { channels: 1, description: "front-center" },
-  0b010000000: { channels: 2, description: "front-left, front-right" },
-  0b011000000: {
-    channels: 3,
-    description: "front-center, front-left, front-right",
-  },
-  0b100000000: {
-    channels: 4,
-    description: "front-center, front-left, front-right, back-center",
-  },
-  0b101000000: {
-    channels: 5,
-    description: "front-center, front-left, front-right, back-left, back-right",
-  },
-  0b110000000: {
-    channels: 6,
-    description:
-      "front-center, front-left, front-right, back-left, back-right, LFE-channel",
-  },
-  0b111000000: {
-    channels: 8,
-    description:
-      "front-center, front-left, front-right, side-left, side-right, back-left, back-right, LFE-channel",
-  },
+  /*
+  'monophonic (mono)'
+  'stereo (left, right)'
+  'linear surround (front center, front left, front right)'
+  'quadraphonic (front center, front left, front right, rear center)'
+  '5.0 surround (front center, front left, front right, rear left, rear right)'
+  '5.1 surround (front center, front left, front right, rear left, rear right, LFE)'
+  '7.1 surround (front center, front left, front right, side left, side right, rear left, rear right, LFE)'
+  */
+  0b001000000: { channels: 1, description: monophonic },
+  0b010000000: { channels: 2, description: getChannelMapping(2,channelMappings[0][0]) },
+  0b011000000: { channels: 3, description: getChannelMapping(3,channelMappings[1][3]), },
+  0b100000000: { channels: 4, description: getChannelMapping(4,channelMappings[1][3],channelMappings[3][4]), },
+  0b101000000: { channels: 5, description: getChannelMapping(5,channelMappings[1][3],channelMappings[3][0]), },
+  0b110000000: { channels: 6, description: getChannelMapping(6,channelMappings[1][3],channelMappings[3][0],lfe), },
+  0b111000000: { channels: 8, description: getChannelMapping(8,channelMappings[1][3],channelMappings[2][0],channelMappings[3][0],lfe), },
 };
 
 export default class AACHeader extends CodecHeader {
@@ -125,11 +141,11 @@ export default class AACHeader extends CodecHeader {
     const data = yield* codecParser.readRawData(7, readOffset);
 
     // Check header cache
-    const key = HeaderCache.getKey([
+    const key = bytesToString([
       data[0],
       data[1],
       data[2],
-      data[3] & 111111100, // frame length varies so don't cache it
+      (data[3] & 0b11111100) | (data[6] & 0b00000011), // frame length, buffer fullness varies so don't cache it
     ]);
     const cachedHeader = headerCache.getHeader(key);
 
@@ -142,15 +158,12 @@ export default class AACHeader extends CodecHeader {
       // * `....B...`: MPEG Version: 0 for MPEG-4, 1 for MPEG-2
       // * `.....CC.`: Layer: always 0
       // * `.......D`: protection absent, Warning, set to 1 if there is no CRC and 0 if there is CRC
-      const mpegVersionBits = data[1] & 0b00001000;
-      const layerBits = data[1] & 0b00000110;
+      header.mpegVersion = mpegVersion[data[1] & 0b00001000];
+
+      header.layer = layer[data[1] & 0b00000110];
+      if (header.layer === bad) return null;
+
       const protectionBit = data[1] & 0b00000001;
-
-      header.mpegVersion = mpegVersion[mpegVersionBits];
-
-      header.layer = layer[layerBits];
-      if (header.layer === "bad") return null;
-
       header.protection = protection[protectionBit];
       header.length = protectionBit ? 7 : 9;
 
@@ -166,15 +179,13 @@ export default class AACHeader extends CodecHeader {
       header.profile = profile[header.profileBits];
 
       header.sampleRate = sampleRates[header.sampleRateBits];
-      if (header.sampleRate === "reserved") return null;
+      if (header.sampleRate === reserved) return null;
 
-      header.isPrivate = !!(privateBit >> 1);
+      header.isPrivate = Boolean(privateBit);
 
       // Byte (3,4 of 7)
       // * `.......H|HH......`: MPEG-4 Channel Configuration (in the case of 0, the channel configuration is sent via an inband PCE)
-      header.channelModeBits =
-        new DataView(Uint8Array.of(data[2], data[3]).buffer).getUint16() &
-        0b111000000;
+      header.channelModeBits = ((data[2] << 8) | data[3]) & 0b111000000;
       header.channelMode = channelMode[header.channelModeBits].description;
       header.channels = channelMode[header.channelModeBits].channels;
 
@@ -184,56 +195,45 @@ export default class AACHeader extends CodecHeader {
       // * `...J....`: home, set to 0 when encoding, ignore when decoding
       // * `....K...`: copyrighted id bit, the next bit of a centrally registered copyright identifier, set to 0 when encoding, ignore when decoding
       // * `.....L..`: copyright id start, signals that this frame's copyright id bit is the first bit of the copyright id, set to 0 when encoding, ignore when decoding
-      const originalBit = data[3] & 0b00100000;
-      const homeBit = data[3] & 0b00001000;
-      const copyrightIdBit = data[3] & 0b00001000;
-      const copyrightIdStartBit = data[3] & 0b00000100;
-
-      header.isOriginal = !!(originalBit >> 5);
-      header.isHome = !!(homeBit >> 4);
-      header.copyrightId = !!(copyrightIdBit >> 3);
-      header.copyrightIdStart = !!(copyrightIdStartBit >> 2);
+      header.isOriginal = Boolean(data[3] & 0b00100000);
+      header.isHome = Boolean(data[3] & 0b00001000);
+      header.copyrightId = Boolean(data[3] & 0b00001000);
+      header.copyrightIdStart = Boolean(data[3] & 0b00000100);
       header.bitDepth = 16;
-    } else {
-      Object.assign(header, cachedHeader);
-    }
+      header.samples = 1024;
 
-    // Byte (4,5,6 of 7)
-    // * `.......MM|MMMMMMMM|MMM.....`: frame length, this value must include 7 or 9 bytes of header length: FrameLength = (ProtectionAbsent == 1 ? 7 : 9) + size(AACFrame)
-    const frameLengthBits =
-      new DataView(
-        Uint8Array.of(0x00, data[3], data[4], data[5]).buffer
-      ).getUint32() & 0x3ffe0;
-    header.frameLength = frameLengthBits >> 5;
-    if (!header.frameLength) return null;
+      // Byte (7 of 7)
+      // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
+      header.numberAACFrames = data[6] & 0b00000011;
 
-    // Byte (6,7 of 7)
-    // * `...OOOOO|OOOOOO..`: Buffer fullness
-    const bufferFullnessBits =
-      new DataView(Uint8Array.of(data[5], data[6]).buffer).getUint16() & 0x1ffc;
-    header.bufferFullness =
-      bufferFullnessBits === 0x1ffc ? "VBR" : bufferFullnessBits >> 2;
-
-    // Byte (7 of 7)
-    // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
-    header.numberAACFrames = data[6] & 0b00000011;
-    header.samples = 1024;
-
-    if (!cachedHeader) {
       const {
         length,
         channelModeBits,
         profileBits,
         sampleRateBits,
         frameLength,
-        bufferFullness,
-        numberAACFrames,
         samples,
+        numberAACFrames,
         ...codecUpdateFields
       } = header;
       headerCache.setHeader(key, header, codecUpdateFields);
+    } else {
+      Object.assign(header, cachedHeader);
     }
-    return new AACHeader(header, true);
+
+    // Byte (4,5,6 of 7)
+    // * `.......MM|MMMMMMMM|MMM.....`: frame length, this value must include 7 or 9 bytes of header length: FrameLength = (ProtectionAbsent == 1 ? 7 : 9) + size(AACFrame)
+    header.frameLength =
+      ((data[3] << 11) | (data[4] << 3) | (data[5] >> 5)) & 0x1fff;
+    if (!header.frameLength) return null;
+
+    // Byte (6,7 of 7)
+    // * `...OOOOO|OOOOOO..`: Buffer fullness
+    const bufferFullnessBits = ((data[5] << 6) | (data[6] >> 2)) & 0x7ff;
+    header.bufferFullness =
+      bufferFullnessBits === 0x7ff ? "VBR" : bufferFullnessBits;
+
+    return new AACHeader(header);
   }
 
   /**
@@ -245,7 +245,6 @@ export default class AACHeader extends CodecHeader {
 
     this.copyrightId = header.copyrightId;
     this.copyrightIdStart = header.copyrightIdStart;
-    this.channelMode = header.channelMode;
     this.bufferFullness = header.bufferFullness;
     this.isHome = header.isHome;
     this.isOriginal = header.isOriginal;

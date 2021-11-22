@@ -35,48 +35,42 @@ J      4    blocksize 0
 K      1    Framing flag
 */
 
-import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
+import { vorbisOpusChannelMapping } from "../../constants.js";
+import { bytesToString } from "../../utilities.js";
 
-/* prettier-ignore */
+import CodecHeader from "../CodecHeader.js";
+
 const blockSizes = {
-  0b0110: 64,
-  0b0111: 128,
-  0b1000: 256,
-  0b1001: 512,
-  0b1010: 1024,
-  0b1011: 2048,
-  0b1100: 4096,
-  0b1101: 8192
+  // 0b0110: 64,
+  // 0b0111: 128,
+  // 0b1000: 256,
+  // 0b1001: 512,
+  // 0b1010: 1024,
+  // 0b1011: 2048,
+  // 0b1100: 4096,
+  // 0b1101: 8192
 };
+for (let i = 0; i < 8; i++) blockSizes[i + 6] = 2 ** (6 + i);
 
 export default class VorbisHeader extends CodecHeader {
   static getHeaderFromUint8Array(data, headerCache) {
-    const header = { length: 30 };
-
     // Must be at least 30 bytes.
     if (data.length < 30)
       throw new Error("Out of data while inside an Ogg Page");
 
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 30));
+    const key = bytesToString(data.subarray(0, 30));
     const cachedHeader = headerCache.getHeader(key);
     if (cachedHeader) return new VorbisHeader(cachedHeader);
 
+    const header = { length: 30 };
+
     // Bytes (1-7 of 30): /01vorbis - Magic Signature
-    if (
-      data[0] !== 0x01 || // identification header packet type
-      data[1] !== 0x76 || // v
-      data[2] !== 0x6f || // o
-      data[3] !== 0x72 || // r
-      data[4] !== 0x62 || // b
-      data[5] !== 0x69 || // i
-      data[6] !== 0x73 //    s
-    ) {
+    if (key.substr(0, 7) !== "\x01vorbis") {
       return null;
     }
 
-    header.data = Uint8Array.of(...data.subarray(0, 30));
+    header.data = Uint8Array.from(data.subarray(0, 30));
     const view = new DataView(header.data.buffer);
 
     // Byte (8-11 of 30)
@@ -87,6 +81,8 @@ export default class VorbisHeader extends CodecHeader {
     // Byte (12 of 30)
     // * `DDDDDDDD`: Channel Count
     header.channels = data[11];
+    header.channelMode =
+      vorbisOpusChannelMapping[header.channels - 1] || "application defined";
 
     // Byte (13-16 of 30)
     // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
@@ -109,10 +105,11 @@ export default class VorbisHeader extends CodecHeader {
     // * `....JJJJ` Blocksize 0
     header.blocksize1 = blockSizes[(data[28] & 0b11110000) >> 4];
     header.blocksize0 = blockSizes[data[28] & 0b00001111];
+    if (header.blocksize0 > header.blocksize1) return null;
 
     // Byte (29 of 30)
     // * `00000001` Framing bit
-    if (data[29 !== 0x01]) return null;
+    if (data[29] !== 0x01) return null;
 
     header.bitDepth = 32;
 
@@ -138,7 +135,7 @@ export default class VorbisHeader extends CodecHeader {
     this.blocksize0 = header.blocksize0;
     this.blocksize1 = header.blocksize1;
     this.data = header.data;
-    this.vorbisComments = undefined; // set during ogg parsing
-    this.vorbisSetup = undefined; // set during ogg parsing
+    this.vorbisComments = null; // set during ogg parsing
+    this.vorbisSetup = null; // set during ogg parsing
   }
 }

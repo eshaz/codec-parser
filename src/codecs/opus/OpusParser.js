@@ -42,24 +42,24 @@ export default class OpusParser extends Parser {
       // Identification header
 
       this._headerCache.enable();
-      this._identificationHeader = OpusHeader.getHeaderFromUint8Array(
-        oggPage.data,
-        this._headerCache
-      );
-
-      if (!this._identificationHeader)
-        this._codecParser.logError(
-          "Failed to parse Ogg Opus Identification Header",
-          "Not a valid Ogg Opus file"
-        );
+      this._identificationHeader = oggPage.data;
     } else if (oggPage.pageSequenceNumber === 1) {
       // OpusTags
     } else {
-      oggPage.codecFrames = frameStore
-        .get(oggPage)
-        .segments.map(
-          (segment) => new OpusFrame(segment, this._identificationHeader)
+      oggPage.codecFrames = frameStore.get(oggPage).segments.map((segment) => {
+        const header = OpusHeader.getHeaderFromUint8Array(
+          this._identificationHeader,
+          segment,
+          this._headerCache
         );
+
+        if (header) return new OpusFrame(segment, header);
+
+        this._codecParser.logError(
+          "Failed to parse Ogg Opus Header",
+          "Not a valid Ogg Opus file"
+        );
+      });
     }
 
     return oggPage;

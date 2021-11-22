@@ -46,18 +46,6 @@ export default class CodecParser {
 
   /**
    * @public
-   * @deprecated Use `parseChunk()` instead
-   * @description Generator function takes in a Uint8Array of data and returns a CodecFrame from the data for each iteration
-   * @param {Uint8Array} chunk Next chunk of codec data to read
-   * @returns {Iterable<CodecFrame|OggPage>} Iterator that operates over the codec data.
-   * @yields {CodecFrame|OggPage} Parsed codec or ogg page data
-   */
-  *iterator(chunk) {
-    yield* this.parseChunk(chunk);
-  }
-
-  /**
-   * @public
    * @description Generator function that yields any buffered CodecFrames and resets the CodecParser
    * @returns {Iterable<CodecFrame|OggPage>} Iterator that operates over the codec data.
    * @yields {CodecFrame|OggPage} Parsed codec or ogg page data
@@ -171,8 +159,7 @@ export default class CodecParser {
    * @protected
    */
   mapCodecFrameStats(frame) {
-    if (this._sampleRate !== frame.header.sampleRate)
-      this._sampleRate = frame.header.sampleRate;
+    this._sampleRate = frame.header.sampleRate;
 
     frame.header.bitrate = Math.round(frame.data.length / frame.duration) * 8;
     frame.frameNumber = this._frameNumber++;

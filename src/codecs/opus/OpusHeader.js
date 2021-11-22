@@ -51,98 +51,156 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
+import { rate48000, vorbisOpusChannelMapping } from "../../constants.js";
+import { bytesToString } from "../../utilities.js";
+
 import CodecHeader from "../CodecHeader.js";
-import HeaderCache from "../HeaderCache.js";
 
 /* prettier-ignore */
 const channelMappingFamilies = {
-  0b00000000: [
-    "monophonic (mono)",
-    "stereo (left, right)"
-  ],
-  0b00000001: [
-    "monophonic (mono)",
-    "stereo (left, right)",
-    "linear surround (left, center, right)",
-    "quadraphonic (front left, front right, rear left, rear right)",
-    "5.0 surround (front left, front center, front right, rear left, rear right)",
-    "5.1 surround (front left, front center, front right, rear left, rear right, LFE)",
-    "6.1 surround (front left, front center, front right, side left, side right, rear center, LFE)",
-    "7.1 surround (front left, front center, front right, side left, side right, rear left, rear right, LFE)",
-  ]
+  0b00000000: vorbisOpusChannelMapping.slice(0,2),
+    /*
+    0: "monophonic (mono)"
+    1: "stereo (left, right)"
+    */
+  0b00000001: vorbisOpusChannelMapping
+    /*
+    0: "monophonic (mono)"
+    1: "stereo (left, right)"
+    2: "linear surround (left, center, right)"
+    3: "quadraphonic (front left, front right, rear left, rear right)"
+    4: "5.0 surround (front left, front center, front right, rear left, rear right)"
+    5: "5.1 surround (front left, front center, front right, rear left, rear right, LFE)"
+    6: "6.1 surround (front left, front center, front right, side left, side right, rear center, LFE)"
+    7: "7.1 surround (front left, front center, front right, side left, side right, rear left, rear right, LFE)"
+    */
+};
+
+const silkOnly = "SILK-only";
+const celtOnly = "CELT-only";
+const hybrid = "Hybrid";
+
+const narrowBand = "narrowband";
+const mediumBand = "medium-band";
+const wideBand = "wideband";
+const superWideBand = "super-wideband";
+const fullBand = "fullband";
+
+//  0 1 2 3 4 5 6 7
+// +-+-+-+-+-+-+-+-+
+// | config  |s| c |
+// +-+-+-+-+-+-+-+-+
+const configTable = {
+  0b00000000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 10 },
+  0b00001000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 20 },
+  0b00010000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 40 },
+  0b00011000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 60 },
+  0b00100000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 10 },
+  0b00101000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 20 },
+  0b00110000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 40 },
+  0b00111000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 60 },
+  0b01000000: { mode: silkOnly, bandwidth: wideBand, frameSize: 10 },
+  0b01001000: { mode: silkOnly, bandwidth: wideBand, frameSize: 20 },
+  0b01010000: { mode: silkOnly, bandwidth: wideBand, frameSize: 40 },
+  0b01011000: { mode: silkOnly, bandwidth: wideBand, frameSize: 60 },
+  0b01100000: { mode: hybrid, bandwidth: superWideBand, frameSize: 10 },
+  0b01101000: { mode: hybrid, bandwidth: superWideBand, frameSize: 20 },
+  0b01110000: { mode: hybrid, bandwidth: fullBand, frameSize: 10 },
+  0b01111000: { mode: hybrid, bandwidth: fullBand, frameSize: 20 },
+  0b10000000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 2.5 },
+  0b10001000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 5 },
+  0b10010000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 10 },
+  0b10011000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 20 },
+  0b10100000: { mode: celtOnly, bandwidth: wideBand, frameSize: 2.5 },
+  0b10101000: { mode: celtOnly, bandwidth: wideBand, frameSize: 5 },
+  0b10110000: { mode: celtOnly, bandwidth: wideBand, frameSize: 10 },
+  0b10111000: { mode: celtOnly, bandwidth: wideBand, frameSize: 20 },
+  0b11000000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 2.5 },
+  0b11001000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 5 },
+  0b11010000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 10 },
+  0b11011000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 20 },
+  0b11100000: { mode: celtOnly, bandwidth: fullBand, frameSize: 2.5 },
+  0b11101000: { mode: celtOnly, bandwidth: fullBand, frameSize: 5 },
+  0b11110000: { mode: celtOnly, bandwidth: fullBand, frameSize: 10 },
+  0b11111000: { mode: celtOnly, bandwidth: fullBand, frameSize: 20 },
 };
 
 export default class OpusHeader extends CodecHeader {
-  static getHeaderFromUint8Array(data, headerCache) {
+  static getHeaderFromUint8Array(data, packetData, headerCache) {
     const header = {};
-    // Must be at least 19 bytes.
-    if (data.length < 19)
+
+    // get length of header
+    // Byte (10 of 19)
+    // * `CCCCCCCC`: Channel Count
+    header.channels = data[9];
+    // Byte (19 of 19)
+    // * `GGGGGGGG`: Channel Mapping Family
+    header.channelMappingFamily = data[18];
+
+    header.length =
+      header.channelMappingFamily !== 0 ? 21 + header.channels : 19;
+
+    if (data.length < header.length)
       throw new Error("Out of data while inside an Ogg Page");
 
+    // Page Segment Bytes (1-2)
+    // * `AAAAA...`: Packet config
+    // * `.....B..`:
+    // * `......CC`: Packet code
+    const packetMode = packetData[0] & 0b00000011;
+    const packetLength = packetMode === 3 ? 2 : 1;
+
     // Check header cache
-    const key = HeaderCache.getKey(data.subarray(0, 19));
+    const key =
+      bytesToString(data.subarray(0, header.length)) +
+      bytesToString(packetData.subarray(0, packetLength));
     const cachedHeader = headerCache.getHeader(key);
 
-    if (!cachedHeader) {
-      // Bytes (1-8 of 19): OpusHead - Magic Signature
-      if (
-        data[0] !== 0x4f ||
-        data[1] !== 0x70 ||
-        data[2] !== 0x75 ||
-        data[3] !== 0x73 ||
-        data[4] !== 0x48 ||
-        data[5] !== 0x65 ||
-        data[6] !== 0x61 ||
-        data[7] !== 0x64
-      ) {
-        return null;
-      }
+    if (cachedHeader) return new OpusHeader(cachedHeader);
 
-      // Byte (9 of 19)
-      // * `00000001`: Version number
-      if (data[8] !== 1) return null;
-
-      const view = new DataView(Uint8Array.of(...data.subarray(0, 19)).buffer);
-      header.bitDepth = 16;
-
-      header.length = 19;
-
-      // Byte (10 of 19)
-      // * `CCCCCCCC`: Channel Count
-      header.channels = data[9];
-
-      // Byte (11-12 of 19)
-      // * `DDDDDDDD|DDDDDDDD`: Pre skip
-      header.preSkip = view.getUint16(10, true);
-
-      // Byte (13-16 of 19)
-      // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
-      header.inputSampleRate = view.getUint32(12, true);
-      // Opus is always decoded at 48kHz
-      header.sampleRate = 48000;
-
-      // Byte (17-18 of 19)
-      // * `FFFFFFFF|FFFFFFFF`: Output Gain
-      header.outputGain = view.getInt16(16, true);
-
-      // Byte (19 of 19)
-      // * `GGGGGGGG`: Channel Mapping Family
-      header.channelMappingFamily = data[18];
-      if (!header.channelMappingFamily in channelMappingFamilies) return null;
-
-      header.channelMode =
-        channelMappingFamilies[header.channelMappingFamily][
-          header.channels - 1
-        ];
-      if (!header.channelMode) return null;
-    } else {
-      Object.assign(header, cachedHeader);
+    // Bytes (1-8 of 19): OpusHead - Magic Signature
+    if (key.substr(0, 8) !== "OpusHead") {
+      return null;
     }
 
-    if (header.channelMappingFamily !== 0) {
-      header.length += 2 + header.channels;
-      if (data.length < header.length) return new OpusHeader(header, false); // out of data
+    // Byte (9 of 19)
+    // * `00000001`: Version number
+    if (data[8] !== 1) return null;
 
+    header.data = Uint8Array.from(data.subarray(0, header.length));
+
+    const view = new DataView(header.data.buffer);
+
+    header.bitDepth = 16;
+
+    // Byte (10 of 19)
+    // * `CCCCCCCC`: Channel Count
+    // set earlier to determine length
+
+    // Byte (11-12 of 19)
+    // * `DDDDDDDD|DDDDDDDD`: Pre skip
+    header.preSkip = view.getUint16(10, true);
+
+    // Byte (13-16 of 19)
+    // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
+    header.inputSampleRate = view.getUint32(12, true);
+    // Opus is always decoded at 48kHz
+    header.sampleRate = rate48000;
+
+    // Byte (17-18 of 19)
+    // * `FFFFFFFF|FFFFFFFF`: Output Gain
+    header.outputGain = view.getInt16(16, true);
+
+    // Byte (19 of 19)
+    // * `GGGGGGGG`: Channel Mapping Family
+    // set earlier to determine length
+    if (!header.channelMappingFamily in channelMappingFamilies) return null;
+
+    header.channelMode =
+      channelMappingFamilies[header.channelMappingFamily][header.channels - 1];
+    if (!header.channelMode) return null;
+
+    if (header.channelMappingFamily !== 0) {
       // * `HHHHHHHH`: Stream count
       header.streamCount = data[19];
 
@@ -153,15 +211,42 @@ export default class OpusHeader extends CodecHeader {
       header.channelMappingTable = data.subarray(21, header.channels + 21);
     }
 
-    header.data = Uint8Array.of(...data.subarray(0, header.length));
+    const packetConfig = configTable[0b11111000 & packetData[0]];
+    header.mode = packetConfig.mode;
+    header.bandwidth = packetConfig.bandwidth;
+    header.frameSize = packetConfig.frameSize;
 
-    if (!cachedHeader) {
-      // set header cache
-      const { length, data, channelMappingFamily, ...codecUpdateFields } =
-        header;
-
-      headerCache.setHeader(key, header, codecUpdateFields);
+    // https://tools.ietf.org/html/rfc6716#appendix-B
+    switch (packetMode) {
+      case 0:
+        // 0: 1 frame in the packet
+        header.frameCount = 1;
+        break;
+      case 1:
+      // 1: 2 frames in the packet, each with equal compressed size
+      case 2:
+        // 2: 2 frames in the packet, with different compressed sizes
+        header.frameCount = 2;
+        break;
+      case 3:
+        // 3: an arbitrary number of frames in the packet
+        header.isVbr = Boolean(0b10000000 & packetData[1]);
+        header.hasOpusPadding = Boolean(0b01000000 & packetData[1]);
+        header.frameCount = 0b00111111 & packetData[1];
+        break;
+      default:
+        return null;
     }
+
+    // set header cache
+    const {
+      length,
+      data: headerData,
+      channelMappingFamily,
+      ...codecUpdateFields
+    } = header;
+
+    headerCache.setHeader(key, header, codecUpdateFields);
 
     return new OpusHeader(header);
   }
@@ -174,13 +259,18 @@ export default class OpusHeader extends CodecHeader {
     super(header);
 
     this.data = header.data;
+    this.bandwidth = header.bandwidth;
     this.channelMappingFamily = header.channelMappingFamily;
-    this.channelMode = header.channelMode;
-    this.coupledStreamCount = header.coupledStreamCount;
-    this.preSkip = header.preSkip;
-    this.outputGain = header.outputGain;
-    this.inputSampleRate = header.inputSampleRate;
-    this.streamCount = header.streamCount;
     this.channelMappingTable = header.channelMappingTable;
+    this.coupledStreamCount = header.coupledStreamCount;
+    this.frameCount = header.frameCount;
+    this.frameSize = header.frameSize;
+    this.hasOpusPadding = header.hasOpusPadding;
+    this.inputSampleRate = header.inputSampleRate;
+    this.isVbr = header.isVbr;
+    this.mode = header.mode;
+    this.outputGain = header.outputGain;
+    this.preSkip = header.preSkip;
+    this.streamCount = header.streamCount;
   }
 }

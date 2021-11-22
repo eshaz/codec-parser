@@ -17,7 +17,7 @@
 */
 
 import { headerStore, frameStore } from "../../globals.js";
-import { concatBuffers } from "../../utilities.js";
+import { bytesToString, concatBuffers } from "../../utilities.js";
 
 import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
@@ -52,13 +52,13 @@ export default class OggParser extends Parser {
     }
   }
 
-  checkForIdentifier({ data }) {
-    const idString = String.fromCharCode(...data.subarray(0, 8));
+  _checkForIdentifier({ data }) {
+    const idString = bytesToString(data.subarray(0, 8));
 
     switch (idString) {
       case "fishead\0":
-        return false; // ignore ogg skeleton packets
       case "fisbone\0":
+      case "index\0\0\0":
         return false; // ignore ogg skeleton packets
       case "OpusHead":
         this._updateCodec("opus", OpusParser);
@@ -69,12 +69,10 @@ export default class OggParser extends Parser {
       case /^\x01vorbis/.test(idString) && idString:
         this._updateCodec("vorbis", VorbisParser);
         return true;
-      default:
-        return true;
     }
   }
 
-  checkPageSequenceNumber(oggPage) {
+  _checkPageSequenceNumber(oggPage) {
     if (
       oggPage.pageSequenceNumber !== this._pageSequenceNumber + 1 &&
       this._pageSequenceNumber > 1 &&
@@ -94,7 +92,7 @@ export default class OggParser extends Parser {
   *parseFrame() {
     const oggPage = yield* this.fixedLengthFrameSync(true);
 
-    this.checkPageSequenceNumber(oggPage);
+    this._checkPageSequenceNumber(oggPage);
 
     const oggPageStore = frameStore.get(oggPage);
     const { pageSegmentBytes, pageSegmentTable } = headerStore.get(
@@ -122,7 +120,7 @@ export default class OggParser extends Parser {
       this._continuedPacket = new Uint8Array();
     }
 
-    if (this.checkForIdentifier(oggPage) && this._codec) {
+    if (this._codec || this._checkForIdentifier(oggPage)) {
       const frame = this._parser.parseOggPage(oggPage);
       this._codecParser.mapFrameStats(frame);
       return frame;
