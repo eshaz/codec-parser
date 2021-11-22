@@ -83,7 +83,7 @@ describe("CodecParser", () => {
 
         const frames = [];
 
-        for (const frame of codecParser.iterator(file)) {
+        for (const frame of codecParser.parseChunk(file)) {
           frames.push(frame);
         }
 
