@@ -74,6 +74,7 @@ const channelMappingFamilies = {
     6: "6.1 surround (front left, front center, front right, side left, side right, rear center, LFE)"
     7: "7.1 surround (front left, front center, front right, side left, side right, rear left, rear right, LFE)"
     */
+  // additional channel mappings are user defined
 };
 
 const silkOnly = "SILK-only";
@@ -194,11 +195,13 @@ export default class OpusHeader extends CodecHeader {
     // Byte (19 of 19)
     // * `GGGGGGGG`: Channel Mapping Family
     // set earlier to determine length
-    if (!header.channelMappingFamily in channelMappingFamilies) return null;
-
-    header.channelMode =
-      channelMappingFamilies[header.channelMappingFamily][header.channels - 1];
-    if (!header.channelMode) return null;
+    if (header.channelMappingFamily in channelMappingFamilies) {
+      header.channelMode =
+        channelMappingFamilies[header.channelMappingFamily][
+          header.channels - 1
+        ];
+      if (!header.channelMode) return null;
+    }
 
     if (header.channelMappingFamily !== 0) {
       // * `HHHHHHHH`: Stream count
@@ -208,7 +211,7 @@ export default class OpusHeader extends CodecHeader {
       header.coupledStreamCount = data[20];
 
       // * `JJJJJJJJ|...` Channel Mapping table
-      header.channelMappingTable = data.subarray(21, header.channels + 21);
+      header.channelMappingTable = [...data.subarray(21, header.channels + 21)];
     }
 
     const packetConfig = configTable[0b11111000 & packetData[0]];

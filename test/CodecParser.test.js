@@ -227,6 +227,7 @@ describe("CodecParser", () => {
       testParser("ogg.opus.framesize_40", mimeType, "opus", 0);
       testParser("ogg.opus.framesize_60", mimeType, "opus", 0);
       testParser("ogg.opus.surround", mimeType, "opus", 0);
+      testParser("ogg.opus.channel_family_255", mimeType, "opus", 0);
     });
 
     describe("Ogg Vorbis", () => {

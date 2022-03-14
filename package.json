@@ -1,6 +1,6 @@
 {
   "name": "codec-parser",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.",
   "main": "index.js",
   "keywords": [
@@ -35,8 +35,8 @@
   "type": "module",
   "homepage": "https://github.com/eshaz/codec-parser#readme",
   "devDependencies": {
-    "@types/jest": "^27.0.3",
-    "jest": "^27.3.1",
-    "prettier": "^2.4.1"
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1"
   }
 }
