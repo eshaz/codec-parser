@@ -1,4 +1,4 @@
-/* Copyright 2020-2021 Ethan Halsall
+/* Copyright 2020-2022 Ethan Halsall
     
     This file is part of codec-parser.
     
