@@ -5,6 +5,7 @@ declare type FramedMimeType =
   | "audio/aacp"
   | "audio/flac";
 declare type MimeType = FramedMimeType | OggMimeType;
+declare type CodecValue = "mpeg" | "aac" | "flac" | "opus" | "vorbis";
 
 declare class MPEGHeader {
   public bitDepth: number;
@@ -92,14 +93,16 @@ declare class VorbisHeader {
   public vorbisSetup: Uint8Array;
 }
 
+declare type CodecHeader =
+  | MPEGHeader
+  | AACHeader
+  | FLACHeader
+  | OpusHeader
+  | VorbisHeader;
+
 declare class CodecFrame {
   public data: Uint8Array;
-  public header:
-    | MPEGHeader
-    | AACHeader
-    | FLACHeader
-    | OpusHeader
-    | VorbisHeader;
+  public header: CodecHeader;
   public crc32: number;
   public samples: number;
   public duration: number;
@@ -128,15 +131,18 @@ declare class OggPage {
 }
 
 declare interface ICodecParserOptions {
-  onCodec?: () => any;
-  onCodecUpdate?: () => any;
+  onCodec?: (codec: CodecValue) => any;
+  onCodecUpdate?: (
+    codecHeaderData: CodecHeader,
+    updateTimestamp: number
+  ) => any;
   enableLogging?: boolean;
 }
 
 declare class CodecParser<
   T extends CodecFrame | OggPage = CodecFrame | OggPage
 > {
-  public readonly codec: string;
+  public readonly codec: CodecValue;
 
   constructor(mimeType: FramedMimeType, options?: ICodecParserOptions);
 
@@ -152,6 +158,8 @@ declare class CodecParser<
 export default CodecParser;
 
 export type {
+  CodecValue,
+  CodecHeader,
   MPEGHeader,
   AACHeader,
   CodecFrame,
