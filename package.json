@@ -3,6 +3,7 @@
   "version": "2.0.2",
   "description": "Library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.",
   "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "mp3",
     "mpeg",
@@ -38,6 +39,5 @@
     "@types/jest": "^27.5.1",
     "jest": "^28.1.0",
     "prettier": "^2.6.2"
-  },
-  "types": "index.d.ts"
+  }
 }
