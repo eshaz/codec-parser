@@ -144,10 +144,6 @@ declare class CodecParser<
 > {
   public readonly codec: CodecValue;
 
-  constructor(mimeType: FramedMimeType, options?: ICodecParserOptions);
-
-  constructor(mimeType: OggMimeType, options?: ICodecParserOptions);
-
   constructor(mimeType: MimeType, options?: ICodecParserOptions);
 
   public parseAll(file: Uint8Array): T[];
