@@ -3,6 +3,7 @@
   "version": "2.0.2",
   "description": "Library that parses raw data from audio codecs into frames containing data, header values, duration, and other information.",
   "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "mp3",
     "mpeg",
@@ -18,7 +19,7 @@
   ],
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest --maxWorkers=100% --coverage --no-color 2> test-results.txt && echo \"Open test-results.txt to view the test results\"",
-    "format": "prettier --write '**/*.js' --write 'package.json'"
+    "format": "prettier --write \"**/*.js\" --write \"package.json\" --write \"**/*.d.ts\""
   },
   "repository": {
     "type": "git",
