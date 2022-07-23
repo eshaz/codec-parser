@@ -26,11 +26,20 @@ import OggParser from "./containers/ogg/OggParser.js";
 const noOp = () => {};
 
 export default class CodecParser {
-  constructor(mimeType, { onCodecUpdate, onCodec, enableLogging } = {}) {
+  constructor(
+    mimeType,
+    {
+      onCodecUpdate,
+      onCodec,
+      enableLogging = false,
+      enableFrameCRC32 = true,
+    } = {}
+  ) {
     this._inputMimeType = mimeType;
     this._onCodec = onCodec || noOp;
     this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
+    this._crc32 = enableFrameCRC32 ? crc32 : noOp;
 
     this._generator = this._getGenerator();
     this._generator.next();
@@ -166,7 +175,7 @@ export default class CodecParser {
     frame.totalBytesOut = this._totalBytesOut;
     frame.totalSamples = this._totalSamples;
     frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000;
-    frame.crc32 = crc32(frame.data);
+    frame.crc32 = this._crc32(frame.data);
 
     this._headerCache.checkCodecUpdate(
       frame.header.bitrate,

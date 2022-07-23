@@ -171,6 +171,7 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
       * `codecHeaderData` Object containing codec header information that was updated.
       * `updateTimestamp` Timestamp in milliseconds when the codec information was updated.
     * `options.enableLogging` *optional* Set to true to enable warning and error messages.
+    * `options.enableFrameCRC32` *optional* Set to false to disable the crc32 calculation for each frame. This will save a marginal amount of execution time if you don't need this information.
 
 ### Methods
 

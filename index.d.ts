@@ -137,6 +137,7 @@ declare interface ICodecParserOptions {
     updateTimestamp: number
   ) => any;
   enableLogging?: boolean;
+  enableFrameCRC32?: boolean;
 }
 
 declare class CodecParser<
