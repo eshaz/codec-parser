@@ -62,13 +62,12 @@ export default class VorbisParser extends Parser {
       oggPage.codecFrames = oggPageSegments.map((segment) => {
         const header = VorbisHeader.getHeaderFromUint8Array(
           this._identificationHeader,
-          this._headerCache
+          this._headerCache,
+          this._vorbisComments,
+          this._vorbisSetup
         );
 
         if (header) {
-          header.vorbisComments = this._vorbisComments;
-          header.vorbisSetup = this._vorbisSetup;
-
           return new VorbisFrame(
             segment,
             header,

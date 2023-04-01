@@ -77,6 +77,10 @@ const channelMappingFamilies = {
   // additional channel mappings are user defined
 };
 
+const mode = "mode";
+const bandwidth = "bandwidth";
+const frameSize = "frameSize";
+
 const silkOnly = "SILK-only";
 const celtOnly = "CELT-only";
 const hybrid = "Hybrid";
@@ -91,39 +95,40 @@ const fullBand = "fullband";
 // +-+-+-+-+-+-+-+-+
 // | config  |s| c |
 // +-+-+-+-+-+-+-+-+
+// prettier-ignore
 const configTable = {
-  0b00000000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 10 },
-  0b00001000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 20 },
-  0b00010000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 40 },
-  0b00011000: { mode: silkOnly, bandwidth: narrowBand, frameSize: 60 },
-  0b00100000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 10 },
-  0b00101000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 20 },
-  0b00110000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 40 },
-  0b00111000: { mode: silkOnly, bandwidth: mediumBand, frameSize: 60 },
-  0b01000000: { mode: silkOnly, bandwidth: wideBand, frameSize: 10 },
-  0b01001000: { mode: silkOnly, bandwidth: wideBand, frameSize: 20 },
-  0b01010000: { mode: silkOnly, bandwidth: wideBand, frameSize: 40 },
-  0b01011000: { mode: silkOnly, bandwidth: wideBand, frameSize: 60 },
-  0b01100000: { mode: hybrid, bandwidth: superWideBand, frameSize: 10 },
-  0b01101000: { mode: hybrid, bandwidth: superWideBand, frameSize: 20 },
-  0b01110000: { mode: hybrid, bandwidth: fullBand, frameSize: 10 },
-  0b01111000: { mode: hybrid, bandwidth: fullBand, frameSize: 20 },
-  0b10000000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 2.5 },
-  0b10001000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 5 },
-  0b10010000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 10 },
-  0b10011000: { mode: celtOnly, bandwidth: narrowBand, frameSize: 20 },
-  0b10100000: { mode: celtOnly, bandwidth: wideBand, frameSize: 2.5 },
-  0b10101000: { mode: celtOnly, bandwidth: wideBand, frameSize: 5 },
-  0b10110000: { mode: celtOnly, bandwidth: wideBand, frameSize: 10 },
-  0b10111000: { mode: celtOnly, bandwidth: wideBand, frameSize: 20 },
-  0b11000000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 2.5 },
-  0b11001000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 5 },
-  0b11010000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 10 },
-  0b11011000: { mode: celtOnly, bandwidth: superWideBand, frameSize: 20 },
-  0b11100000: { mode: celtOnly, bandwidth: fullBand, frameSize: 2.5 },
-  0b11101000: { mode: celtOnly, bandwidth: fullBand, frameSize: 5 },
-  0b11110000: { mode: celtOnly, bandwidth: fullBand, frameSize: 10 },
-  0b11111000: { mode: celtOnly, bandwidth: fullBand, frameSize: 20 },
+  0b00000000: { [mode]: silkOnly, [bandwidth]: narrowBand, [frameSize]: 10 },
+  0b00001000: { [mode]: silkOnly, [bandwidth]: narrowBand, [frameSize]: 20 },
+  0b00010000: { [mode]: silkOnly, [bandwidth]: narrowBand, [frameSize]: 40 },
+  0b00011000: { [mode]: silkOnly, [bandwidth]: narrowBand, [frameSize]: 60 },
+  0b00100000: { [mode]: silkOnly, [bandwidth]: mediumBand, [frameSize]: 10 },
+  0b00101000: { [mode]: silkOnly, [bandwidth]: mediumBand, [frameSize]: 20 },
+  0b00110000: { [mode]: silkOnly, [bandwidth]: mediumBand, [frameSize]: 40 },
+  0b00111000: { [mode]: silkOnly, [bandwidth]: mediumBand, [frameSize]: 60 },
+  0b01000000: { [mode]: silkOnly, [bandwidth]: wideBand, [frameSize]: 10 },
+  0b01001000: { [mode]: silkOnly, [bandwidth]: wideBand, [frameSize]: 20 },
+  0b01010000: { [mode]: silkOnly, [bandwidth]: wideBand, [frameSize]: 40 },
+  0b01011000: { [mode]: silkOnly, [bandwidth]: wideBand, [frameSize]: 60 },
+  0b01100000: { [mode]: hybrid, [bandwidth]: superWideBand, [frameSize]: 10 },
+  0b01101000: { [mode]: hybrid, [bandwidth]: superWideBand, [frameSize]: 20 },
+  0b01110000: { [mode]: hybrid, [bandwidth]: fullBand, [frameSize]: 10 },
+  0b01111000: { [mode]: hybrid, [bandwidth]: fullBand, [frameSize]: 20 },
+  0b10000000: { [mode]: celtOnly, [bandwidth]: narrowBand, [frameSize]: 2.5 },
+  0b10001000: { [mode]: celtOnly, [bandwidth]: narrowBand, [frameSize]: 5 },
+  0b10010000: { [mode]: celtOnly, [bandwidth]: narrowBand, [frameSize]: 10 },
+  0b10011000: { [mode]: celtOnly, [bandwidth]: narrowBand, [frameSize]: 20 },
+  0b10100000: { [mode]: celtOnly, [bandwidth]: wideBand, [frameSize]: 2.5 },
+  0b10101000: { [mode]: celtOnly, [bandwidth]: wideBand, [frameSize]: 5 },
+  0b10110000: { [mode]: celtOnly, [bandwidth]: wideBand, [frameSize]: 10 },
+  0b10111000: { [mode]: celtOnly, [bandwidth]: wideBand, [frameSize]: 20 },
+  0b11000000: { [mode]: celtOnly, [bandwidth]: superWideBand, [frameSize]: 2.5 },
+  0b11001000: { [mode]: celtOnly, [bandwidth]: superWideBand, [frameSize]: 5 },
+  0b11010000: { [mode]: celtOnly, [bandwidth]: superWideBand, [frameSize]: 10 },
+  0b11011000: { [mode]: celtOnly, [bandwidth]: superWideBand, [frameSize]: 20 },
+  0b11100000: { [mode]: celtOnly, [bandwidth]: fullBand, [frameSize]: 2.5 },
+  0b11101000: { [mode]: celtOnly, [bandwidth]: fullBand, [frameSize]: 5 },
+  0b11110000: { [mode]: celtOnly, [bandwidth]: fullBand, [frameSize]: 10 },
+  0b11111000: { [mode]: celtOnly, [bandwidth]: fullBand, [frameSize]: 20 },
 };
 
 export default class OpusHeader extends CodecHeader {
@@ -215,9 +220,9 @@ export default class OpusHeader extends CodecHeader {
     }
 
     const packetConfig = configTable[0b11111000 & packetData[0]];
-    header.mode = packetConfig.mode;
-    header.bandwidth = packetConfig.bandwidth;
-    header.frameSize = packetConfig.frameSize;
+    header[mode] = packetConfig[mode];
+    header[bandwidth] = packetConfig[bandwidth];
+    header[frameSize] = packetConfig[frameSize];
 
     // https://tools.ietf.org/html/rfc6716#appendix-B
     switch (packetMode) {

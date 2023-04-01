@@ -30,6 +30,7 @@ export default class CodecParser {
     mimeType,
     {
       onCodec,
+      onCodecHeader,
       onCodecUpdate,
       enableLogging = false,
       enableFrameCRC32 = true,
@@ -37,6 +38,7 @@ export default class CodecParser {
   ) {
     this._inputMimeType = mimeType;
     this._onCodec = onCodec || noOp;
+    this._onCodecHeader = onCodecHeader || noOp;
     this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
     this._crc32 = enableFrameCRC32 ? crc32 : noOp;
@@ -103,7 +105,10 @@ export default class CodecParser {
    * @private
    */
   *_getGenerator() {
-    this._headerCache = new HeaderCache(this._onCodecUpdate);
+    this._headerCache = new HeaderCache(
+      this._onCodecHeader,
+      this._onCodecUpdate
+    );
 
     if (this._inputMimeType.match(/aac/)) {
       this._parser = new AACParser(this, this._headerCache, this._onCodec);

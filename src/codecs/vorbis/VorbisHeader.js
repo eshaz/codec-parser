@@ -53,7 +53,12 @@ const blockSizes = {
 for (let i = 0; i < 8; i++) blockSizes[i + 6] = 2 ** (6 + i);
 
 export default class VorbisHeader extends CodecHeader {
-  static getHeaderFromUint8Array(data, headerCache) {
+  static getHeaderFromUint8Array(
+    data,
+    headerCache,
+    vorbisComments,
+    vorbisSetup
+  ) {
     // Must be at least 30 bytes.
     if (data.length < 30)
       throw new Error("Out of data while inside an Ogg Page");
@@ -112,6 +117,8 @@ export default class VorbisHeader extends CodecHeader {
     if (data[29] !== 0x01) return null;
 
     header.bitDepth = 32;
+    header.vorbisSetup = vorbisSetup;
+    header.vorbisComments = vorbisComments;
 
     {
       // set header cache
@@ -135,7 +142,7 @@ export default class VorbisHeader extends CodecHeader {
     this.blocksize0 = header.blocksize0;
     this.blocksize1 = header.blocksize1;
     this.data = header.data;
-    this.vorbisComments = null; // set during ogg parsing
-    this.vorbisSetup = null; // set during ogg parsing
+    this.vorbisComments = header.vorbisComments;
+    this.vorbisSetup = header.vorbisSetup;
   }
 }

@@ -17,7 +17,8 @@
 */
 
 export default class HeaderCache {
-  constructor(onCodecUpdate) {
+  constructor(onCodecHeader, onCodecUpdate) {
+    this._onCodecHeader = onCodecHeader;
     this._onCodecUpdate = onCodecUpdate;
     this.reset();
   }
@@ -29,6 +30,7 @@ export default class HeaderCache {
   reset() {
     this._headerCache = new Map();
     this._codecUpdateData = new WeakMap();
+    this._codecHeaderSent = false;
     this._codecShouldUpdate = false;
     this._bitrate = null;
     this._isEnabled = false;
@@ -79,6 +81,10 @@ export default class HeaderCache {
 
   setHeader(key, header, codecUpdateFields) {
     if (this._isEnabled) {
+      if (!this._codecHeaderSent) {
+        this._onCodecHeader({ ...header });
+        this._codecHeaderSent = true;
+      }
       this.updateCurrentHeader(key);
 
       this._headerCache.set(key, header);
