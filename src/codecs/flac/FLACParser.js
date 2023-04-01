@@ -17,6 +17,15 @@
 */
 
 import { frameStore, headerStore } from "../../globals.js";
+import {
+  length,
+  pageSequenceNumber,
+  data,
+  codecFrames,
+  segments,
+  codec,
+  subarray,
+} from "../../constants.js";
 import Parser from "../Parser.js";
 import FLACFrame from "./FLACFrame.js";
 import FLACHeader from "./FLACHeader.js";
@@ -30,7 +39,7 @@ export default class FLACParser extends Parser {
     this.Frame = FLACFrame;
     this.Header = FLACHeader;
 
-    onCodec(this.codec);
+    onCodec(this[codec]);
   }
 
   get codec() {
@@ -39,7 +48,7 @@ export default class FLACParser extends Parser {
 
   *_getNextFrameSyncOffset(offset) {
     const data = yield* this._codecParser.readRawData(2, 0);
-    const dataLength = data.length - 2;
+    const dataLength = data[length] - 2;
 
     while (offset < dataLength) {
       // * `11111111|111110..`: Frame sync
@@ -69,7 +78,7 @@ export default class FLACParser extends Parser {
         // found a valid frame header
         // find the next valid frame header
         let nextHeaderOffset =
-          headerStore.get(header).length + MIN_FLAC_FRAME_SIZE;
+          headerStore.get(header)[length] + MIN_FLAC_FRAME_SIZE;
 
         while (nextHeaderOffset <= MAX_FLAC_FRAME_SIZE) {
           if (
@@ -86,7 +95,7 @@ export default class FLACParser extends Parser {
             );
 
             if (!this._codecParser._flushing)
-              frameData = frameData.subarray(0, nextHeaderOffset);
+              frameData = frameData[subarray](0, nextHeaderOffset);
 
             // check that this is actually the next header by validating the frame footer crc16
             if (FLACFrame.checkFrameFooterCrc16(frameData)) {
@@ -120,17 +129,17 @@ export default class FLACParser extends Parser {
   }
 
   parseOggPage(oggPage) {
-    if (oggPage.pageSequenceNumber === 0) {
+    if (oggPage[pageSequenceNumber] === 0) {
       // Identification header
 
       this._headerCache.enable();
-      this._streamInfo = oggPage.data.subarray(13);
-    } else if (oggPage.pageSequenceNumber === 1) {
+      this._streamInfo = oggPage[data][subarray](13);
+    } else if (oggPage[pageSequenceNumber] === 1) {
       // Vorbis comments
     } else {
-      oggPage.codecFrames = frameStore
+      oggPage[codecFrames] = frameStore
         .get(oggPage)
-        .segments.map((segment) => {
+        [segments].map((segment) => {
           const header = FLACHeader.getHeaderFromUint8Array(
             segment,
             this._headerCache

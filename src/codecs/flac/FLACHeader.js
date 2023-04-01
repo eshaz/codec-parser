@@ -66,18 +66,36 @@ import {
   monophonic,
   stereo,
   lfe,
+  bitDepth,
+  channelMode,
+  sampleRate,
+  channels,
+  length,
+  crc16,
+  blockingStrategy,
+  blockSize,
+  frameNumber,
+  sampleNumber,
+  streamInfo,
+  description,
+  samples,
+  sampleRateBits,
+  blockingStrategyBits,
+  blockSizeBits,
+  crc,
+  subarray,
 } from "../../constants.js";
 import { bytesToString, crc8 } from "../../utilities.js";
 import CodecHeader from "../CodecHeader.js";
 
 const getFromStreamInfo = "get from STREAMINFO metadata block";
 
-const blockingStrategy = {
+const blockingStrategyValues = {
   0b00000000: "Fixed",
   0b00000001: "Variable",
 };
 
-const blockSize = {
+const blockSizeValues = {
   0b00000000: reserved,
   0b00010000: 192,
   // 0b00100000: 576,
@@ -96,9 +114,9 @@ const blockSize = {
   // 0b11110000: 32768,
 };
 for (let i = 2; i < 16; i++)
-  blockSize[i << 4] = i < 6 ? 576 * 2 ** (i - 2) : 2 ** i;
+  blockSizeValues[i << 4] = i < 6 ? 576 * 2 ** (i - 2) : 2 ** i;
 
-const sampleRate = {
+const sampleRateValues = {
   0b00000000: getFromStreamInfo,
   0b00000001: rate88200,
   0b00000010: rate176400,
@@ -129,17 +147,17 @@ const channelAssignments = {
   '6.1 surround (front left, front right, front center, LFE, rear center, side left, side right)'
   '7.1 surround (front left, front right, front center, LFE, rear left, rear right, side left, side right)'
   */
-  0b00000000: {channels: 1, description: monophonic},
-  0b00010000: {channels: 2, description: getChannelMapping(2,channelMappings[0][0])},
-  0b00100000: {channels: 3, description: getChannelMapping(3,channelMappings[0][1])},
-  0b00110000: {channels: 4, description: getChannelMapping(4,channelMappings[1][0],channelMappings[3][0])},
-  0b01000000: {channels: 5, description: getChannelMapping(5,channelMappings[1][1],channelMappings[3][0])},
-  0b01010000: {channels: 6, description: getChannelMapping(6,channelMappings[1][1],lfe,channelMappings[3][0])},
-  0b01100000: {channels: 7, description: getChannelMapping(7,channelMappings[1][1],lfe,channelMappings[3][4],channelMappings[2][0])},
-  0b01110000: {channels: 8, description: getChannelMapping(8,channelMappings[1][1],lfe,channelMappings[3][0],channelMappings[2][0])},
-  0b10000000: {channels: 2, description: `${stereo} (left, diff)`},
-  0b10010000: {channels: 2, description: `${stereo} (diff, right)`},
-  0b10100000: {channels: 2, description: `${stereo} (avg, diff)`},
+  0b00000000: {channels: 1, [description]: monophonic},
+  0b00010000: {channels: 2, [description]: getChannelMapping(2,channelMappings[0][0])},
+  0b00100000: {channels: 3, [description]: getChannelMapping(3,channelMappings[0][1])},
+  0b00110000: {channels: 4, [description]: getChannelMapping(4,channelMappings[1][0],channelMappings[3][0])},
+  0b01000000: {channels: 5, [description]: getChannelMapping(5,channelMappings[1][1],channelMappings[3][0])},
+  0b01010000: {channels: 6, [description]: getChannelMapping(6,channelMappings[1][1],lfe,channelMappings[3][0])},
+  0b01100000: {channels: 7, [description]: getChannelMapping(7,channelMappings[1][1],lfe,channelMappings[3][4],channelMappings[2][0])},
+  0b01110000: {channels: 8, [description]: getChannelMapping(8,channelMappings[1][1],lfe,channelMappings[3][0],channelMappings[2][0])},
+  0b10000000: {channels: 2, [description]: `${stereo} (left, diff)`},
+  0b10010000: {channels: 2, [description]: `${stereo} (diff, right)`},
+  0b10100000: {channels: 2, [description]: `${stereo} (avg, diff)`},
   0b10110000: reserved,
   0b11000000: reserved,
   0b11010000: reserved,
@@ -147,7 +165,7 @@ const channelAssignments = {
   0b11110000: reserved,
 }
 
-const bitDepth = {
+const bitDepthValues = {
   0b00000000: getFromStreamInfo,
   0b00000010: 8,
   0b00000100: 12,
@@ -226,28 +244,29 @@ export default class FLACHeader extends CodecHeader {
     const header = {};
 
     // Check header cache
-    const key = bytesToString(data.subarray(0, 4));
+    const key = bytesToString(data[subarray](0, 4));
     const cachedHeader = headerCache.getHeader(key);
 
     if (!cachedHeader) {
       // Byte (2 of 6)
       // * `.......C`: Blocking strategy, 0 - fixed, 1 - variable
-      header.blockingStrategyBits = data[1] & 0b00000001;
-      header.blockingStrategy = blockingStrategy[header.blockingStrategyBits];
+      header[blockingStrategyBits] = data[1] & 0b00000001;
+      header[blockingStrategy] =
+        blockingStrategyValues[header[blockingStrategyBits]];
 
       // Byte (3 of 6)
       // * `DDDD....`: Block size in inter-channel samples
       // * `....EEEE`: Sample rate
-      header.blockSizeBits = data[2] & 0b11110000;
-      header.sampleRateBits = data[2] & 0b00001111;
+      header[blockSizeBits] = data[2] & 0b11110000;
+      header[sampleRateBits] = data[2] & 0b00001111;
 
-      header.blockSize = blockSize[header.blockSizeBits];
-      if (header.blockSize === reserved) {
+      header[blockSize] = blockSizeValues[header[blockSizeBits]];
+      if (header[blockSize] === reserved) {
         return null;
       }
 
-      header.sampleRate = sampleRate[header.sampleRateBits];
-      if (header.sampleRate === bad) {
+      header[sampleRate] = sampleRateValues[header[sampleRateBits]];
+      if (header[sampleRate] === bad) {
         return null;
       }
 
@@ -264,11 +283,11 @@ export default class FLACHeader extends CodecHeader {
         return null;
       }
 
-      header.channels = channelAssignment.channels;
-      header.channelMode = channelAssignment.description;
+      header[channels] = channelAssignment[channels];
+      header[channelMode] = channelAssignment[description];
 
-      header.bitDepth = bitDepth[data[3] & 0b00001110];
-      if (header.bitDepth === reserved) {
+      header[bitDepth] = bitDepthValues[data[3] & 0b00001110];
+      if (header[bitDepth] === reserved) {
         return null;
       }
     } else {
@@ -277,94 +296,97 @@ export default class FLACHeader extends CodecHeader {
 
     // Byte (5...)
     // * `IIIIIIII|...`: VBR block size ? sample number : frame number
-    header.length = 5;
+    header[length] = 5;
 
     // check if there is enough data to parse UTF8
-    data = yield* codecParser.readRawData(header.length + 8, readOffset);
+    data = yield* codecParser.readRawData(header[length] + 8, readOffset);
 
-    const decodedUtf8 = FLACHeader.decodeUTF8Int(data.subarray(4));
+    const decodedUtf8 = FLACHeader.decodeUTF8Int(data[subarray](4));
     if (!decodedUtf8) {
       return null;
     }
 
-    if (header.blockingStrategyBits) {
-      header.sampleNumber = decodedUtf8.value;
+    if (header[blockingStrategyBits]) {
+      header[sampleNumber] = decodedUtf8.value;
     } else {
-      header.frameNumber = decodedUtf8.value;
+      header[frameNumber] = decodedUtf8.value;
     }
 
-    header.length += decodedUtf8.length;
+    header[length] += decodedUtf8[length];
 
     // Byte (...)
     // * `JJJJJJJJ|(JJJJJJJJ)`: Blocksize (8/16bit custom value)
-    if (header.blockSizeBits === 0b01100000) {
+    if (header[blockSizeBits] === 0b01100000) {
       // 8 bit
-      if (data.length < header.length)
-        data = yield* codecParser.readRawData(header.length, readOffset);
+      if (data[length] < header[length])
+        data = yield* codecParser.readRawData(header[length], readOffset);
 
-      header.blockSize = data[header.length - 1] + 1;
-      header.length += 1;
-    } else if (header.blockSizeBits === 0b01110000) {
+      header[blockSize] = data[header[length] - 1] + 1;
+      header[length] += 1;
+    } else if (header[blockSizeBits] === 0b01110000) {
       // 16 bit
-      if (data.length < header.length)
-        data = yield* codecParser.readRawData(header.length, readOffset);
+      if (data[length] < header[length])
+        data = yield* codecParser.readRawData(header[length], readOffset);
 
-      header.blockSize =
-        (data[header.length - 1] << 8) + data[header.length] + 1;
-      header.length += 2;
+      header[blockSize] =
+        (data[header[length] - 1] << 8) + data[header[length]] + 1;
+      header[length] += 2;
     }
 
-    header.samples = header.blockSize;
+    header[samples] = header[blockSize];
 
     // Byte (...)
     // * `KKKKKKKK|(KKKKKKKK)`: Sample rate (8/16bit custom value)
-    if (header.sampleRateBits === 0b00001100) {
+    if (header[sampleRateBits] === 0b00001100) {
       // 8 bit
-      if (data.length < header.length)
-        data = yield* codecParser.readRawData(header.length, readOffset);
+      if (data[length] < header[length])
+        data = yield* codecParser.readRawData(header[length], readOffset);
 
-      header.sampleRate = data[header.length - 1] * 1000;
-      header.length += 1;
-    } else if (header.sampleRateBits === 0b00001101) {
+      header[sampleRate] = data[header[length] - 1] * 1000;
+      header[length] += 1;
+    } else if (header[sampleRateBits] === 0b00001101) {
       // 16 bit
-      if (data.length < header.length)
-        data = yield* codecParser.readRawData(header.length, readOffset);
+      if (data[length] < header[length])
+        data = yield* codecParser.readRawData(header[length], readOffset);
 
-      header.sampleRate = (data[header.length - 1] << 8) + data[header.length];
-      header.length += 2;
-    } else if (header.sampleRateBits === 0b00001110) {
+      header[sampleRate] =
+        (data[header[length] - 1] << 8) + data[header[length]];
+      header[length] += 2;
+    } else if (header[sampleRateBits] === 0b00001110) {
       // 16 bit
-      if (data.length < header.length)
-        data = yield* codecParser.readRawData(header.length, readOffset);
+      if (data[length] < header[length])
+        data = yield* codecParser.readRawData(header[length], readOffset);
 
-      header.sampleRate =
-        ((data[header.length - 1] << 8) + data[header.length]) * 10;
-      header.length += 2;
+      header[sampleRate] =
+        ((data[header[length] - 1] << 8) + data[header[length]]) * 10;
+      header[length] += 2;
     }
 
     // Byte (...)
     // * `LLLLLLLL`: CRC-8
-    if (data.length < header.length)
-      data = yield* codecParser.readRawData(header.length, readOffset);
+    if (data[length] < header[length])
+      data = yield* codecParser.readRawData(header[length], readOffset);
 
-    header.crc = data[header.length - 1];
-    if (header.crc !== crc8(data.subarray(0, header.length - 1))) {
+    header[crc] = data[header[length] - 1];
+    if (header[crc] !== crc8(data[subarray](0, header[length] - 1))) {
       return null;
     }
 
-    if (!cachedHeader) {
-      const {
-        blockingStrategyBits,
-        frameNumber,
-        sampleNumber,
-        samples,
-        sampleRateBits,
-        blockSizeBits,
-        crc,
-        length,
-        ...codecUpdateFields
-      } = header;
-      headerCache.setHeader(key, header, codecUpdateFields);
+    {
+      if (!cachedHeader) {
+        const {
+          blockingStrategyBits,
+          frameNumber,
+          sampleNumber,
+          samples,
+          sampleRateBits,
+          blockSizeBits,
+          crc,
+          length,
+          ...codecUpdateFields
+        } = header;
+        headerCache.setHeader(key, header, codecUpdateFields);
+      }
     }
     return new FLACHeader(header);
   }
@@ -376,11 +398,11 @@ export default class FLACHeader extends CodecHeader {
   constructor(header) {
     super(header);
 
-    this.crc16 = null; // set in FLACFrame
-    this.blockingStrategy = header.blockingStrategy;
-    this.blockSize = header.blockSize;
-    this.frameNumber = header.frameNumber;
-    this.sampleNumber = header.sampleNumber;
-    this.streamInfo = null; // set during ogg parsing
+    this[crc16] = null; // set in FLACFrame
+    this[blockingStrategy] = header[blockingStrategy];
+    this[blockSize] = header[blockSize];
+    this[frameNumber] = header[frameNumber];
+    this[sampleNumber] = header[sampleNumber];
+    this[streamInfo] = null; // set during ogg parsing
   }
 }

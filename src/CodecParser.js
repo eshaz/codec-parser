@@ -16,7 +16,24 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { crc32, concatBuffers } from "./utilities.js";
+import { crc32Function, concatBuffers } from "./utilities.js";
+import {
+  header,
+  sampleRate,
+  bitrate,
+  length,
+  frameNumber,
+  data,
+  samples,
+  codec,
+  codecFrames,
+  totalBytesOut,
+  totalSamples,
+  totalDuration,
+  crc32,
+  duration,
+  subarray,
+} from "./constants.js";
 import HeaderCache from "./codecs/HeaderCache.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
 import AACParser from "./codecs/aac/AACParser.js";
@@ -41,7 +58,7 @@ export default class CodecParser {
     this._onCodecHeader = onCodecHeader || noOp;
     this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
-    this._crc32 = enableFrameCRC32 ? crc32 : noOp;
+    this._crc32 = enableFrameCRC32 ? crc32Function : noOp;
 
     this._generator = this._getGenerator();
     this._generator.next();
@@ -52,7 +69,7 @@ export default class CodecParser {
    * @returns The detected codec
    */
   get codec() {
-    return this._parser.codec;
+    return this._parser[codec];
   }
 
   /**
@@ -146,18 +163,18 @@ export default class CodecParser {
   *readRawData(minSize = 0, readOffset = 0) {
     let rawData;
 
-    while (this._rawData.length <= minSize + readOffset) {
+    while (this._rawData[length] <= minSize + readOffset) {
       rawData = yield;
 
-      if (this._flushing) return this._rawData.subarray(readOffset);
+      if (this._flushing) return this._rawData[subarray](readOffset);
 
       if (rawData) {
-        this._totalBytesIn += rawData.length;
+        this._totalBytesIn += rawData[length];
         this._rawData = concatBuffers(this._rawData, rawData);
       }
     }
 
-    return this._rawData.subarray(readOffset);
+    return this._rawData[subarray](readOffset);
   }
 
   /**
@@ -166,46 +183,48 @@ export default class CodecParser {
    */
   incrementRawData(increment) {
     this._currentReadPosition += increment;
-    this._rawData = this._rawData.subarray(increment);
+    this._rawData = this._rawData[subarray](increment);
   }
 
   /**
    * @protected
    */
   mapCodecFrameStats(frame) {
-    this._sampleRate = frame.header.sampleRate;
+    this._sampleRate = frame[header][sampleRate];
 
-    frame.header.bitrate = Math.round(frame.data.length / frame.duration) * 8;
-    frame.frameNumber = this._frameNumber++;
-    frame.totalBytesOut = this._totalBytesOut;
-    frame.totalSamples = this._totalSamples;
-    frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000;
-    frame.crc32 = this._crc32(frame.data);
+    frame[header][bitrate] =
+      Math.round(frame[data][length] / frame[duration]) * 8;
+    frame[frameNumber] = this._frameNumber++;
+    frame[totalBytesOut] = this._totalBytesOut;
+    frame[totalSamples] = this._totalSamples;
+    frame[totalDuration] = (this._totalSamples / this._sampleRate) * 1000;
+    frame[crc32] = this._crc32(frame[data]);
 
     this._headerCache.checkCodecUpdate(
-      frame.header.bitrate,
-      frame.totalDuration
+      frame[header][bitrate],
+      frame[totalDuration]
     );
 
-    this._totalBytesOut += frame.data.length;
-    this._totalSamples += frame.samples;
+    this._totalBytesOut += frame[data][length];
+    this._totalSamples += frame[samples];
   }
 
   /**
    * @protected
    */
   mapFrameStats(frame) {
-    if (frame.codecFrames) {
+    if (frame[codecFrames]) {
       // Ogg container
-      frame.codecFrames.forEach((codecFrame) => {
-        frame.duration += codecFrame.duration;
-        frame.samples += codecFrame.samples;
+      frame[codecFrames].forEach((codecFrame) => {
+        frame[duration] += codecFrame[duration];
+        frame[samples] += codecFrame[samples];
         this.mapCodecFrameStats(codecFrame);
       });
 
-      frame.totalSamples = this._totalSamples;
-      frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000 || 0;
-      frame.totalBytesOut = this._totalBytesOut;
+      frame[totalSamples] = this._totalSamples;
+      frame[totalDuration] =
+        (this._totalSamples / this._sampleRate) * 1000 || 0;
+      frame[totalBytesOut] = this._totalBytesOut;
     } else {
       this.mapCodecFrameStats(frame);
     }
@@ -217,14 +236,14 @@ export default class CodecParser {
   _log(logger, messages) {
     if (this._enableLogging) {
       const stats = [
-        `codec:         ${this.codec}`,
+        `${codec}:         ${this[codec]}`,
         `inputMimeType: ${this._inputMimeType}`,
         `readPosition:  ${this._currentReadPosition}`,
         `totalBytesIn:  ${this._totalBytesIn}`,
-        `totalBytesOut: ${this._totalBytesOut}`,
+        `${totalBytesOut}: ${this._totalBytesOut}`,
       ];
 
-      const width = Math.max(...stats.map((s) => s.length));
+      const width = Math.max(...stats.map((s) => s[length]));
 
       messages.push(
         `--stats--${"-".repeat(width - 9)}`,

@@ -68,7 +68,7 @@ export const monophonic = "monophonic (mono)";
 export const stereo = "stereo";
 const surround = "surround";
 
-const channels = [
+const channelTypes = [
   monophonic,
   stereo,
   `linear ${surround}`,
@@ -80,7 +80,7 @@ const channels = [
 ];
 
 export const getChannelMapping = (channelCount, ...mappings) =>
-  `${channels[channelCount - 1]} (${mappings.join(mappingJoin)})`;
+  `${channelTypes[channelCount - 1]} (${mappings.join(mappingJoin)})`;
 
 // prettier-ignore
 export const vorbisOpusChannelMapping = [
@@ -110,3 +110,93 @@ export const rate12000 = 12000;
 export const rate11025 = 11025;
 export const rate8000 = 8000;
 export const rate7350 = 7350;
+
+// header key constants
+export const header = "header";
+export const bitDepth = "bitDepth";
+export const channelMode = "channelMode";
+export const sampleRate = "sampleRate";
+export const bitrate = "bitrate";
+export const channels = "channels";
+export const copyrightId = "copyrightId";
+export const copyrightIdStart = "copyrightIdStart";
+export const bufferFullness = "bufferFullness";
+export const isHome = "isHome";
+export const isOriginal = "isOriginal";
+export const isPrivate = "isPrivate";
+export const layer = "layer";
+export const length = "length";
+export const mpegVersion = "mpegVersion";
+export const numberAACFrames = "numberAACFrames";
+export const profile = "profile";
+export const protection = "protection";
+export const crc16 = "crc16";
+export const blockingStrategy = "blockingStrategy";
+export const blockSize = "blockSize";
+export const frameNumber = "frameNumber";
+export const sampleNumber = "sampleNumber";
+export const streamInfo = "streamInfo";
+export const emphasis = "emphasis";
+export const framePadding = "framePadding";
+export const isCopyrighted = "isCopyrighted";
+export const modeExtension = "modeExtension";
+export const bandwidth = "bandwidth";
+export const channelMappingFamily = "channelMappingFamily";
+export const channelMappingTable = "channelMappingTable";
+export const coupledStreamCount = "coupledStreamCount";
+export const frameCount = "frameCount";
+export const frameSize = "frameSize";
+export const hasOpusPadding = "hasOpusPadding";
+export const inputSampleRate = "inputSampleRate";
+export const isVbr = "isVbr";
+export const mode = "mode";
+export const outputGain = "outputGain";
+export const preSkip = "preSkip";
+export const streamCount = "streamCount";
+export const bitrateMaximum = "bitrateMaximum";
+export const bitrateMinimum = "bitrateMinimum";
+export const bitrateNominal = "bitrateNominal";
+export const blocksize0 = "blocksize0";
+export const blocksize1 = "blocksize1";
+export const data = "data";
+export const vorbisComments = "vorbisComments";
+export const vorbisSetup = "vorbisSetup";
+
+export const pageChecksum = "pageChecksum";
+export const codecFrames = "codecFrames";
+export const rawData = "rawData";
+export const absoluteGranulePosition = "absoluteGranulePosition";
+export const crc32 = "crc32";
+export const duration = "duration";
+export const isContinuedPacket = "isContinuedPacket";
+export const isFirstPage = "isFirstPage";
+export const isLastPage = "isLastPage";
+export const pageSequenceNumber = "pageSequenceNumber";
+export const samples = "samples";
+export const streamSerialNumber = "streamSerialNumber";
+export const frameLength = "frameLength";
+export const streamStructureVersion = "streamStructureVersion";
+export const pageSegmentTable = "pageSegmentTable";
+export const pageSegmentBytes = "pageSegmentBytes";
+export const segments = "segments";
+
+export const totalBytesOut = "totalBytesOut";
+export const totalSamples = "totalSamples";
+export const totalDuration = "totalDuration";
+
+export const description = "description";
+export const profileBits = "profileBits";
+export const sampleRateBits = "sampleRateBits";
+export const channelModeBits = "channelModeBits";
+export const blockingStrategyBits = "blockingStrategyBits";
+export const blockSizeBits = "blockSizeBits";
+export const crc = "crc";
+
+export const codec = "codec";
+export const version = "version";
+
+export const buffer = "buffer";
+export const subarray = "subarray";
+
+export const readRawData = Symbol();
+export const incrementRawData = Symbol();

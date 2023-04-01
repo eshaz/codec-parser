@@ -16,6 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { codec } from "../../constants.js";
+
 import Parser from "../Parser.js";
 import MPEGFrame from "./MPEGFrame.js";
 import MPEGHeader from "./MPEGHeader.js";
@@ -26,7 +28,7 @@ export default class MPEGParser extends Parser {
     this.Frame = MPEGFrame;
     this.Header = MPEGHeader;
 
-    onCodec(this.codec);
+    onCodec(this[codec]);
   }
 
   get codec() {

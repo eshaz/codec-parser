@@ -33,6 +33,25 @@ import {
   rate8000,
   monophonic,
   stereo,
+  bitDepth,
+  channelMode,
+  sampleRate,
+  bitrate,
+  channels,
+  isOriginal,
+  isPrivate,
+  layer,
+  length,
+  mpegVersion,
+  frameLength,
+  protection,
+  emphasis,
+  framePadding,
+  isCopyrighted,
+  modeExtension,
+  description,
+  samples,
+  subarray,
 } from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
@@ -92,6 +111,10 @@ const layer12ModeExtensions = {
   0b00110000: bands + 16 + to31,
 };
 
+const bitrateIndex = "bitrateIndex";
+const v2 = "v2";
+const v1 = "v1";
+
 const intensityStereo = "Intensity stereo ";
 const msStereo = ", MS stereo ";
 const on = "on";
@@ -103,68 +126,65 @@ const layer3ModeExtensions = {
   0b00110000: intensityStereo + on + msStereo + on,
 };
 
-const layer = "Layer ";
-const layers = {
-  0b00000000: { description: reserved },
+const layersValues = {
+  0b00000000: { [description]: reserved },
   0b00000010: {
-    description: "Layer III",
-    framePadding: 1,
-    modeExtensions: layer3ModeExtensions,
-    v1: {
-      bitrateIndex: v1Layer3,
-      samples: 1152,
+    [description]: "Layer III",
+    [framePadding]: 1,
+    [modeExtension]: layer3ModeExtensions,
+    [v1]: {
+      [bitrateIndex]: v1Layer3,
+      [samples]: 1152,
     },
-    v2: {
-      bitrateIndex: v2Layer23,
-      samples: 576,
+    [v2]: {
+      [bitrateIndex]: v2Layer23,
+      [samples]: 576,
     },
   },
   0b00000100: {
-    description: "Layer II",
-    framePadding: 1,
-    modeExtensions: layer12ModeExtensions,
-    samples: 1152,
-    v1: {
-      bitrateIndex: v1Layer2,
+    [description]: "Layer II",
+    [framePadding]: 1,
+    [modeExtension]: layer12ModeExtensions,
+    [samples]: 1152,
+    [v1]: {
+      [bitrateIndex]: v1Layer2,
     },
-    v2: {
-      bitrateIndex: v2Layer23,
+    [v2]: {
+      [bitrateIndex]: v2Layer23,
     },
   },
   0b00000110: {
-    description: "Layer I",
-    framePadding: 4,
-    modeExtensions: layer12ModeExtensions,
-    samples: 384,
-    v1: {
-      bitrateIndex: v1Layer1,
+    [description]: "Layer I",
+    [framePadding]: 4,
+    [modeExtension]: layer12ModeExtensions,
+    [samples]: 384,
+    [v1]: {
+      [bitrateIndex]: v1Layer1,
     },
-    v2: {
-      bitrateIndex: v2Layer1,
+    [v2]: {
+      [bitrateIndex]: v2Layer1,
     },
   },
 };
 
-const mpegVersion = "MPEG Version ";
+const mpegVersionDescription = "MPEG Version ";
 const isoIec = "ISO/IEC ";
-const v2 = "v2";
-const v1 = "v1";
 const mpegVersions = {
   0b00000000: {
-    description: `${mpegVersion}2.5 (later extension of MPEG 2)`,
-    layers: v2,
-    sampleRates: {
+    [description]: `${mpegVersionDescription}2.5 (later extension of MPEG 2)`,
+    [layer]: v2,
+    [sampleRate]: {
       0b00000000: rate11025,
       0b00000100: rate12000,
       0b00001000: rate8000,
       0b00001100: reserved,
     },
   },
-  0b00001000: { description: reserved },
+  0b00001000: { [description]: reserved },
   0b00010000: {
-    description: `${mpegVersion}2 (${isoIec}13818-3)`,
-    layers: v2,
-    sampleRates: {
+    [description]: `${mpegVersionDescription}2 (${isoIec}13818-3)`,
+    [layer]: v2,
+    [sampleRate]: {
       0b00000000: rate22050,
       0b00000100: rate24000,
       0b00001000: rate16000,
@@ -172,23 +192,24 @@ const mpegVersions = {
     },
   },
   0b00011000: {
-    description: `${mpegVersion}1 (${isoIec}11172-3)`,
-    layers: v1,
-    sampleRates: {
+    [description]: `${mpegVersionDescription}1 (${isoIec}11172-3)`,
+    [layer]: v1,
+    [sampleRate]: {
       0b00000000: rate44100,
       0b00000100: rate48000,
       0b00001000: rate32000,
       0b00001100: reserved,
     },
   },
+  length,
 };
 
-const protection = {
+const protectionValues = {
   0b00000000: sixteenBitCRC,
   0b00000001: none,
 };
 
-const emphasis = {
+const emphasisValues = {
   0b00000000: none,
   0b00000001: "50/15 ms",
   0b00000010: reserved,
@@ -196,10 +217,10 @@ const emphasis = {
 };
 
 const channelModes = {
-  0b00000000: { channels: 2, description: stereo },
-  0b01000000: { channels: 2, description: "joint " + stereo },
-  0b10000000: { channels: 2, description: "dual channel" },
-  0b11000000: { channels: 1, description: monophonic },
+  0b00000000: { [channels]: 2, [description]: stereo },
+  0b01000000: { [channels]: 2, [description]: "joint " + stereo },
+  0b10000000: { [channels]: 2, [description]: "dual channel" },
+  0b11000000: { [channels]: 1, [description]: monophonic },
 };
 
 export default class MPEGHeader extends CodecHeader {
@@ -215,15 +236,15 @@ export default class MPEGHeader extends CodecHeader {
 
     if (id3v2Header) {
       // throw away the data. id3 parsing is not implemented yet.
-      yield* codecParser.readRawData(id3v2Header.length, readOffset);
-      codecParser.incrementRawData(id3v2Header.length);
+      yield* codecParser.readRawData(id3v2Header[length], readOffset);
+      codecParser.incrementRawData(id3v2Header[length]);
     }
 
     // Must be at least four bytes.
     const data = yield* codecParser.readRawData(4, readOffset);
 
     // Check header cache
-    const key = bytesToString(data.subarray(0, 4));
+    const key = bytesToString(data[subarray](0, 4));
     const cachedHeader = headerCache.getHeader(key);
     if (cachedHeader) return new MPEGHeader(cachedHeader);
 
@@ -237,23 +258,23 @@ export default class MPEGHeader extends CodecHeader {
     // * `.......D`: Protection bit (0 - Protected by CRC (16bit CRC follows header), 1 = Not protected)
 
     // Mpeg version (1, 2, 2.5)
-    const mpegVersion = mpegVersions[data[1] & 0b00011000];
-    if (mpegVersion.description === reserved) return null;
+    const mpegVersionValues = mpegVersions[data[1] & 0b00011000];
+    if (mpegVersionValues[description] === reserved) return null;
 
     // Layer (I, II, III)
     const layerBits = data[1] & 0b00000110;
-    if (layers[layerBits].description === reserved) return null;
-    const layer = {
-      ...layers[layerBits],
-      ...layers[layerBits][mpegVersion.layers],
+    if (layersValues[layerBits][description] === reserved) return null;
+    const layerValues = {
+      ...layersValues[layerBits],
+      ...layersValues[layerBits][mpegVersionValues[layer]],
     };
 
-    header.mpegVersion = mpegVersion.description;
-    header.layer = layer.description;
-    header.samples = layer.samples;
-    header.protection = protection[data[1] & 0b00000001];
+    header[mpegVersion] = mpegVersionValues[description];
+    header[layer] = layerValues[description];
+    header[samples] = layerValues[samples];
+    header[protection] = protectionValues[data[1] & 0b00000001];
 
-    header.length = 4;
+    header[length] = 4;
 
     // Byte (3 of 4)
     // * `EEEEFFGH`
@@ -261,20 +282,21 @@ export default class MPEGHeader extends CodecHeader {
     // * `....FF..`: Sample rate
     // * `......G.`: Padding bit, 0=frame not padded, 1=frame padded
     // * `.......H`: Private bit.
-    header.bitrate = bitrateMatrix[data[2] & 0b11110000][layer.bitrateIndex];
-    if (header.bitrate === bad) return null;
+    header[bitrate] =
+      bitrateMatrix[data[2] & 0b11110000][layerValues[bitrateIndex]];
+    if (header[bitrate] === bad) return null;
 
-    header.sampleRate = mpegVersion.sampleRates[data[2] & 0b00001100];
-    if (header.sampleRate === reserved) return null;
+    header[sampleRate] = mpegVersionValues[sampleRate][data[2] & 0b00001100];
+    if (header[sampleRate] === reserved) return null;
 
-    header.framePadding = data[2] & 0b00000010 && layer.framePadding;
-    header.isPrivate = Boolean(data[2] & 0b00000001);
+    header[framePadding] = data[2] & 0b00000010 && layerValues[framePadding];
+    header[isPrivate] = Boolean(data[2] & 0b00000001);
 
-    header.frameLength = Math.floor(
-      (125 * header.bitrate * header.samples) / header.sampleRate +
-        header.framePadding
+    header[frameLength] = Math.floor(
+      (125 * header[bitrate] * header[samples]) / header[sampleRate] +
+        header[framePadding]
     );
-    if (!header.frameLength) return null;
+    if (!header[frameLength]) return null;
 
     // Byte (4 of 4)
     // * `IIJJKLMM`
@@ -284,22 +306,24 @@ export default class MPEGHeader extends CodecHeader {
     // * `.....L..`: Original
     // * `......MM`: Emphasis
     const channelModeBits = data[3] & 0b11000000;
-    header.channelMode = channelModes[channelModeBits].description;
-    header.channels = channelModes[channelModeBits].channels;
+    header[channelMode] = channelModes[channelModeBits][description];
+    header[channels] = channelModes[channelModeBits][channels];
 
-    header.modeExtension = layer.modeExtensions[data[3] & 0b00110000];
-    header.isCopyrighted = Boolean(data[3] & 0b00001000);
-    header.isOriginal = Boolean(data[3] & 0b00000100);
+    header[modeExtension] = layerValues[modeExtension][data[3] & 0b00110000];
+    header[isCopyrighted] = Boolean(data[3] & 0b00001000);
+    header[isOriginal] = Boolean(data[3] & 0b00000100);
 
-    header.emphasis = emphasis[data[3] & 0b00000011];
-    if (header.emphasis === reserved) return null;
+    header[emphasis] = emphasisValues[data[3] & 0b00000011];
+    if (header[emphasis] === reserved) return null;
 
-    header.bitDepth = 16;
+    header[bitDepth] = 16;
 
     // set header cache
-    const { length, frameLength, samples, ...codecUpdateFields } = header;
+    {
+      const { length, frameLength, samples, ...codecUpdateFields } = header;
 
-    headerCache.setHeader(key, header, codecUpdateFields);
+      headerCache.setHeader(key, header, codecUpdateFields);
+    }
     return new MPEGHeader(header);
   }
 
@@ -310,15 +334,15 @@ export default class MPEGHeader extends CodecHeader {
   constructor(header) {
     super(header);
 
-    this.bitrate = header.bitrate;
-    this.emphasis = header.emphasis;
-    this.framePadding = header.framePadding;
-    this.isCopyrighted = header.isCopyrighted;
-    this.isOriginal = header.isOriginal;
-    this.isPrivate = header.isPrivate;
-    this.layer = header.layer;
-    this.modeExtension = header.modeExtension;
-    this.mpegVersion = header.mpegVersion;
-    this.protection = header.protection;
+    this[bitrate] = header[bitrate];
+    this[emphasis] = header[emphasis];
+    this[framePadding] = header[framePadding];
+    this[isCopyrighted] = header[isCopyrighted];
+    this[isOriginal] = header[isOriginal];
+    this[isPrivate] = header[isPrivate];
+    this[layer] = header[layer];
+    this[modeExtension] = header[modeExtension];
+    this[mpegVersion] = header[mpegVersion];
+    this[protection] = header[protection];
   }
 }

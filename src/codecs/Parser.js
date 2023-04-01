@@ -17,6 +17,7 @@
 */
 
 import { frameStore } from "../globals.js";
+import { length } from "../constants.js";
 
 /**
  * @abstract
@@ -49,7 +50,7 @@ export default class Parser {
    */
   *fixedLengthFrameSync(ignoreNextFrame) {
     let frame = yield* this.syncFrame();
-    const frameLength = frameStore.get(frame).length;
+    const frameLength = frameStore.get(frame)[length];
 
     if (
       ignoreNextFrame ||

@@ -51,7 +51,31 @@ I  8   Coupled Stream Count (unsigned)
 J  8*C Channel Mapping
 */
 
-import { rate48000, vorbisOpusChannelMapping } from "../../constants.js";
+import {
+  rate48000,
+  vorbisOpusChannelMapping,
+  bitDepth,
+  channelMode,
+  sampleRate,
+  channels,
+  length,
+  bandwidth,
+  channelMappingFamily,
+  channelMappingTable,
+  coupledStreamCount,
+  frameCount,
+  frameSize,
+  hasOpusPadding,
+  inputSampleRate,
+  isVbr,
+  mode,
+  outputGain,
+  preSkip,
+  streamCount,
+  data,
+  buffer,
+  subarray,
+} from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
 import CodecHeader from "../CodecHeader.js";
@@ -76,10 +100,6 @@ const channelMappingFamilies = {
     */
   // additional channel mappings are user defined
 };
-
-const mode = "mode";
-const bandwidth = "bandwidth";
-const frameSize = "frameSize";
 
 const silkOnly = "SILK-only";
 const celtOnly = "CELT-only";
@@ -132,21 +152,21 @@ const configTable = {
 };
 
 export default class OpusHeader extends CodecHeader {
-  static getHeaderFromUint8Array(data, packetData, headerCache) {
+  static getHeaderFromUint8Array(dataValue, packetData, headerCache) {
     const header = {};
 
     // get length of header
     // Byte (10 of 19)
     // * `CCCCCCCC`: Channel Count
-    header.channels = data[9];
+    header[channels] = dataValue[9];
     // Byte (19 of 19)
     // * `GGGGGGGG`: Channel Mapping Family
-    header.channelMappingFamily = data[18];
+    header[channelMappingFamily] = dataValue[18];
 
-    header.length =
-      header.channelMappingFamily !== 0 ? 21 + header.channels : 19;
+    header[length] =
+      header[channelMappingFamily] !== 0 ? 21 + header[channels] : 19;
 
-    if (data.length < header.length)
+    if (dataValue[length] < header[length])
       throw new Error("Out of data while inside an Ogg Page");
 
     // Page Segment Bytes (1-2)
@@ -158,8 +178,8 @@ export default class OpusHeader extends CodecHeader {
 
     // Check header cache
     const key =
-      bytesToString(data.subarray(0, header.length)) +
-      bytesToString(packetData.subarray(0, packetLength));
+      bytesToString(dataValue[subarray](0, header[length])) +
+      bytesToString(packetData[subarray](0, packetLength));
     const cachedHeader = headerCache.getHeader(key);
 
     if (cachedHeader) return new OpusHeader(cachedHeader);
@@ -171,13 +191,13 @@ export default class OpusHeader extends CodecHeader {
 
     // Byte (9 of 19)
     // * `00000001`: Version number
-    if (data[8] !== 1) return null;
+    if (dataValue[8] !== 1) return null;
 
-    header.data = Uint8Array.from(data.subarray(0, header.length));
+    header[data] = Uint8Array.from(dataValue[subarray](0, header[length]));
 
-    const view = new DataView(header.data.buffer);
+    const view = new DataView(header[data][buffer]);
 
-    header.bitDepth = 16;
+    header[bitDepth] = 16;
 
     // Byte (10 of 19)
     // * `CCCCCCCC`: Channel Count
@@ -185,38 +205,40 @@ export default class OpusHeader extends CodecHeader {
 
     // Byte (11-12 of 19)
     // * `DDDDDDDD|DDDDDDDD`: Pre skip
-    header.preSkip = view.getUint16(10, true);
+    header[preSkip] = view.getUint16(10, true);
 
     // Byte (13-16 of 19)
     // * `EEEEEEEE|EEEEEEEE|EEEEEEEE|EEEEEEEE`: Sample Rate
-    header.inputSampleRate = view.getUint32(12, true);
+    header[inputSampleRate] = view.getUint32(12, true);
     // Opus is always decoded at 48kHz
-    header.sampleRate = rate48000;
+    header[sampleRate] = rate48000;
 
     // Byte (17-18 of 19)
     // * `FFFFFFFF|FFFFFFFF`: Output Gain
-    header.outputGain = view.getInt16(16, true);
+    header[outputGain] = view.getInt16(16, true);
 
     // Byte (19 of 19)
     // * `GGGGGGGG`: Channel Mapping Family
     // set earlier to determine length
-    if (header.channelMappingFamily in channelMappingFamilies) {
-      header.channelMode =
-        channelMappingFamilies[header.channelMappingFamily][
-          header.channels - 1
+    if (header[channelMappingFamily] in channelMappingFamilies) {
+      header[channelMode] =
+        channelMappingFamilies[header[channelMappingFamily]][
+          header[channels] - 1
         ];
-      if (!header.channelMode) return null;
+      if (!header[channelMode]) return null;
     }
 
-    if (header.channelMappingFamily !== 0) {
+    if (header[channelMappingFamily] !== 0) {
       // * `HHHHHHHH`: Stream count
-      header.streamCount = data[19];
+      header[streamCount] = dataValue[19];
 
       // * `IIIIIIII`: Coupled Stream count
-      header.coupledStreamCount = data[20];
+      header[coupledStreamCount] = dataValue[20];
 
       // * `JJJJJJJJ|...` Channel Mapping table
-      header.channelMappingTable = [...data.subarray(21, header.channels + 21)];
+      header[channelMappingTable] = [
+        ...dataValue[subarray](21, header[channels] + 21),
+      ];
     }
 
     const packetConfig = configTable[0b11111000 & packetData[0]];
@@ -228,33 +250,35 @@ export default class OpusHeader extends CodecHeader {
     switch (packetMode) {
       case 0:
         // 0: 1 frame in the packet
-        header.frameCount = 1;
+        header[frameCount] = 1;
         break;
       case 1:
       // 1: 2 frames in the packet, each with equal compressed size
       case 2:
         // 2: 2 frames in the packet, with different compressed sizes
-        header.frameCount = 2;
+        header[frameCount] = 2;
         break;
       case 3:
         // 3: an arbitrary number of frames in the packet
-        header.isVbr = Boolean(0b10000000 & packetData[1]);
-        header.hasOpusPadding = Boolean(0b01000000 & packetData[1]);
-        header.frameCount = 0b00111111 & packetData[1];
+        header[isVbr] = Boolean(0b10000000 & packetData[1]);
+        header[hasOpusPadding] = Boolean(0b01000000 & packetData[1]);
+        header[frameCount] = 0b00111111 & packetData[1];
         break;
       default:
         return null;
     }
 
     // set header cache
-    const {
-      length,
-      data: headerData,
-      channelMappingFamily,
-      ...codecUpdateFields
-    } = header;
+    {
+      const {
+        length,
+        data: headerData,
+        channelMappingFamily,
+        ...codecUpdateFields
+      } = header;
 
-    headerCache.setHeader(key, header, codecUpdateFields);
+      headerCache.setHeader(key, header, codecUpdateFields);
+    }
 
     return new OpusHeader(header);
   }
@@ -266,19 +290,19 @@ export default class OpusHeader extends CodecHeader {
   constructor(header) {
     super(header);
 
-    this.data = header.data;
-    this.bandwidth = header.bandwidth;
-    this.channelMappingFamily = header.channelMappingFamily;
-    this.channelMappingTable = header.channelMappingTable;
-    this.coupledStreamCount = header.coupledStreamCount;
-    this.frameCount = header.frameCount;
-    this.frameSize = header.frameSize;
-    this.hasOpusPadding = header.hasOpusPadding;
-    this.inputSampleRate = header.inputSampleRate;
-    this.isVbr = header.isVbr;
-    this.mode = header.mode;
-    this.outputGain = header.outputGain;
-    this.preSkip = header.preSkip;
-    this.streamCount = header.streamCount;
+    this[data] = header[data];
+    this[bandwidth] = header[bandwidth];
+    this[channelMappingFamily] = header[channelMappingFamily];
+    this[channelMappingTable] = header[channelMappingTable];
+    this[coupledStreamCount] = header[coupledStreamCount];
+    this[frameCount] = header[frameCount];
+    this[frameSize] = header[frameSize];
+    this[hasOpusPadding] = header[hasOpusPadding];
+    this[inputSampleRate] = header[inputSampleRate];
+    this[isVbr] = header[isVbr];
+    this[mode] = header[mode];
+    this[outputGain] = header[outputGain];
+    this[preSkip] = header[preSkip];
+    this[streamCount] = header[streamCount];
   }
 }

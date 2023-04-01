@@ -18,21 +18,29 @@
 
 // https://id3.org/Developer%20Information
 
+import { length, version } from "../constants.js";
+
+const unsynchronizationFlag = "unsynchronizationFlag";
+const extendedHeaderFlag = "extendedHeaderFlag";
+const experimentalFlag = "experimentalFlag";
+const footerPresent = "footerPresent";
+
 export default class ID3v2 {
   static *getID3v2Header(codecParser, headerCache, readOffset) {
-    const header = { headerLength: 10 };
+    const headerLength = 10;
+    const header = {};
 
     let data = yield* codecParser.readRawData(3, readOffset);
     // Byte (0-2 of 9)
     // ID3
     if (data[0] !== 0x49 || data[1] !== 0x44 || data[2] !== 0x33) return null;
 
-    data = yield* codecParser.readRawData(header.headerLength, readOffset);
+    data = yield* codecParser.readRawData(headerLength, readOffset);
 
     // Byte (3-4 of 9)
     // * `BBBBBBBB|........`: Major version
     // * `........|BBBBBBBB`: Minor version
-    header.version = `id3v2.${data[3]}.${data[4]}`;
+    header[version] = `id3v2.${data[3]}.${data[4]}`;
 
     // Byte (5 of 9)
     // * `....0000.: Zeros (flags not implemented yet)
@@ -44,10 +52,10 @@ export default class ID3v2 {
     // * `.D......`: Extended header (indicates whether or not the header is followed by an extended header)
     // * `..E.....`: Experimental indicator (indicates whether or not the tag is in an experimental stage)
     // * `...F....`: Footer present (indicates that a footer is present at the very end of the tag)
-    header.unsynchronizationFlag = Boolean(data[5] & 0b10000000);
-    header.extendedHeaderFlag = Boolean(data[5] & 0b01000000);
-    header.experimentalFlag = Boolean(data[5] & 0b00100000);
-    header.footerPresent = Boolean(data[5] & 0b00010000);
+    header[unsynchronizationFlag] = Boolean(data[5] & 0b10000000);
+    header[extendedHeaderFlag] = Boolean(data[5] & 0b01000000);
+    header[experimentalFlag] = Boolean(data[5] & 0b00100000);
+    header[footerPresent] = Boolean(data[5] & 0b00010000);
 
     // Byte (6-9 of 9)
     // * `0.......|0.......|0.......|0.......`: Zeros
@@ -64,20 +72,20 @@ export default class ID3v2 {
     // The ID3v2 tag size is encoded with four bytes where the most significant bit (bit 7)
     // is set to zero in every byte, making a total of 28 bits. The zeroed bits are ignored,
     // so a 257 bytes long tag is represented as $00 00 02 01.
-    header.dataLength =
+    const dataLength =
       (data[6] << 21) | (data[7] << 14) | (data[8] << 7) | data[9];
 
-    header.length = header.headerLength + header.dataLength;
+    header[length] = headerLength + dataLength;
 
     return new ID3v2(header);
   }
 
   constructor(header) {
-    this.version = header.version;
-    this.unsynchronizationFlag = header.unsynchronizationFlag;
-    this.extendedHeaderFlag = header.extendedHeaderFlag;
-    this.experimentalFlag = header.experimentalFlag;
-    this.footerPresent = header.footerPresent;
-    this.length = header.length;
+    this[version] = header[version];
+    this[unsynchronizationFlag] = header[unsynchronizationFlag];
+    this[extendedHeaderFlag] = header[extendedHeaderFlag];
+    this[experimentalFlag] = header[experimentalFlag];
+    this[footerPresent] = header[footerPresent];
+    this[length] = header[length];
   }
 }

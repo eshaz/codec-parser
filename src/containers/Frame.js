@@ -17,14 +17,15 @@
 */
 
 import { frameStore } from "../globals.js";
+import { data, header } from "../constants.js";
 
 /**
  * @abstract
  */
 export default class Frame {
-  constructor(header, data) {
-    frameStore.set(this, { header });
+  constructor(headerValue, dataValue) {
+    frameStore.set(this, { [header]: headerValue });
 
-    this.data = data;
+    this[data] = dataValue;
   }
 }

@@ -18,6 +18,16 @@
 
 import { frameStore } from "../../globals.js";
 import { BitReader, reverse } from "../../utilities.js";
+import {
+  data,
+  codec,
+  blocksize0,
+  blocksize1,
+  pageSequenceNumber,
+  codecFrames,
+  segments,
+} from "../../constants.js";
+
 import Parser from "../Parser.js";
 import VorbisFrame from "./VorbisFrame.js";
 import VorbisHeader from "./VorbisHeader.js";
@@ -27,7 +37,7 @@ export default class VorbisParser extends Parser {
     super(codecParser, headerCache);
     this.Frame = VorbisFrame;
 
-    onCodec(this.codec);
+    onCodec(this[codec]);
 
     this._identificationHeader = null;
 
@@ -43,14 +53,14 @@ export default class VorbisParser extends Parser {
   }
 
   parseOggPage(oggPage) {
-    const oggPageSegments = frameStore.get(oggPage).segments;
+    const oggPageSegments = frameStore.get(oggPage)[segments];
 
-    if (oggPage.pageSequenceNumber === 0) {
+    if (oggPage[pageSequenceNumber] === 0) {
       // Identification header
 
       this._headerCache.enable();
-      this._identificationHeader = oggPage.data;
-    } else if (oggPage.pageSequenceNumber === 1) {
+      this._identificationHeader = oggPage[data];
+    } else if (oggPage[pageSequenceNumber] === 1) {
       // gather WEBM CodecPrivate data
       if (oggPageSegments[1]) {
         this._vorbisComments = oggPageSegments[0];
@@ -59,7 +69,7 @@ export default class VorbisParser extends Parser {
         this._mode = this._parseSetupHeader(oggPageSegments[1]);
       }
     } else {
-      oggPage.codecFrames = oggPageSegments.map((segment) => {
+      oggPage[codecFrames] = oggPageSegments.map((segment) => {
         const header = VorbisHeader.getHeaderFromUint8Array(
           this._identificationHeader,
           this._headerCache,
@@ -93,15 +103,15 @@ export default class VorbisParser extends Parser {
     // is this a large window
     if (blockFlag) {
       this._prevBlockSize =
-        byte & this._mode.prevMask ? header.blocksize1 : header.blocksize0;
+        byte & this._mode.prevMask ? header[blocksize1] : header[blocksize0];
     }
 
-    this._currBlockSize = blockFlag ? header.blocksize1 : header.blocksize0;
+    this._currBlockSize = blockFlag ? header[blocksize1] : header[blocksize0];
 
-    const samples = (this._prevBlockSize + this._currBlockSize) >> 2;
+    const samplesValue = (this._prevBlockSize + this._currBlockSize) >> 2;
     this._prevBlockSize = this._currBlockSize;
 
-    return samples;
+    return samplesValue;
   }
 
   // https://gitlab.xiph.org/xiph/liboggz/-/blob/master/src/liboggz/oggz_auto.c

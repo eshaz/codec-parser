@@ -16,8 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { length } from "./constants.js";
+
 const getCrcTable = (crcTable, crcInitialValueFunction, crcFunction) => {
-  for (let byte = 0; byte < crcTable.length; byte++) {
+  for (let byte = 0; byte < crcTable[length]; byte++) {
     let crc = crcInitialValueFunction(byte);
 
     for (let bit = 8; bit > 0; bit--) crc = crcFunction(crc);
@@ -66,7 +68,7 @@ for (let i = 0; i < 15; i++) {
 
 const crc8 = (data) => {
   let crc = 0;
-  const dataLength = data.length;
+  const dataLength = data[length];
 
   for (let i = 0; i !== dataLength; i++) crc = crc8Table[crc ^ data[i]];
 
@@ -74,7 +76,7 @@ const crc8 = (data) => {
 };
 
 const flacCrc16 = (data) => {
-  const dataLength = data.length;
+  const dataLength = data[length];
   const crcChunkSize = dataLength - 16;
   let crc = 0;
   let i = 0;
@@ -106,8 +108,8 @@ const flacCrc16 = (data) => {
   return crc;
 };
 
-const crc32 = (data) => {
-  const dataLength = data.length;
+const crc32Function = (data) => {
+  const dataLength = data[length];
   const crcChunkSize = dataLength - 16;
   let crc = 0;
   let i = 0;
@@ -139,12 +141,12 @@ const crc32 = (data) => {
 
 const concatBuffers = (...buffers) => {
   const buffer = new Uint8Array(
-    buffers.reduce((acc, buf) => acc + buf.length, 0)
+    buffers.reduce((acc, buf) => acc + buf[length], 0)
   );
 
   buffers.reduce((offset, buf) => {
     buffer.set(buf, offset);
-    return offset + buf.length;
+    return offset + buf[length];
   }, 0);
 
   return buffer;
@@ -160,7 +162,7 @@ const reverse = (val) =>
 class BitReader {
   constructor(data) {
     this._data = data;
-    this._pos = data.length * 8;
+    this._pos = data[length] * 8;
   }
 
   set position(position) {
@@ -186,7 +188,7 @@ class BitReader {
 export {
   crc8,
   flacCrc16,
-  crc32,
+  crc32Function,
   reverse,
   concatBuffers,
   bytesToString,

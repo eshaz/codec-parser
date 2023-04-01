@@ -18,6 +18,14 @@
 
 import { headerStore, frameStore } from "../../globals.js";
 import { bytesToString, concatBuffers } from "../../utilities.js";
+import {
+  header,
+  pageSequenceNumber,
+  data,
+  length,
+  segments,
+  subarray,
+} from "../../constants.js";
 
 import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
@@ -57,7 +65,7 @@ export default class OggParser extends Parser {
   }
 
   _checkForIdentifier({ data }) {
-    const idString = bytesToString(data.subarray(0, 8));
+    const idString = bytesToString(data[subarray](0, 8));
 
     switch (idString) {
       case "fishead\0":
@@ -78,19 +86,19 @@ export default class OggParser extends Parser {
 
   _checkPageSequenceNumber(oggPage) {
     if (
-      oggPage.pageSequenceNumber !== this._pageSequenceNumber + 1 &&
+      oggPage[pageSequenceNumber] !== this._pageSequenceNumber + 1 &&
       this._pageSequenceNumber > 1 &&
-      oggPage.pageSequenceNumber > 1
+      oggPage[pageSequenceNumber] > 1
     ) {
       this._codecParser.logWarning(
         "Unexpected gap in Ogg Page Sequence Number.",
         `Expected: ${this._pageSequenceNumber + 1}, Got: ${
-          oggPage.pageSequenceNumber
+          oggPage[pageSequenceNumber]
         }`
       );
     }
 
-    this._pageSequenceNumber = oggPage.pageSequenceNumber;
+    this._pageSequenceNumber = oggPage[pageSequenceNumber];
   }
 
   *parseFrame() {
@@ -100,25 +108,25 @@ export default class OggParser extends Parser {
 
     const oggPageStore = frameStore.get(oggPage);
     const { pageSegmentBytes, pageSegmentTable } = headerStore.get(
-      oggPageStore.header
+      oggPageStore[header]
     );
 
     let offset = 0;
 
-    oggPageStore.segments = pageSegmentTable.map((segmentLength) =>
-      oggPage.data.subarray(offset, (offset += segmentLength))
+    oggPageStore[segments] = pageSegmentTable.map((segmentLength) =>
+      oggPage[data][subarray](offset, (offset += segmentLength))
     );
 
-    if (pageSegmentBytes[pageSegmentBytes.length - 1] === 0xff) {
+    if (pageSegmentBytes[pageSegmentBytes[length] - 1] === 0xff) {
       // continued packet
       this._continuedPacket = concatBuffers(
         this._continuedPacket,
-        oggPageStore.segments.pop()
+        oggPageStore[segments].pop()
       );
-    } else if (this._continuedPacket.length) {
-      oggPageStore.segments[0] = concatBuffers(
+    } else if (this._continuedPacket[length]) {
+      oggPageStore[segments][0] = concatBuffers(
         this._continuedPacket,
-        oggPageStore.segments[0]
+        oggPageStore[segments][0]
       );
 
       this._continuedPacket = new Uint8Array();

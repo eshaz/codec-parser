@@ -17,6 +17,24 @@
 */
 
 import { headerStore, frameStore } from "../../globals.js";
+import {
+  codecFrames,
+  rawData,
+  absoluteGranulePosition,
+  crc32,
+  duration,
+  isContinuedPacket,
+  isFirstPage,
+  isLastPage,
+  pageSequenceNumber,
+  samples,
+  streamSerialNumber,
+  length,
+  pageChecksum,
+  frameLength,
+  subarray,
+} from "../../constants.js";
+
 import Frame from "../Frame.js";
 import OggPageHeader from "./OggPageHeader.js";
 
@@ -29,38 +47,37 @@ export default class OggPage extends Frame {
     );
 
     if (header) {
-      const frameLength = headerStore.get(header).frameLength;
-      const headerLength = headerStore.get(header).length;
-      const totalLength = headerLength + frameLength;
+      const frameLengthValue = headerStore.get(header)[frameLength];
+      const headerLength = headerStore.get(header)[length];
+      const totalLength = headerLength + frameLengthValue;
 
-      const rawData = (yield* codecParser.readRawData(totalLength, 0)).subarray(
-        0,
-        totalLength
-      );
+      const rawDataValue = (yield* codecParser.readRawData(totalLength, 0))[
+        subarray
+      ](0, totalLength);
 
-      const frame = rawData.subarray(headerLength, totalLength);
+      const frame = rawDataValue[subarray](headerLength, totalLength);
 
-      return new OggPage(header, frame, rawData);
+      return new OggPage(header, frame, rawDataValue);
     } else {
       return null;
     }
   }
 
-  constructor(header, frame, rawData) {
+  constructor(header, frame, rawDataValue) {
     super(header, frame);
 
-    frameStore.get(this).length = rawData.length;
+    frameStore.get(this)[length] = rawDataValue[length];
 
-    this.codecFrames = [];
-    this.rawData = rawData;
-    this.absoluteGranulePosition = header.absoluteGranulePosition;
-    this.crc32 = header.pageChecksum;
-    this.duration = 0;
-    this.isContinuedPacket = header.isContinuedPacket;
-    this.isFirstPage = header.isFirstPage;
-    this.isLastPage = header.isLastPage;
-    this.pageSequenceNumber = header.pageSequenceNumber;
-    this.samples = 0;
-    this.streamSerialNumber = header.streamSerialNumber;
+    this[codecFrames] = [];
+    this[rawData] = rawDataValue;
+    this[absoluteGranulePosition] = header[absoluteGranulePosition];
+    this[crc32] = header[pageChecksum];
+    this[duration] = 0;
+    this[isContinuedPacket] = header[isContinuedPacket];
+    this[isFirstPage] = header[isFirstPage];
+    this[isLastPage] = header[isLastPage];
+    this[pageSequenceNumber] = header[pageSequenceNumber];
+    this[samples] = 0;
+    this[streamSerialNumber] = header[streamSerialNumber];
   }
 }
