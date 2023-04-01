@@ -75,6 +75,11 @@ import {
   data,
   buffer,
   subarray,
+  getHeader,
+  setHeader,
+  getHeaderFromUint8Array,
+  uint8Array,
+  dataView,
 } from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
@@ -152,7 +157,7 @@ const configTable = {
 };
 
 export default class OpusHeader extends CodecHeader {
-  static getHeaderFromUint8Array(dataValue, packetData, headerCache) {
+  static [getHeaderFromUint8Array](dataValue, packetData, headerCache) {
     const header = {};
 
     // get length of header
@@ -180,7 +185,7 @@ export default class OpusHeader extends CodecHeader {
     const key =
       bytesToString(dataValue[subarray](0, header[length])) +
       bytesToString(packetData[subarray](0, packetLength));
-    const cachedHeader = headerCache.getHeader(key);
+    const cachedHeader = headerCache[getHeader](key);
 
     if (cachedHeader) return new OpusHeader(cachedHeader);
 
@@ -193,9 +198,9 @@ export default class OpusHeader extends CodecHeader {
     // * `00000001`: Version number
     if (dataValue[8] !== 1) return null;
 
-    header[data] = Uint8Array.from(dataValue[subarray](0, header[length]));
+    header[data] = uint8Array.from(dataValue[subarray](0, header[length]));
 
-    const view = new DataView(header[data][buffer]);
+    const view = new dataView(header[data][buffer]);
 
     header[bitDepth] = 16;
 
@@ -277,7 +282,7 @@ export default class OpusHeader extends CodecHeader {
         ...codecUpdateFields
       } = header;
 
-      headerCache.setHeader(key, header, codecUpdateFields);
+      headerCache[setHeader](key, header, codecUpdateFields);
     }
 
     return new OpusHeader(header);

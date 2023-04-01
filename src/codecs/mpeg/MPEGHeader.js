@@ -52,6 +52,10 @@ import {
   description,
   samples,
   subarray,
+  readRawData,
+  incrementRawData,
+  getHeader,
+  setHeader,
 } from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
@@ -224,7 +228,7 @@ const channelModes = {
 };
 
 export default class MPEGHeader extends CodecHeader {
-  static *getHeader(codecParser, headerCache, readOffset) {
+  static *[getHeader](codecParser, headerCache, readOffset) {
     const header = {};
 
     // check for id3 header
@@ -236,16 +240,16 @@ export default class MPEGHeader extends CodecHeader {
 
     if (id3v2Header) {
       // throw away the data. id3 parsing is not implemented yet.
-      yield* codecParser.readRawData(id3v2Header[length], readOffset);
-      codecParser.incrementRawData(id3v2Header[length]);
+      yield* codecParser[readRawData](id3v2Header[length], readOffset);
+      codecParser[incrementRawData](id3v2Header[length]);
     }
 
     // Must be at least four bytes.
-    const data = yield* codecParser.readRawData(4, readOffset);
+    const data = yield* codecParser[readRawData](4, readOffset);
 
     // Check header cache
     const key = bytesToString(data[subarray](0, 4));
-    const cachedHeader = headerCache.getHeader(key);
+    const cachedHeader = headerCache[getHeader](key);
     if (cachedHeader) return new MPEGHeader(cachedHeader);
 
     // Frame sync (all bits must be set): `11111111|111`:
@@ -322,7 +326,7 @@ export default class MPEGHeader extends CodecHeader {
     {
       const { length, frameLength, samples, ...codecUpdateFields } = header;
 
-      headerCache.setHeader(key, header, codecUpdateFields);
+      headerCache[setHeader](key, header, codecUpdateFields);
     }
     return new MPEGHeader(header);
   }

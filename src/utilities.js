@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { length } from "./constants.js";
+import { length, uint8Array } from "./constants.js";
 
 const getCrcTable = (crcTable, crcInitialValueFunction, crcFunction) => {
   for (let byte = 0; byte < crcTable[length]; byte++) {
@@ -30,7 +30,7 @@ const getCrcTable = (crcTable, crcInitialValueFunction, crcFunction) => {
 };
 
 const crc8Table = getCrcTable(
-  new Uint8Array(256),
+  new uint8Array(256),
   (b) => b,
   (crc) => (crc & 0x80 ? 0x07 ^ (crc << 1) : crc << 1)
 );
@@ -140,7 +140,7 @@ const crc32Function = (data) => {
 };
 
 const concatBuffers = (...buffers) => {
-  const buffer = new Uint8Array(
+  const buffer = new uint8Array(
     buffers.reduce((acc, buf) => acc + buf[length], 0)
   );
 

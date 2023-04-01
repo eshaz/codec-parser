@@ -65,14 +65,18 @@ import {
   pageSegmentBytes,
   buffer,
   subarray,
+  readRawData,
+  getHeader,
+  uint8Array,
+  dataView,
 } from "../../constants.js";
 
 export default class OggPageHeader {
-  static *getHeader(codecParser, headerCache, readOffset) {
+  static *[getHeader](codecParser, headerCache, readOffset) {
     const header = {};
 
     // Must be at least 28 bytes.
-    let data = yield* codecParser.readRawData(28, readOffset);
+    let data = yield* codecParser[readRawData](28, readOffset);
 
     // Bytes (1-4 of 28)
     // Frame sync (must equal OggS): `AAAAAAAA|AAAAAAAA|AAAAAAAA|AAAAAAAA`:
@@ -102,7 +106,7 @@ export default class OggPageHeader {
     header[isFirstPage] = Boolean(data[5] & 0b00000010);
     header[isContinuedPacket] = Boolean(data[5] & 0b00000001);
 
-    const view = new DataView(Uint8Array.from(data[subarray](0, 28))[buffer]);
+    const view = new dataView(uint8Array.from(data[subarray](0, 28))[buffer]);
 
     // Byte (7-14 of 28)
     // * `FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF|FFFFFFFF`
@@ -135,11 +139,11 @@ export default class OggPageHeader {
     const pageSegmentTableLength = data[26];
     header[length] = pageSegmentTableLength + 27;
 
-    data = yield* codecParser.readRawData(header[length], readOffset); // read in the page segment table
+    data = yield* codecParser[readRawData](header[length], readOffset); // read in the page segment table
 
     header[frameLength] = 0;
     header[pageSegmentTable] = [];
-    header[pageSegmentBytes] = Uint8Array.from(
+    header[pageSegmentBytes] = uint8Array.from(
       data[subarray](27, header[length])
     );
 

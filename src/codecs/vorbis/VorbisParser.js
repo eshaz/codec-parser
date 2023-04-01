@@ -27,6 +27,10 @@ import {
   codecFrames,
   segments,
   vorbis,
+  logError,
+  parseOggPage,
+  enable,
+  getHeaderFromUint8Array,
 } from "../../constants.js";
 
 import Parser from "../Parser.js";
@@ -53,13 +57,13 @@ export default class VorbisParser extends Parser {
     return vorbis;
   }
 
-  parseOggPage(oggPage) {
+  [parseOggPage](oggPage) {
     const oggPageSegments = frameStore.get(oggPage)[segments];
 
     if (oggPage[pageSequenceNumber] === 0) {
       // Identification header
 
-      this._headerCache.enable();
+      this._headerCache[enable]();
       this._identificationHeader = oggPage[data];
     } else if (oggPage[pageSequenceNumber] === 1) {
       // gather WEBM CodecPrivate data
@@ -71,7 +75,7 @@ export default class VorbisParser extends Parser {
       }
     } else {
       oggPage[codecFrames] = oggPageSegments.map((segment) => {
-        const header = VorbisHeader.getHeaderFromUint8Array(
+        const header = VorbisHeader[getHeaderFromUint8Array](
           this._identificationHeader,
           this._headerCache,
           this._vorbisComments,
@@ -86,7 +90,7 @@ export default class VorbisParser extends Parser {
           );
         }
 
-        this._codecParser.logError(
+        this._codecParser[logError](
           "Failed to parse Ogg Vorbis Header",
           "Not a valid Ogg Vorbis file"
         );
@@ -172,7 +176,7 @@ export default class VorbisParser extends Parser {
         mapping in mode &&
         !(mode.count === 1 && mapping === 0) // allows for the possibility of only one mode
       ) {
-        this._codecParser.logError(
+        this._codecParser[logError](
           "received duplicate mode mapping" + failedToParseVorbisModes
         );
         throw new Error(failedToParseVorbisStream);
@@ -192,7 +196,7 @@ export default class VorbisParser extends Parser {
         // transform type and window type were not all zeros
         // check for mode count using previous iteration modeBits
         if (((reverse(modeBits) & 0b01111110) >> 1) + 1 !== mode.count) {
-          this._codecParser.logError(
+          this._codecParser[logError](
             "mode count did not match actual modes" + failedToParseVorbisModes
           );
           throw new Error(failedToParseVorbisStream);

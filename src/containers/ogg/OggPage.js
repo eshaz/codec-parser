@@ -33,14 +33,17 @@ import {
   pageChecksum,
   frameLength,
   subarray,
+  readRawData,
+  getFrame,
+  getHeader,
 } from "../../constants.js";
 
 import Frame from "../Frame.js";
 import OggPageHeader from "./OggPageHeader.js";
 
 export default class OggPage extends Frame {
-  static *getFrame(codecParser, headerCache, readOffset) {
-    const header = yield* OggPageHeader.getHeader(
+  static *[getFrame](codecParser, headerCache, readOffset) {
+    const header = yield* OggPageHeader[getHeader](
       codecParser,
       headerCache,
       readOffset
@@ -51,7 +54,7 @@ export default class OggPage extends Frame {
       const headerLength = headerStore.get(header)[length];
       const totalLength = headerLength + frameLengthValue;
 
-      const rawDataValue = (yield* codecParser.readRawData(totalLength, 0))[
+      const rawDataValue = (yield* codecParser[readRawData](totalLength, 0))[
         subarray
       ](0, totalLength);
 

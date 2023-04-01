@@ -23,6 +23,10 @@ import {
   pageSequenceNumber,
   codec,
   segments,
+  logError,
+  parseOggPage,
+  enable,
+  getHeaderFromUint8Array,
 } from "../../constants.js";
 import Parser from "../Parser.js";
 import OpusFrame from "./OpusFrame.js";
@@ -45,11 +49,11 @@ export default class OpusParser extends Parser {
   /**
    * @todo implement continued page support
    */
-  parseOggPage(oggPage) {
+  [parseOggPage](oggPage) {
     if (oggPage[pageSequenceNumber] === 0) {
       // Identification header
 
-      this._headerCache.enable();
+      this._headerCache[enable]();
       this._identificationHeader = oggPage[data];
     } else if (oggPage[pageSequenceNumber] === 1) {
       // OpusTags
@@ -57,7 +61,7 @@ export default class OpusParser extends Parser {
       oggPage[codecFrames] = frameStore
         .get(oggPage)
         [segments].map((segment) => {
-          const header = OpusHeader.getHeaderFromUint8Array(
+          const header = OpusHeader[getHeaderFromUint8Array](
             this._identificationHeader,
             segment,
             this._headerCache
@@ -65,7 +69,7 @@ export default class OpusParser extends Parser {
 
           if (header) return new OpusFrame(segment, header);
 
-          this._codecParser.logError(
+          this._codecParser[logError](
             "Failed to parse Ogg Opus Header",
             "Not a valid Ogg Opus file"
           );

@@ -1,8 +1,4 @@
-export const reserved = "reserved";
-export const bad = "bad";
-export const free = "free";
-export const none = "none";
-export const sixteenBitCRC = "16bit CRC";
+const symbol = Symbol;
 
 // prettier-ignore
 /*
@@ -212,5 +208,30 @@ export const totalDuration = total + "Duration";
 export const totalSamples = total + "Samples";
 
 // private methods
-export const readRawData = Symbol();
-export const incrementRawData = Symbol();
+export const readRawData = symbol();
+export const incrementRawData = symbol();
+export const mapCodecFrameStats = symbol();
+export const mapFrameStats = symbol();
+export const logWarning = symbol();
+export const logError = symbol();
+export const syncFrame = symbol();
+export const fixedLengthFrameSync = symbol();
+export const getHeader = symbol();
+export const setHeader = symbol();
+export const getFrame = symbol();
+export const parseFrame = symbol();
+export const parseOggPage = symbol();
+export const checkCodecUpdate = symbol();
+export const reset = symbol();
+export const enable = symbol();
+export const getHeaderFromUint8Array = symbol();
+export const checkFrameFooterCrc16 = symbol();
+
+export const uint8Array = Uint8Array;
+export const dataView = DataView;
+
+export const reserved = "reserved";
+export const bad = "bad";
+export const free = "free";
+export const none = "none";
+export const sixteenBitCRC = "16bit CRC";

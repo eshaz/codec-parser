@@ -53,6 +53,11 @@ import {
   version,
   buffer,
   subarray,
+  getHeader,
+  setHeader,
+  getHeaderFromUint8Array,
+  uint8Array,
+  dataView,
 } from "../../constants.js";
 import { bytesToString } from "../../utilities.js";
 
@@ -71,7 +76,7 @@ const blockSizes = {
 for (let i = 0; i < 8; i++) blockSizes[i + 6] = 2 ** (6 + i);
 
 export default class VorbisHeader extends CodecHeader {
-  static getHeaderFromUint8Array(
+  static [getHeaderFromUint8Array](
     dataValue,
     headerCache,
     vorbisCommentsData,
@@ -83,7 +88,7 @@ export default class VorbisHeader extends CodecHeader {
 
     // Check header cache
     const key = bytesToString(dataValue[subarray](0, 30));
-    const cachedHeader = headerCache.getHeader(key);
+    const cachedHeader = headerCache[getHeader](key);
     if (cachedHeader) return new VorbisHeader(cachedHeader);
 
     const header = { [length]: 30 };
@@ -93,8 +98,8 @@ export default class VorbisHeader extends CodecHeader {
       return null;
     }
 
-    header[data] = Uint8Array.from(dataValue[subarray](0, 30));
-    const view = new DataView(header[data][buffer]);
+    header[data] = uint8Array.from(dataValue[subarray](0, 30));
+    const view = new dataView(header[data][buffer]);
 
     // Byte (8-11 of 30)
     // * `CCCCCCCC|CCCCCCCC|CCCCCCCC|CCCCCCCC`: Version number
@@ -141,7 +146,7 @@ export default class VorbisHeader extends CodecHeader {
     {
       // set header cache
       const { length, data, version, ...codecUpdateFields } = header;
-      headerCache.setHeader(key, header, codecUpdateFields);
+      headerCache[setHeader](key, header, codecUpdateFields);
     }
 
     return new VorbisHeader(header);

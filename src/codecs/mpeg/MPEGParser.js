@@ -16,7 +16,12 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { codec, mpeg } from "../../constants.js";
+import {
+  codec,
+  mpeg,
+  fixedLengthFrameSync,
+  parseFrame,
+} from "../../constants.js";
 
 import Parser from "../Parser.js";
 import MPEGFrame from "./MPEGFrame.js";
@@ -35,7 +40,7 @@ export default class MPEGParser extends Parser {
     return mpeg;
   }
 
-  *parseFrame() {
-    return yield* this.fixedLengthFrameSync();
+  *[parseFrame]() {
+    return yield* this[fixedLengthFrameSync]();
   }
 }

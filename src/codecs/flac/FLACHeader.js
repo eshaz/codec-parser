@@ -84,6 +84,10 @@ import {
   blockSizeBits,
   crc,
   subarray,
+  readRawData,
+  getHeader,
+  setHeader,
+  getHeaderFromUint8Array,
 } from "../../constants.js";
 import { bytesToString, crc8 } from "../../utilities.js";
 import CodecHeader from "../CodecHeader.js";
@@ -185,7 +189,7 @@ export default class FLACHeader extends CodecHeader {
   // 0000 0080-0000 07FF | 110xxxxx 10xxxxxx
   // 0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx
   // 0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-  static decodeUTF8Int(data) {
+  static _decodeUTF8Int(data) {
     if (data[0] > 0xfe) {
       return null; // length byte must have at least one zero as the lsb
     }
@@ -220,19 +224,19 @@ export default class FLACHeader extends CodecHeader {
     return { value, length };
   }
 
-  static getHeaderFromUint8Array(data, headerCache) {
+  static [getHeaderFromUint8Array](data, headerCache) {
     const codecParserStub = {
-      readRawData: function* () {
+      [readRawData]: function* () {
         return data;
       },
     };
 
-    return FLACHeader.getHeader(codecParserStub, headerCache, 0).next().value;
+    return FLACHeader[getHeader](codecParserStub, headerCache, 0).next().value;
   }
 
-  static *getHeader(codecParser, headerCache, readOffset) {
+  static *[getHeader](codecParser, headerCache, readOffset) {
     // Must be at least 6 bytes.
-    let data = yield* codecParser.readRawData(6, readOffset);
+    let data = yield* codecParser[readRawData](6, readOffset);
 
     // Bytes (1-2 of 6)
     // * `11111111|111110..`: Frame sync
@@ -245,7 +249,7 @@ export default class FLACHeader extends CodecHeader {
 
     // Check header cache
     const key = bytesToString(data[subarray](0, 4));
-    const cachedHeader = headerCache.getHeader(key);
+    const cachedHeader = headerCache[getHeader](key);
 
     if (!cachedHeader) {
       // Byte (2 of 6)
@@ -299,9 +303,9 @@ export default class FLACHeader extends CodecHeader {
     header[length] = 5;
 
     // check if there is enough data to parse UTF8
-    data = yield* codecParser.readRawData(header[length] + 8, readOffset);
+    data = yield* codecParser[readRawData](header[length] + 8, readOffset);
 
-    const decodedUtf8 = FLACHeader.decodeUTF8Int(data[subarray](4));
+    const decodedUtf8 = FLACHeader._decodeUTF8Int(data[subarray](4));
     if (!decodedUtf8) {
       return null;
     }
@@ -319,14 +323,14 @@ export default class FLACHeader extends CodecHeader {
     if (header[blockSizeBits] === 0b01100000) {
       // 8 bit
       if (data[length] < header[length])
-        data = yield* codecParser.readRawData(header[length], readOffset);
+        data = yield* codecParser[readRawData](header[length], readOffset);
 
       header[blockSize] = data[header[length] - 1] + 1;
       header[length] += 1;
     } else if (header[blockSizeBits] === 0b01110000) {
       // 16 bit
       if (data[length] < header[length])
-        data = yield* codecParser.readRawData(header[length], readOffset);
+        data = yield* codecParser[readRawData](header[length], readOffset);
 
       header[blockSize] =
         (data[header[length] - 1] << 8) + data[header[length]] + 1;
@@ -340,14 +344,14 @@ export default class FLACHeader extends CodecHeader {
     if (header[sampleRateBits] === 0b00001100) {
       // 8 bit
       if (data[length] < header[length])
-        data = yield* codecParser.readRawData(header[length], readOffset);
+        data = yield* codecParser[readRawData](header[length], readOffset);
 
       header[sampleRate] = data[header[length] - 1] * 1000;
       header[length] += 1;
     } else if (header[sampleRateBits] === 0b00001101) {
       // 16 bit
       if (data[length] < header[length])
-        data = yield* codecParser.readRawData(header[length], readOffset);
+        data = yield* codecParser[readRawData](header[length], readOffset);
 
       header[sampleRate] =
         (data[header[length] - 1] << 8) + data[header[length]];
@@ -355,7 +359,7 @@ export default class FLACHeader extends CodecHeader {
     } else if (header[sampleRateBits] === 0b00001110) {
       // 16 bit
       if (data[length] < header[length])
-        data = yield* codecParser.readRawData(header[length], readOffset);
+        data = yield* codecParser[readRawData](header[length], readOffset);
 
       header[sampleRate] =
         ((data[header[length] - 1] << 8) + data[header[length]]) * 10;
@@ -365,7 +369,7 @@ export default class FLACHeader extends CodecHeader {
     // Byte (...)
     // * `LLLLLLLL`: CRC-8
     if (data[length] < header[length])
-      data = yield* codecParser.readRawData(header[length], readOffset);
+      data = yield* codecParser[readRawData](header[length], readOffset);
 
     header[crc] = data[header[length] - 1];
     if (header[crc] !== crc8(data[subarray](0, header[length] - 1))) {
@@ -385,7 +389,7 @@ export default class FLACHeader extends CodecHeader {
           length,
           ...codecUpdateFields
         } = header;
-        headerCache.setHeader(key, header, codecUpdateFields);
+        headerCache[setHeader](key, header, codecUpdateFields);
       }
     }
     return new FLACHeader(header);

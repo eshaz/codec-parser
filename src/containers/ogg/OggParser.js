@@ -26,6 +26,13 @@ import {
   segments,
   subarray,
   vorbis,
+  mapFrameStats,
+  logWarning,
+  fixedLengthFrameSync,
+  parseFrame,
+  parseOggPage,
+  reset,
+  uint8Array,
 } from "../../constants.js";
 
 import Parser from "../../codecs/Parser.js";
@@ -44,7 +51,7 @@ export default class OggParser extends Parser {
     this.Frame = OggPage;
     this.Header = OggPageHeader;
     this._codec = null;
-    this._continuedPacket = new Uint8Array();
+    this._continuedPacket = new uint8Array();
 
     this._pageSequenceNumber = 0;
   }
@@ -55,7 +62,7 @@ export default class OggParser extends Parser {
 
   _updateCodec(codec, Parser) {
     if (this._codec !== codec) {
-      this._headerCache.reset();
+      this._headerCache[reset]();
       this._parser = new Parser(
         this._codecParser,
         this._headerCache,
@@ -91,7 +98,7 @@ export default class OggParser extends Parser {
       this._pageSequenceNumber > 1 &&
       oggPage[pageSequenceNumber] > 1
     ) {
-      this._codecParser.logWarning(
+      this._codecParser[logWarning](
         "Unexpected gap in Ogg Page Sequence Number.",
         `Expected: ${this._pageSequenceNumber + 1}, Got: ${
           oggPage[pageSequenceNumber]
@@ -102,8 +109,8 @@ export default class OggParser extends Parser {
     this._pageSequenceNumber = oggPage[pageSequenceNumber];
   }
 
-  *parseFrame() {
-    const oggPage = yield* this.fixedLengthFrameSync(true);
+  *[parseFrame]() {
+    const oggPage = yield* this[fixedLengthFrameSync](true);
 
     this._checkPageSequenceNumber(oggPage);
 
@@ -130,12 +137,12 @@ export default class OggParser extends Parser {
         oggPageStore[segments][0]
       );
 
-      this._continuedPacket = new Uint8Array();
+      this._continuedPacket = new uint8Array();
     }
 
     if (this._codec || this._checkForIdentifier(oggPage)) {
-      const frame = this._parser.parseOggPage(oggPage);
-      this._codecParser.mapFrameStats(frame);
+      const frame = this._parser[parseOggPage](oggPage);
+      this._codecParser[mapFrameStats](frame);
       return frame;
     }
   }

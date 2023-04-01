@@ -16,7 +16,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { codec } from "../../constants.js";
+import { codec, fixedLengthFrameSync, parseFrame } from "../../constants.js";
 
 import Parser from "../Parser.js";
 import AACFrame from "./AACFrame.js";
@@ -35,7 +35,7 @@ export default class AACParser extends Parser {
     return "aac";
   }
 
-  *parseFrame() {
-    return yield* this.fixedLengthFrameSync();
+  *[parseFrame]() {
+    return yield* this[fixedLengthFrameSync]();
   }
 }

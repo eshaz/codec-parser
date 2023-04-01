@@ -88,6 +88,11 @@ import {
   profileBits,
   channelModeBits,
   buffer,
+  readRawData,
+  getHeader,
+  setHeader,
+  uint8Array,
+  dataView,
 } from "../../constants.js";
 
 import CodecHeader from "../CodecHeader.js";
@@ -157,11 +162,11 @@ const channelModeValues = {
 };
 
 export default class AACHeader extends CodecHeader {
-  static *getHeader(codecParser, headerCache, readOffset) {
+  static *[getHeader](codecParser, headerCache, readOffset) {
     const header = {};
 
     // Must be at least seven bytes. Out of data
-    const data = yield* codecParser.readRawData(7, readOffset);
+    const data = yield* codecParser[readRawData](7, readOffset);
 
     // Check header cache
     const key = bytesToString([
@@ -170,7 +175,7 @@ export default class AACHeader extends CodecHeader {
       data[2],
       (data[3] & 0b11111100) | (data[6] & 0b00000011), // frame length, buffer fullness varies so don't cache it
     ]);
-    const cachedHeader = headerCache.getHeader(key);
+    const cachedHeader = headerCache[getHeader](key);
 
     if (!cachedHeader) {
       // Frame sync (all bits must be set): `11111111|1111`:
@@ -241,7 +246,7 @@ export default class AACHeader extends CodecHeader {
           numberAACFrames,
           ...codecUpdateFields
         } = header;
-        headerCache.setHeader(key, header, codecUpdateFields);
+        headerCache[setHeader](key, header, codecUpdateFields);
       }
     } else {
       Object.assign(header, cachedHeader);
@@ -299,8 +304,8 @@ export default class AACHeader extends CodecHeader {
       (header[sampleRateBits] << 5) |
       (header[channelModeBits] >> 3);
 
-    const bytes = new Uint8Array(2);
-    new DataView(bytes[buffer]).setUint16(0, audioSpecificConfig, false);
+    const bytes = new uint8Array(2);
+    new dataView(bytes[buffer]).setUint16(0, audioSpecificConfig, false);
     return bytes;
   }
 }

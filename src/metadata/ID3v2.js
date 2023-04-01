@@ -18,7 +18,7 @@
 
 // https://id3.org/Developer%20Information
 
-import { length, version } from "../constants.js";
+import { length, version, readRawData } from "../constants.js";
 
 const unsynchronizationFlag = "unsynchronizationFlag";
 const extendedHeaderFlag = "extendedHeaderFlag";
@@ -30,12 +30,12 @@ export default class ID3v2 {
     const headerLength = 10;
     const header = {};
 
-    let data = yield* codecParser.readRawData(3, readOffset);
+    let data = yield* codecParser[readRawData](3, readOffset);
     // Byte (0-2 of 9)
     // ID3
     if (data[0] !== 0x49 || data[1] !== 0x44 || data[2] !== 0x33) return null;
 
-    data = yield* codecParser.readRawData(headerLength, readOffset);
+    data = yield* codecParser[readRawData](headerLength, readOffset);
 
     // Byte (3-4 of 9)
     // * `BBBBBBBB|........`: Major version

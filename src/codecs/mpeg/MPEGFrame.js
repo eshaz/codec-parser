@@ -16,12 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { getFrame } from "../../constants.js";
+
 import CodecFrame from "../CodecFrame.js";
 import MPEGHeader from "./MPEGHeader.js";
 
 export default class MPEGFrame extends CodecFrame {
-  static *getFrame(codecParser, headerCache, readOffset) {
-    return yield* super.getFrame(
+  static *[getFrame](codecParser, headerCache, readOffset) {
+    return yield* super[getFrame](
       MPEGHeader,
       MPEGFrame,
       codecParser,

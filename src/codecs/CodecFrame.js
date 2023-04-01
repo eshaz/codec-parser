@@ -29,12 +29,15 @@ import {
   totalDuration,
   frameLength,
   subarray,
+  readRawData,
+  getFrame,
+  getHeader,
 } from "../constants.js";
 import Frame from "../containers/Frame.js";
 
 export default class CodecFrame extends Frame {
-  static *getFrame(Header, Frame, codecParser, headerCache, readOffset) {
-    const headerValue = yield* Header.getHeader(
+  static *[getFrame](Header, Frame, codecParser, headerCache, readOffset) {
+    const headerValue = yield* Header[getHeader](
       codecParser,
       headerCache,
       readOffset
@@ -44,7 +47,7 @@ export default class CodecFrame extends Frame {
       const frameLengthValue = headerStore.get(headerValue)[frameLength];
       const samplesValue = headerStore.get(headerValue)[samples];
 
-      const frame = (yield* codecParser.readRawData(
+      const frame = (yield* codecParser[readRawData](
         frameLengthValue,
         readOffset
       ))[subarray](0, frameLengthValue);
