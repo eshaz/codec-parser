@@ -145,7 +145,14 @@ export default class VorbisHeader extends CodecHeader {
 
     {
       // set header cache
-      const { length, data, version, ...codecUpdateFields } = header;
+      const {
+        length,
+        data,
+        version,
+        vorbisSetup,
+        vorbisComments,
+        ...codecUpdateFields
+      } = header;
       headerCache[setHeader](key, header, codecUpdateFields);
     }
 
