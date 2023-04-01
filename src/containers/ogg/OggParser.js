@@ -46,9 +46,12 @@ export default class OggParser extends Parser {
 
   _updateCodec(codec, Parser) {
     if (this._codec !== codec) {
-      this._parser = new Parser(this._codecParser, this._headerCache);
+      this._parser = new Parser(
+        this._codecParser,
+        this._headerCache,
+        this._onCodec
+      );
       this._codec = codec;
-      this._onCodec(codec);
     }
   }
 

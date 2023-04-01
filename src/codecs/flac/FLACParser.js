@@ -25,10 +25,12 @@ const MIN_FLAC_FRAME_SIZE = 2;
 const MAX_FLAC_FRAME_SIZE = 512 * 1024;
 
 export default class FLACParser extends Parser {
-  constructor(codecParser, onCodecUpdate) {
-    super(codecParser, onCodecUpdate);
+  constructor(codecParser, headerCache, onCodec) {
+    super(codecParser, headerCache);
     this.Frame = FLACFrame;
     this.Header = FLACHeader;
+
+    onCodec(this.codec);
   }
 
   get codec() {

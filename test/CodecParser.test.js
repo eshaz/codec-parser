@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import fs from "fs/promises";
 import path from "path";
 import { getBuffArray, writeResults } from "./utils.js";
@@ -23,7 +24,9 @@ describe("CodecParser", () => {
       `should parse ${fileName}`,
       async () => {
         const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
-        const codecParser = new CodecParser(mimeType);
+
+        const onCodec = jest.fn();
+        const codecParser = new CodecParser(mimeType, { onCodec });
 
         const actualFileName = `${fileName}_iterator.json`;
         const expectedFileName = `${fileName}_iterator.json`;
@@ -40,6 +43,8 @@ describe("CodecParser", () => {
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
         assertFrames(actualFileName, expectedFileName);
+        expect(onCodec).toBeCalledTimes(1);
+        expect(onCodec).toBeCalledWith(codec);
       },
       20000
     );

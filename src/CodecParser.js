@@ -29,8 +29,8 @@ export default class CodecParser {
   constructor(
     mimeType,
     {
-      onCodecUpdate,
       onCodec,
+      onCodecUpdate,
       enableLogging = false,
       enableFrameCRC32 = true,
     } = {}

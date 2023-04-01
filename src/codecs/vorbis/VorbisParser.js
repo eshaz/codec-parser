@@ -23,9 +23,11 @@ import VorbisFrame from "./VorbisFrame.js";
 import VorbisHeader from "./VorbisHeader.js";
 
 export default class VorbisParser extends Parser {
-  constructor(codecParser, headerCache) {
+  constructor(codecParser, headerCache, onCodec) {
     super(codecParser, headerCache);
     this.Frame = VorbisFrame;
+
+    onCodec(this.codec);
 
     this._identificationHeader = null;
 

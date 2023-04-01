@@ -22,11 +22,12 @@ import OpusFrame from "./OpusFrame.js";
 import OpusHeader from "./OpusHeader.js";
 
 export default class OpusParser extends Parser {
-  constructor(codecParser, headerCache) {
+  constructor(codecParser, headerCache, onCodec) {
     super(codecParser, headerCache);
     this.Frame = OpusFrame;
     this.Header = OpusHeader;
 
+    onCodec(this.codec);
     this._identificationHeader = null;
   }
 
