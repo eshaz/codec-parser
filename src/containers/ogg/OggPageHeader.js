@@ -102,9 +102,9 @@ export default class OggPageHeader {
     const zeros = data[5] & 0b11111000;
     if (zeros) return null;
 
-    header[isLastPage] = Boolean(data[5] & 0b00000100);
-    header[isFirstPage] = Boolean(data[5] & 0b00000010);
-    header[isContinuedPacket] = Boolean(data[5] & 0b00000001);
+    header[isLastPage] = !!(data[5] & 0b00000100);
+    header[isFirstPage] = !!(data[5] & 0b00000010);
+    header[isContinuedPacket] = !!(data[5] & 0b00000001);
 
     const view = new dataView(uint8Array.from(data[subarray](0, 28))[buffer]);
 

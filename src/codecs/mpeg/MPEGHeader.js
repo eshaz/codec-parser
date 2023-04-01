@@ -294,7 +294,7 @@ export default class MPEGHeader extends CodecHeader {
     if (header[sampleRate] === reserved) return null;
 
     header[framePadding] = data[2] & 0b00000010 && layerValues[framePadding];
-    header[isPrivate] = Boolean(data[2] & 0b00000001);
+    header[isPrivate] = !!(data[2] & 0b00000001);
 
     header[frameLength] = Math.floor(
       (125 * header[bitrate] * header[samples]) / header[sampleRate] +
@@ -314,8 +314,8 @@ export default class MPEGHeader extends CodecHeader {
     header[channels] = channelModes[channelModeBits][channels];
 
     header[modeExtension] = layerValues[modeExtension][data[3] & 0b00110000];
-    header[isCopyrighted] = Boolean(data[3] & 0b00001000);
-    header[isOriginal] = Boolean(data[3] & 0b00000100);
+    header[isCopyrighted] = !!(data[3] & 0b00001000);
+    header[isOriginal] = !!(data[3] & 0b00000100);
 
     header[emphasis] = emphasisValues[data[3] & 0b00000011];
     if (header[emphasis] === reserved) return null;

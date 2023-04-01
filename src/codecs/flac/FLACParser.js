@@ -164,7 +164,7 @@ export default class FLACParser extends Parser {
             );
           }
         })
-        .filter((frame) => Boolean(frame));
+        .filter((frame) => !!frame);
     }
 
     return oggPage;

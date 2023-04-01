@@ -209,7 +209,7 @@ export default class AACHeader extends CodecHeader {
       header[sampleRate] = sampleRates[header[sampleRateBits]];
       if (header[sampleRate] === reserved) return null;
 
-      header[isPrivate] = Boolean(privateBit);
+      header[isPrivate] = !!privateBit;
 
       // Byte (3,4 of 7)
       // * `.......H|HH......`: MPEG-4 Channel Configuration (in the case of 0, the channel configuration is sent via an inband PCE)
@@ -224,10 +224,10 @@ export default class AACHeader extends CodecHeader {
       // * `...J....`: home, set to 0 when encoding, ignore when decoding
       // * `....K...`: copyrighted id bit, the next bit of a centrally registered copyright identifier, set to 0 when encoding, ignore when decoding
       // * `.....L..`: copyright id start, signals that this frame's copyright id bit is the first bit of the copyright id, set to 0 when encoding, ignore when decoding
-      header[isOriginal] = Boolean(data[3] & 0b00100000);
-      header[isHome] = Boolean(data[3] & 0b00001000);
-      header[copyrightId] = Boolean(data[3] & 0b00001000);
-      header[copyrightIdStart] = Boolean(data[3] & 0b00000100);
+      header[isOriginal] = !!(data[3] & 0b00100000);
+      header[isHome] = !!(data[3] & 0b00001000);
+      header[copyrightId] = !!(data[3] & 0b00001000);
+      header[copyrightIdStart] = !!(data[3] & 0b00000100);
       header[bitDepth] = 16;
       header[samples] = 1024;
 

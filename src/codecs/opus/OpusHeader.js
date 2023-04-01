@@ -265,8 +265,8 @@ export default class OpusHeader extends CodecHeader {
         break;
       case 3:
         // 3: an arbitrary number of frames in the packet
-        header[isVbr] = Boolean(0b10000000 & packetData[1]);
-        header[hasOpusPadding] = Boolean(0b01000000 & packetData[1]);
+        header[isVbr] = !!(0b10000000 & packetData[1]);
+        header[hasOpusPadding] = !!(0b01000000 & packetData[1]);
         header[frameCount] = 0b00111111 & packetData[1];
         break;
       default:

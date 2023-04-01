@@ -52,10 +52,10 @@ export default class ID3v2 {
     // * `.D......`: Extended header (indicates whether or not the header is followed by an extended header)
     // * `..E.....`: Experimental indicator (indicates whether or not the tag is in an experimental stage)
     // * `...F....`: Footer present (indicates that a footer is present at the very end of the tag)
-    header[unsynchronizationFlag] = Boolean(data[5] & 0b10000000);
-    header[extendedHeaderFlag] = Boolean(data[5] & 0b01000000);
-    header[experimentalFlag] = Boolean(data[5] & 0b00100000);
-    header[footerPresent] = Boolean(data[5] & 0b00010000);
+    header[unsynchronizationFlag] = !!(data[5] & 0b10000000);
+    header[extendedHeaderFlag] = !!(data[5] & 0b01000000);
+    header[experimentalFlag] = !!(data[5] & 0b00100000);
+    header[footerPresent] = !!(data[5] & 0b00010000);
 
     // Byte (6-9 of 9)
     // * `0.......|0.......|0.......|0.......`: Zeros
