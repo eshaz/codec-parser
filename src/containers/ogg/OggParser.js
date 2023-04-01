@@ -25,6 +25,7 @@ import {
   length,
   segments,
   subarray,
+  vorbis,
 } from "../../constants.js";
 
 import Parser from "../../codecs/Parser.js";
@@ -79,7 +80,7 @@ export default class OggParser extends Parser {
         this._updateCodec("flac", FLACParser);
         return true;
       case /^\x01vorbis/.test(idString) && idString:
-        this._updateCodec("vorbis", VorbisParser);
+        this._updateCodec(vorbis, VorbisParser);
         return true;
     }
   }

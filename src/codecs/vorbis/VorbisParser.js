@@ -26,6 +26,7 @@ import {
   pageSequenceNumber,
   codecFrames,
   segments,
+  vorbis,
 } from "../../constants.js";
 
 import Parser from "../Parser.js";
@@ -49,7 +50,7 @@ export default class VorbisParser extends Parser {
   }
 
   get codec() {
-    return "vorbis";
+    return vorbis;
   }
 
   parseOggPage(oggPage) {
@@ -152,8 +153,8 @@ export default class VorbisParser extends Parser {
    */
   _parseSetupHeader(setup) {
     const bitReader = new BitReader(setup);
-    const failedToParseVorbisStream = "Failed to read Vorbis stream";
-    const failedToParseVorbisModes = ", failed to parse vorbis modes";
+    const failedToParseVorbisStream = "Failed to read " + vorbis + " stream";
+    const failedToParseVorbisModes = ", failed to parse " + vorbis + " modes";
 
     let mode = {
       count: 0,

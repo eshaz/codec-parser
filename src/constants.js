@@ -4,16 +4,6 @@ export const free = "free";
 export const none = "none";
 export const sixteenBitCRC = "16bit CRC";
 
-// channel mappings
-const mappingJoin = ", ";
-
-const front = "front";
-const side = "side";
-const rear = "rear";
-const left = "left";
-const center = "center";
-const right = "right";
-
 // prettier-ignore
 /*
 [
@@ -47,40 +37,46 @@ const right = "right";
   ]
 ]
 */
-export const channelMappings = 
-  [
-    "", 
-    front + " ",
-    side + " ",
-    rear + " "
-  ].map((x) =>
-  [
-    [left, right],
-    [left, right, center],
-    [left, center, right],
-    [center, left, right],
-    [center],
-  ].flatMap((y) => y.map((z) => x + z).join(mappingJoin))
-);
+
+const mappingJoin = ", ";
+
+export const channelMappings = (() => {
+  const front = "front";
+  const side = "side";
+  const rear = "rear";
+  const left = "left";
+  const center = "center";
+  const right = "right";
+
+  return ["", front + " ", side + " ", rear + " "].map((x) =>
+    [
+      [left, right],
+      [left, right, center],
+      [left, center, right],
+      [center, left, right],
+      [center],
+    ].flatMap((y) => y.map((z) => x + z).join(mappingJoin))
+  );
+})();
 
 export const lfe = "LFE";
 export const monophonic = "monophonic (mono)";
 export const stereo = "stereo";
 const surround = "surround";
 
-const channelTypes = [
-  monophonic,
-  stereo,
-  `linear ${surround}`,
-  "quadraphonic",
-  `5.0 ${surround}`,
-  `5.1 ${surround}`,
-  `6.1 ${surround}`,
-  `7.1 ${surround}`,
-];
-
 export const getChannelMapping = (channelCount, ...mappings) =>
-  `${channelTypes[channelCount - 1]} (${mappings.join(mappingJoin)})`;
+  `${
+    [
+      monophonic,
+      stereo,
+      `linear ${surround}`,
+      "quadraphonic",
+      `5.0 ${surround}`,
+      `5.1 ${surround}`,
+      `6.1 ${surround}`,
+      `7.1 ${surround}`,
+    ][channelCount - 1]
+  } (${mappings.join(mappingJoin)})`;
 
 // prettier-ignore
 export const vorbisOpusChannelMapping = [
@@ -112,91 +108,109 @@ export const rate8000 = 8000;
 export const rate7350 = 7350;
 
 // header key constants
-export const header = "header";
+export const absoluteGranulePosition = "absoluteGranulePosition";
+export const bandwidth = "bandwidth";
 export const bitDepth = "bitDepth";
-export const channelMode = "channelMode";
-export const sampleRate = "sampleRate";
 export const bitrate = "bitrate";
-export const channels = "channels";
-export const copyrightId = "copyrightId";
-export const copyrightIdStart = "copyrightIdStart";
-export const bufferFullness = "bufferFullness";
+export const bitrateMaximum = bitrate + "Maximum";
+export const bitrateMinimum = bitrate + "Minimum";
+export const bitrateNominal = bitrate + "Nominal";
+export const buffer = "buffer";
+export const bufferFullness = buffer + "Fullness";
+export const codec = "codec";
+export const codecFrames = codec + "Frames";
+export const coupledStreamCount = "coupledStreamCount";
+export const crc = "crc";
+export const crc16 = crc + "16";
+export const crc32 = crc + "32";
+export const data = "data";
+export const description = "description";
+export const duration = "duration";
+export const emphasis = "emphasis";
+export const hasOpusPadding = "hasOpusPadding";
+export const header = "header";
+export const isContinuedPacket = "isContinuedPacket";
+export const isCopyrighted = "isCopyrighted";
+export const isFirstPage = "isFirstPage";
 export const isHome = "isHome";
+export const isLastPage = "isLastPage";
 export const isOriginal = "isOriginal";
 export const isPrivate = "isPrivate";
+export const isVbr = "isVbr";
 export const layer = "layer";
 export const length = "length";
-export const mpegVersion = "mpegVersion";
-export const numberAACFrames = "numberAACFrames";
-export const profile = "profile";
-export const protection = "protection";
-export const crc16 = "crc16";
-export const blockingStrategy = "blockingStrategy";
-export const blockSize = "blockSize";
-export const frameNumber = "frameNumber";
-export const sampleNumber = "sampleNumber";
-export const streamInfo = "streamInfo";
-export const emphasis = "emphasis";
-export const framePadding = "framePadding";
-export const isCopyrighted = "isCopyrighted";
-export const modeExtension = "modeExtension";
-export const bandwidth = "bandwidth";
-export const channelMappingFamily = "channelMappingFamily";
-export const channelMappingTable = "channelMappingTable";
-export const coupledStreamCount = "coupledStreamCount";
-export const frameCount = "frameCount";
-export const frameSize = "frameSize";
-export const hasOpusPadding = "hasOpusPadding";
-export const inputSampleRate = "inputSampleRate";
-export const isVbr = "isVbr";
 export const mode = "mode";
+export const modeExtension = mode + "Extension";
+export const mpeg = "mpeg";
+export const mpegVersion = mpeg + "Version";
+export const numberAACFrames = "numberAAC" + "Frames";
 export const outputGain = "outputGain";
 export const preSkip = "preSkip";
-export const streamCount = "streamCount";
-export const bitrateMaximum = "bitrateMaximum";
-export const bitrateMinimum = "bitrateMinimum";
-export const bitrateNominal = "bitrateNominal";
-export const blocksize0 = "blocksize0";
-export const blocksize1 = "blocksize1";
-export const data = "data";
-export const vorbisComments = "vorbisComments";
-export const vorbisSetup = "vorbisSetup";
-
-export const pageChecksum = "pageChecksum";
-export const codecFrames = "codecFrames";
+export const profile = "profile";
+export const profileBits = profile + "Bits";
+export const protection = "protection";
 export const rawData = "rawData";
-export const absoluteGranulePosition = "absoluteGranulePosition";
-export const crc32 = "crc32";
-export const duration = "duration";
-export const isContinuedPacket = "isContinuedPacket";
-export const isFirstPage = "isFirstPage";
-export const isLastPage = "isLastPage";
-export const pageSequenceNumber = "pageSequenceNumber";
-export const samples = "samples";
-export const streamSerialNumber = "streamSerialNumber";
-export const frameLength = "frameLength";
-export const streamStructureVersion = "streamStructureVersion";
-export const pageSegmentTable = "pageSegmentTable";
-export const pageSegmentBytes = "pageSegmentBytes";
 export const segments = "segments";
-
-export const totalBytesOut = "totalBytesOut";
-export const totalSamples = "totalSamples";
-export const totalDuration = "totalDuration";
-
-export const description = "description";
-export const profileBits = "profileBits";
-export const sampleRateBits = "sampleRateBits";
-export const channelModeBits = "channelModeBits";
-export const blockingStrategyBits = "blockingStrategyBits";
-export const blockSizeBits = "blockSizeBits";
-export const crc = "crc";
-
-export const codec = "codec";
-export const version = "version";
-
-export const buffer = "buffer";
 export const subarray = "subarray";
+export const version = "version";
+export const vorbis = "vorbis";
+export const vorbisComments = vorbis + "Comments";
+export const vorbisSetup = vorbis + "Setup";
 
+const block = "block";
+export const blockingStrategy = block + "ingStrategy";
+export const blockingStrategyBits = block + "ingStrategyBits";
+export const blockSize = block + "Size";
+export const blocksize0 = block + "size0";
+export const blocksize1 = block + "size1";
+export const blockSizeBits = block + "SizeBits";
+
+const channel = "channel";
+export const channelMappingFamily = channel + "MappingFamily";
+export const channelMappingTable = channel + "MappingTable";
+export const channelMode = channel + "Mode";
+export const channelModeBits = channel + "ModeBits";
+export const channels = channel + "s";
+
+const copyright = "copyright";
+export const copyrightId = copyright + "Id";
+export const copyrightIdStart = copyright + "IdStart";
+
+export const frame = "frame";
+export const frameCount = frame + "Count";
+export const frameLength = frame + "Length";
+
+const Number = "Number";
+export const frameNumber = frame + Number;
+export const framePadding = frame + "Padding";
+export const frameSize = frame + "Size";
+
+const Rate = "Rate";
+export const inputSampleRate = "inputSample" + Rate;
+
+const page = "page";
+export const pageChecksum = page + "Checksum";
+export const pageSegmentBytes = page + "SegmentBytes";
+export const pageSegmentTable = page + "SegmentTable";
+export const pageSequenceNumber = page + "Sequence" + Number;
+
+const sample = "sample";
+export const sampleNumber = sample + Number;
+export const sampleRate = sample + Rate;
+export const sampleRateBits = sample + Rate + "Bits";
+export const samples = sample + "s";
+
+const stream = "stream";
+export const streamCount = stream + "Count";
+export const streamInfo = stream + "Info";
+export const streamSerialNumber = stream + "Serial" + Number;
+export const streamStructureVersion = stream + "StructureVersion";
+
+const total = "total";
+export const totalBytesOut = total + "BytesOut";
+export const totalDuration = total + "Duration";
+export const totalSamples = total + "Samples";
+
+// private methods
 export const readRawData = Symbol();
 export const incrementRawData = Symbol();

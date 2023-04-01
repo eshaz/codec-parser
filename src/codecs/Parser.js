@@ -17,7 +17,7 @@
 */
 
 import { frameStore } from "../globals.js";
-import { length } from "../constants.js";
+import { frame, length } from "../constants.js";
 
 /**
  * @abstract
@@ -30,15 +30,15 @@ export default class Parser {
   }
 
   *syncFrame() {
-    let frame;
+    let frameData;
 
     do {
-      frame = yield* this.Frame.getFrame(
+      frameData = yield* this.Frame.getFrame(
         this._codecParser,
         this._headerCache,
         0
       );
-      if (frame) return frame;
+      if (frameData) return frameData;
       this._codecParser.incrementRawData(1); // increment to continue syncing
     } while (true);
   }
@@ -49,8 +49,8 @@ export default class Parser {
    * @returns {Frame}
    */
   *fixedLengthFrameSync(ignoreNextFrame) {
-    let frame = yield* this.syncFrame();
-    const frameLength = frameStore.get(frame)[length];
+    let frameData = yield* this.syncFrame();
+    const frameLength = frameStore.get(frameData)[length];
 
     if (
       ignoreNextFrame ||
@@ -65,13 +65,13 @@ export default class Parser {
       this._headerCache.enable(); // start caching when synced
 
       this._codecParser.incrementRawData(frameLength); // increment to the next frame
-      this._codecParser.mapFrameStats(frame);
-      return frame;
+      this._codecParser.mapFrameStats(frameData);
+      return frameData;
     }
 
     this._codecParser.logWarning(
-      `Missing frame frame at ${frameLength} bytes from current position.`,
-      "Dropping current frame and trying again."
+      `Missing ${frame} at ${frameLength} bytes from current position.`,
+      `Dropping current ${frame} and trying again.`
     );
     this._headerCache.reset(); // frame is invalid and must re-sync and clear cache
     this._codecParser.incrementRawData(1); // increment to invalidate the current frame
