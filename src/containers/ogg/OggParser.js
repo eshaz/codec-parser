@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -18,6 +18,22 @@
 
 import { headerStore, frameStore } from "../../globals.js";
 import { bytesToString, concatBuffers } from "../../utilities.js";
+import {
+  header,
+  pageSequenceNumber,
+  data,
+  length,
+  segments,
+  subarray,
+  vorbis,
+  mapFrameStats,
+  logWarning,
+  fixedLengthFrameSync,
+  parseFrame,
+  parseOggPage,
+  reset,
+  uint8Array,
+} from "../../constants.js";
 
 import Parser from "../../codecs/Parser.js";
 import OggPage from "./OggPage.js";
@@ -35,7 +51,7 @@ export default class OggParser extends Parser {
     this.Frame = OggPage;
     this.Header = OggPageHeader;
     this._codec = null;
-    this._continuedPacket = new Uint8Array();
+    this._continuedPacket = new uint8Array();
 
     this._pageSequenceNumber = 0;
   }
@@ -46,14 +62,18 @@ export default class OggParser extends Parser {
 
   _updateCodec(codec, Parser) {
     if (this._codec !== codec) {
-      this._parser = new Parser(this._codecParser, this._headerCache);
+      this._headerCache[reset]();
+      this._parser = new Parser(
+        this._codecParser,
+        this._headerCache,
+        this._onCodec
+      );
       this._codec = codec;
-      this._onCodec(codec);
     }
   }
 
   _checkForIdentifier({ data }) {
-    const idString = bytesToString(data.subarray(0, 8));
+    const idString = bytesToString(data[subarray](0, 8));
 
     switch (idString) {
       case "fishead\0":
@@ -67,62 +87,62 @@ export default class OggParser extends Parser {
         this._updateCodec("flac", FLACParser);
         return true;
       case /^\x01vorbis/.test(idString) && idString:
-        this._updateCodec("vorbis", VorbisParser);
+        this._updateCodec(vorbis, VorbisParser);
         return true;
     }
   }
 
   _checkPageSequenceNumber(oggPage) {
     if (
-      oggPage.pageSequenceNumber !== this._pageSequenceNumber + 1 &&
+      oggPage[pageSequenceNumber] !== this._pageSequenceNumber + 1 &&
       this._pageSequenceNumber > 1 &&
-      oggPage.pageSequenceNumber > 1
+      oggPage[pageSequenceNumber] > 1
     ) {
-      this._codecParser.logWarning(
+      this._codecParser[logWarning](
         "Unexpected gap in Ogg Page Sequence Number.",
         `Expected: ${this._pageSequenceNumber + 1}, Got: ${
-          oggPage.pageSequenceNumber
+          oggPage[pageSequenceNumber]
         }`
       );
     }
 
-    this._pageSequenceNumber = oggPage.pageSequenceNumber;
+    this._pageSequenceNumber = oggPage[pageSequenceNumber];
   }
 
-  *parseFrame() {
-    const oggPage = yield* this.fixedLengthFrameSync(true);
+  *[parseFrame]() {
+    const oggPage = yield* this[fixedLengthFrameSync](true);
 
     this._checkPageSequenceNumber(oggPage);
 
     const oggPageStore = frameStore.get(oggPage);
     const { pageSegmentBytes, pageSegmentTable } = headerStore.get(
-      oggPageStore.header
+      oggPageStore[header]
     );
 
     let offset = 0;
 
-    oggPageStore.segments = pageSegmentTable.map((segmentLength) =>
-      oggPage.data.subarray(offset, (offset += segmentLength))
+    oggPageStore[segments] = pageSegmentTable.map((segmentLength) =>
+      oggPage[data][subarray](offset, (offset += segmentLength))
     );
 
-    if (pageSegmentBytes[pageSegmentBytes.length - 1] === 0xff) {
+    if (pageSegmentBytes[pageSegmentBytes[length] - 1] === 0xff) {
       // continued packet
       this._continuedPacket = concatBuffers(
         this._continuedPacket,
-        oggPageStore.segments.pop()
+        oggPageStore[segments].pop()
       );
-    } else if (this._continuedPacket.length) {
-      oggPageStore.segments[0] = concatBuffers(
+    } else if (this._continuedPacket[length]) {
+      oggPageStore[segments][0] = concatBuffers(
         this._continuedPacket,
-        oggPageStore.segments[0]
+        oggPageStore[segments][0]
       );
 
-      this._continuedPacket = new Uint8Array();
+      this._continuedPacket = new uint8Array();
     }
 
     if (this._codec || this._checkForIdentifier(oggPage)) {
-      const frame = this._parser.parseOggPage(oggPage);
-      this._codecParser.mapFrameStats(frame);
+      const frame = this._parser[parseOggPage](oggPage);
+      this._codecParser[mapFrameStats](frame);
       return frame;
     }
   }

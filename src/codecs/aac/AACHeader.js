@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -65,28 +65,56 @@ import {
   getChannelMapping,
   monophonic,
   lfe,
+  bitDepth,
+  channelMode,
+  sampleRate,
+  channels,
+  copyrightId,
+  copyrightIdStart,
+  bufferFullness,
+  isHome,
+  isOriginal,
+  isPrivate,
+  layer,
+  length,
+  mpegVersion,
+  numberAACFrames,
+  profile,
+  protection,
+  frameLength,
+  description,
+  samples,
+  sampleRateBits,
+  profileBits,
+  channelModeBits,
+  buffer,
+  readRawData,
+  getHeader,
+  setHeader,
+  uint8Array,
+  dataView,
 } from "../../constants.js";
 
 import CodecHeader from "../CodecHeader.js";
 
-const mpegVersion = {
+const mpegVersionValues = {
   0b00000000: "MPEG-4",
   0b00001000: "MPEG-2",
 };
 
-const layer = {
+const layerValues = {
   0b00000000: "valid",
   0b00000010: bad,
   0b00000100: bad,
   0b00000110: bad,
 };
 
-const protection = {
+const protectionValues = {
   0b00000000: sixteenBitCRC,
   0b00000001: none,
 };
 
-const profile = {
+const profileValues = {
   0b00000000: "AAC Main",
   0b01000000: "AAC LC (Low Complexity)",
   0b10000000: "AAC SSR (Scalable Sample Rate)",
@@ -113,8 +141,8 @@ const sampleRates = {
 };
 
 // prettier-ignore
-const channelMode = {
-  0b000000000: { channels: 0, description: "Defined in AOT Specific Config" },
+const channelModeValues = {
+  0b000000000: { [channels]: 0, [description]: "Defined in AOT Specific Config" },
   /*
   'monophonic (mono)'
   'stereo (left, right)'
@@ -124,21 +152,21 @@ const channelMode = {
   '5.1 surround (front center, front left, front right, rear left, rear right, LFE)'
   '7.1 surround (front center, front left, front right, side left, side right, rear left, rear right, LFE)'
   */
-  0b001000000: { channels: 1, description: monophonic },
-  0b010000000: { channels: 2, description: getChannelMapping(2,channelMappings[0][0]) },
-  0b011000000: { channels: 3, description: getChannelMapping(3,channelMappings[1][3]), },
-  0b100000000: { channels: 4, description: getChannelMapping(4,channelMappings[1][3],channelMappings[3][4]), },
-  0b101000000: { channels: 5, description: getChannelMapping(5,channelMappings[1][3],channelMappings[3][0]), },
-  0b110000000: { channels: 6, description: getChannelMapping(6,channelMappings[1][3],channelMappings[3][0],lfe), },
-  0b111000000: { channels: 8, description: getChannelMapping(8,channelMappings[1][3],channelMappings[2][0],channelMappings[3][0],lfe), },
+  0b001000000: { [channels]: 1, [description]: monophonic },
+  0b010000000: { [channels]: 2, [description]: getChannelMapping(2,channelMappings[0][0]) },
+  0b011000000: { [channels]: 3, [description]: getChannelMapping(3,channelMappings[1][3]), },
+  0b100000000: { [channels]: 4, [description]: getChannelMapping(4,channelMappings[1][3],channelMappings[3][4]), },
+  0b101000000: { [channels]: 5, [description]: getChannelMapping(5,channelMappings[1][3],channelMappings[3][0]), },
+  0b110000000: { [channels]: 6, [description]: getChannelMapping(6,channelMappings[1][3],channelMappings[3][0],lfe), },
+  0b111000000: { [channels]: 8, [description]: getChannelMapping(8,channelMappings[1][3],channelMappings[2][0],channelMappings[3][0],lfe), },
 };
 
 export default class AACHeader extends CodecHeader {
-  static *getHeader(codecParser, headerCache, readOffset) {
+  static *[getHeader](codecParser, headerCache, readOffset) {
     const header = {};
 
     // Must be at least seven bytes. Out of data
-    const data = yield* codecParser.readRawData(7, readOffset);
+    const data = yield* codecParser[readRawData](7, readOffset);
 
     // Check header cache
     const key = bytesToString([
@@ -147,7 +175,7 @@ export default class AACHeader extends CodecHeader {
       data[2],
       (data[3] & 0b11111100) | (data[6] & 0b00000011), // frame length, buffer fullness varies so don't cache it
     ]);
-    const cachedHeader = headerCache.getHeader(key);
+    const cachedHeader = headerCache[getHeader](key);
 
     if (!cachedHeader) {
       // Frame sync (all bits must be set): `11111111|1111`:
@@ -158,36 +186,37 @@ export default class AACHeader extends CodecHeader {
       // * `....B...`: MPEG Version: 0 for MPEG-4, 1 for MPEG-2
       // * `.....CC.`: Layer: always 0
       // * `.......D`: protection absent, Warning, set to 1 if there is no CRC and 0 if there is CRC
-      header.mpegVersion = mpegVersion[data[1] & 0b00001000];
+      header[mpegVersion] = mpegVersionValues[data[1] & 0b00001000];
 
-      header.layer = layer[data[1] & 0b00000110];
-      if (header.layer === bad) return null;
+      header[layer] = layerValues[data[1] & 0b00000110];
+      if (header[layer] === bad) return null;
 
       const protectionBit = data[1] & 0b00000001;
-      header.protection = protection[protectionBit];
-      header.length = protectionBit ? 7 : 9;
+      header[protection] = protectionValues[protectionBit];
+      header[length] = protectionBit ? 7 : 9;
 
       // Byte (3 of 7)
       // * `EEFFFFGH`
       // * `EE......`: profile, the MPEG-4 Audio Object Type minus 1
       // * `..FFFF..`: MPEG-4 Sampling Frequency Index (15 is forbidden)
       // * `......G.`: private bit, guaranteed never to be used by MPEG, set to 0 when encoding, ignore when decoding
-      header.profileBits = data[2] & 0b11000000;
-      header.sampleRateBits = data[2] & 0b00111100;
+      header[profileBits] = data[2] & 0b11000000;
+      header[sampleRateBits] = data[2] & 0b00111100;
       const privateBit = data[2] & 0b00000010;
 
-      header.profile = profile[header.profileBits];
+      header[profile] = profileValues[header[profileBits]];
 
-      header.sampleRate = sampleRates[header.sampleRateBits];
-      if (header.sampleRate === reserved) return null;
+      header[sampleRate] = sampleRates[header[sampleRateBits]];
+      if (header[sampleRate] === reserved) return null;
 
-      header.isPrivate = Boolean(privateBit);
+      header[isPrivate] = !!privateBit;
 
       // Byte (3,4 of 7)
       // * `.......H|HH......`: MPEG-4 Channel Configuration (in the case of 0, the channel configuration is sent via an inband PCE)
-      header.channelModeBits = ((data[2] << 8) | data[3]) & 0b111000000;
-      header.channelMode = channelMode[header.channelModeBits].description;
-      header.channels = channelMode[header.channelModeBits].channels;
+      header[channelModeBits] = ((data[2] << 8) | data[3]) & 0b111000000;
+      header[channelMode] =
+        channelModeValues[header[channelModeBits]][description];
+      header[channels] = channelModeValues[header[channelModeBits]][channels];
 
       // Byte (4 of 7)
       // * `HHIJKLMM`
@@ -195,42 +224,44 @@ export default class AACHeader extends CodecHeader {
       // * `...J....`: home, set to 0 when encoding, ignore when decoding
       // * `....K...`: copyrighted id bit, the next bit of a centrally registered copyright identifier, set to 0 when encoding, ignore when decoding
       // * `.....L..`: copyright id start, signals that this frame's copyright id bit is the first bit of the copyright id, set to 0 when encoding, ignore when decoding
-      header.isOriginal = Boolean(data[3] & 0b00100000);
-      header.isHome = Boolean(data[3] & 0b00001000);
-      header.copyrightId = Boolean(data[3] & 0b00001000);
-      header.copyrightIdStart = Boolean(data[3] & 0b00000100);
-      header.bitDepth = 16;
-      header.samples = 1024;
+      header[isOriginal] = !!(data[3] & 0b00100000);
+      header[isHome] = !!(data[3] & 0b00001000);
+      header[copyrightId] = !!(data[3] & 0b00001000);
+      header[copyrightIdStart] = !!(data[3] & 0b00000100);
+      header[bitDepth] = 16;
+      header[samples] = 1024;
 
       // Byte (7 of 7)
       // * `......PP` Number of AAC frames (RDBs) in ADTS frame minus 1, for maximum compatibility always use 1 AAC frame per ADTS frame
-      header.numberAACFrames = data[6] & 0b00000011;
+      header[numberAACFrames] = data[6] & 0b00000011;
 
-      const {
-        length,
-        channelModeBits,
-        profileBits,
-        sampleRateBits,
-        frameLength,
-        samples,
-        numberAACFrames,
-        ...codecUpdateFields
-      } = header;
-      headerCache.setHeader(key, header, codecUpdateFields);
+      {
+        const {
+          length,
+          channelModeBits,
+          profileBits,
+          sampleRateBits,
+          frameLength,
+          samples,
+          numberAACFrames,
+          ...codecUpdateFields
+        } = header;
+        headerCache[setHeader](key, header, codecUpdateFields);
+      }
     } else {
       Object.assign(header, cachedHeader);
     }
 
     // Byte (4,5,6 of 7)
     // * `.......MM|MMMMMMMM|MMM.....`: frame length, this value must include 7 or 9 bytes of header length: FrameLength = (ProtectionAbsent == 1 ? 7 : 9) + size(AACFrame)
-    header.frameLength =
+    header[frameLength] =
       ((data[3] << 11) | (data[4] << 3) | (data[5] >> 5)) & 0x1fff;
-    if (!header.frameLength) return null;
+    if (!header[frameLength]) return null;
 
     // Byte (6,7 of 7)
     // * `...OOOOO|OOOOOO..`: Buffer fullness
     const bufferFullnessBits = ((data[5] << 6) | (data[6] >> 2)) & 0x7ff;
-    header.bufferFullness =
+    header[bufferFullness] =
       bufferFullnessBits === 0x7ff ? "VBR" : bufferFullnessBits;
 
     return new AACHeader(header);
@@ -243,18 +274,18 @@ export default class AACHeader extends CodecHeader {
   constructor(header) {
     super(header);
 
-    this.copyrightId = header.copyrightId;
-    this.copyrightIdStart = header.copyrightIdStart;
-    this.bufferFullness = header.bufferFullness;
-    this.isHome = header.isHome;
-    this.isOriginal = header.isOriginal;
-    this.isPrivate = header.isPrivate;
-    this.layer = header.layer;
-    this.length = header.length;
-    this.mpegVersion = header.mpegVersion;
-    this.numberAACFrames = header.numberAACFrames;
-    this.profile = header.profile;
-    this.protection = header.protection;
+    this[copyrightId] = header[copyrightId];
+    this[copyrightIdStart] = header[copyrightIdStart];
+    this[bufferFullness] = header[bufferFullness];
+    this[isHome] = header[isHome];
+    this[isOriginal] = header[isOriginal];
+    this[isPrivate] = header[isPrivate];
+    this[layer] = header[layer];
+    this[length] = header[length];
+    this[mpegVersion] = header[mpegVersion];
+    this[numberAACFrames] = header[numberAACFrames];
+    this[profile] = header[profile];
+    this[protection] = header[protection];
   }
 
   get audioSpecificConfig() {
@@ -269,12 +300,12 @@ export default class AACHeader extends CodecHeader {
     const header = headerStore.get(this);
 
     const audioSpecificConfig =
-      ((header.profileBits + 0x40) << 5) |
-      (header.sampleRateBits << 5) |
-      (header.channelModeBits >> 3);
+      ((header[profileBits] + 0x40) << 5) |
+      (header[sampleRateBits] << 5) |
+      (header[channelModeBits] >> 3);
 
-    const bytes = new Uint8Array(2);
-    new DataView(bytes.buffer).setUint16(0, audioSpecificConfig, false);
+    const bytes = new uint8Array(2);
+    new dataView(bytes[buffer]).setUint16(0, audioSpecificConfig, false);
     return bytes;
   }
 }

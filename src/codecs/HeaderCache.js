@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -16,25 +16,35 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import {
+  getHeader,
+  setHeader,
+  checkCodecUpdate,
+  reset,
+  enable,
+} from "../constants.js";
+
 export default class HeaderCache {
-  constructor(onCodecUpdate) {
+  constructor(onCodecHeader, onCodecUpdate) {
+    this._onCodecHeader = onCodecHeader;
     this._onCodecUpdate = onCodecUpdate;
-    this.reset();
+    this[reset]();
   }
 
-  enable() {
+  [enable]() {
     this._isEnabled = true;
   }
 
-  reset() {
+  [reset]() {
     this._headerCache = new Map();
     this._codecUpdateData = new WeakMap();
+    this._codecHeaderSent = false;
     this._codecShouldUpdate = false;
     this._bitrate = null;
     this._isEnabled = false;
   }
 
-  checkCodecUpdate(bitrate, totalDuration) {
+  [checkCodecUpdate](bitrate, totalDuration) {
     if (this._onCodecUpdate) {
       if (this._bitrate !== bitrate) {
         this._bitrate = bitrate;
@@ -60,29 +70,33 @@ export default class HeaderCache {
     }
   }
 
-  updateCurrentHeader(key) {
-    if (this._onCodecUpdate && key !== this._currentHeader) {
-      this._codecShouldUpdate = true;
-      this._currentHeader = key;
-    }
-  }
-
-  getHeader(key) {
+  [getHeader](key) {
     const header = this._headerCache.get(key);
 
     if (header) {
-      this.updateCurrentHeader(key);
+      this._updateCurrentHeader(key);
     }
 
     return header;
   }
 
-  setHeader(key, header, codecUpdateFields) {
+  [setHeader](key, header, codecUpdateFields) {
     if (this._isEnabled) {
-      this.updateCurrentHeader(key);
+      if (!this._codecHeaderSent) {
+        this._onCodecHeader({ ...header });
+        this._codecHeaderSent = true;
+      }
+      this._updateCurrentHeader(key);
 
       this._headerCache.set(key, header);
       this._codecUpdateData.set(header, codecUpdateFields);
+    }
+  }
+
+  _updateCurrentHeader(key) {
+    if (this._onCodecUpdate && key !== this._currentHeader) {
+      this._codecShouldUpdate = true;
+      this._currentHeader = key;
     }
   }
 }

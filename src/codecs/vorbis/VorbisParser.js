@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -18,14 +18,31 @@
 
 import { frameStore } from "../../globals.js";
 import { BitReader, reverse } from "../../utilities.js";
+import {
+  data,
+  codec,
+  blocksize0,
+  blocksize1,
+  pageSequenceNumber,
+  codecFrames,
+  segments,
+  vorbis,
+  logError,
+  parseOggPage,
+  enable,
+  getHeaderFromUint8Array,
+} from "../../constants.js";
+
 import Parser from "../Parser.js";
 import VorbisFrame from "./VorbisFrame.js";
 import VorbisHeader from "./VorbisHeader.js";
 
 export default class VorbisParser extends Parser {
-  constructor(codecParser, headerCache) {
+  constructor(codecParser, headerCache, onCodec) {
     super(codecParser, headerCache);
     this.Frame = VorbisFrame;
+
+    onCodec(this[codec]);
 
     this._identificationHeader = null;
 
@@ -37,18 +54,18 @@ export default class VorbisParser extends Parser {
   }
 
   get codec() {
-    return "vorbis";
+    return vorbis;
   }
 
-  parseOggPage(oggPage) {
-    const oggPageSegments = frameStore.get(oggPage).segments;
+  [parseOggPage](oggPage) {
+    const oggPageSegments = frameStore.get(oggPage)[segments];
 
-    if (oggPage.pageSequenceNumber === 0) {
+    if (oggPage[pageSequenceNumber] === 0) {
       // Identification header
 
-      this._headerCache.enable();
-      this._identificationHeader = oggPage.data;
-    } else if (oggPage.pageSequenceNumber === 1) {
+      this._headerCache[enable]();
+      this._identificationHeader = oggPage[data];
+    } else if (oggPage[pageSequenceNumber] === 1) {
       // gather WEBM CodecPrivate data
       if (oggPageSegments[1]) {
         this._vorbisComments = oggPageSegments[0];
@@ -57,16 +74,15 @@ export default class VorbisParser extends Parser {
         this._mode = this._parseSetupHeader(oggPageSegments[1]);
       }
     } else {
-      oggPage.codecFrames = oggPageSegments.map((segment) => {
-        const header = VorbisHeader.getHeaderFromUint8Array(
+      oggPage[codecFrames] = oggPageSegments.map((segment) => {
+        const header = VorbisHeader[getHeaderFromUint8Array](
           this._identificationHeader,
-          this._headerCache
+          this._headerCache,
+          this._vorbisComments,
+          this._vorbisSetup
         );
 
         if (header) {
-          header.vorbisComments = this._vorbisComments;
-          header.vorbisSetup = this._vorbisSetup;
-
           return new VorbisFrame(
             segment,
             header,
@@ -74,7 +90,7 @@ export default class VorbisParser extends Parser {
           );
         }
 
-        this._codecParser.logError(
+        this._codecParser[logError](
           "Failed to parse Ogg Vorbis Header",
           "Not a valid Ogg Vorbis file"
         );
@@ -92,15 +108,15 @@ export default class VorbisParser extends Parser {
     // is this a large window
     if (blockFlag) {
       this._prevBlockSize =
-        byte & this._mode.prevMask ? header.blocksize1 : header.blocksize0;
+        byte & this._mode.prevMask ? header[blocksize1] : header[blocksize0];
     }
 
-    this._currBlockSize = blockFlag ? header.blocksize1 : header.blocksize0;
+    this._currBlockSize = blockFlag ? header[blocksize1] : header[blocksize0];
 
-    const samples = (this._prevBlockSize + this._currBlockSize) >> 2;
+    const samplesValue = (this._prevBlockSize + this._currBlockSize) >> 2;
     this._prevBlockSize = this._currBlockSize;
 
-    return samples;
+    return samplesValue;
   }
 
   // https://gitlab.xiph.org/xiph/liboggz/-/blob/master/src/liboggz/oggz_auto.c
@@ -141,8 +157,8 @@ export default class VorbisParser extends Parser {
    */
   _parseSetupHeader(setup) {
     const bitReader = new BitReader(setup);
-    const failedToParseVorbisStream = "Failed to read Vorbis stream";
-    const failedToParseVorbisModes = ", failed to parse vorbis modes";
+    const failedToParseVorbisStream = "Failed to read " + vorbis + " stream";
+    const failedToParseVorbisModes = ", failed to parse " + vorbis + " modes";
 
     let mode = {
       count: 0,
@@ -160,7 +176,7 @@ export default class VorbisParser extends Parser {
         mapping in mode &&
         !(mode.count === 1 && mapping === 0) // allows for the possibility of only one mode
       ) {
-        this._codecParser.logError(
+        this._codecParser[logError](
           "received duplicate mode mapping" + failedToParseVorbisModes
         );
         throw new Error(failedToParseVorbisStream);
@@ -180,7 +196,7 @@ export default class VorbisParser extends Parser {
         // transform type and window type were not all zeros
         // check for mode count using previous iteration modeBits
         if (((reverse(modeBits) & 0b01111110) >> 1) + 1 !== mode.count) {
-          this._codecParser.logError(
+          this._codecParser[logError](
             "mode count did not match actual modes" + failedToParseVorbisModes
           );
           throw new Error(failedToParseVorbisStream);

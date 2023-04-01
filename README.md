@@ -167,6 +167,8 @@ The demo for [`icecast-metadata-js`](https://github.com/eshaz/icecast-metadata-j
   * `options` *optional*
     * `options.onCodec()` *optional* Called when the output codec is determined.
       * See `parser.codec` for a list of the possible output codecs
+    * `options.onCodecHeader(codecHeaderData)` *optional* Called once when the codec header is first parsed.
+      * `codecHeaderData` Object containing codec header information.
     * `options.onCodecUpdate(codecHeaderData, updateTimestamp)` *optional* Called when there is a change in the codec header.
       * `codecHeaderData` Object containing codec header information that was updated.
       * `updateTimestamp` Timestamp in milliseconds when the codec information was updated.

@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -16,12 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { getFrame } from "../../constants.js";
+
 import CodecFrame from "../CodecFrame.js";
 import AACHeader from "./AACHeader.js";
 
 export default class AACFrame extends CodecFrame {
-  static *getFrame(codecParser, headerCache, readOffset) {
-    return yield* super.getFrame(
+  static *[getFrame](codecParser, headerCache, readOffset) {
+    return yield* super[getFrame](
       AACHeader,
       AACFrame,
       codecParser,

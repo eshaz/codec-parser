@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -17,16 +17,28 @@
 */
 
 import { frameStore } from "../../globals.js";
+import {
+  codecFrames,
+  data,
+  pageSequenceNumber,
+  codec,
+  segments,
+  logError,
+  parseOggPage,
+  enable,
+  getHeaderFromUint8Array,
+} from "../../constants.js";
 import Parser from "../Parser.js";
 import OpusFrame from "./OpusFrame.js";
 import OpusHeader from "./OpusHeader.js";
 
 export default class OpusParser extends Parser {
-  constructor(codecParser, headerCache) {
+  constructor(codecParser, headerCache, onCodec) {
     super(codecParser, headerCache);
     this.Frame = OpusFrame;
     this.Header = OpusHeader;
 
+    onCodec(this[codec]);
     this._identificationHeader = null;
   }
 
@@ -37,29 +49,31 @@ export default class OpusParser extends Parser {
   /**
    * @todo implement continued page support
    */
-  parseOggPage(oggPage) {
-    if (oggPage.pageSequenceNumber === 0) {
+  [parseOggPage](oggPage) {
+    if (oggPage[pageSequenceNumber] === 0) {
       // Identification header
 
-      this._headerCache.enable();
-      this._identificationHeader = oggPage.data;
-    } else if (oggPage.pageSequenceNumber === 1) {
+      this._headerCache[enable]();
+      this._identificationHeader = oggPage[data];
+    } else if (oggPage[pageSequenceNumber] === 1) {
       // OpusTags
     } else {
-      oggPage.codecFrames = frameStore.get(oggPage).segments.map((segment) => {
-        const header = OpusHeader.getHeaderFromUint8Array(
-          this._identificationHeader,
-          segment,
-          this._headerCache
-        );
+      oggPage[codecFrames] = frameStore
+        .get(oggPage)
+        [segments].map((segment) => {
+          const header = OpusHeader[getHeaderFromUint8Array](
+            this._identificationHeader,
+            segment,
+            this._headerCache
+          );
 
-        if (header) return new OpusFrame(segment, header);
+          if (header) return new OpusFrame(segment, header);
 
-        this._codecParser.logError(
-          "Failed to parse Ogg Opus Header",
-          "Not a valid Ogg Opus file"
-        );
-      });
+          this._codecParser[logError](
+            "Failed to parse Ogg Opus Header",
+            "Not a valid Ogg Opus file"
+          );
+        });
     }
 
     return oggPage;

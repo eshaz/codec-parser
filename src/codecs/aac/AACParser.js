@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -16,6 +16,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import { codec, fixedLengthFrameSync, parseFrame } from "../../constants.js";
+
 import Parser from "../Parser.js";
 import AACFrame from "./AACFrame.js";
 import AACHeader from "./AACHeader.js";
@@ -26,14 +28,14 @@ export default class AACParser extends Parser {
     this.Frame = AACFrame;
     this.Header = AACHeader;
 
-    onCodec(this.codec);
+    onCodec(this[codec]);
   }
 
   get codec() {
     return "aac";
   }
 
-  *parseFrame() {
-    return yield* this.fixedLengthFrameSync();
+  *[parseFrame]() {
+    return yield* this[fixedLengthFrameSync]();
   }
 }

@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -17,6 +17,13 @@
 */
 
 import { headerStore } from "../globals.js";
+import {
+  bitDepth,
+  channelMode,
+  sampleRate,
+  bitrate,
+  channels,
+} from "../constants.js";
 
 export default class CodecHeader {
   /**
@@ -25,10 +32,10 @@ export default class CodecHeader {
   constructor(header) {
     headerStore.set(this, header);
 
-    this.bitDepth = header.bitDepth;
-    this.bitrate = null; // set during frame mapping
-    this.channels = header.channels;
-    this.channelMode = header.channelMode;
-    this.sampleRate = header.sampleRate;
+    this[bitDepth] = header[bitDepth];
+    this[bitrate] = null; // set during frame mapping
+    this[channels] = header[channels];
+    this[channelMode] = header[channelMode];
+    this[sampleRate] = header[sampleRate];
   }
 }

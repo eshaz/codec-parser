@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -17,42 +17,58 @@
 */
 
 import { frameStore, headerStore } from "../globals.js";
+import {
+  sampleRate,
+  length,
+  frameNumber,
+  header,
+  samples,
+  duration,
+  totalBytesOut,
+  totalSamples,
+  totalDuration,
+  frameLength,
+  subarray,
+  readRawData,
+  getFrame,
+  getHeader,
+} from "../constants.js";
 import Frame from "../containers/Frame.js";
 
 export default class CodecFrame extends Frame {
-  static *getFrame(Header, Frame, codecParser, headerCache, readOffset) {
-    const header = yield* Header.getHeader(
+  static *[getFrame](Header, Frame, codecParser, headerCache, readOffset) {
+    const headerValue = yield* Header[getHeader](
       codecParser,
       headerCache,
       readOffset
     );
 
-    if (header) {
-      const frameLength = headerStore.get(header).frameLength;
-      const samples = headerStore.get(header).samples;
+    if (headerValue) {
+      const frameLengthValue = headerStore.get(headerValue)[frameLength];
+      const samplesValue = headerStore.get(headerValue)[samples];
 
-      const frame = (yield* codecParser.readRawData(
-        frameLength,
+      const frame = (yield* codecParser[readRawData](
+        frameLengthValue,
         readOffset
-      )).subarray(0, frameLength);
+      ))[subarray](0, frameLengthValue);
 
-      return new Frame(header, frame, samples);
+      return new Frame(headerValue, frame, samplesValue);
     } else {
       return null;
     }
   }
 
-  constructor(header, data, samples) {
-    super(header, data);
+  constructor(headerValue, dataValue, samplesValue) {
+    super(headerValue, dataValue);
 
-    this.header = header;
-    this.samples = samples;
-    this.duration = (samples / header.sampleRate) * 1000;
-    this.frameNumber = null;
-    this.totalBytesOut = null;
-    this.totalSamples = null;
-    this.totalDuration = null;
+    this[header] = headerValue;
+    this[samples] = samplesValue;
+    this[duration] = (samplesValue / headerValue[sampleRate]) * 1000;
+    this[frameNumber] = null;
+    this[totalBytesOut] = null;
+    this[totalSamples] = null;
+    this[totalDuration] = null;
 
-    frameStore.get(this).length = data.length;
+    frameStore.get(this)[length] = dataValue[length];
   }
 }

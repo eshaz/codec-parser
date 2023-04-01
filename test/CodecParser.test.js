@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import fs from "fs/promises";
 import path from "path";
 import { getBuffArray, writeResults } from "./utils.js";
@@ -18,12 +19,26 @@ describe("CodecParser", () => {
     expect(actualFrames).toEqual(expectedFrames);
   };
 
-  const testParser = (fileName, mimeType, codec, dataOffset) => {
+  const testParser = (
+    fileName,
+    mimeType,
+    codec,
+    codecUpdateCount,
+    dataOffset
+  ) => {
     it.concurrent(
       `should parse ${fileName}`,
       async () => {
         const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
-        const codecParser = new CodecParser(mimeType);
+
+        const onCodec = jest.fn();
+        const onCodecHeader = jest.fn();
+        const onCodecUpdate = jest.fn();
+        const codecParser = new CodecParser(mimeType, {
+          onCodec,
+          onCodecHeader,
+          onCodecUpdate,
+        });
 
         const actualFileName = `${fileName}_iterator.json`;
         const expectedFileName = `${fileName}_iterator.json`;
@@ -40,6 +55,13 @@ describe("CodecParser", () => {
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
         assertFrames(actualFileName, expectedFileName);
+
+        expect(onCodec).toBeCalledTimes(1);
+        expect(onCodec).toBeCalledWith(codec);
+
+        expect(onCodecHeader).toBeCalledTimes(1);
+
+        expect(onCodecUpdate).toBeCalledTimes(codecUpdateCount);
       },
       20000
     );
@@ -149,20 +171,32 @@ describe("CodecParser", () => {
   };
 
   describe("MP3 CBR", () => {
-    testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg", 45);
+    testParser("mpeg.cbr.mp3", "audio/mpeg", "mpeg", 573, 45);
   });
 
   describe("MP3 VBR", () => {
-    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg", 45);
+    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg", 2212, 45);
   });
 
   describe("AAC", () => {
-    testParser("aac.aac", "audio/aac", "aac", 0);
-    testParser("aac.320", "audio/aac", "aac");
+    testParser("aac.aac", "audio/aac", "aac", 2199, 0);
+    testParser("aac.320", "audio/aac", "aac", 1939);
+
+    it("should return the correct audioSpecificConfig", async () => {
+      const file = await fs.readFile(path.join(TEST_DATA_PATH, "aac.aac"));
+
+      const codecParser = new CodecParser("audio/aac");
+      const frames = [...codecParser.parseChunk(file.subarray(0, 1000))];
+
+      const audioSpecificConfig = frames[0].header.audioSpecificConfig;
+
+      expect(audioSpecificConfig[0]).toEqual(0b00010010);
+      expect(audioSpecificConfig[1]).toEqual(0b00010000);
+    });
   });
 
   describe("Flac", () => {
-    testParser("flac.flac", "audio/flac", "flac", 8430);
+    testParser("flac.flac", "audio/flac", "flac", 761, 8430);
   });
 
   describe("Ogg", () => {
@@ -212,28 +246,28 @@ describe("CodecParser", () => {
     });
 
     describe("Ogg Flac", () => {
-      testParser("ogg.flac", mimeType, "flac", 0);
-      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 0);
-      testParser("ogg.flac.samplerate_12345", mimeType, "flac", 0);
-      testParser("ogg.flac.blocksize_65535", mimeType, "flac", 0);
-      testParser("ogg.flac.blocksize_64", mimeType, "flac", 0);
-      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 0);
-      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac", 0);
-      testParser("ogg.flac.utf8_frame_number", mimeType, "flac", 0);
+      testParser("ogg.flac", mimeType, "flac", 742, 0);
+      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 216, 0);
+      testParser("ogg.flac.samplerate_12345", mimeType, "flac", 178, 0);
+      testParser("ogg.flac.blocksize_65535", mimeType, "flac", 13, 0);
+      testParser("ogg.flac.blocksize_64", mimeType, "flac", 13137, 0);
+      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 445, 0);
+      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac", 478, 0);
+      testParser("ogg.flac.utf8_frame_number", mimeType, "flac", 106, 0);
     });
 
     describe("Ogg Opus", () => {
-      testParser("ogg.opus", mimeType, "opus", 0);
-      testParser("ogg.opus.framesize_40", mimeType, "opus", 0);
-      testParser("ogg.opus.framesize_60", mimeType, "opus", 0);
-      testParser("ogg.opus.surround", mimeType, "opus", 0);
-      testParser("ogg.opus.channel_family_255", mimeType, "opus", 0);
+      testParser("ogg.opus", mimeType, "opus", 1741, 0);
+      testParser("ogg.opus.framesize_40", mimeType, "opus", 346, 0);
+      testParser("ogg.opus.framesize_60", mimeType, "opus", 251, 0);
+      testParser("ogg.opus.surround", mimeType, "opus", 737, 0);
+      testParser("ogg.opus.channel_family_255", mimeType, "opus", 277, 0);
     });
 
     describe("Ogg Vorbis", () => {
-      testParser("ogg.vorbis", mimeType, "vorbis", 0);
-      testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis");
-      testParser("ogg.vorbis.fishead", mimeType, "vorbis");
+      testParser("ogg.vorbis", mimeType, "vorbis", 2441, 0);
+      testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis", 1647);
+      testParser("ogg.vorbis.fishead", mimeType, "vorbis", 1365);
     });
   });
 

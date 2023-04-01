@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -16,7 +16,32 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { crc32, concatBuffers } from "./utilities.js";
+import { crc32Function, concatBuffers } from "./utilities.js";
+import {
+  header,
+  sampleRate,
+  bitrate,
+  length,
+  frameNumber,
+  data,
+  samples,
+  codec,
+  codecFrames,
+  totalBytesOut,
+  totalSamples,
+  totalDuration,
+  crc32,
+  duration,
+  subarray,
+  readRawData,
+  incrementRawData,
+  mapCodecFrameStats,
+  mapFrameStats,
+  logWarning,
+  logError,
+  parseFrame,
+  checkCodecUpdate,
+} from "./constants.js";
 import HeaderCache from "./codecs/HeaderCache.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
 import AACParser from "./codecs/aac/AACParser.js";
@@ -29,17 +54,19 @@ export default class CodecParser {
   constructor(
     mimeType,
     {
-      onCodecUpdate,
       onCodec,
+      onCodecHeader,
+      onCodecUpdate,
       enableLogging = false,
       enableFrameCRC32 = true,
     } = {}
   ) {
     this._inputMimeType = mimeType;
     this._onCodec = onCodec || noOp;
+    this._onCodecHeader = onCodecHeader || noOp;
     this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
-    this._crc32 = enableFrameCRC32 ? crc32 : noOp;
+    this._crc32 = enableFrameCRC32 ? crc32Function : noOp;
 
     this._generator = this._getGenerator();
     this._generator.next();
@@ -50,7 +77,7 @@ export default class CodecParser {
    * @returns The detected codec
    */
   get codec() {
-    return this._parser.codec;
+    return this._parser[codec];
   }
 
   /**
@@ -103,7 +130,10 @@ export default class CodecParser {
    * @private
    */
   *_getGenerator() {
-    this._headerCache = new HeaderCache(this._onCodecUpdate);
+    this._headerCache = new HeaderCache(
+      this._onCodecHeader,
+      this._onCodecUpdate
+    );
 
     if (this._inputMimeType.match(/aac/)) {
       this._parser = new AACParser(this, this._headerCache, this._onCodec);
@@ -128,7 +158,7 @@ export default class CodecParser {
 
     // start parsing out frames
     while (true) {
-      const frame = yield* this._parser.parseFrame();
+      const frame = yield* this._parser[parseFrame]();
       if (frame) yield frame;
     }
   }
@@ -138,71 +168,73 @@ export default class CodecParser {
    * @param {number} minSize Minimum bytes to have present in buffer
    * @returns {Uint8Array} rawData
    */
-  *readRawData(minSize = 0, readOffset = 0) {
+  *[readRawData](minSize = 0, readOffset = 0) {
     let rawData;
 
-    while (this._rawData.length <= minSize + readOffset) {
+    while (this._rawData[length] <= minSize + readOffset) {
       rawData = yield;
 
-      if (this._flushing) return this._rawData.subarray(readOffset);
+      if (this._flushing) return this._rawData[subarray](readOffset);
 
       if (rawData) {
-        this._totalBytesIn += rawData.length;
+        this._totalBytesIn += rawData[length];
         this._rawData = concatBuffers(this._rawData, rawData);
       }
     }
 
-    return this._rawData.subarray(readOffset);
+    return this._rawData[subarray](readOffset);
   }
 
   /**
    * @protected
    * @param {number} increment Bytes to increment codec data
    */
-  incrementRawData(increment) {
+  [incrementRawData](increment) {
     this._currentReadPosition += increment;
-    this._rawData = this._rawData.subarray(increment);
+    this._rawData = this._rawData[subarray](increment);
   }
 
   /**
    * @protected
    */
-  mapCodecFrameStats(frame) {
-    this._sampleRate = frame.header.sampleRate;
+  [mapCodecFrameStats](frame) {
+    this._sampleRate = frame[header][sampleRate];
 
-    frame.header.bitrate = Math.round(frame.data.length / frame.duration) * 8;
-    frame.frameNumber = this._frameNumber++;
-    frame.totalBytesOut = this._totalBytesOut;
-    frame.totalSamples = this._totalSamples;
-    frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000;
-    frame.crc32 = this._crc32(frame.data);
+    frame[header][bitrate] =
+      Math.round(frame[data][length] / frame[duration]) * 8;
+    frame[frameNumber] = this._frameNumber++;
+    frame[totalBytesOut] = this._totalBytesOut;
+    frame[totalSamples] = this._totalSamples;
+    frame[totalDuration] = (this._totalSamples / this._sampleRate) * 1000;
+    frame[crc32] = this._crc32(frame[data]);
 
-    this._headerCache.checkCodecUpdate(
-      frame.header.bitrate,
-      frame.totalDuration
+    this._headerCache[checkCodecUpdate](
+      frame[header][bitrate],
+      frame[totalDuration]
     );
 
-    this._totalBytesOut += frame.data.length;
-    this._totalSamples += frame.samples;
+    this._totalBytesOut += frame[data][length];
+    this._totalSamples += frame[samples];
   }
 
   /**
    * @protected
    */
-  mapFrameStats(frame) {
-    if (frame.codecFrames) {
+  [mapFrameStats](frame) {
+    if (frame[codecFrames]) {
       // Ogg container
-      frame.codecFrames.forEach((codecFrame) => {
-        frame.duration += codecFrame.duration;
-        frame.samples += codecFrame.samples;
-        this.mapCodecFrameStats(codecFrame);
+      frame[codecFrames].forEach((codecFrame) => {
+        frame[duration] += codecFrame[duration];
+        frame[samples] += codecFrame[samples];
+        this[mapCodecFrameStats](codecFrame);
       });
 
-      frame.totalSamples = this._totalSamples;
-      frame.totalDuration = (this._totalSamples / this._sampleRate) * 1000 || 0;
-      frame.totalBytesOut = this._totalBytesOut;
+      frame[totalSamples] = this._totalSamples;
+      frame[totalDuration] =
+        (this._totalSamples / this._sampleRate) * 1000 || 0;
+      frame[totalBytesOut] = this._totalBytesOut;
     } else {
-      this.mapCodecFrameStats(frame);
+      this[mapCodecFrameStats](frame);
     }
   }
 
@@ -212,14 +244,14 @@ export default class CodecParser {
   _log(logger, messages) {
     if (this._enableLogging) {
       const stats = [
-        `codec:         ${this.codec}`,
+        `${codec}:         ${this[codec]}`,
         `inputMimeType: ${this._inputMimeType}`,
         `readPosition:  ${this._currentReadPosition}`,
         `totalBytesIn:  ${this._totalBytesIn}`,
-        `totalBytesOut: ${this._totalBytesOut}`,
+        `${totalBytesOut}: ${this._totalBytesOut}`,
       ];
 
-      const width = Math.max(...stats.map((s) => s.length));
+      const width = Math.max(...stats.map((s) => s[length]));
 
       messages.push(
         `--stats--${"-".repeat(width - 9)}`,
@@ -237,14 +269,14 @@ export default class CodecParser {
   /**
    * @protected
    */
-  logWarning(...messages) {
+  [logWarning](...messages) {
     this._log(console.warn, messages);
   }
 
   /**
    * @protected
    */
-  logError(...messages) {
+  [logError](...messages) {
     this._log(console.error, messages);
   }
 }

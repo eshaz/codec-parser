@@ -1,4 +1,4 @@
-/* Copyright 2020-2022 Ethan Halsall
+/* Copyright 2020-2023 Ethan Halsall
     
     This file is part of codec-parser.
     
@@ -16,6 +16,13 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
+import {
+  codec,
+  mpeg,
+  fixedLengthFrameSync,
+  parseFrame,
+} from "../../constants.js";
+
 import Parser from "../Parser.js";
 import MPEGFrame from "./MPEGFrame.js";
 import MPEGHeader from "./MPEGHeader.js";
@@ -26,14 +33,14 @@ export default class MPEGParser extends Parser {
     this.Frame = MPEGFrame;
     this.Header = MPEGHeader;
 
-    onCodec(this.codec);
+    onCodec(this[codec]);
   }
 
   get codec() {
-    return "mpeg";
+    return mpeg;
   }
 
-  *parseFrame() {
-    return yield* this.fixedLengthFrameSync();
+  *[parseFrame]() {
+    return yield* this[fixedLengthFrameSync]();
   }
 }
