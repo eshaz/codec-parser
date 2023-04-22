@@ -31,7 +31,7 @@ export default class AACParser extends Parser {
     onCodec(this[codec]);
   }
 
-  get codec() {
+  get [codec]() {
     return "aac";
   }
 

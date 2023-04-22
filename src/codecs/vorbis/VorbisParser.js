@@ -53,7 +53,7 @@ export default class VorbisParser extends Parser {
     this._currBlockSize = 0;
   }
 
-  get codec() {
+  get [codec]() {
     return vorbis;
   }
 

@@ -21,9 +21,9 @@ import {
   length,
   pageSequenceNumber,
   data,
+  codec,
   codecFrames,
   segments,
-  codec,
   subarray,
   readRawData,
   incrementRawData,
@@ -52,7 +52,7 @@ export default class FLACParser extends Parser {
     onCodec(this[codec]);
   }
 
-  get codec() {
+  get [codec]() {
     return "flac";
   }
 

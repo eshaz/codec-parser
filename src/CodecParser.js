@@ -76,7 +76,7 @@ export default class CodecParser {
    * @public
    * @returns The detected codec
    */
-  get codec() {
+  get [codec]() {
     return this._parser[codec];
   }
 

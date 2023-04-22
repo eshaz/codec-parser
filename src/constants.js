@@ -143,7 +143,7 @@ export const numberAACFrames = "numberAAC" + "Frames";
 export const outputGain = "outputGain";
 export const preSkip = "preSkip";
 export const profile = "profile";
-export const profileBits = profile + "Bits";
+export const profileBits = symbol();
 export const protection = "protection";
 export const rawData = "rawData";
 export const segments = "segments";
@@ -155,17 +155,17 @@ export const vorbisSetup = vorbis + "Setup";
 
 const block = "block";
 export const blockingStrategy = block + "ingStrategy";
-export const blockingStrategyBits = block + "ingStrategyBits";
+export const blockingStrategyBits = symbol();
 export const blockSize = block + "Size";
 export const blocksize0 = block + "size0";
 export const blocksize1 = block + "size1";
-export const blockSizeBits = block + "SizeBits";
+export const blockSizeBits = symbol();
 
 const channel = "channel";
 export const channelMappingFamily = channel + "MappingFamily";
 export const channelMappingTable = channel + "MappingTable";
 export const channelMode = channel + "Mode";
-export const channelModeBits = channel + "ModeBits";
+export const channelModeBits = symbol();
 export const channels = channel + "s";
 
 const copyright = "copyright";
@@ -186,14 +186,14 @@ export const inputSampleRate = "inputSample" + Rate;
 
 const page = "page";
 export const pageChecksum = page + "Checksum";
-export const pageSegmentBytes = page + "SegmentBytes";
+export const pageSegmentBytes = symbol();
 export const pageSegmentTable = page + "SegmentTable";
 export const pageSequenceNumber = page + "Sequence" + Number;
 
 const sample = "sample";
 export const sampleNumber = sample + Number;
 export const sampleRate = sample + Rate;
-export const sampleRateBits = sample + Rate + "Bits";
+export const sampleRateBits = symbol();
 export const samples = sample + "s";
 
 const stream = "stream";

@@ -36,7 +36,7 @@ export default class MPEGParser extends Parser {
     onCodec(this[codec]);
   }
 
-  get codec() {
+  get [codec]() {
     return mpeg;
   }
 

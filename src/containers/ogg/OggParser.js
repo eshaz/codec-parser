@@ -21,6 +21,9 @@ import { bytesToString, concatBuffers } from "../../utilities.js";
 import {
   header,
   pageSequenceNumber,
+  pageSegmentBytes,
+  pageSegmentTable,
+  codec,
   data,
   length,
   segments,
@@ -56,7 +59,7 @@ export default class OggParser extends Parser {
     this._pageSequenceNumber = 0;
   }
 
-  get codec() {
+  get [codec]() {
     return this._codec || "";
   }
 
@@ -115,17 +118,18 @@ export default class OggParser extends Parser {
     this._checkPageSequenceNumber(oggPage);
 
     const oggPageStore = frameStore.get(oggPage);
-    const { pageSegmentBytes, pageSegmentTable } = headerStore.get(
-      oggPageStore[header]
-    );
+    const headerData = headerStore.get(oggPageStore[header]);
 
     let offset = 0;
 
-    oggPageStore[segments] = pageSegmentTable.map((segmentLength) =>
+    oggPageStore[segments] = headerData[pageSegmentTable].map((segmentLength) =>
       oggPage[data][subarray](offset, (offset += segmentLength))
     );
 
-    if (pageSegmentBytes[pageSegmentBytes[length] - 1] === 0xff) {
+    if (
+      headerData[pageSegmentBytes][headerData[pageSegmentBytes][length] - 1] ===
+      0xff
+    ) {
       // continued packet
       this._continuedPacket = concatBuffers(
         this._continuedPacket,

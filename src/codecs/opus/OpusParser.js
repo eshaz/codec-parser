@@ -42,7 +42,7 @@ export default class OpusParser extends Parser {
     this._identificationHeader = null;
   }
 
-  get codec() {
+  get [codec]() {
     return "opus";
   }
 
