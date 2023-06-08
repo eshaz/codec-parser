@@ -247,11 +247,11 @@ describe("CodecParser", () => {
 
     describe("Ogg Flac", () => {
       testParser("ogg.flac", mimeType, "flac", 742, 0);
-      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 216, 0);
+      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 217, 0);
       testParser("ogg.flac.samplerate_12345", mimeType, "flac", 178, 0);
       testParser("ogg.flac.blocksize_65535", mimeType, "flac", 13, 0);
       testParser("ogg.flac.blocksize_64", mimeType, "flac", 13137, 0);
-      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 445, 0);
+      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 446, 0);
       testParser("ogg.flac.blocksize_variable_2", mimeType, "flac", 478, 0);
       testParser("ogg.flac.utf8_frame_number", mimeType, "flac", 106, 0);
     });
@@ -268,6 +268,7 @@ describe("CodecParser", () => {
       testParser("ogg.vorbis", mimeType, "vorbis", 2441, 0);
       testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis", 1647);
       testParser("ogg.vorbis.fishead", mimeType, "vorbis", 1365);
+      testParser("ogg.vorbis.continued", mimeType, "vorbis", 1151);
     });
   });
 
