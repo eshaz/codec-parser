@@ -45,6 +45,7 @@ export default class VorbisParser extends Parser {
     onCodec(this[codec]);
 
     this._identificationHeader = null;
+    this._setupComplete = false;
 
     this._mode = {
       count: 0,
@@ -58,23 +59,26 @@ export default class VorbisParser extends Parser {
   }
 
   [parseOggPage](oggPage) {
-    const oggPageSegments = frameStore.get(oggPage)[segments];
+    oggPage[codecFrames] = [];
 
-    if (oggPage[pageSequenceNumber] === 0) {
-      // Identification header
+    for (const oggPageSegment of frameStore.get(oggPage)[segments]) {
+      if (oggPageSegment[0] === 1) {
+        // Identification header
 
-      this._headerCache[enable]();
-      this._identificationHeader = oggPage[data];
-    } else if (oggPage[pageSequenceNumber] === 1) {
-      // gather WEBM CodecPrivate data
-      if (oggPageSegments[1]) {
-        this._vorbisComments = oggPageSegments[0];
-        this._vorbisSetup = oggPageSegments[1];
+        this._headerCache[enable]();
+        this._identificationHeader = oggPage[data];
+        this._setupComplete = false;
+      } else if (oggPageSegment[0] === 3) {
+        // comment header
 
-        this._mode = this._parseSetupHeader(oggPageSegments[1]);
-      }
-    } else {
-      oggPage[codecFrames] = oggPageSegments.map((segment) => {
+        this._vorbisComments = oggPageSegment;
+      } else if (oggPageSegment[0] === 5) {
+        // setup header
+
+        this._vorbisSetup = oggPageSegment;
+        this._mode = this._parseSetupHeader(oggPageSegment);
+        this._setupComplete = true;
+      } else if (this._setupComplete) {
         const header = VorbisHeader[getHeaderFromUint8Array](
           this._identificationHeader,
           this._headerCache,
@@ -83,18 +87,20 @@ export default class VorbisParser extends Parser {
         );
 
         if (header) {
-          return new VorbisFrame(
-            segment,
-            header,
-            this._getSamples(segment, header)
+          oggPage[codecFrames].push(
+            new VorbisFrame(
+              oggPageSegment,
+              header,
+              this._getSamples(oggPageSegment, header)
+            )
+          );
+        } else {
+          this._codecParser[logError](
+            "Failed to parse Ogg Vorbis Header",
+            "Not a valid Ogg Vorbis file"
           );
         }
-
-        this._codecParser[logError](
-          "Failed to parse Ogg Vorbis Header",
-          "Not a valid Ogg Vorbis file"
-        );
-      });
+      }
     }
 
     return oggPage;

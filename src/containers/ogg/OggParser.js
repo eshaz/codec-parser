@@ -36,6 +36,8 @@ import {
   parseOggPage,
   reset,
   uint8Array,
+  isLastPage,
+  streamSerialNumber,
 } from "../../constants.js";
 
 import Parser from "../../codecs/Parser.js";
@@ -46,17 +48,15 @@ import FLACParser from "../../codecs/flac/FLACParser.js";
 import OpusParser from "../../codecs/opus/OpusParser.js";
 import VorbisParser from "../../codecs/vorbis/VorbisParser.js";
 
-export default class OggParser extends Parser {
+class OggStream {
   constructor(codecParser, headerCache, onCodec) {
-    super(codecParser, headerCache);
-
+    this._codecParser = codecParser;
+    this._headerCache = headerCache;
     this._onCodec = onCodec;
-    this.Frame = OggPage;
-    this.Header = OggPageHeader;
-    this._codec = null;
-    this._continuedPacket = new uint8Array();
 
-    this._pageSequenceNumber = 0;
+    this._continuedPacket = new uint8Array();
+    this._codec = null;
+    this._isSupported = null;
   }
 
   get [codec]() {
@@ -75,13 +75,11 @@ export default class OggParser extends Parser {
     }
   }
 
-  _checkForIdentifier({ data }) {
+  _checkCodecSupport({ data }) {
     const idString = bytesToString(data[subarray](0, 8));
 
     switch (idString) {
       case "fishead\0":
-      case "fisbone\0":
-      case "index\0\0\0":
         return false; // ignore ogg skeleton packets
       case "OpusHead":
         this._updateCodec("opus", OpusParser);
@@ -92,6 +90,8 @@ export default class OggParser extends Parser {
       case /^\x01vorbis/.test(idString) && idString:
         this._updateCodec(vorbis, VorbisParser);
         return true;
+      default:
+        return false;
     }
   }
 
@@ -112,8 +112,11 @@ export default class OggParser extends Parser {
     this._pageSequenceNumber = oggPage[pageSequenceNumber];
   }
 
-  *[parseFrame]() {
-    const oggPage = yield* this[fixedLengthFrameSync](true);
+  _parsePage(oggPage) {
+    if (this._isSupported === null) {
+      this._pageSequenceNumber = oggPage[pageSequenceNumber];
+      this._isSupported = this._checkCodecSupport(oggPage);
+    }
 
     this._checkPageSequenceNumber(oggPage);
 
@@ -121,7 +124,6 @@ export default class OggParser extends Parser {
     const headerData = headerStore.get(oggPageStore[header]);
 
     let offset = 0;
-
     oggPageStore[segments] = headerData[pageSegmentTable].map((segmentLength) =>
       oggPage[data][subarray](offset, (offset += segmentLength))
     );
@@ -147,10 +149,51 @@ export default class OggParser extends Parser {
       );
     }
 
-    if (this._codec || this._checkForIdentifier(oggPage)) {
+    if (this._isSupported) {
       const frame = this._parser[parseOggPage](oggPage);
       this._codecParser[mapFrameStats](frame);
+
       return frame;
+    } else {
+      return oggPage;
     }
+  }
+}
+
+export default class OggParser extends Parser {
+  constructor(codecParser, headerCache, onCodec) {
+    super(codecParser, headerCache);
+
+    this._onCodec = onCodec;
+    this.Frame = OggPage;
+    this.Header = OggPageHeader;
+
+    this._streams = new Map();
+    this._currentSerialNumber = null;
+  }
+
+  get [codec]() {
+    const oggStream = this._streams.get(this._currentSerialNumber);
+
+    return oggStream ? oggStream.codec : "";
+  }
+
+  *[parseFrame]() {
+    const oggPage = yield* this[fixedLengthFrameSync](true);
+    this._currentSerialNumber = oggPage[streamSerialNumber];
+
+    let oggStream = this._streams.get(this._currentSerialNumber);
+    if (!oggStream) {
+      oggStream = new OggStream(
+        this._codecParser,
+        this._headerCache,
+        this._onCodec
+      );
+      this._streams.set(this._currentSerialNumber, oggStream);
+    }
+
+    if (oggPage[isLastPage]) this._streams.delete(this._currentSerialNumber);
+
+    return oggStream._parsePage(oggPage);
   }
 }
