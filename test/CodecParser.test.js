@@ -220,9 +220,7 @@ describe("CodecParser", () => {
           const codecParser = new CodecParser(mimeType);
 
           file.set([0, 0, 0, 0], 0x0);
-          const frames = [
-            ...codecParser.parseChunk(file.subarray(0x0, 0x2e8c)),
-          ];
+          const frames = [...codecParser.parseAll(file.subarray(0x0, 46))];
 
           expect(frames).toEqual([]);
         }
@@ -236,9 +234,7 @@ describe("CodecParser", () => {
           const codecParser = new CodecParser(mimeType);
 
           file.set([0b00001000], 0x5);
-          const frames = [
-            ...codecParser.parseChunk(file.subarray(0x0, 0x2e8c)),
-          ];
+          const frames = [...codecParser.parseAll(file.subarray(0x0, 46))];
 
           expect(frames).toEqual([]);
         }
@@ -269,6 +265,12 @@ describe("CodecParser", () => {
       testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis", 1647);
       testParser("ogg.vorbis.fishead", mimeType, "vorbis", 1365);
       testParser("ogg.vorbis.continued", mimeType, "vorbis", 1151);
+      testParser(
+        "ogg.vorbis.setup_packets_separate_pages",
+        mimeType,
+        "vorbis",
+        118
+      );
     });
   });
 
