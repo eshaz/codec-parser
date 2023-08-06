@@ -201,7 +201,9 @@ export default class CodecParser {
     this._sampleRate = frame[header][sampleRate];
 
     frame[header][bitrate] =
-      Math.round(frame[data][length] / frame[duration]) * 8;
+      frame[duration] > 0
+        ? Math.round(frame[data][length] / frame[duration]) * 8
+        : 0;
     frame[frameNumber] = this._frameNumber++;
     frame[totalBytesOut] = this._totalBytesOut;
     frame[totalSamples] = this._totalSamples;
