@@ -112,7 +112,7 @@ export default class VorbisParser extends Parser {
     // data is not returned on the first frame, but is used to prime the decoder
     // https://xiph.org/vorbis/doc/Vorbis_I_spec.html#x1-590004
     const samplesValue =
-      this._prevBlockSize === null 
+      this._prevBlockSize === null
         ? 0
         : (this._prevBlockSize + currentBlockSize) / 4;
 
