@@ -1,0 +1,111 @@
+[
+  {
+    "codecFrames": [],
+    "absoluteGranulePosition": 0,
+    "crc32": -286180202,
+    "duration": 0,
+    "isContinuedPacket": false,
+    "isFirstPage": true,
+    "isLastPage": false,
+    "pageSequenceNumber": 0,
+    "samples": 0,
+    "streamSerialNumber": 467838059,
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "totalBytesOut": 0
+  },
+  {
+    "codecFrames": [],
+    "absoluteGranulePosition": 0,
+    "crc32": 949567872,
+    "duration": 0,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": false,
+    "pageSequenceNumber": 1,
+    "samples": 0,
+    "streamSerialNumber": 467838059,
+    "totalSamples": 0,
+    "totalDuration": 0,
+    "totalBytesOut": 0
+  },
+  {
+    "codecFrames": [
+      {
+        "header": {
+          "bitDepth": 32,
+          "bitrate": 0,
+          "channels": 1,
+          "channelMode": "monophonic (mono)",
+          "sampleRate": 8000,
+          "bitrateMaximum": 0,
+          "bitrateMinimum": 0,
+          "bitrateNominal": 28000,
+          "blocksize0": 512,
+          "blocksize1": 512
+        },
+        "samples": 0,
+        "duration": 0,
+        "frameNumber": 0,
+        "totalBytesOut": 0,
+        "totalSamples": 0,
+        "totalDuration": 0,
+        "crc32": -24924442
+      },
+      {
+        "header": {
+          "bitDepth": 32,
+          "bitrate": 8,
+          "channels": 1,
+          "channelMode": "monophonic (mono)",
+          "sampleRate": 8000,
+          "bitrateMaximum": 0,
+          "bitrateMinimum": 0,
+          "bitrateNominal": 28000,
+          "blocksize0": 512,
+          "blocksize1": 512
+        },
+        "samples": 256,
+        "duration": 32,
+        "frameNumber": 1,
+        "totalBytesOut": 89,
+        "totalSamples": 0,
+        "totalDuration": 0,
+        "crc32": -1495610617
+      },
+      {
+        "header": {
+          "bitDepth": 32,
+          "bitrate": 16,
+          "channels": 1,
+          "channelMode": "monophonic (mono)",
+          "sampleRate": 8000,
+          "bitrateMaximum": 0,
+          "bitrateMinimum": 0,
+          "bitrateNominal": 28000,
+          "blocksize0": 512,
+          "blocksize1": 512
+        },
+        "samples": 256,
+        "duration": 32,
+        "frameNumber": 2,
+        "totalBytesOut": 119,
+        "totalSamples": 256,
+        "totalDuration": 32,
+        "crc32": 61096952
+      }
+    ],
+    "absoluteGranulePosition": 343,
+    "crc32": 1905570939,
+    "duration": 64,
+    "isContinuedPacket": false,
+    "isFirstPage": false,
+    "isLastPage": true,
+    "pageSequenceNumber": 2,
+    "samples": 512,
+    "streamSerialNumber": 467838059,
+    "totalSamples": 512,
+    "totalDuration": 64,
+    "totalBytesOut": 187
+  }
+]

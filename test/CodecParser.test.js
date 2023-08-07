@@ -24,21 +24,14 @@ describe("CodecParser", () => {
     mimeType,
     codec,
     codecUpdateCount,
-    dataOffset
+    dataOffset,
   ) => {
     it.concurrent(
       `should parse ${fileName}`,
       async () => {
         const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
 
-        const onCodec = jest.fn();
-        const onCodecHeader = jest.fn();
-        const onCodecUpdate = jest.fn();
-        const codecParser = new CodecParser(mimeType, {
-          onCodec,
-          onCodecHeader,
-          onCodecUpdate,
-        });
+        const codecParser = new CodecParser(mimeType);
 
         const actualFileName = `${fileName}_iterator.json`;
         const expectedFileName = `${fileName}_iterator.json`;
@@ -55,15 +48,8 @@ describe("CodecParser", () => {
         await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName);
 
         assertFrames(actualFileName, expectedFileName);
-
-        expect(onCodec).toBeCalledTimes(1);
-        expect(onCodec).toBeCalledWith(codec);
-
-        expect(onCodecHeader).toBeCalledTimes(1);
-
-        expect(onCodecUpdate).toBeCalledTimes(codecUpdateCount);
       },
-      20000
+      20000,
     );
 
     it.concurrent(
@@ -86,7 +72,7 @@ describe("CodecParser", () => {
 
         assertFrames(actualFileName, expectedFileName);
       },
-      20000
+      20000,
     );
 
     const outputShouldMatchInput = dataOffset !== undefined;
@@ -119,14 +105,14 @@ describe("CodecParser", () => {
 
         if (outputShouldMatchInput) {
           const data = Buffer.concat(
-            frames.map((frame) => frame.rawData || frame.data)
+            frames.map((frame) => frame.rawData || frame.data),
           );
 
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
       },
-      20000
+      20000,
     );
 
     const parseAllTestName = outputShouldMatchInput
@@ -137,7 +123,15 @@ describe("CodecParser", () => {
       parseAllTestName,
       async () => {
         const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
-        const codecParser = new CodecParser(mimeType);
+
+        const onCodec = jest.fn();
+        const onCodecHeader = jest.fn();
+        const onCodecUpdate = jest.fn();
+        const codecParser = new CodecParser(mimeType, {
+          onCodec,
+          onCodecHeader,
+          onCodecUpdate,
+        });
 
         const actualFileName = `${fileName}_iterator_parseAll.json`;
         const expectedFileName = `${fileName}_iterator_flush.json`;
@@ -148,16 +142,75 @@ describe("CodecParser", () => {
 
         assertFrames(actualFileName, expectedFileName);
 
+        expect(onCodec).toBeCalledWith(codec);
+        expect(onCodecHeader).toBeCalledTimes(1);
+        expect(onCodecUpdate).toBeCalledTimes(codecUpdateCount);
+
         if (outputShouldMatchInput) {
           const data = Buffer.concat(
-            frames.map((frame) => frame.rawData || frame.data)
+            frames.map((frame) => frame.rawData || frame.data),
           );
 
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
       },
-      20000
+      20000,
+    );
+
+    it.concurrent(
+      parseAllTestName + ", and instance is reused",
+      async () => {
+        const file = await fs.readFile(path.join(TEST_DATA_PATH, fileName));
+
+        const onCodec = jest.fn();
+        const onCodecHeader = jest.fn();
+        const onCodecUpdate = jest.fn();
+        const codecParser = new CodecParser(mimeType, {
+          onCodec,
+          onCodecHeader,
+          onCodecUpdate,
+        });
+
+        const expectedFileName = `${fileName}_iterator_flush.json`;
+
+        const frames = codecParser.parseAll(file);
+
+        const actualFileName1 = `${fileName}_iterator_parseAll_reuse_1.json`;
+        await writeResults(frames, mimeType, ACTUAL_PATH, actualFileName1);
+
+        assertFrames(actualFileName1, expectedFileName);
+
+        if (outputShouldMatchInput) {
+          const data = Buffer.concat(
+            frames.map((frame) => frame.rawData || frame.data),
+          );
+
+          const fileWithOffset = file.subarray(dataOffset);
+          expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
+        }
+
+        const frames2 = codecParser.parseAll(file);
+
+        const actualFileName2 = `${fileName}_iterator_parseAll_reuse_2.json`;
+        await writeResults(frames2, mimeType, ACTUAL_PATH, actualFileName2);
+
+        assertFrames(actualFileName2, expectedFileName);
+
+        expect(onCodec).toBeCalledWith(codec);
+        expect(onCodecHeader).toBeCalledTimes(2);
+        expect(onCodecUpdate).toBeCalledTimes(codecUpdateCount * 2);
+
+        if (outputShouldMatchInput) {
+          const data = Buffer.concat(
+            frames2.map((frame) => frame.rawData || frame.data),
+          );
+
+          const fileWithOffset = file.subarray(dataOffset);
+          expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
+        }
+      },
+      20000,
     );
 
     it.concurrent(`should return ${codec} when .codec is called`, async () => {
@@ -175,12 +228,12 @@ describe("CodecParser", () => {
   });
 
   describe("MP3 VBR", () => {
-    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg", 2212, 45);
+    testParser("mpeg.vbr.mp3", "audio/mpeg", "mpeg", 2213, 45);
   });
 
   describe("AAC", () => {
-    testParser("aac.aac", "audio/aac", "aac", 2199, 0);
-    testParser("aac.320", "audio/aac", "aac", 1939);
+    testParser("aac.aac", "audio/aac", "aac", 2200, 0);
+    testParser("aac.320", "audio/aac", "aac", 1940);
 
     it("should return the correct audioSpecificConfig", async () => {
       const file = await fs.readFile(path.join(TEST_DATA_PATH, "aac.aac"));
@@ -208,7 +261,7 @@ describe("CodecParser", () => {
         const codecParser = new CodecParser("application/ogg");
 
         expect(codecParser.codec).toEqual("");
-      }
+      },
     );
 
     describe("Ogg page parsing", () => {
@@ -223,7 +276,7 @@ describe("CodecParser", () => {
           const frames = [...codecParser.parseAll(file.subarray(0x0, 46))];
 
           expect(frames).toEqual([]);
-        }
+        },
       );
 
       it.concurrent(
@@ -237,40 +290,41 @@ describe("CodecParser", () => {
           const frames = [...codecParser.parseAll(file.subarray(0x0, 46))];
 
           expect(frames).toEqual([]);
-        }
+        },
       );
     });
 
     describe("Ogg Flac", () => {
-      testParser("ogg.flac", mimeType, "flac", 742, 0);
-      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 217, 0);
-      testParser("ogg.flac.samplerate_12345", mimeType, "flac", 178, 0);
-      testParser("ogg.flac.blocksize_65535", mimeType, "flac", 13, 0);
-      testParser("ogg.flac.blocksize_64", mimeType, "flac", 13137, 0);
-      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 446, 0);
-      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac", 478, 0);
-      testParser("ogg.flac.utf8_frame_number", mimeType, "flac", 106, 0);
+      testParser("ogg.flac", mimeType, "flac", 743, 0);
+      testParser("ogg.flac.samplerate_50000", mimeType, "flac", 218, 0);
+      testParser("ogg.flac.samplerate_12345", mimeType, "flac", 179, 0);
+      testParser("ogg.flac.blocksize_65535", mimeType, "flac", 14, 0);
+      testParser("ogg.flac.blocksize_64", mimeType, "flac", 13138, 0);
+      testParser("ogg.flac.blocksize_variable_1", mimeType, "flac", 447, 0);
+      testParser("ogg.flac.blocksize_variable_2", mimeType, "flac", 479, 0);
+      testParser("ogg.flac.utf8_frame_number", mimeType, "flac", 108, 0);
     });
 
     describe("Ogg Opus", () => {
-      testParser("ogg.opus", mimeType, "opus", 1741, 0);
+      testParser("ogg.opus", mimeType, "opus", 1749, 0);
       testParser("ogg.opus.framesize_40", mimeType, "opus", 346, 0);
       testParser("ogg.opus.framesize_60", mimeType, "opus", 251, 0);
       testParser("ogg.opus.surround", mimeType, "opus", 737, 0);
-      testParser("ogg.opus.channel_family_255", mimeType, "opus", 277, 0);
+      testParser("ogg.opus.channel_family_255", mimeType, "opus", 284, 0);
     });
 
     describe("Ogg Vorbis", () => {
-      testParser("ogg.vorbis", mimeType, "vorbis", 2441, 0);
-      testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis", 1647);
-      testParser("ogg.vorbis.fishead", mimeType, "vorbis", 1365);
-      testParser("ogg.vorbis.continued", mimeType, "vorbis", 1151);
+      testParser("ogg.vorbis", mimeType, "vorbis", 2462, 0);
+      testParser("ogg.vorbis.extra_metadata", mimeType, "vorbis", 1657);
+      testParser("ogg.vorbis.fishead", mimeType, "vorbis", 1375);
+      testParser("ogg.vorbis.continued", mimeType, "vorbis", 1159);
       testParser(
         "ogg.vorbis.setup_packets_separate_pages",
         mimeType,
         "vorbis",
-        118
+        118,
       );
+      testParser("metronome2.vorbis", mimeType, "vorbis", 3);
     });
   });
 
@@ -411,7 +465,7 @@ describe("CodecParser", () => {
         const validFrames = file.subarray(0x50, 0x5f0);
         const frames = [
           ...codecParser.parseChunk(
-            Buffer.concat([validFrames, invalidData, validFrames])
+            Buffer.concat([validFrames, invalidData, validFrames]),
           ),
         ];
 
@@ -435,7 +489,7 @@ describe("CodecParser", () => {
         const validFrames = file.subarray(0xe0, 0x5f0);
         const frames = [
           ...codecParser.parseChunk(
-            Buffer.concat([falsePositiveFrame, validFrames])
+            Buffer.concat([falsePositiveFrame, validFrames]),
           ),
         ];
 
@@ -464,7 +518,7 @@ describe("CodecParser", () => {
               falsePositiveFrame2,
               falsePositiveFrame3,
               validFrames,
-            ])
+            ]),
           ),
         ];
 
@@ -486,7 +540,7 @@ describe("CodecParser", () => {
         const falsePositiveFrame1 = file.subarray(0x50, 0x54);
         const frames = [
           ...codecParser.parseChunk(
-            Buffer.concat([validFrames, falsePositiveFrame1, validFrames])
+            Buffer.concat([validFrames, falsePositiveFrame1, validFrames]),
           ),
         ];
 
@@ -515,7 +569,7 @@ describe("CodecParser", () => {
               validFrames,
               falsePositiveFrame2,
               validFrames,
-            ])
+            ]),
           ),
         ];
 

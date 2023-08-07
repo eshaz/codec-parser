@@ -1,6 +1,7 @@
 [
   {
     "codecFrames": [],
+    "absoluteGranulePosition": 0,
     "crc32": 915423358,
     "duration": 0,
     "isContinuedPacket": false,
@@ -15,6 +16,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": 0,
     "crc32": 743742186,
     "duration": 0,
     "isContinuedPacket": false,
@@ -1230,6 +1232,7 @@
         "crc32": 1389770050
       }
     ],
+    "absoluteGranulePosition": 48000,
     "crc32": 1994570153,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -2445,6 +2448,7 @@
         "crc32": -721505621
       }
     ],
+    "absoluteGranulePosition": 96000,
     "crc32": -1766350156,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -3660,6 +3664,7 @@
         "crc32": -968378431
       }
     ],
+    "absoluteGranulePosition": 144000,
     "crc32": 1612355033,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -4875,6 +4880,7 @@
         "crc32": -1824734630
       }
     ],
+    "absoluteGranulePosition": 192000,
     "crc32": 237647993,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -6090,6 +6096,7 @@
         "crc32": -732920514
       }
     ],
+    "absoluteGranulePosition": 240000,
     "crc32": -23439208,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -7305,6 +7312,7 @@
         "crc32": -2117474801
       }
     ],
+    "absoluteGranulePosition": 288000,
     "crc32": 1263552991,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -8520,6 +8528,7 @@
         "crc32": 2038827832
       }
     ],
+    "absoluteGranulePosition": 336000,
     "crc32": -1928550911,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -9735,6 +9744,7 @@
         "crc32": -588187611
       }
     ],
+    "absoluteGranulePosition": 384000,
     "crc32": -1330107990,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -10950,6 +10960,7 @@
         "crc32": -966699919
       }
     ],
+    "absoluteGranulePosition": 432000,
     "crc32": 1638138294,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -12165,6 +12176,7 @@
         "crc32": -128148157
       }
     ],
+    "absoluteGranulePosition": 480000,
     "crc32": 1618967782,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -13380,6 +13392,7 @@
         "crc32": 198276504
       }
     ],
+    "absoluteGranulePosition": 528000,
     "crc32": -747038953,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -14595,6 +14608,7 @@
         "crc32": -2060592740
       }
     ],
+    "absoluteGranulePosition": 576000,
     "crc32": 1328027447,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -15810,6 +15824,7 @@
         "crc32": 1720819561
       }
     ],
+    "absoluteGranulePosition": 624000,
     "crc32": 1434549289,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -17025,6 +17040,7 @@
         "crc32": 1538994963
       }
     ],
+    "absoluteGranulePosition": 672000,
     "crc32": -2028745211,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -18240,6 +18256,7 @@
         "crc32": 453932908
       }
     ],
+    "absoluteGranulePosition": 720000,
     "crc32": 1648631236,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -19455,6 +19472,7 @@
         "crc32": -1383563928
       }
     ],
+    "absoluteGranulePosition": 768000,
     "crc32": -1127532827,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -20670,6 +20688,7 @@
         "crc32": 1319461844
       }
     ],
+    "absoluteGranulePosition": 816000,
     "crc32": -407329174,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -21885,6 +21904,7 @@
         "crc32": 1628580548
       }
     ],
+    "absoluteGranulePosition": 864000,
     "crc32": -632536791,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -23100,6 +23120,7 @@
         "crc32": -1473649110
       }
     ],
+    "absoluteGranulePosition": 912000,
     "crc32": -217244144,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -24315,6 +24336,7 @@
         "crc32": -1280473743
       }
     ],
+    "absoluteGranulePosition": 960000,
     "crc32": -1037859666,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -25530,6 +25552,7 @@
         "crc32": -484248453
       }
     ],
+    "absoluteGranulePosition": 1008000,
     "crc32": -1300944077,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -26745,6 +26768,7 @@
         "crc32": -1097045813
       }
     ],
+    "absoluteGranulePosition": 1056000,
     "crc32": 1220965450,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -27960,6 +27984,7 @@
         "crc32": 1037733995
       }
     ],
+    "absoluteGranulePosition": 1104000,
     "crc32": -789158068,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -29175,6 +29200,7 @@
         "crc32": 1439056955
       }
     ],
+    "absoluteGranulePosition": 1152000,
     "crc32": 652012781,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -30390,6 +30416,7 @@
         "crc32": 443824909
       }
     ],
+    "absoluteGranulePosition": 1200000,
     "crc32": 1818353272,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -31605,6 +31632,7 @@
         "crc32": -1428182433
       }
     ],
+    "absoluteGranulePosition": 1248000,
     "crc32": 1321917799,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -32820,6 +32848,7 @@
         "crc32": 199131558
       }
     ],
+    "absoluteGranulePosition": 1296000,
     "crc32": 1529813114,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -34035,6 +34064,7 @@
         "crc32": 1136331881
       }
     ],
+    "absoluteGranulePosition": 1344000,
     "crc32": 1350469146,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -35250,6 +35280,7 @@
         "crc32": -1005362768
       }
     ],
+    "absoluteGranulePosition": 1392000,
     "crc32": 1788773224,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -36465,6 +36496,7 @@
         "crc32": 682169781
       }
     ],
+    "absoluteGranulePosition": 1440000,
     "crc32": -1482814774,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -37680,6 +37712,7 @@
         "crc32": 1293126999
       }
     ],
+    "absoluteGranulePosition": 1488000,
     "crc32": -749347117,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -38895,6 +38928,7 @@
         "crc32": -751478891
       }
     ],
+    "absoluteGranulePosition": 1536000,
     "crc32": -1952749689,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -40110,6 +40144,7 @@
         "crc32": -1395954085
       }
     ],
+    "absoluteGranulePosition": 1584000,
     "crc32": 1290318213,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -41325,6 +41360,7 @@
         "crc32": 172345556
       }
     ],
+    "absoluteGranulePosition": 1632000,
     "crc32": -203288108,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -42540,6 +42576,7 @@
         "crc32": 7862162
       }
     ],
+    "absoluteGranulePosition": 1680000,
     "crc32": 1518434653,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -43755,6 +43792,7 @@
         "crc32": -2047988109
       }
     ],
+    "absoluteGranulePosition": 1728000,
     "crc32": -301993457,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -44970,6 +45008,7 @@
         "crc32": 488079908
       }
     ],
+    "absoluteGranulePosition": 1776000,
     "crc32": -47890180,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -46185,6 +46224,7 @@
         "crc32": -1763158132
       }
     ],
+    "absoluteGranulePosition": 1824000,
     "crc32": -1174448147,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -47400,6 +47440,7 @@
         "crc32": 1345132653
       }
     ],
+    "absoluteGranulePosition": 1872000,
     "crc32": 1628546004,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -48615,6 +48656,7 @@
         "crc32": 1383401995
       }
     ],
+    "absoluteGranulePosition": 1920000,
     "crc32": 356577609,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -49830,6 +49872,7 @@
         "crc32": 1438208416
       }
     ],
+    "absoluteGranulePosition": 1968000,
     "crc32": -581781398,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -51045,6 +51088,7 @@
         "crc32": 1045002220
       }
     ],
+    "absoluteGranulePosition": 2016000,
     "crc32": 1962090342,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -52260,6 +52304,7 @@
         "crc32": -1453159556
       }
     ],
+    "absoluteGranulePosition": 2064000,
     "crc32": 1632354648,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -53475,6 +53520,7 @@
         "crc32": 927436282
       }
     ],
+    "absoluteGranulePosition": 2112000,
     "crc32": -1200875035,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -54690,6 +54736,7 @@
         "crc32": 927117171
       }
     ],
+    "absoluteGranulePosition": 2160000,
     "crc32": 217839761,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -55905,6 +55952,7 @@
         "crc32": -1514738577
       }
     ],
+    "absoluteGranulePosition": 2208000,
     "crc32": 1096972544,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -57120,6 +57168,7 @@
         "crc32": -1300051613
       }
     ],
+    "absoluteGranulePosition": 2256000,
     "crc32": 1687092246,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -58335,6 +58384,7 @@
         "crc32": -1520175801
       }
     ],
+    "absoluteGranulePosition": 2304000,
     "crc32": 1623760958,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -59550,6 +59600,7 @@
         "crc32": 1629267618
       }
     ],
+    "absoluteGranulePosition": 2352000,
     "crc32": 1001512978,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -60765,6 +60816,7 @@
         "crc32": 1605437301
       }
     ],
+    "absoluteGranulePosition": 2400000,
     "crc32": -1114560597,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -61980,6 +62032,7 @@
         "crc32": -179829155
       }
     ],
+    "absoluteGranulePosition": 2448000,
     "crc32": 170817271,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -63195,6 +63248,7 @@
         "crc32": -1712584566
       }
     ],
+    "absoluteGranulePosition": 2496000,
     "crc32": 1149310919,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -64410,6 +64464,7 @@
         "crc32": 785985009
       }
     ],
+    "absoluteGranulePosition": 2544000,
     "crc32": 769307087,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -65625,6 +65680,7 @@
         "crc32": 794097432
       }
     ],
+    "absoluteGranulePosition": 2592000,
     "crc32": -1987412910,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -66840,6 +66896,7 @@
         "crc32": -1823304424
       }
     ],
+    "absoluteGranulePosition": 2640000,
     "crc32": -707676975,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -68055,6 +68112,7 @@
         "crc32": -1039153382
       }
     ],
+    "absoluteGranulePosition": 2688000,
     "crc32": -51148956,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -69270,6 +69328,7 @@
         "crc32": 900434276
       }
     ],
+    "absoluteGranulePosition": 2736000,
     "crc32": 999714714,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -70485,6 +70544,7 @@
         "crc32": -1758404540
       }
     ],
+    "absoluteGranulePosition": 2784000,
     "crc32": -222685482,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -71700,6 +71760,7 @@
         "crc32": -394394027
       }
     ],
+    "absoluteGranulePosition": 2832000,
     "crc32": -1858982028,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -72915,6 +72976,7 @@
         "crc32": 378406769
       }
     ],
+    "absoluteGranulePosition": 2880000,
     "crc32": 609168373,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -74130,6 +74192,7 @@
         "crc32": 883338021
       }
     ],
+    "absoluteGranulePosition": 2928000,
     "crc32": 1704799715,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -75345,6 +75408,7 @@
         "crc32": -681612209
       }
     ],
+    "absoluteGranulePosition": 2976000,
     "crc32": -1526068398,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -76560,6 +76624,7 @@
         "crc32": -766681291
       }
     ],
+    "absoluteGranulePosition": 3024000,
     "crc32": -1022603921,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -77775,6 +77840,7 @@
         "crc32": 1790294187
       }
     ],
+    "absoluteGranulePosition": 3072000,
     "crc32": -1540122926,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -78990,6 +79056,7 @@
         "crc32": 617999283
       }
     ],
+    "absoluteGranulePosition": 3120000,
     "crc32": 1889638553,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -80205,6 +80272,7 @@
         "crc32": 1342093255
       }
     ],
+    "absoluteGranulePosition": 3168000,
     "crc32": -1013914990,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -81420,6 +81488,7 @@
         "crc32": 844908938
       }
     ],
+    "absoluteGranulePosition": 3216000,
     "crc32": 3308697,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -82635,6 +82704,7 @@
         "crc32": 315752468
       }
     ],
+    "absoluteGranulePosition": 3264000,
     "crc32": -1224966760,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -83850,6 +83920,7 @@
         "crc32": -1893360630
       }
     ],
+    "absoluteGranulePosition": 3312000,
     "crc32": -242105098,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -85065,6 +85136,7 @@
         "crc32": -176543047
       }
     ],
+    "absoluteGranulePosition": 3360000,
     "crc32": 2138381349,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -86280,6 +86352,7 @@
         "crc32": 1559489275
       }
     ],
+    "absoluteGranulePosition": 3408000,
     "crc32": -1103006365,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -87495,6 +87568,7 @@
         "crc32": 1295046270
       }
     ],
+    "absoluteGranulePosition": 3456000,
     "crc32": 1484197640,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -88710,6 +88784,7 @@
         "crc32": 1245213285
       }
     ],
+    "absoluteGranulePosition": 3504000,
     "crc32": -1781268569,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -89925,6 +90000,7 @@
         "crc32": -454582218
       }
     ],
+    "absoluteGranulePosition": 3552000,
     "crc32": 50605720,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -91140,6 +91216,7 @@
         "crc32": -479891185
       }
     ],
+    "absoluteGranulePosition": 3600000,
     "crc32": 812951548,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -92355,6 +92432,7 @@
         "crc32": 1464489937
       }
     ],
+    "absoluteGranulePosition": 3648000,
     "crc32": 83821080,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -93570,6 +93648,7 @@
         "crc32": -391180368
       }
     ],
+    "absoluteGranulePosition": 3696000,
     "crc32": -905918063,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -94785,6 +94864,7 @@
         "crc32": 2039632927
       }
     ],
+    "absoluteGranulePosition": 3744000,
     "crc32": -1055871530,
     "duration": 1000,
     "isContinuedPacket": false,
@@ -96000,6 +96080,7 @@
         "crc32": -2012408753
       }
     ],
+    "absoluteGranulePosition": 3792000,
     "crc32": -1427625270,
     "duration": 1000,
     "isContinuedPacket": false,
