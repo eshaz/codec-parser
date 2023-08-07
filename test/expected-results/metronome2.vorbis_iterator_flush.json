@@ -1,6 +1,7 @@
 [
   {
     "codecFrames": [],
+    "absoluteGranulePosition": 0,
     "crc32": -286180202,
     "duration": 0,
     "isContinuedPacket": false,
@@ -15,6 +16,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": 0,
     "crc32": 949567872,
     "duration": 0,
     "isContinuedPacket": false,
@@ -93,6 +95,7 @@
         "crc32": 61096952
       }
     ],
+    "absoluteGranulePosition": 343,
     "crc32": 1905570939,
     "duration": 64,
     "isContinuedPacket": false,

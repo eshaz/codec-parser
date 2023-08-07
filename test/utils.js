@@ -36,6 +36,7 @@ export const writeResults = async (
     ...rest
   }) => ({
     codecFrames: codecFrames.map(removeDataElements),
+    absoluteGranulePosition: Number(absoluteGranulePosition),
     ...rest,
   });
 

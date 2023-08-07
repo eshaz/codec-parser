@@ -68,7 +68,7 @@ export default class CodecParser {
     this._onCodecUpdate = onCodecUpdate;
     this._enableLogging = enableLogging;
     this._crc32 = enableFrameCRC32 ? crc32Function : noOp;
-    
+
     this[reset]();
   }
 

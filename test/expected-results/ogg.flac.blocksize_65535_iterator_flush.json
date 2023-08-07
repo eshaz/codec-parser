@@ -1,6 +1,7 @@
 [
   {
     "codecFrames": [],
+    "absoluteGranulePosition": 0,
     "crc32": -819040605,
     "duration": 0,
     "isContinuedPacket": false,
@@ -15,6 +16,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": 0,
     "crc32": 584961733,
     "duration": 0,
     "isContinuedPacket": false,
@@ -29,6 +31,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -538422156,
     "duration": 0,
     "isContinuedPacket": false,
@@ -43,6 +46,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 731106194,
     "duration": 0,
     "isContinuedPacket": true,
@@ -62,8 +66,8 @@
           "bitDepth": 16,
           "bitrate": 1144,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 51014,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -78,6 +82,7 @@
         "crc32": 1187803347
       }
     ],
+    "absoluteGranulePosition": 65535,
     "crc32": -1846300876,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -92,6 +97,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -46034851,
     "duration": 0,
     "isContinuedPacket": false,
@@ -106,6 +112,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -35056246,
     "duration": 0,
     "isContinuedPacket": true,
@@ -125,8 +132,8 @@
           "bitDepth": 16,
           "bitrate": 1128,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 11939,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -141,6 +148,7 @@
         "crc32": 1214567570
       }
     ],
+    "absoluteGranulePosition": 131070,
     "crc32": 1136230185,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -155,6 +163,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 743507316,
     "duration": 0,
     "isContinuedPacket": false,
@@ -169,6 +178,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -176068522,
     "duration": 0,
     "isContinuedPacket": true,
@@ -188,8 +198,8 @@
           "bitDepth": 16,
           "bitrate": 1144,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 3904,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -204,6 +214,7 @@
         "crc32": 984365439
       }
     ],
+    "absoluteGranulePosition": 196605,
     "crc32": 231215228,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -218,6 +229,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1211529149,
     "duration": 0,
     "isContinuedPacket": false,
@@ -232,6 +244,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 1365706633,
     "duration": 0,
     "isContinuedPacket": true,
@@ -251,8 +264,8 @@
           "bitDepth": 16,
           "bitrate": 1104,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 47562,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -267,6 +280,7 @@
         "crc32": 244735639
       }
     ],
+    "absoluteGranulePosition": 262140,
     "crc32": 2041512921,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -281,6 +295,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 2048753449,
     "duration": 0,
     "isContinuedPacket": false,
@@ -295,6 +310,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1081814876,
     "duration": 0,
     "isContinuedPacket": true,
@@ -314,8 +330,8 @@
           "bitDepth": 16,
           "bitrate": 1112,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 57278,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -330,6 +346,7 @@
         "crc32": -374516794
       }
     ],
+    "absoluteGranulePosition": 327675,
     "crc32": -1206286501,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -344,6 +361,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 1594201478,
     "duration": 0,
     "isContinuedPacket": false,
@@ -358,6 +376,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 559264620,
     "duration": 0,
     "isContinuedPacket": true,
@@ -377,8 +396,8 @@
           "bitDepth": 16,
           "bitrate": 1128,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 21564,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -393,6 +412,7 @@
         "crc32": 1855301806
       }
     ],
+    "absoluteGranulePosition": 393210,
     "crc32": -783336588,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -407,6 +427,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1898002373,
     "duration": 0,
     "isContinuedPacket": false,
@@ -421,6 +442,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 1941082434,
     "duration": 0,
     "isContinuedPacket": true,
@@ -440,8 +462,8 @@
           "bitDepth": 16,
           "bitrate": 1128,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 21800,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -456,6 +478,7 @@
         "crc32": -1672897788
       }
     ],
+    "absoluteGranulePosition": 458745,
     "crc32": 1257522030,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -470,6 +493,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1738986964,
     "duration": 0,
     "isContinuedPacket": false,
@@ -484,6 +508,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1383853084,
     "duration": 0,
     "isContinuedPacket": true,
@@ -503,8 +528,8 @@
           "bitDepth": 16,
           "bitrate": 1128,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 53730,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -519,6 +544,7 @@
         "crc32": 1930085416
       }
     ],
+    "absoluteGranulePosition": 524280,
     "crc32": -394013513,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -533,6 +559,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1021245454,
     "duration": 0,
     "isContinuedPacket": false,
@@ -547,6 +574,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 688359313,
     "duration": 0,
     "isContinuedPacket": true,
@@ -566,8 +594,8 @@
           "bitDepth": 16,
           "bitrate": 1136,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 46130,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -582,6 +610,7 @@
         "crc32": 564204144
       }
     ],
+    "absoluteGranulePosition": 589815,
     "crc32": 314040667,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -596,6 +625,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1664616255,
     "duration": 0,
     "isContinuedPacket": false,
@@ -610,6 +640,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -136890910,
     "duration": 0,
     "isContinuedPacket": true,
@@ -629,8 +660,8 @@
           "bitDepth": 16,
           "bitrate": 1112,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 23520,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -645,6 +676,7 @@
         "crc32": 1942716772
       }
     ],
+    "absoluteGranulePosition": 655350,
     "crc32": 149825838,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -659,6 +691,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 1703826825,
     "duration": 0,
     "isContinuedPacket": false,
@@ -673,6 +706,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -511595386,
     "duration": 0,
     "isContinuedPacket": true,
@@ -692,8 +726,8 @@
           "bitDepth": 16,
           "bitrate": 1120,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 29646,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -708,6 +742,7 @@
         "crc32": 269536620
       }
     ],
+    "absoluteGranulePosition": 720885,
     "crc32": 281869799,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -722,6 +757,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -1699302935,
     "duration": 0,
     "isContinuedPacket": false,
@@ -736,6 +772,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 539133450,
     "duration": 0,
     "isContinuedPacket": true,
@@ -750,6 +787,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 1501178437,
     "duration": 0,
     "isContinuedPacket": true,
@@ -769,8 +807,8 @@
           "bitDepth": 16,
           "bitrate": 1168,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 16395,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -785,6 +823,7 @@
         "crc32": -575143997
       }
     ],
+    "absoluteGranulePosition": 786420,
     "crc32": -989026628,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -799,6 +838,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -2113127353,
     "duration": 0,
     "isContinuedPacket": false,
@@ -813,6 +853,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -717234087,
     "duration": 0,
     "isContinuedPacket": true,
@@ -832,8 +873,8 @@
           "bitDepth": 16,
           "bitrate": 1120,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 30551,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -848,6 +889,7 @@
         "crc32": -983718879
       }
     ],
+    "absoluteGranulePosition": 851955,
     "crc32": -996682955,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -862,6 +904,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 571102688,
     "duration": 0,
     "isContinuedPacket": false,
@@ -876,6 +919,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 501490313,
     "duration": 0,
     "isContinuedPacket": true,
@@ -890,6 +934,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": -846461526,
     "duration": 0,
     "isContinuedPacket": true,
@@ -909,8 +954,8 @@
           "bitDepth": 16,
           "bitrate": 1152,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, diff)",
+          "sampleRate": 48000,
           "crc16": 635,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -925,6 +970,7 @@
         "crc32": 1603727618
       }
     ],
+    "absoluteGranulePosition": 917490,
     "crc32": 134311944,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -939,6 +985,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 723845307,
     "duration": 0,
     "isContinuedPacket": false,
@@ -953,6 +1000,7 @@
   },
   {
     "codecFrames": [],
+    "absoluteGranulePosition": -1,
     "crc32": 125019257,
     "duration": 0,
     "isContinuedPacket": true,
@@ -972,8 +1020,8 @@
           "bitDepth": 16,
           "bitrate": 1024,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (left, right)",
+          "sampleRate": 48000,
           "crc16": 4111,
           "blockingStrategy": "Fixed",
           "blockSize": 65535,
@@ -988,6 +1036,7 @@
         "crc32": -1516782466
       }
     ],
+    "absoluteGranulePosition": 983025,
     "crc32": -1861950969,
     "duration": 1365.3125,
     "isContinuedPacket": true,
@@ -1007,8 +1056,8 @@
           "bitDepth": 16,
           "bitrate": 168,
           "channels": 2,
-          "sampleRate": 48000,
           "channelMode": "stereo (avg, diff)",
+          "sampleRate": 48000,
           "crc16": 63713,
           "blockingStrategy": "Fixed",
           "blockSize": 59152,
@@ -1023,6 +1072,7 @@
         "crc32": 395114199
       }
     ],
+    "absoluteGranulePosition": 1042177,
     "crc32": 1933674950,
     "duration": 1232.3333333333333,
     "isContinuedPacket": false,
