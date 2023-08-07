@@ -60,7 +60,7 @@ export default class CodecParser {
       onCodecUpdate,
       enableLogging = false,
       enableFrameCRC32 = true,
-    } = {}
+    } = {},
   ) {
     this._inputMimeType = mimeType;
     this._onCodec = onCodec || noOp;
@@ -83,7 +83,7 @@ export default class CodecParser {
   [reset]() {
     this._headerCache = new HeaderCache(
       this._onCodecHeader,
-      this._onCodecUpdate
+      this._onCodecUpdate,
     );
 
     this._generator = this._getGenerator();
@@ -216,7 +216,7 @@ export default class CodecParser {
 
     this._headerCache[checkCodecUpdate](
       frame[header][bitrate],
-      frame[totalDuration]
+      frame[totalDuration],
     );
 
     this._totalBytesOut += frame[data][length];
@@ -262,12 +262,12 @@ export default class CodecParser {
       messages.push(
         `--stats--${"-".repeat(width - 9)}`,
         ...stats,
-        "-".repeat(width)
+        "-".repeat(width),
       );
 
       logger(
         "codec-parser",
-        messages.reduce((acc, message) => acc + "\n  " + message, "")
+        messages.reduce((acc, message) => acc + "\n  " + message, ""),
       );
     }
   }

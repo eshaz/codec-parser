@@ -24,7 +24,7 @@ describe("CodecParser", () => {
     mimeType,
     codec,
     codecUpdateCount,
-    dataOffset
+    dataOffset,
   ) => {
     it.concurrent(
       `should parse ${fileName}`,
@@ -49,7 +49,7 @@ describe("CodecParser", () => {
 
         assertFrames(actualFileName, expectedFileName);
       },
-      20000
+      20000,
     );
 
     it.concurrent(
@@ -72,7 +72,7 @@ describe("CodecParser", () => {
 
         assertFrames(actualFileName, expectedFileName);
       },
-      20000
+      20000,
     );
 
     const outputShouldMatchInput = dataOffset !== undefined;
@@ -105,14 +105,14 @@ describe("CodecParser", () => {
 
         if (outputShouldMatchInput) {
           const data = Buffer.concat(
-            frames.map((frame) => frame.rawData || frame.data)
+            frames.map((frame) => frame.rawData || frame.data),
           );
 
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
       },
-      20000
+      20000,
     );
 
     const parseAllTestName = outputShouldMatchInput
@@ -148,14 +148,14 @@ describe("CodecParser", () => {
 
         if (outputShouldMatchInput) {
           const data = Buffer.concat(
-            frames.map((frame) => frame.rawData || frame.data)
+            frames.map((frame) => frame.rawData || frame.data),
           );
 
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
       },
-      20000
+      20000,
     );
 
     it.concurrent(
@@ -183,7 +183,7 @@ describe("CodecParser", () => {
 
         if (outputShouldMatchInput) {
           const data = Buffer.concat(
-            frames.map((frame) => frame.rawData || frame.data)
+            frames.map((frame) => frame.rawData || frame.data),
           );
 
           const fileWithOffset = file.subarray(dataOffset);
@@ -203,14 +203,14 @@ describe("CodecParser", () => {
 
         if (outputShouldMatchInput) {
           const data = Buffer.concat(
-            frames2.map((frame) => frame.rawData || frame.data)
+            frames2.map((frame) => frame.rawData || frame.data),
           );
 
           const fileWithOffset = file.subarray(dataOffset);
           expect(Buffer.compare(fileWithOffset, data)).toEqual(0);
         }
       },
-      20000
+      20000,
     );
 
     it.concurrent(`should return ${codec} when .codec is called`, async () => {
@@ -261,7 +261,7 @@ describe("CodecParser", () => {
         const codecParser = new CodecParser("application/ogg");
 
         expect(codecParser.codec).toEqual("");
-      }
+      },
     );
 
     describe("Ogg page parsing", () => {
@@ -276,7 +276,7 @@ describe("CodecParser", () => {
           const frames = [...codecParser.parseAll(file.subarray(0x0, 46))];
 
           expect(frames).toEqual([]);
-        }
+        },
       );
 
       it.concurrent(
@@ -290,7 +290,7 @@ describe("CodecParser", () => {
           const frames = [...codecParser.parseAll(file.subarray(0x0, 46))];
 
           expect(frames).toEqual([]);
-        }
+        },
       );
     });
 
@@ -322,7 +322,7 @@ describe("CodecParser", () => {
         "ogg.vorbis.setup_packets_separate_pages",
         mimeType,
         "vorbis",
-        118
+        118,
       );
       testParser("metronome2.vorbis", mimeType, "vorbis", 3);
     });
@@ -465,7 +465,7 @@ describe("CodecParser", () => {
         const validFrames = file.subarray(0x50, 0x5f0);
         const frames = [
           ...codecParser.parseChunk(
-            Buffer.concat([validFrames, invalidData, validFrames])
+            Buffer.concat([validFrames, invalidData, validFrames]),
           ),
         ];
 
@@ -489,7 +489,7 @@ describe("CodecParser", () => {
         const validFrames = file.subarray(0xe0, 0x5f0);
         const frames = [
           ...codecParser.parseChunk(
-            Buffer.concat([falsePositiveFrame, validFrames])
+            Buffer.concat([falsePositiveFrame, validFrames]),
           ),
         ];
 
@@ -518,7 +518,7 @@ describe("CodecParser", () => {
               falsePositiveFrame2,
               falsePositiveFrame3,
               validFrames,
-            ])
+            ]),
           ),
         ];
 
@@ -540,7 +540,7 @@ describe("CodecParser", () => {
         const falsePositiveFrame1 = file.subarray(0x50, 0x54);
         const frames = [
           ...codecParser.parseChunk(
-            Buffer.concat([validFrames, falsePositiveFrame1, validFrames])
+            Buffer.concat([validFrames, falsePositiveFrame1, validFrames]),
           ),
         ];
 
@@ -569,7 +569,7 @@ describe("CodecParser", () => {
               validFrames,
               falsePositiveFrame2,
               validFrames,
-            ])
+            ]),
           ),
         ];
 

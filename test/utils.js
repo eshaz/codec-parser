@@ -15,7 +15,7 @@ export const writeResults = async (
   frames,
   mimeType,
   outputPath,
-  outputFile
+  outputFile,
 ) => {
   const removeDataElements = ({ data, header, ...rest }) => ({
     header: {
@@ -41,11 +41,11 @@ export const writeResults = async (
   });
 
   const framesWithoutData = frames.map(
-    mimeType === "audio/ogg" ? removeDataElementsOgg : removeDataElements
+    mimeType === "audio/ogg" ? removeDataElementsOgg : removeDataElements,
   );
 
   await fs.writeFile(
     path.join(outputPath, outputFile),
-    JSON.stringify(framesWithoutData, null, 2)
+    JSON.stringify(framesWithoutData, null, 2),
   );
 };

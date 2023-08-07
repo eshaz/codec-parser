@@ -78,7 +78,7 @@ export default class VorbisParser extends Parser {
           this._identificationHeader,
           this._headerCache,
           this._vorbisComments,
-          this._vorbisSetup
+          this._vorbisSetup,
         );
 
         if (header) {
@@ -86,13 +86,13 @@ export default class VorbisParser extends Parser {
             new VorbisFrame(
               oggPageSegment,
               header,
-              this._getSamples(oggPageSegment, header)
-            )
+              this._getSamples(oggPageSegment, header),
+            ),
           );
         } else {
           this._codecParser[logError](
             "Failed to parse Ogg Vorbis Header",
-            "Not a valid Ogg Vorbis file"
+            "Not a valid Ogg Vorbis file",
           );
         }
       }
@@ -188,7 +188,7 @@ export default class VorbisParser extends Parser {
         // check for mode count using previous iteration modeBits
         if (((reverse(modeBits) & 0b01111110) >> 1) + 1 !== mode.count) {
           this._codecParser[logWarning](
-            "vorbis derived mode count did not match actual mode count"
+            "vorbis derived mode count did not match actual mode count",
           );
         }
 

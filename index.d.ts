@@ -134,14 +134,14 @@ declare interface ICodecParserOptions {
   onCodec?: (codec: CodecValue) => any;
   onCodecUpdate?: (
     codecHeaderData: CodecHeader,
-    updateTimestamp: number
+    updateTimestamp: number,
   ) => any;
   enableLogging?: boolean;
   enableFrameCRC32?: boolean;
 }
 
 declare class CodecParser<
-  T extends CodecFrame | OggPage = CodecFrame | OggPage
+  T extends CodecFrame | OggPage = CodecFrame | OggPage,
 > {
   public readonly codec: CodecValue;
 
