@@ -76,7 +76,7 @@
       {
         "header": {
           "bitDepth": 32,
-          "bitrate": 16,
+          "bitrate": 48,
           "channels": 1,
           "channelMode": "monophonic (mono)",
           "sampleRate": 8000,
@@ -86,8 +86,8 @@
           "blocksize0": 512,
           "blocksize1": 512
         },
-        "samples": 256,
-        "duration": 32,
+        "samples": 87,
+        "duration": 10.875,
         "frameNumber": 2,
         "totalBytesOut": 119,
         "totalSamples": 256,
@@ -97,15 +97,15 @@
     ],
     "absoluteGranulePosition": 343,
     "crc32": 1905570939,
-    "duration": 64,
+    "duration": 42.875,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": true,
     "pageSequenceNumber": 2,
-    "samples": 512,
+    "samples": 343,
     "streamSerialNumber": 467838059,
-    "totalSamples": 512,
-    "totalDuration": 64,
+    "totalSamples": 343,
+    "totalDuration": 42.875,
     "totalBytesOut": 187
   }
 ]

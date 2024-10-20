@@ -26,6 +26,7 @@ import {
   codec,
   data,
   length,
+  samples,
   segments,
   subarray,
   vorbis,
@@ -38,6 +39,7 @@ import {
   uint8Array,
   isLastPage,
   streamSerialNumber,
+  absoluteGranulePosition,
 } from "../../constants.js";
 
 import Parser from "../../codecs/Parser.js";
@@ -57,6 +59,7 @@ class OggStream {
     this._continuedPacket = new uint8Array();
     this._codec = null;
     this._isSupported = null;
+    this._previousAbsoluteGranulePosition = null;
   }
 
   get [codec]() {
@@ -148,6 +151,16 @@ class OggStream {
         oggPageStore[segments].pop(),
       );
     }
+
+    // set total samples in this ogg page
+    if (this._previousAbsoluteGranulePosition !== null) {
+      oggPage[samples] = Number(
+        oggPage[absoluteGranulePosition] -
+          this._previousAbsoluteGranulePosition,
+      );
+    }
+
+    this._previousAbsoluteGranulePosition = oggPage[absoluteGranulePosition];
 
     if (this._isSupported) {
       const frame = this._parser[parseOggPage](oggPage);

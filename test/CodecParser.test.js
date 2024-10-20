@@ -311,6 +311,7 @@ describe("CodecParser", () => {
       testParser("ogg.opus.framesize_60", mimeType, "opus", 251, 0);
       testParser("ogg.opus.surround", mimeType, "opus", 737, 0);
       testParser("ogg.opus.channel_family_255", mimeType, "opus", 284, 0);
+      testParser("ogg.opus.last_page_trimming", mimeType, "opus", 51, 0);
     });
 
     describe("Ogg Vorbis", () => {
@@ -322,7 +323,7 @@ describe("CodecParser", () => {
         "ogg.vorbis.setup_packets_separate_pages",
         mimeType,
         "vorbis",
-        118,
+        119,
       );
       testParser("metronome2.vorbis", mimeType, "vorbis", 3);
     });

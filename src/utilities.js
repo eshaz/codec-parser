@@ -185,6 +185,30 @@ class BitReader {
   }
 }
 
+/**
+ * @todo Old versions of Safari do not support BigInt
+ */
+const readInt64le = (view, offset) => {
+  try {
+    return view.getBigInt64(offset, true);
+  } catch {
+    const sign = view.getUint8(offset + 7) & 0x80 ? -1 : 1;
+    let firstPart = view.getUint32(offset, true);
+    let secondPart = view.getUint32(offset + 4, true);
+
+    if (sign === -1) {
+      firstPart = ~firstPart + 1;
+      secondPart = ~secondPart + 1;
+    }
+
+    if (secondPart > 0x000fffff) {
+      console.warn("This platform does not support BigInt");
+    }
+
+    return sign * (firstPart + secondPart * 2 ** 32);
+  }
+};
+
 export {
   crc8,
   flacCrc16,
@@ -192,5 +216,6 @@ export {
   reverse,
   concatBuffers,
   bytesToString,
+  readInt64le,
   BitReader,
 };

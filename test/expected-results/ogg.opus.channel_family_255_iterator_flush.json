@@ -18139,7 +18139,7 @@
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 2032,
+          "bitrate": 84912,
           "channels": 32,
           "sampleRate": 48000,
           "bandwidth": "fullband",
@@ -18187,8 +18187,8 @@
           "preSkip": 312,
           "streamCount": 32
         },
-        "samples": 960,
-        "duration": 20,
+        "samples": 23,
+        "duration": 0.47916666666666663,
         "frameNumber": 299,
         "totalBytesOut": 1823868,
         "totalSamples": 287040,
@@ -18198,15 +18198,15 @@
     ],
     "absoluteGranulePosition": 287063,
     "crc32": -1148890624,
-    "duration": 140,
+    "duration": 120.47916666666667,
     "isContinuedPacket": true,
     "isFirstPage": false,
     "isLastPage": true,
     "pageSequenceNumber": 31,
-    "samples": 6720,
+    "samples": 5783,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 288000,
-    "totalDuration": 6000,
+    "totalSamples": 287063,
+    "totalDuration": 5980.479166666667,
     "totalBytesOut": 1828954
   }
 ]

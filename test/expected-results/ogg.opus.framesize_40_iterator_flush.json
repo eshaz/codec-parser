@@ -13391,8 +13391,8 @@
           "outputGain": 0,
           "preSkip": 312
         },
-        "samples": 1920,
-        "duration": 40,
+        "samples": 1849,
+        "duration": 38.52083333333333,
         "frameNumber": 542,
         "totalBytesOut": 249337,
         "totalSamples": 1040640,
@@ -13402,15 +13402,15 @@
     ],
     "absoluteGranulePosition": 1042489,
     "crc32": 1664659054,
-    "duration": 720,
+    "duration": 718.5208333333334,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": true,
     "pageSequenceNumber": 23,
-    "samples": 34560,
+    "samples": 34489,
     "streamSerialNumber": 1144372499,
-    "totalSamples": 1042560,
-    "totalDuration": 21720,
+    "totalSamples": 1042489,
+    "totalDuration": 21718.520833333332,
     "totalBytesOut": 249342
   }
 ]
