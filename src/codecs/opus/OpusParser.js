@@ -27,6 +27,10 @@ import {
   parseOggPage,
   enable,
   getHeaderFromUint8Array,
+  preSkip,
+  frameSize,
+  frameCount,
+  sampleRate,
 } from "../../constants.js";
 import Parser from "../Parser.js";
 import OpusFrame from "./OpusFrame.js";
@@ -40,6 +44,7 @@ export default class OpusParser extends Parser {
 
     onCodec(this[codec]);
     this._identificationHeader = null;
+    this._preSkipRemaining = null;
   }
 
   get [codec]() {
@@ -67,7 +72,22 @@ export default class OpusParser extends Parser {
             this._headerCache,
           );
 
-          if (header) return new OpusFrame(segment, header);
+          if (header) {
+            if (this._preSkipRemaining === null)
+              this._preSkipRemaining = header[preSkip];
+
+            let samples =
+              ((header[frameSize] * header[frameCount]) / 1000) *
+              header[sampleRate];
+
+            if (this._preSkipRemaining > 0) {
+              this._preSkipRemaining -= samples;
+              samples =
+                this._preSkipRemaining < 0 ? -this._preSkipRemaining : 0;
+            }
+
+            return new OpusFrame(segment, header, samples);
+          }
 
           this._codecParser[logError](
             "Failed to parse Ogg Opus Header",

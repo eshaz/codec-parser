@@ -42,6 +42,7 @@ import {
   parseFrame,
   checkCodecUpdate,
   reset,
+  isLastPage,
 } from "./constants.js";
 import HeaderCache from "./codecs/HeaderCache.js";
 import MPEGParser from "./codecs/mpeg/MPEGParser.js";
@@ -229,12 +230,37 @@ export default class CodecParser {
   [mapFrameStats](frame) {
     if (frame[codecFrames]) {
       // Ogg container
-      frame[codecFrames].forEach((codecFrame) => {
-        frame[duration] += codecFrame[duration];
-        frame[samples] += codecFrame[samples];
-        this[mapCodecFrameStats](codecFrame);
-      });
+      if (frame[isLastPage]) {
+        // cut any excess samples that fall outside of the absolute granule position
+        // some streams put invalid data in absolute granule position, so only do this
+        // for the end of the stream
+        let absoluteGranulePositionSamples = frame[samples];
 
+        frame[codecFrames].forEach((codecFrame) => {
+          const untrimmedCodecSamples = codecFrame[samples];
+
+          if (absoluteGranulePositionSamples < untrimmedCodecSamples) {
+            codecFrame[samples] =
+              absoluteGranulePositionSamples > 0
+                ? absoluteGranulePositionSamples
+                : 0;
+            codecFrame[duration] =
+              (codecFrame[samples] / codecFrame[header][sampleRate]) * 1000;
+          }
+
+          absoluteGranulePositionSamples -= untrimmedCodecSamples;
+
+          this[mapCodecFrameStats](codecFrame);
+        });
+      } else {
+        frame[samples] = 0;
+        frame[codecFrames].forEach((codecFrame) => {
+          frame[samples] += codecFrame[samples];
+          this[mapCodecFrameStats](codecFrame);
+        });
+      }
+
+      frame[duration] = (frame[samples] / this._sampleRate) * 1000 || 0;
       frame[totalSamples] = this._totalSamples;
       frame[totalDuration] =
         (this._totalSamples / this._sampleRate) * 1000 || 0;

@@ -100,9 +100,8 @@ export default class FLACParser extends Parser {
             ))
           ) {
             // found a valid next frame header
-            let frameData = yield* this._codecParser[readRawData](
-              nextHeaderOffset,
-            );
+            let frameData =
+              yield* this._codecParser[readRawData](nextHeaderOffset);
 
             if (!this._codecParser._flushing)
               frameData = frameData[subarray](0, nextHeaderOffset);

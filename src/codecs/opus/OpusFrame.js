@@ -16,15 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>
 */
 
-import { sampleRate, frameCount, frameSize } from "../../constants.js";
 import CodecFrame from "../CodecFrame.js";
 
 export default class OpusFrame extends CodecFrame {
-  constructor(data, header) {
-    super(
-      header,
-      data,
-      ((header[frameSize] * header[frameCount]) / 1000) * header[sampleRate],
-    );
+  constructor(data, header, samples) {
+    super(header, data, samples);
   }
 }
