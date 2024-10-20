@@ -34,7 +34,7 @@
       {
         "header": {
           "bitDepth": 16,
-          "bitrate": 3968,
+          "bitrate": 5880,
           "channels": 32,
           "sampleRate": 48000,
           "bandwidth": "fullband",
@@ -82,8 +82,8 @@
           "preSkip": 312,
           "streamCount": 32
         },
-        "samples": 960,
-        "duration": 20,
+        "samples": 648,
+        "duration": 13.5,
         "frameNumber": 0,
         "totalBytesOut": 0,
         "totalSamples": 0,
@@ -145,8 +145,8 @@
         "duration": 20,
         "frameNumber": 1,
         "totalBytesOut": 9918,
-        "totalSamples": 960,
-        "totalDuration": 20,
+        "totalSamples": 648,
+        "totalDuration": 13.5,
         "crc32": -765039440
       },
       {
@@ -204,8 +204,8 @@
         "duration": 20,
         "frameNumber": 2,
         "totalBytesOut": 16045,
-        "totalSamples": 1920,
-        "totalDuration": 40,
+        "totalSamples": 1608,
+        "totalDuration": 33.5,
         "crc32": -1965076515
       },
       {
@@ -263,8 +263,8 @@
         "duration": 20,
         "frameNumber": 3,
         "totalBytesOut": 22876,
-        "totalSamples": 2880,
-        "totalDuration": 60,
+        "totalSamples": 2568,
+        "totalDuration": 53.5,
         "crc32": 1492170125
       },
       {
@@ -322,8 +322,8 @@
         "duration": 20,
         "frameNumber": 4,
         "totalBytesOut": 29595,
-        "totalSamples": 3840,
-        "totalDuration": 80,
+        "totalSamples": 3528,
+        "totalDuration": 73.5,
         "crc32": -1259164029
       },
       {
@@ -381,8 +381,8 @@
         "duration": 20,
         "frameNumber": 5,
         "totalBytesOut": 36378,
-        "totalSamples": 4800,
-        "totalDuration": 100,
+        "totalSamples": 4488,
+        "totalDuration": 93.5,
         "crc32": -1599522928
       },
       {
@@ -440,8 +440,8 @@
         "duration": 20,
         "frameNumber": 6,
         "totalBytesOut": 43049,
-        "totalSamples": 5760,
-        "totalDuration": 120,
+        "totalSamples": 5448,
+        "totalDuration": 113.5,
         "crc32": -845337239
       },
       {
@@ -499,8 +499,8 @@
         "duration": 20,
         "frameNumber": 7,
         "totalBytesOut": 49816,
-        "totalSamples": 6720,
-        "totalDuration": 140,
+        "totalSamples": 6408,
+        "totalDuration": 133.5,
         "crc32": 1778488319
       },
       {
@@ -558,22 +558,22 @@
         "duration": 20,
         "frameNumber": 8,
         "totalBytesOut": 56167,
-        "totalSamples": 7680,
-        "totalDuration": 160,
+        "totalSamples": 7368,
+        "totalDuration": 153.5,
         "crc32": 1610143459
       }
     ],
     "absoluteGranulePosition": 8640,
     "crc32": -1550389029,
-    "duration": 180,
+    "duration": 173.5,
     "isContinuedPacket": false,
     "isFirstPage": false,
     "isLastPage": false,
     "pageSequenceNumber": 2,
-    "samples": 8640,
+    "samples": 8328,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 8640,
-    "totalDuration": 180,
+    "totalSamples": 8328,
+    "totalDuration": 173.5,
     "totalBytesOut": 62742
   },
   {
@@ -633,8 +633,8 @@
         "duration": 20,
         "frameNumber": 9,
         "totalBytesOut": 62742,
-        "totalSamples": 8640,
-        "totalDuration": 180,
+        "totalSamples": 8328,
+        "totalDuration": 173.5,
         "crc32": -1722997725
       },
       {
@@ -692,8 +692,8 @@
         "duration": 20,
         "frameNumber": 10,
         "totalBytesOut": 69125,
-        "totalSamples": 9600,
-        "totalDuration": 200,
+        "totalSamples": 9288,
+        "totalDuration": 193.5,
         "crc32": 508662670
       },
       {
@@ -751,8 +751,8 @@
         "duration": 20,
         "frameNumber": 11,
         "totalBytesOut": 75588,
-        "totalSamples": 10560,
-        "totalDuration": 220,
+        "totalSamples": 10248,
+        "totalDuration": 213.5,
         "crc32": 244792754
       },
       {
@@ -810,8 +810,8 @@
         "duration": 20,
         "frameNumber": 12,
         "totalBytesOut": 82099,
-        "totalSamples": 11520,
-        "totalDuration": 240,
+        "totalSamples": 11208,
+        "totalDuration": 233.5,
         "crc32": -55299090
       },
       {
@@ -869,8 +869,8 @@
         "duration": 20,
         "frameNumber": 13,
         "totalBytesOut": 88770,
-        "totalSamples": 12480,
-        "totalDuration": 260,
+        "totalSamples": 12168,
+        "totalDuration": 253.5,
         "crc32": -2088847156
       },
       {
@@ -928,8 +928,8 @@
         "duration": 20,
         "frameNumber": 14,
         "totalBytesOut": 95393,
-        "totalSamples": 13440,
-        "totalDuration": 280,
+        "totalSamples": 13128,
+        "totalDuration": 273.5,
         "crc32": 583960724
       },
       {
@@ -987,8 +987,8 @@
         "duration": 20,
         "frameNumber": 15,
         "totalBytesOut": 102208,
-        "totalSamples": 14400,
-        "totalDuration": 300,
+        "totalSamples": 14088,
+        "totalDuration": 293.5,
         "crc32": 1031369754
       },
       {
@@ -1046,8 +1046,8 @@
         "duration": 20,
         "frameNumber": 16,
         "totalBytesOut": 109135,
-        "totalSamples": 15360,
-        "totalDuration": 320,
+        "totalSamples": 15048,
+        "totalDuration": 313.5,
         "crc32": 707970084
       },
       {
@@ -1105,8 +1105,8 @@
         "duration": 20,
         "frameNumber": 17,
         "totalBytesOut": 116174,
-        "totalSamples": 16320,
-        "totalDuration": 340,
+        "totalSamples": 16008,
+        "totalDuration": 333.5,
         "crc32": -419573574
       }
     ],
@@ -1119,8 +1119,8 @@
     "pageSequenceNumber": 3,
     "samples": 8640,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 17280,
-    "totalDuration": 360,
+    "totalSamples": 16968,
+    "totalDuration": 353.5,
     "totalBytesOut": 123021
   },
   {
@@ -1180,8 +1180,8 @@
         "duration": 20,
         "frameNumber": 18,
         "totalBytesOut": 123021,
-        "totalSamples": 17280,
-        "totalDuration": 360,
+        "totalSamples": 16968,
+        "totalDuration": 353.5,
         "crc32": 2043493459
       },
       {
@@ -1239,8 +1239,8 @@
         "duration": 20,
         "frameNumber": 19,
         "totalBytesOut": 129852,
-        "totalSamples": 18240,
-        "totalDuration": 380,
+        "totalSamples": 17928,
+        "totalDuration": 373.5,
         "crc32": -2065357929
       },
       {
@@ -1298,8 +1298,8 @@
         "duration": 20,
         "frameNumber": 20,
         "totalBytesOut": 136507,
-        "totalSamples": 19200,
-        "totalDuration": 400,
+        "totalSamples": 18888,
+        "totalDuration": 393.5,
         "crc32": 841057936
       },
       {
@@ -1357,8 +1357,8 @@
         "duration": 20,
         "frameNumber": 21,
         "totalBytesOut": 142938,
-        "totalSamples": 20160,
-        "totalDuration": 420,
+        "totalSamples": 19848,
+        "totalDuration": 413.5,
         "crc32": 1065183383
       },
       {
@@ -1416,8 +1416,8 @@
         "duration": 20,
         "frameNumber": 22,
         "totalBytesOut": 149113,
-        "totalSamples": 21120,
-        "totalDuration": 440,
+        "totalSamples": 20808,
+        "totalDuration": 433.5,
         "crc32": -1340134201
       },
       {
@@ -1475,8 +1475,8 @@
         "duration": 20,
         "frameNumber": 23,
         "totalBytesOut": 155208,
-        "totalSamples": 22080,
-        "totalDuration": 460,
+        "totalSamples": 21768,
+        "totalDuration": 453.5,
         "crc32": -991917594
       },
       {
@@ -1534,8 +1534,8 @@
         "duration": 20,
         "frameNumber": 24,
         "totalBytesOut": 161255,
-        "totalSamples": 23040,
-        "totalDuration": 480,
+        "totalSamples": 22728,
+        "totalDuration": 473.5,
         "crc32": 1271327526
       },
       {
@@ -1593,8 +1593,8 @@
         "duration": 20,
         "frameNumber": 25,
         "totalBytesOut": 167382,
-        "totalSamples": 24000,
-        "totalDuration": 500,
+        "totalSamples": 23688,
+        "totalDuration": 493.5,
         "crc32": 1403153367
       },
       {
@@ -1652,8 +1652,8 @@
         "duration": 20,
         "frameNumber": 26,
         "totalBytesOut": 173205,
-        "totalSamples": 24960,
-        "totalDuration": 520,
+        "totalSamples": 24648,
+        "totalDuration": 513.5,
         "crc32": 466289040
       },
       {
@@ -1711,8 +1711,8 @@
         "duration": 20,
         "frameNumber": 27,
         "totalBytesOut": 180260,
-        "totalSamples": 25920,
-        "totalDuration": 540,
+        "totalSamples": 25608,
+        "totalDuration": 533.5,
         "crc32": 2093147793
       }
     ],
@@ -1725,8 +1725,8 @@
     "pageSequenceNumber": 4,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 26880,
-    "totalDuration": 560,
+    "totalSamples": 26568,
+    "totalDuration": 553.5,
     "totalBytesOut": 186275
   },
   {
@@ -1786,8 +1786,8 @@
         "duration": 20,
         "frameNumber": 28,
         "totalBytesOut": 186275,
-        "totalSamples": 26880,
-        "totalDuration": 560,
+        "totalSamples": 26568,
+        "totalDuration": 553.5,
         "crc32": 1539813639
       },
       {
@@ -1845,8 +1845,8 @@
         "duration": 20,
         "frameNumber": 29,
         "totalBytesOut": 194609,
-        "totalSamples": 27840,
-        "totalDuration": 580,
+        "totalSamples": 27528,
+        "totalDuration": 573.5,
         "crc32": 984405046
       },
       {
@@ -1904,8 +1904,8 @@
         "duration": 20,
         "frameNumber": 30,
         "totalBytesOut": 201727,
-        "totalSamples": 28800,
-        "totalDuration": 600,
+        "totalSamples": 28488,
+        "totalDuration": 593.5,
         "crc32": 1294314837
       },
       {
@@ -1963,8 +1963,8 @@
         "duration": 20,
         "frameNumber": 31,
         "totalBytesOut": 207470,
-        "totalSamples": 29760,
-        "totalDuration": 620,
+        "totalSamples": 29448,
+        "totalDuration": 613.5,
         "crc32": 675451467
       },
       {
@@ -2022,8 +2022,8 @@
         "duration": 20,
         "frameNumber": 32,
         "totalBytesOut": 212973,
-        "totalSamples": 30720,
-        "totalDuration": 640,
+        "totalSamples": 30408,
+        "totalDuration": 633.5,
         "crc32": 167274430
       },
       {
@@ -2081,8 +2081,8 @@
         "duration": 20,
         "frameNumber": 33,
         "totalBytesOut": 219340,
-        "totalSamples": 31680,
-        "totalDuration": 660,
+        "totalSamples": 31368,
+        "totalDuration": 653.5,
         "crc32": 321078172
       },
       {
@@ -2140,8 +2140,8 @@
         "duration": 20,
         "frameNumber": 34,
         "totalBytesOut": 225963,
-        "totalSamples": 32640,
-        "totalDuration": 680,
+        "totalSamples": 32328,
+        "totalDuration": 673.5,
         "crc32": -655761866
       },
       {
@@ -2199,8 +2199,8 @@
         "duration": 20,
         "frameNumber": 35,
         "totalBytesOut": 232618,
-        "totalSamples": 33600,
-        "totalDuration": 700,
+        "totalSamples": 33288,
+        "totalDuration": 693.5,
         "crc32": 1106217388
       },
       {
@@ -2258,8 +2258,8 @@
         "duration": 20,
         "frameNumber": 36,
         "totalBytesOut": 238137,
-        "totalSamples": 34560,
-        "totalDuration": 720,
+        "totalSamples": 34248,
+        "totalDuration": 713.5,
         "crc32": 267939181
       },
       {
@@ -2317,8 +2317,8 @@
         "duration": 20,
         "frameNumber": 37,
         "totalBytesOut": 243352,
-        "totalSamples": 35520,
-        "totalDuration": 740,
+        "totalSamples": 35208,
+        "totalDuration": 733.5,
         "crc32": 1571716048
       }
     ],
@@ -2331,8 +2331,8 @@
     "pageSequenceNumber": 5,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 36480,
-    "totalDuration": 760,
+    "totalSamples": 36168,
+    "totalDuration": 753.5,
     "totalBytesOut": 248407
   },
   {
@@ -2392,8 +2392,8 @@
         "duration": 20,
         "frameNumber": 38,
         "totalBytesOut": 248407,
-        "totalSamples": 36480,
-        "totalDuration": 760,
+        "totalSamples": 36168,
+        "totalDuration": 753.5,
         "crc32": 1134485604
       },
       {
@@ -2451,8 +2451,8 @@
         "duration": 20,
         "frameNumber": 39,
         "totalBytesOut": 253574,
-        "totalSamples": 37440,
-        "totalDuration": 780,
+        "totalSamples": 37128,
+        "totalDuration": 773.5,
         "crc32": -344175602
       },
       {
@@ -2510,8 +2510,8 @@
         "duration": 20,
         "frameNumber": 40,
         "totalBytesOut": 258549,
-        "totalSamples": 38400,
-        "totalDuration": 800,
+        "totalSamples": 38088,
+        "totalDuration": 793.5,
         "crc32": -2093004243
       },
       {
@@ -2569,8 +2569,8 @@
         "duration": 20,
         "frameNumber": 41,
         "totalBytesOut": 264324,
-        "totalSamples": 39360,
-        "totalDuration": 820,
+        "totalSamples": 39048,
+        "totalDuration": 813.5,
         "crc32": 1392303479
       },
       {
@@ -2628,8 +2628,8 @@
         "duration": 20,
         "frameNumber": 42,
         "totalBytesOut": 269939,
-        "totalSamples": 40320,
-        "totalDuration": 840,
+        "totalSamples": 40008,
+        "totalDuration": 833.5,
         "crc32": -69387338
       },
       {
@@ -2687,8 +2687,8 @@
         "duration": 20,
         "frameNumber": 43,
         "totalBytesOut": 275170,
-        "totalSamples": 41280,
-        "totalDuration": 860,
+        "totalSamples": 40968,
+        "totalDuration": 853.5,
         "crc32": 1880342717
       },
       {
@@ -2746,8 +2746,8 @@
         "duration": 20,
         "frameNumber": 44,
         "totalBytesOut": 280193,
-        "totalSamples": 42240,
-        "totalDuration": 880,
+        "totalSamples": 41928,
+        "totalDuration": 873.5,
         "crc32": 271877401
       },
       {
@@ -2805,8 +2805,8 @@
         "duration": 20,
         "frameNumber": 45,
         "totalBytesOut": 285472,
-        "totalSamples": 43200,
-        "totalDuration": 900,
+        "totalSamples": 42888,
+        "totalDuration": 893.5,
         "crc32": -370437879
       },
       {
@@ -2864,8 +2864,8 @@
         "duration": 20,
         "frameNumber": 46,
         "totalBytesOut": 290591,
-        "totalSamples": 44160,
-        "totalDuration": 920,
+        "totalSamples": 43848,
+        "totalDuration": 913.5,
         "crc32": 1800280222
       },
       {
@@ -2923,8 +2923,8 @@
         "duration": 20,
         "frameNumber": 47,
         "totalBytesOut": 295630,
-        "totalSamples": 45120,
-        "totalDuration": 940,
+        "totalSamples": 44808,
+        "totalDuration": 933.5,
         "crc32": -1392714544
       },
       {
@@ -2982,8 +2982,8 @@
         "duration": 20,
         "frameNumber": 48,
         "totalBytesOut": 300765,
-        "totalSamples": 46080,
-        "totalDuration": 960,
+        "totalSamples": 45768,
+        "totalDuration": 953.5,
         "crc32": -1563251098
       },
       {
@@ -3041,8 +3041,8 @@
         "duration": 20,
         "frameNumber": 49,
         "totalBytesOut": 305852,
-        "totalSamples": 47040,
-        "totalDuration": 980,
+        "totalSamples": 46728,
+        "totalDuration": 973.5,
         "crc32": -569251538
       }
     ],
@@ -3055,8 +3055,8 @@
     "pageSequenceNumber": 6,
     "samples": 11520,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 48000,
-    "totalDuration": 1000,
+    "totalSamples": 47688,
+    "totalDuration": 993.5,
     "totalBytesOut": 311019
   },
   {
@@ -3116,8 +3116,8 @@
         "duration": 20,
         "frameNumber": 50,
         "totalBytesOut": 311019,
-        "totalSamples": 48000,
-        "totalDuration": 1000,
+        "totalSamples": 47688,
+        "totalDuration": 993.5,
         "crc32": -394969785
       },
       {
@@ -3175,8 +3175,8 @@
         "duration": 20,
         "frameNumber": 51,
         "totalBytesOut": 316138,
-        "totalSamples": 48960,
-        "totalDuration": 1020,
+        "totalSamples": 48648,
+        "totalDuration": 1013.5000000000001,
         "crc32": 1330378696
       },
       {
@@ -3234,8 +3234,8 @@
         "duration": 20,
         "frameNumber": 52,
         "totalBytesOut": 322041,
-        "totalSamples": 49920,
-        "totalDuration": 1040,
+        "totalSamples": 49608,
+        "totalDuration": 1033.5,
         "crc32": -1396624631
       },
       {
@@ -3293,8 +3293,8 @@
         "duration": 20,
         "frameNumber": 53,
         "totalBytesOut": 326952,
-        "totalSamples": 50880,
-        "totalDuration": 1060,
+        "totalSamples": 50568,
+        "totalDuration": 1053.5,
         "crc32": -1461676186
       },
       {
@@ -3352,8 +3352,8 @@
         "duration": 20,
         "frameNumber": 54,
         "totalBytesOut": 331767,
-        "totalSamples": 51840,
-        "totalDuration": 1080,
+        "totalSamples": 51528,
+        "totalDuration": 1073.5,
         "crc32": 1096955650
       },
       {
@@ -3411,8 +3411,8 @@
         "duration": 20,
         "frameNumber": 55,
         "totalBytesOut": 336662,
-        "totalSamples": 52800,
-        "totalDuration": 1100,
+        "totalSamples": 52488,
+        "totalDuration": 1093.5,
         "crc32": -56483075
       },
       {
@@ -3470,8 +3470,8 @@
         "duration": 20,
         "frameNumber": 56,
         "totalBytesOut": 341637,
-        "totalSamples": 53760,
-        "totalDuration": 1120,
+        "totalSamples": 53448,
+        "totalDuration": 1113.5,
         "crc32": -960079950
       },
       {
@@ -3529,8 +3529,8 @@
         "duration": 20,
         "frameNumber": 57,
         "totalBytesOut": 350083,
-        "totalSamples": 54720,
-        "totalDuration": 1140,
+        "totalSamples": 54408,
+        "totalDuration": 1133.5,
         "crc32": -702194281
       },
       {
@@ -3588,8 +3588,8 @@
         "duration": 20,
         "frameNumber": 58,
         "totalBytesOut": 358034,
-        "totalSamples": 55680,
-        "totalDuration": 1160,
+        "totalSamples": 55368,
+        "totalDuration": 1153.5,
         "crc32": 1817289454
       },
       {
@@ -3647,8 +3647,8 @@
         "duration": 20,
         "frameNumber": 59,
         "totalBytesOut": 363665,
-        "totalSamples": 56640,
-        "totalDuration": 1180,
+        "totalSamples": 56328,
+        "totalDuration": 1173.5,
         "crc32": -1389855707
       }
     ],
@@ -3661,8 +3661,8 @@
     "pageSequenceNumber": 7,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 57600,
-    "totalDuration": 1200,
+    "totalSamples": 57288,
+    "totalDuration": 1193.5,
     "totalBytesOut": 369248
   },
   {
@@ -3722,8 +3722,8 @@
         "duration": 20,
         "frameNumber": 60,
         "totalBytesOut": 369248,
-        "totalSamples": 57600,
-        "totalDuration": 1200,
+        "totalSamples": 57288,
+        "totalDuration": 1193.5,
         "crc32": 1387783086
       },
       {
@@ -3781,8 +3781,8 @@
         "duration": 20,
         "frameNumber": 61,
         "totalBytesOut": 375887,
-        "totalSamples": 58560,
-        "totalDuration": 1220,
+        "totalSamples": 58248,
+        "totalDuration": 1213.5,
         "crc32": -1147667120
       },
       {
@@ -3840,8 +3840,8 @@
         "duration": 20,
         "frameNumber": 62,
         "totalBytesOut": 381502,
-        "totalSamples": 59520,
-        "totalDuration": 1240,
+        "totalSamples": 59208,
+        "totalDuration": 1233.5,
         "crc32": -1234928685
       },
       {
@@ -3899,8 +3899,8 @@
         "duration": 20,
         "frameNumber": 63,
         "totalBytesOut": 387005,
-        "totalSamples": 60480,
-        "totalDuration": 1260,
+        "totalSamples": 60168,
+        "totalDuration": 1253.5,
         "crc32": -1348886104
       },
       {
@@ -3958,8 +3958,8 @@
         "duration": 20,
         "frameNumber": 64,
         "totalBytesOut": 393452,
-        "totalSamples": 61440,
-        "totalDuration": 1280,
+        "totalSamples": 61128,
+        "totalDuration": 1273.5,
         "crc32": -651443247
       },
       {
@@ -4017,8 +4017,8 @@
         "duration": 20,
         "frameNumber": 65,
         "totalBytesOut": 403450,
-        "totalSamples": 62400,
-        "totalDuration": 1300,
+        "totalSamples": 62088,
+        "totalDuration": 1293.5,
         "crc32": 364835472
       },
       {
@@ -4076,8 +4076,8 @@
         "duration": 20,
         "frameNumber": 66,
         "totalBytesOut": 408937,
-        "totalSamples": 63360,
-        "totalDuration": 1320,
+        "totalSamples": 63048,
+        "totalDuration": 1313.5,
         "crc32": -1615747223
       },
       {
@@ -4135,8 +4135,8 @@
         "duration": 20,
         "frameNumber": 67,
         "totalBytesOut": 414216,
-        "totalSamples": 64320,
-        "totalDuration": 1340,
+        "totalSamples": 64008,
+        "totalDuration": 1333.5,
         "crc32": -598042550
       },
       {
@@ -4194,8 +4194,8 @@
         "duration": 20,
         "frameNumber": 68,
         "totalBytesOut": 419527,
-        "totalSamples": 65280,
-        "totalDuration": 1360,
+        "totalSamples": 64968,
+        "totalDuration": 1353.5,
         "crc32": -1989113933
       },
       {
@@ -4253,8 +4253,8 @@
         "duration": 20,
         "frameNumber": 69,
         "totalBytesOut": 424710,
-        "totalSamples": 66240,
-        "totalDuration": 1380,
+        "totalSamples": 65928,
+        "totalDuration": 1373.5,
         "crc32": -1659939849
       },
       {
@@ -4312,8 +4312,8 @@
         "duration": 20,
         "frameNumber": 70,
         "totalBytesOut": 430037,
-        "totalSamples": 67200,
-        "totalDuration": 1400,
+        "totalSamples": 66888,
+        "totalDuration": 1393.5,
         "crc32": -1822659971
       }
     ],
@@ -4326,8 +4326,8 @@
     "pageSequenceNumber": 8,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 68160,
-    "totalDuration": 1420,
+    "totalSamples": 67848,
+    "totalDuration": 1413.5,
     "totalBytesOut": 435172
   },
   {
@@ -4387,8 +4387,8 @@
         "duration": 20,
         "frameNumber": 71,
         "totalBytesOut": 435172,
-        "totalSamples": 68160,
-        "totalDuration": 1420,
+        "totalSamples": 67848,
+        "totalDuration": 1413.5,
         "crc32": 291560001
       },
       {
@@ -4446,8 +4446,8 @@
         "duration": 20,
         "frameNumber": 72,
         "totalBytesOut": 440307,
-        "totalSamples": 69120,
-        "totalDuration": 1440,
+        "totalSamples": 68808,
+        "totalDuration": 1433.5,
         "crc32": -1712911287
       },
       {
@@ -4505,8 +4505,8 @@
         "duration": 20,
         "frameNumber": 73,
         "totalBytesOut": 445346,
-        "totalSamples": 70080,
-        "totalDuration": 1460,
+        "totalSamples": 69768,
+        "totalDuration": 1453.5,
         "crc32": 970514799
       },
       {
@@ -4564,8 +4564,8 @@
         "duration": 20,
         "frameNumber": 74,
         "totalBytesOut": 450465,
-        "totalSamples": 71040,
-        "totalDuration": 1480,
+        "totalSamples": 70728,
+        "totalDuration": 1473.5,
         "crc32": 999068296
       },
       {
@@ -4623,8 +4623,8 @@
         "duration": 20,
         "frameNumber": 75,
         "totalBytesOut": 455520,
-        "totalSamples": 72000,
-        "totalDuration": 1500,
+        "totalSamples": 71688,
+        "totalDuration": 1493.5,
         "crc32": -193024382
       },
       {
@@ -4682,8 +4682,8 @@
         "duration": 20,
         "frameNumber": 76,
         "totalBytesOut": 460543,
-        "totalSamples": 72960,
-        "totalDuration": 1520,
+        "totalSamples": 72648,
+        "totalDuration": 1513.5,
         "crc32": 1850881407
       },
       {
@@ -4741,8 +4741,8 @@
         "duration": 20,
         "frameNumber": 77,
         "totalBytesOut": 465598,
-        "totalSamples": 73920,
-        "totalDuration": 1540,
+        "totalSamples": 73608,
+        "totalDuration": 1533.5,
         "crc32": 605204789
       },
       {
@@ -4800,8 +4800,8 @@
         "duration": 20,
         "frameNumber": 78,
         "totalBytesOut": 470717,
-        "totalSamples": 74880,
-        "totalDuration": 1560,
+        "totalSamples": 74568,
+        "totalDuration": 1553.5,
         "crc32": -714036287
       },
       {
@@ -4859,8 +4859,8 @@
         "duration": 20,
         "frameNumber": 79,
         "totalBytesOut": 478796,
-        "totalSamples": 75840,
-        "totalDuration": 1580,
+        "totalSamples": 75528,
+        "totalDuration": 1573.5,
         "crc32": 863010233
       },
       {
@@ -4918,8 +4918,8 @@
         "duration": 20,
         "frameNumber": 80,
         "totalBytesOut": 483835,
-        "totalSamples": 76800,
-        "totalDuration": 1600,
+        "totalSamples": 76488,
+        "totalDuration": 1593.5,
         "crc32": -1363058858
       },
       {
@@ -4977,8 +4977,8 @@
         "duration": 20,
         "frameNumber": 81,
         "totalBytesOut": 488954,
-        "totalSamples": 77760,
-        "totalDuration": 1620,
+        "totalSamples": 77448,
+        "totalDuration": 1613.5,
         "crc32": 529807462
       }
     ],
@@ -4991,8 +4991,8 @@
     "pageSequenceNumber": 9,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 78720,
-    "totalDuration": 1640,
+    "totalSamples": 78408,
+    "totalDuration": 1633.5,
     "totalBytesOut": 493977
   },
   {
@@ -5052,8 +5052,8 @@
         "duration": 20,
         "frameNumber": 82,
         "totalBytesOut": 493977,
-        "totalSamples": 78720,
-        "totalDuration": 1640,
+        "totalSamples": 78408,
+        "totalDuration": 1633.5,
         "crc32": -1800151049
       },
       {
@@ -5111,8 +5111,8 @@
         "duration": 20,
         "frameNumber": 83,
         "totalBytesOut": 499928,
-        "totalSamples": 79680,
-        "totalDuration": 1660,
+        "totalSamples": 79368,
+        "totalDuration": 1653.5,
         "crc32": 939188163
       },
       {
@@ -5170,8 +5170,8 @@
         "duration": 20,
         "frameNumber": 84,
         "totalBytesOut": 505015,
-        "totalSamples": 80640,
-        "totalDuration": 1680,
+        "totalSamples": 80328,
+        "totalDuration": 1673.5,
         "crc32": 1582319135
       },
       {
@@ -5229,8 +5229,8 @@
         "duration": 20,
         "frameNumber": 85,
         "totalBytesOut": 509942,
-        "totalSamples": 81600,
-        "totalDuration": 1700,
+        "totalSamples": 81288,
+        "totalDuration": 1693.5,
         "crc32": -1859853919
       },
       {
@@ -5288,8 +5288,8 @@
         "duration": 20,
         "frameNumber": 86,
         "totalBytesOut": 515077,
-        "totalSamples": 82560,
-        "totalDuration": 1720,
+        "totalSamples": 82248,
+        "totalDuration": 1713.5,
         "crc32": -465040783
       },
       {
@@ -5347,8 +5347,8 @@
         "duration": 20,
         "frameNumber": 87,
         "totalBytesOut": 520004,
-        "totalSamples": 83520,
-        "totalDuration": 1740,
+        "totalSamples": 83208,
+        "totalDuration": 1733.5,
         "crc32": -576161586
       },
       {
@@ -5406,8 +5406,8 @@
         "duration": 20,
         "frameNumber": 88,
         "totalBytesOut": 524835,
-        "totalSamples": 84480,
-        "totalDuration": 1760,
+        "totalSamples": 84168,
+        "totalDuration": 1753.5,
         "crc32": -847572373
       },
       {
@@ -5465,8 +5465,8 @@
         "duration": 20,
         "frameNumber": 89,
         "totalBytesOut": 529682,
-        "totalSamples": 85440,
-        "totalDuration": 1780,
+        "totalSamples": 85128,
+        "totalDuration": 1773.5,
         "crc32": 1118803067
       },
       {
@@ -5524,8 +5524,8 @@
         "duration": 20,
         "frameNumber": 90,
         "totalBytesOut": 534369,
-        "totalSamples": 86400,
-        "totalDuration": 1800,
+        "totalSamples": 86088,
+        "totalDuration": 1793.5,
         "crc32": -589738808
       },
       {
@@ -5583,8 +5583,8 @@
         "duration": 20,
         "frameNumber": 91,
         "totalBytesOut": 539248,
-        "totalSamples": 87360,
-        "totalDuration": 1820,
+        "totalSamples": 87048,
+        "totalDuration": 1813.5,
         "crc32": 1224483025
       },
       {
@@ -5642,8 +5642,8 @@
         "duration": 20,
         "frameNumber": 92,
         "totalBytesOut": 545055,
-        "totalSamples": 88320,
-        "totalDuration": 1840,
+        "totalSamples": 88008,
+        "totalDuration": 1833.5,
         "crc32": -1696125451
       },
       {
@@ -5701,8 +5701,8 @@
         "duration": 20,
         "frameNumber": 93,
         "totalBytesOut": 549998,
-        "totalSamples": 89280,
-        "totalDuration": 1860,
+        "totalSamples": 88968,
+        "totalDuration": 1853.5,
         "crc32": -147203846
       },
       {
@@ -5760,8 +5760,8 @@
         "duration": 20,
         "frameNumber": 94,
         "totalBytesOut": 555469,
-        "totalSamples": 90240,
-        "totalDuration": 1880,
+        "totalSamples": 89928,
+        "totalDuration": 1873.5,
         "crc32": 28110322
       }
     ],
@@ -5774,8 +5774,8 @@
     "pageSequenceNumber": 10,
     "samples": 12480,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 91200,
-    "totalDuration": 1900,
+    "totalSamples": 90888,
+    "totalDuration": 1893.5,
     "totalBytesOut": 561532
   },
   {
@@ -5835,8 +5835,8 @@
         "duration": 20,
         "frameNumber": 95,
         "totalBytesOut": 561532,
-        "totalSamples": 91200,
-        "totalDuration": 1900,
+        "totalSamples": 90888,
+        "totalDuration": 1893.5,
         "crc32": 1787595458
       },
       {
@@ -5894,8 +5894,8 @@
         "duration": 20,
         "frameNumber": 96,
         "totalBytesOut": 567451,
-        "totalSamples": 92160,
-        "totalDuration": 1920,
+        "totalSamples": 91848,
+        "totalDuration": 1913.5,
         "crc32": -40450259
       },
       {
@@ -5953,8 +5953,8 @@
         "duration": 20,
         "frameNumber": 97,
         "totalBytesOut": 573626,
-        "totalSamples": 93120,
-        "totalDuration": 1940,
+        "totalSamples": 92808,
+        "totalDuration": 1933.5,
         "crc32": 249755758
       },
       {
@@ -6012,8 +6012,8 @@
         "duration": 20,
         "frameNumber": 98,
         "totalBytesOut": 579465,
-        "totalSamples": 94080,
-        "totalDuration": 1960,
+        "totalSamples": 93768,
+        "totalDuration": 1953.5,
         "crc32": 614764445
       },
       {
@@ -6071,8 +6071,8 @@
         "duration": 20,
         "frameNumber": 99,
         "totalBytesOut": 584312,
-        "totalSamples": 95040,
-        "totalDuration": 1980,
+        "totalSamples": 94728,
+        "totalDuration": 1973.5,
         "crc32": 66217055
       },
       {
@@ -6130,8 +6130,8 @@
         "duration": 20,
         "frameNumber": 100,
         "totalBytesOut": 589111,
-        "totalSamples": 96000,
-        "totalDuration": 2000,
+        "totalSamples": 95688,
+        "totalDuration": 1993.5,
         "crc32": -1896862011
       },
       {
@@ -6189,8 +6189,8 @@
         "duration": 20,
         "frameNumber": 101,
         "totalBytesOut": 595062,
-        "totalSamples": 96960,
-        "totalDuration": 2020,
+        "totalSamples": 96648,
+        "totalDuration": 2013.5,
         "crc32": -257483340
       },
       {
@@ -6248,8 +6248,8 @@
         "duration": 20,
         "frameNumber": 102,
         "totalBytesOut": 600325,
-        "totalSamples": 97920,
-        "totalDuration": 2040,
+        "totalSamples": 97608,
+        "totalDuration": 2033.5,
         "crc32": -235892557
       },
       {
@@ -6307,8 +6307,8 @@
         "duration": 20,
         "frameNumber": 103,
         "totalBytesOut": 605508,
-        "totalSamples": 98880,
-        "totalDuration": 2060,
+        "totalSamples": 98568,
+        "totalDuration": 2053.5,
         "crc32": 366757347
       },
       {
@@ -6366,8 +6366,8 @@
         "duration": 20,
         "frameNumber": 104,
         "totalBytesOut": 610739,
-        "totalSamples": 99840,
-        "totalDuration": 2080,
+        "totalSamples": 99528,
+        "totalDuration": 2073.5,
         "crc32": -1087498771
       },
       {
@@ -6425,8 +6425,8 @@
         "duration": 20,
         "frameNumber": 105,
         "totalBytesOut": 615778,
-        "totalSamples": 100800,
-        "totalDuration": 2100,
+        "totalSamples": 100488,
+        "totalDuration": 2093.5,
         "crc32": 1890369599
       }
     ],
@@ -6439,8 +6439,8 @@
     "pageSequenceNumber": 11,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 101760,
-    "totalDuration": 2120,
+    "totalSamples": 101448,
+    "totalDuration": 2113.5,
     "totalBytesOut": 620913
   },
   {
@@ -6500,8 +6500,8 @@
         "duration": 20,
         "frameNumber": 106,
         "totalBytesOut": 620913,
-        "totalSamples": 101760,
-        "totalDuration": 2120,
+        "totalSamples": 101448,
+        "totalDuration": 2113.5,
         "crc32": 241419666
       },
       {
@@ -6559,8 +6559,8 @@
         "duration": 20,
         "frameNumber": 107,
         "totalBytesOut": 625920,
-        "totalSamples": 102720,
-        "totalDuration": 2140,
+        "totalSamples": 102408,
+        "totalDuration": 2133.5,
         "crc32": -1429335240
       },
       {
@@ -6618,8 +6618,8 @@
         "duration": 20,
         "frameNumber": 108,
         "totalBytesOut": 630959,
-        "totalSamples": 103680,
-        "totalDuration": 2160,
+        "totalSamples": 103368,
+        "totalDuration": 2153.5,
         "crc32": 1899267068
       },
       {
@@ -6677,8 +6677,8 @@
         "duration": 20,
         "frameNumber": 109,
         "totalBytesOut": 636046,
-        "totalSamples": 104640,
-        "totalDuration": 2180,
+        "totalSamples": 104328,
+        "totalDuration": 2173.5,
         "crc32": -145639002
       },
       {
@@ -6736,8 +6736,8 @@
         "duration": 20,
         "frameNumber": 110,
         "totalBytesOut": 641005,
-        "totalSamples": 105600,
-        "totalDuration": 2200,
+        "totalSamples": 105288,
+        "totalDuration": 2193.5,
         "crc32": 970984043
       },
       {
@@ -6795,8 +6795,8 @@
         "duration": 20,
         "frameNumber": 111,
         "totalBytesOut": 649611,
-        "totalSamples": 106560,
-        "totalDuration": 2220,
+        "totalSamples": 106248,
+        "totalDuration": 2213.5,
         "crc32": 291674417
       },
       {
@@ -6854,8 +6854,8 @@
         "duration": 20,
         "frameNumber": 112,
         "totalBytesOut": 655786,
-        "totalSamples": 107520,
-        "totalDuration": 2240,
+        "totalSamples": 107208,
+        "totalDuration": 2233.5,
         "crc32": -1432719423
       },
       {
@@ -6913,8 +6913,8 @@
         "duration": 20,
         "frameNumber": 113,
         "totalBytesOut": 663240,
-        "totalSamples": 108480,
-        "totalDuration": 2260,
+        "totalSamples": 108168,
+        "totalDuration": 2253.5,
         "crc32": -601127837
       },
       {
@@ -6972,8 +6972,8 @@
         "duration": 20,
         "frameNumber": 114,
         "totalBytesOut": 670231,
-        "totalSamples": 109440,
-        "totalDuration": 2280,
+        "totalSamples": 109128,
+        "totalDuration": 2273.5,
         "crc32": -1719171158
       },
       {
@@ -7031,8 +7031,8 @@
         "duration": 20,
         "frameNumber": 115,
         "totalBytesOut": 679461,
-        "totalSamples": 110400,
-        "totalDuration": 2300,
+        "totalSamples": 110088,
+        "totalDuration": 2293.5,
         "crc32": -1165387417
       }
     ],
@@ -7045,8 +7045,8 @@
     "pageSequenceNumber": 12,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 111360,
-    "totalDuration": 2320,
+    "totalSamples": 111048,
+    "totalDuration": 2313.5,
     "totalBytesOut": 686532
   },
   {
@@ -7106,8 +7106,8 @@
         "duration": 20,
         "frameNumber": 116,
         "totalBytesOut": 686532,
-        "totalSamples": 111360,
-        "totalDuration": 2320,
+        "totalSamples": 111048,
+        "totalDuration": 2313.5,
         "crc32": -1843185675
       },
       {
@@ -7165,8 +7165,8 @@
         "duration": 20,
         "frameNumber": 117,
         "totalBytesOut": 694163,
-        "totalSamples": 112320,
-        "totalDuration": 2340,
+        "totalSamples": 112008,
+        "totalDuration": 2333.5,
         "crc32": -1861432964
       },
       {
@@ -7224,8 +7224,8 @@
         "duration": 20,
         "frameNumber": 118,
         "totalBytesOut": 702289,
-        "totalSamples": 113280,
-        "totalDuration": 2360,
+        "totalSamples": 112968,
+        "totalDuration": 2353.5,
         "crc32": 463952459
       },
       {
@@ -7283,8 +7283,8 @@
         "duration": 20,
         "frameNumber": 119,
         "totalBytesOut": 710319,
-        "totalSamples": 114240,
-        "totalDuration": 2380,
+        "totalSamples": 113928,
+        "totalDuration": 2373.5,
         "crc32": 539975264
       },
       {
@@ -7342,8 +7342,8 @@
         "duration": 20,
         "frameNumber": 120,
         "totalBytesOut": 717950,
-        "totalSamples": 115200,
-        "totalDuration": 2400,
+        "totalSamples": 114888,
+        "totalDuration": 2393.5,
         "crc32": -105963229
       },
       {
@@ -7401,8 +7401,8 @@
         "duration": 20,
         "frameNumber": 121,
         "totalBytesOut": 725421,
-        "totalSamples": 116160,
-        "totalDuration": 2420,
+        "totalSamples": 115848,
+        "totalDuration": 2413.5,
         "crc32": 175098520
       },
       {
@@ -7460,8 +7460,8 @@
         "duration": 20,
         "frameNumber": 122,
         "totalBytesOut": 733020,
-        "totalSamples": 117120,
-        "totalDuration": 2440,
+        "totalSamples": 116808,
+        "totalDuration": 2433.5,
         "crc32": 1715186126
       },
       {
@@ -7519,8 +7519,8 @@
         "duration": 20,
         "frameNumber": 123,
         "totalBytesOut": 740890,
-        "totalSamples": 118080,
-        "totalDuration": 2460,
+        "totalSamples": 117768,
+        "totalDuration": 2453.5,
         "crc32": 1761286936
       }
     ],
@@ -7533,8 +7533,8 @@
     "pageSequenceNumber": 13,
     "samples": 7680,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 119040,
-    "totalDuration": 2480,
+    "totalSamples": 118728,
+    "totalDuration": 2473.5,
     "totalBytesOut": 748792
   },
   {
@@ -7594,8 +7594,8 @@
         "duration": 20,
         "frameNumber": 124,
         "totalBytesOut": 748792,
-        "totalSamples": 119040,
-        "totalDuration": 2480,
+        "totalSamples": 118728,
+        "totalDuration": 2473.5,
         "crc32": -1472536289
       },
       {
@@ -7653,8 +7653,8 @@
         "duration": 20,
         "frameNumber": 125,
         "totalBytesOut": 756455,
-        "totalSamples": 120000,
-        "totalDuration": 2500,
+        "totalSamples": 119688,
+        "totalDuration": 2493.5,
         "crc32": 1543571840
       },
       {
@@ -7712,8 +7712,8 @@
         "duration": 20,
         "frameNumber": 126,
         "totalBytesOut": 765269,
-        "totalSamples": 120960,
-        "totalDuration": 2520,
+        "totalSamples": 120648,
+        "totalDuration": 2513.5,
         "crc32": 1272050504
       },
       {
@@ -7771,8 +7771,8 @@
         "duration": 20,
         "frameNumber": 127,
         "totalBytesOut": 774131,
-        "totalSamples": 121920,
-        "totalDuration": 2540,
+        "totalSamples": 121608,
+        "totalDuration": 2533.5,
         "crc32": -666675643
       },
       {
@@ -7830,8 +7830,8 @@
         "duration": 20,
         "frameNumber": 128,
         "totalBytesOut": 781969,
-        "totalSamples": 122880,
-        "totalDuration": 2560,
+        "totalSamples": 122568,
+        "totalDuration": 2553.5,
         "crc32": 1931902039
       },
       {
@@ -7889,8 +7889,8 @@
         "duration": 20,
         "frameNumber": 129,
         "totalBytesOut": 789520,
-        "totalSamples": 123840,
-        "totalDuration": 2580,
+        "totalSamples": 123528,
+        "totalDuration": 2573.5,
         "crc32": 1063693195
       },
       {
@@ -7948,8 +7948,8 @@
         "duration": 20,
         "frameNumber": 130,
         "totalBytesOut": 796719,
-        "totalSamples": 124800,
-        "totalDuration": 2600,
+        "totalSamples": 124488,
+        "totalDuration": 2593.5,
         "crc32": 170339497
       },
       {
@@ -8007,8 +8007,8 @@
         "duration": 20,
         "frameNumber": 131,
         "totalBytesOut": 804046,
-        "totalSamples": 125760,
-        "totalDuration": 2620,
+        "totalSamples": 125448,
+        "totalDuration": 2613.5,
         "crc32": 57840173
       }
     ],
@@ -8021,8 +8021,8 @@
     "pageSequenceNumber": 14,
     "samples": 7680,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 126720,
-    "totalDuration": 2640,
+    "totalSamples": 126408,
+    "totalDuration": 2633.5,
     "totalBytesOut": 811213
   },
   {
@@ -8082,8 +8082,8 @@
         "duration": 20,
         "frameNumber": 132,
         "totalBytesOut": 811213,
-        "totalSamples": 126720,
-        "totalDuration": 2640,
+        "totalSamples": 126408,
+        "totalDuration": 2633.5,
         "crc32": 2095842522
       },
       {
@@ -8141,8 +8141,8 @@
         "duration": 20,
         "frameNumber": 133,
         "totalBytesOut": 818188,
-        "totalSamples": 127680,
-        "totalDuration": 2660,
+        "totalSamples": 127368,
+        "totalDuration": 2653.5,
         "crc32": -800672654
       },
       {
@@ -8200,8 +8200,8 @@
         "duration": 20,
         "frameNumber": 134,
         "totalBytesOut": 824875,
-        "totalSamples": 128640,
-        "totalDuration": 2680,
+        "totalSamples": 128328,
+        "totalDuration": 2673.5,
         "crc32": 279426948
       },
       {
@@ -8259,8 +8259,8 @@
         "duration": 20,
         "frameNumber": 135,
         "totalBytesOut": 831050,
-        "totalSamples": 129600,
-        "totalDuration": 2700,
+        "totalSamples": 129288,
+        "totalDuration": 2693.5,
         "crc32": 350896330
       },
       {
@@ -8318,8 +8318,8 @@
         "duration": 20,
         "frameNumber": 136,
         "totalBytesOut": 837529,
-        "totalSamples": 130560,
-        "totalDuration": 2720,
+        "totalSamples": 130248,
+        "totalDuration": 2713.5,
         "crc32": 2031682876
       },
       {
@@ -8377,8 +8377,8 @@
         "duration": 20,
         "frameNumber": 137,
         "totalBytesOut": 843944,
-        "totalSamples": 131520,
-        "totalDuration": 2740,
+        "totalSamples": 131208,
+        "totalDuration": 2733.5,
         "crc32": 1963706727
       },
       {
@@ -8436,8 +8436,8 @@
         "duration": 20,
         "frameNumber": 138,
         "totalBytesOut": 850375,
-        "totalSamples": 132480,
-        "totalDuration": 2760,
+        "totalSamples": 132168,
+        "totalDuration": 2753.5,
         "crc32": 509036454
       },
       {
@@ -8495,8 +8495,8 @@
         "duration": 20,
         "frameNumber": 139,
         "totalBytesOut": 856982,
-        "totalSamples": 133440,
-        "totalDuration": 2780,
+        "totalSamples": 133128,
+        "totalDuration": 2773.5,
         "crc32": -1032831096
       },
       {
@@ -8554,8 +8554,8 @@
         "duration": 20,
         "frameNumber": 140,
         "totalBytesOut": 863413,
-        "totalSamples": 134400,
-        "totalDuration": 2800,
+        "totalSamples": 134088,
+        "totalDuration": 2793.5,
         "crc32": 822556987
       }
     ],
@@ -8568,8 +8568,8 @@
     "pageSequenceNumber": 15,
     "samples": 8640,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 135360,
-    "totalDuration": 2820,
+    "totalSamples": 135048,
+    "totalDuration": 2813.5,
     "totalBytesOut": 869684
   },
   {
@@ -8629,8 +8629,8 @@
         "duration": 20,
         "frameNumber": 141,
         "totalBytesOut": 869684,
-        "totalSamples": 135360,
-        "totalDuration": 2820,
+        "totalSamples": 135048,
+        "totalDuration": 2813.5,
         "crc32": 42931725
       },
       {
@@ -8688,8 +8688,8 @@
         "duration": 20,
         "frameNumber": 142,
         "totalBytesOut": 876163,
-        "totalSamples": 136320,
-        "totalDuration": 2840,
+        "totalSamples": 136008,
+        "totalDuration": 2833.5,
         "crc32": 745630231
       },
       {
@@ -8747,8 +8747,8 @@
         "duration": 20,
         "frameNumber": 143,
         "totalBytesOut": 882770,
-        "totalSamples": 137280,
-        "totalDuration": 2860,
+        "totalSamples": 136968,
+        "totalDuration": 2853.5,
         "crc32": 1389812670
       },
       {
@@ -8806,8 +8806,8 @@
         "duration": 20,
         "frameNumber": 144,
         "totalBytesOut": 889441,
-        "totalSamples": 138240,
-        "totalDuration": 2880,
+        "totalSamples": 137928,
+        "totalDuration": 2873.5,
         "crc32": 356513164
       },
       {
@@ -8865,8 +8865,8 @@
         "duration": 20,
         "frameNumber": 145,
         "totalBytesOut": 896112,
-        "totalSamples": 139200,
-        "totalDuration": 2900,
+        "totalSamples": 138888,
+        "totalDuration": 2893.5,
         "crc32": -1738252181
       },
       {
@@ -8924,8 +8924,8 @@
         "duration": 20,
         "frameNumber": 146,
         "totalBytesOut": 902799,
-        "totalSamples": 140160,
-        "totalDuration": 2920,
+        "totalSamples": 139848,
+        "totalDuration": 2913.5,
         "crc32": -1584706428
       },
       {
@@ -8983,8 +8983,8 @@
         "duration": 20,
         "frameNumber": 147,
         "totalBytesOut": 909470,
-        "totalSamples": 141120,
-        "totalDuration": 2940,
+        "totalSamples": 140808,
+        "totalDuration": 2933.5,
         "crc32": -1512588804
       },
       {
@@ -9042,8 +9042,8 @@
         "duration": 20,
         "frameNumber": 148,
         "totalBytesOut": 916349,
-        "totalSamples": 142080,
-        "totalDuration": 2960,
+        "totalSamples": 141768,
+        "totalDuration": 2953.5,
         "crc32": 2104043010
       },
       {
@@ -9101,8 +9101,8 @@
         "duration": 20,
         "frameNumber": 149,
         "totalBytesOut": 923164,
-        "totalSamples": 143040,
-        "totalDuration": 2980,
+        "totalSamples": 142728,
+        "totalDuration": 2973.5,
         "crc32": -1781306477
       },
       {
@@ -9160,8 +9160,8 @@
         "duration": 20,
         "frameNumber": 150,
         "totalBytesOut": 929595,
-        "totalSamples": 144000,
-        "totalDuration": 3000,
+        "totalSamples": 143688,
+        "totalDuration": 2993.5,
         "crc32": -1475886708
       }
     ],
@@ -9174,8 +9174,8 @@
     "pageSequenceNumber": 16,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 144960,
-    "totalDuration": 3020,
+    "totalSamples": 144648,
+    "totalDuration": 3013.5,
     "totalBytesOut": 935882
   },
   {
@@ -9235,8 +9235,8 @@
         "duration": 20,
         "frameNumber": 151,
         "totalBytesOut": 935882,
-        "totalSamples": 144960,
-        "totalDuration": 3020,
+        "totalSamples": 144648,
+        "totalDuration": 3013.5,
         "crc32": 99880873
       },
       {
@@ -9294,8 +9294,8 @@
         "duration": 20,
         "frameNumber": 152,
         "totalBytesOut": 941849,
-        "totalSamples": 145920,
-        "totalDuration": 3040,
+        "totalSamples": 145608,
+        "totalDuration": 3033.5,
         "crc32": -561481068
       },
       {
@@ -9353,8 +9353,8 @@
         "duration": 20,
         "frameNumber": 153,
         "totalBytesOut": 947816,
-        "totalSamples": 146880,
-        "totalDuration": 3060,
+        "totalSamples": 146568,
+        "totalDuration": 3053.5,
         "crc32": 459279288
       },
       {
@@ -9412,8 +9412,8 @@
         "duration": 20,
         "frameNumber": 154,
         "totalBytesOut": 953687,
-        "totalSamples": 147840,
-        "totalDuration": 3080,
+        "totalSamples": 147528,
+        "totalDuration": 3073.5,
         "crc32": 1188392712
       },
       {
@@ -9471,8 +9471,8 @@
         "duration": 20,
         "frameNumber": 155,
         "totalBytesOut": 959574,
-        "totalSamples": 148800,
-        "totalDuration": 3100,
+        "totalSamples": 148488,
+        "totalDuration": 3093.5,
         "crc32": -1064499451
       },
       {
@@ -9530,8 +9530,8 @@
         "duration": 20,
         "frameNumber": 156,
         "totalBytesOut": 965349,
-        "totalSamples": 149760,
-        "totalDuration": 3120,
+        "totalSamples": 149448,
+        "totalDuration": 3113.5,
         "crc32": -1792918054
       },
       {
@@ -9589,8 +9589,8 @@
         "duration": 20,
         "frameNumber": 157,
         "totalBytesOut": 971364,
-        "totalSamples": 150720,
-        "totalDuration": 3140,
+        "totalSamples": 150408,
+        "totalDuration": 3133.5,
         "crc32": 1306653372
       },
       {
@@ -9648,8 +9648,8 @@
         "duration": 20,
         "frameNumber": 158,
         "totalBytesOut": 977107,
-        "totalSamples": 151680,
-        "totalDuration": 3160,
+        "totalSamples": 151368,
+        "totalDuration": 3153.5,
         "crc32": 1139651759
       },
       {
@@ -9707,8 +9707,8 @@
         "duration": 20,
         "frameNumber": 159,
         "totalBytesOut": 982930,
-        "totalSamples": 152640,
-        "totalDuration": 3180,
+        "totalSamples": 152328,
+        "totalDuration": 3173.5,
         "crc32": 1674188982
       },
       {
@@ -9766,8 +9766,8 @@
         "duration": 20,
         "frameNumber": 160,
         "totalBytesOut": 988801,
-        "totalSamples": 153600,
-        "totalDuration": 3200,
+        "totalSamples": 153288,
+        "totalDuration": 3193.5,
         "crc32": -563960327
       }
     ],
@@ -9780,8 +9780,8 @@
     "pageSequenceNumber": 17,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 154560,
-    "totalDuration": 3220,
+    "totalSamples": 154248,
+    "totalDuration": 3213.5,
     "totalBytesOut": 994688
   },
   {
@@ -9841,8 +9841,8 @@
         "duration": 20,
         "frameNumber": 161,
         "totalBytesOut": 994688,
-        "totalSamples": 154560,
-        "totalDuration": 3220,
+        "totalSamples": 154248,
+        "totalDuration": 3213.5,
         "crc32": -1412705934
       },
       {
@@ -9900,8 +9900,8 @@
         "duration": 20,
         "frameNumber": 162,
         "totalBytesOut": 1000575,
-        "totalSamples": 155520,
-        "totalDuration": 3240,
+        "totalSamples": 155208,
+        "totalDuration": 3233.5,
         "crc32": -1614584209
       },
       {
@@ -9959,8 +9959,8 @@
         "duration": 20,
         "frameNumber": 163,
         "totalBytesOut": 1006638,
-        "totalSamples": 156480,
-        "totalDuration": 3260,
+        "totalSamples": 156168,
+        "totalDuration": 3253.5,
         "crc32": 985322473
       },
       {
@@ -10018,8 +10018,8 @@
         "duration": 20,
         "frameNumber": 164,
         "totalBytesOut": 1012653,
-        "totalSamples": 157440,
-        "totalDuration": 3280,
+        "totalSamples": 157128,
+        "totalDuration": 3273.5,
         "crc32": 117032201
       },
       {
@@ -10077,8 +10077,8 @@
         "duration": 20,
         "frameNumber": 165,
         "totalBytesOut": 1018636,
-        "totalSamples": 158400,
-        "totalDuration": 3300,
+        "totalSamples": 158088,
+        "totalDuration": 3293.5,
         "crc32": -229717271
       },
       {
@@ -10136,8 +10136,8 @@
         "duration": 20,
         "frameNumber": 166,
         "totalBytesOut": 1026154,
-        "totalSamples": 159360,
-        "totalDuration": 3320,
+        "totalSamples": 159048,
+        "totalDuration": 3313.5,
         "crc32": -798610204
       },
       {
@@ -10195,8 +10195,8 @@
         "duration": 20,
         "frameNumber": 167,
         "totalBytesOut": 1033816,
-        "totalSamples": 160320,
-        "totalDuration": 3340,
+        "totalSamples": 160008,
+        "totalDuration": 3333.5,
         "crc32": -1552248278
       },
       {
@@ -10254,8 +10254,8 @@
         "duration": 20,
         "frameNumber": 168,
         "totalBytesOut": 1040199,
-        "totalSamples": 161280,
-        "totalDuration": 3360,
+        "totalSamples": 160968,
+        "totalDuration": 3353.5,
         "crc32": -172489116
       },
       {
@@ -10313,8 +10313,8 @@
         "duration": 20,
         "frameNumber": 169,
         "totalBytesOut": 1046678,
-        "totalSamples": 162240,
-        "totalDuration": 3380,
+        "totalSamples": 161928,
+        "totalDuration": 3373.5,
         "crc32": 273038955
       },
       {
@@ -10372,8 +10372,8 @@
         "duration": 20,
         "frameNumber": 170,
         "totalBytesOut": 1053253,
-        "totalSamples": 163200,
-        "totalDuration": 3400,
+        "totalSamples": 162888,
+        "totalDuration": 3393.5,
         "crc32": 464284396
       }
     ],
@@ -10386,8 +10386,8 @@
     "pageSequenceNumber": 18,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 164160,
-    "totalDuration": 3420,
+    "totalSamples": 163848,
+    "totalDuration": 3413.5,
     "totalBytesOut": 1059828
   },
   {
@@ -10447,8 +10447,8 @@
         "duration": 20,
         "frameNumber": 171,
         "totalBytesOut": 1059828,
-        "totalSamples": 164160,
-        "totalDuration": 3420,
+        "totalSamples": 163848,
+        "totalDuration": 3413.5,
         "crc32": -214376318
       },
       {
@@ -10506,8 +10506,8 @@
         "duration": 20,
         "frameNumber": 172,
         "totalBytesOut": 1067970,
-        "totalSamples": 165120,
-        "totalDuration": 3440,
+        "totalSamples": 164808,
+        "totalDuration": 3433.5,
         "crc32": -249661770
       },
       {
@@ -10565,8 +10565,8 @@
         "duration": 20,
         "frameNumber": 173,
         "totalBytesOut": 1075888,
-        "totalSamples": 166080,
-        "totalDuration": 3460,
+        "totalSamples": 165768,
+        "totalDuration": 3453.5,
         "crc32": 57778110
       },
       {
@@ -10624,8 +10624,8 @@
         "duration": 20,
         "frameNumber": 174,
         "totalBytesOut": 1082927,
-        "totalSamples": 167040,
-        "totalDuration": 3480,
+        "totalSamples": 166728,
+        "totalDuration": 3473.5,
         "crc32": 2065225538
       },
       {
@@ -10683,8 +10683,8 @@
         "duration": 20,
         "frameNumber": 175,
         "totalBytesOut": 1090142,
-        "totalSamples": 168000,
-        "totalDuration": 3500,
+        "totalSamples": 167688,
+        "totalDuration": 3493.5,
         "crc32": -716242289
       },
       {
@@ -10742,8 +10742,8 @@
         "duration": 20,
         "frameNumber": 176,
         "totalBytesOut": 1098701,
-        "totalSamples": 168960,
-        "totalDuration": 3520,
+        "totalSamples": 168648,
+        "totalDuration": 3513.5,
         "crc32": -1896621160
       },
       {
@@ -10801,8 +10801,8 @@
         "duration": 20,
         "frameNumber": 177,
         "totalBytesOut": 1106971,
-        "totalSamples": 169920,
-        "totalDuration": 3540,
+        "totalSamples": 169608,
+        "totalDuration": 3533.5,
         "crc32": -750773591
       },
       {
@@ -10860,8 +10860,8 @@
         "duration": 20,
         "frameNumber": 178,
         "totalBytesOut": 1113578,
-        "totalSamples": 170880,
-        "totalDuration": 3560,
+        "totalSamples": 170568,
+        "totalDuration": 3553.5,
         "crc32": -990548117
       }
     ],
@@ -10874,8 +10874,8 @@
     "pageSequenceNumber": 19,
     "samples": 7680,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 171840,
-    "totalDuration": 3580,
+    "totalSamples": 171528,
+    "totalDuration": 3573.5,
     "totalBytesOut": 1119929
   },
   {
@@ -10935,8 +10935,8 @@
         "duration": 20,
         "frameNumber": 179,
         "totalBytesOut": 1119929,
-        "totalSamples": 171840,
-        "totalDuration": 3580,
+        "totalSamples": 171528,
+        "totalDuration": 3573.5,
         "crc32": 1367777100
       },
       {
@@ -10994,8 +10994,8 @@
         "duration": 20,
         "frameNumber": 180,
         "totalBytesOut": 1126248,
-        "totalSamples": 172800,
-        "totalDuration": 3600,
+        "totalSamples": 172488,
+        "totalDuration": 3593.5,
         "crc32": -187752999
       },
       {
@@ -11053,8 +11053,8 @@
         "duration": 20,
         "frameNumber": 181,
         "totalBytesOut": 1132407,
-        "totalSamples": 173760,
-        "totalDuration": 3620,
+        "totalSamples": 173448,
+        "totalDuration": 3613.5,
         "crc32": 1713351607
       },
       {
@@ -11112,8 +11112,8 @@
         "duration": 20,
         "frameNumber": 182,
         "totalBytesOut": 1139014,
-        "totalSamples": 174720,
-        "totalDuration": 3640,
+        "totalSamples": 174408,
+        "totalDuration": 3633.5,
         "crc32": 93562671
       },
       {
@@ -11171,8 +11171,8 @@
         "duration": 20,
         "frameNumber": 183,
         "totalBytesOut": 1145957,
-        "totalSamples": 175680,
-        "totalDuration": 3660,
+        "totalSamples": 175368,
+        "totalDuration": 3653.5,
         "crc32": 238184075
       },
       {
@@ -11230,8 +11230,8 @@
         "duration": 20,
         "frameNumber": 184,
         "totalBytesOut": 1154035,
-        "totalSamples": 176640,
-        "totalDuration": 3680,
+        "totalSamples": 176328,
+        "totalDuration": 3673.5,
         "crc32": 237211501
       },
       {
@@ -11289,8 +11289,8 @@
         "duration": 20,
         "frameNumber": 185,
         "totalBytesOut": 1162001,
-        "totalSamples": 177600,
-        "totalDuration": 3700,
+        "totalSamples": 177288,
+        "totalDuration": 3693.5,
         "crc32": 1748575043
       },
       {
@@ -11348,8 +11348,8 @@
         "duration": 20,
         "frameNumber": 186,
         "totalBytesOut": 1169520,
-        "totalSamples": 178560,
-        "totalDuration": 3720,
+        "totalSamples": 178248,
+        "totalDuration": 3713.5,
         "crc32": -2710659
       },
       {
@@ -11407,8 +11407,8 @@
         "duration": 20,
         "frameNumber": 187,
         "totalBytesOut": 1175663,
-        "totalSamples": 179520,
-        "totalDuration": 3740,
+        "totalSamples": 179208,
+        "totalDuration": 3733.5,
         "crc32": -2103607512
       }
     ],
@@ -11421,8 +11421,8 @@
     "pageSequenceNumber": 20,
     "samples": 8640,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 180480,
-    "totalDuration": 3760,
+    "totalSamples": 180168,
+    "totalDuration": 3753.5,
     "totalBytesOut": 1183149
   },
   {
@@ -11482,8 +11482,8 @@
         "duration": 20,
         "frameNumber": 188,
         "totalBytesOut": 1183149,
-        "totalSamples": 180480,
-        "totalDuration": 3760,
+        "totalSamples": 180168,
+        "totalDuration": 3753.5,
         "crc32": 1913929025
       },
       {
@@ -11541,8 +11541,8 @@
         "duration": 20,
         "frameNumber": 189,
         "totalBytesOut": 1190508,
-        "totalSamples": 181440,
-        "totalDuration": 3780,
+        "totalSamples": 181128,
+        "totalDuration": 3773.5,
         "crc32": 1639300716
       },
       {
@@ -11600,8 +11600,8 @@
         "duration": 20,
         "frameNumber": 190,
         "totalBytesOut": 1196203,
-        "totalSamples": 182400,
-        "totalDuration": 3800,
+        "totalSamples": 182088,
+        "totalDuration": 3793.5,
         "crc32": 964341590
       },
       {
@@ -11659,8 +11659,8 @@
         "duration": 20,
         "frameNumber": 191,
         "totalBytesOut": 1201882,
-        "totalSamples": 183360,
-        "totalDuration": 3820,
+        "totalSamples": 183048,
+        "totalDuration": 3813.5,
         "crc32": 1090138619
       },
       {
@@ -11718,8 +11718,8 @@
         "duration": 20,
         "frameNumber": 192,
         "totalBytesOut": 1207577,
-        "totalSamples": 184320,
-        "totalDuration": 3840,
+        "totalSamples": 184008,
+        "totalDuration": 3833.5,
         "crc32": -754700211
       },
       {
@@ -11777,8 +11777,8 @@
         "duration": 20,
         "frameNumber": 193,
         "totalBytesOut": 1213192,
-        "totalSamples": 185280,
-        "totalDuration": 3860,
+        "totalSamples": 184968,
+        "totalDuration": 3853.5,
         "crc32": 1368125137
       },
       {
@@ -11836,8 +11836,8 @@
         "duration": 20,
         "frameNumber": 194,
         "totalBytesOut": 1218999,
-        "totalSamples": 186240,
-        "totalDuration": 3880,
+        "totalSamples": 185928,
+        "totalDuration": 3873.5,
         "crc32": -174627915
       },
       {
@@ -11895,8 +11895,8 @@
         "duration": 20,
         "frameNumber": 195,
         "totalBytesOut": 1225014,
-        "totalSamples": 187200,
-        "totalDuration": 3900,
+        "totalSamples": 186888,
+        "totalDuration": 3893.5,
         "crc32": -288315413
       },
       {
@@ -11954,8 +11954,8 @@
         "duration": 20,
         "frameNumber": 196,
         "totalBytesOut": 1231141,
-        "totalSamples": 188160,
-        "totalDuration": 3920,
+        "totalSamples": 187848,
+        "totalDuration": 3913.5,
         "crc32": 126045993
       },
       {
@@ -12013,8 +12013,8 @@
         "duration": 20,
         "frameNumber": 197,
         "totalBytesOut": 1237140,
-        "totalSamples": 189120,
-        "totalDuration": 3940,
+        "totalSamples": 188808,
+        "totalDuration": 3933.5,
         "crc32": 975750293
       }
     ],
@@ -12027,8 +12027,8 @@
     "pageSequenceNumber": 21,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 190080,
-    "totalDuration": 3960,
+    "totalSamples": 189768,
+    "totalDuration": 3953.5,
     "totalBytesOut": 1243187
   },
   {
@@ -12088,8 +12088,8 @@
         "duration": 20,
         "frameNumber": 198,
         "totalBytesOut": 1243187,
-        "totalSamples": 190080,
-        "totalDuration": 3960,
+        "totalSamples": 189768,
+        "totalDuration": 3953.5,
         "crc32": 1473852233
       },
       {
@@ -12147,8 +12147,8 @@
         "duration": 20,
         "frameNumber": 199,
         "totalBytesOut": 1249090,
-        "totalSamples": 191040,
-        "totalDuration": 3980,
+        "totalSamples": 190728,
+        "totalDuration": 3973.5,
         "crc32": 1136587297
       },
       {
@@ -12206,8 +12206,8 @@
         "duration": 20,
         "frameNumber": 200,
         "totalBytesOut": 1254897,
-        "totalSamples": 192000,
-        "totalDuration": 4000,
+        "totalSamples": 191688,
+        "totalDuration": 3993.5,
         "crc32": -817353991
       },
       {
@@ -12265,8 +12265,8 @@
         "duration": 20,
         "frameNumber": 201,
         "totalBytesOut": 1260848,
-        "totalSamples": 192960,
-        "totalDuration": 4019.9999999999995,
+        "totalSamples": 192648,
+        "totalDuration": 4013.4999999999995,
         "crc32": -1177778435
       },
       {
@@ -12324,8 +12324,8 @@
         "duration": 20,
         "frameNumber": 202,
         "totalBytesOut": 1266623,
-        "totalSamples": 193920,
-        "totalDuration": 4040,
+        "totalSamples": 193608,
+        "totalDuration": 4033.5,
         "crc32": 1420573476
       },
       {
@@ -12383,8 +12383,8 @@
         "duration": 20,
         "frameNumber": 203,
         "totalBytesOut": 1272334,
-        "totalSamples": 194880,
-        "totalDuration": 4059.9999999999995,
+        "totalSamples": 194568,
+        "totalDuration": 4053.4999999999995,
         "crc32": -232737654
       },
       {
@@ -12442,8 +12442,8 @@
         "duration": 20,
         "frameNumber": 204,
         "totalBytesOut": 1278109,
-        "totalSamples": 195840,
-        "totalDuration": 4080,
+        "totalSamples": 195528,
+        "totalDuration": 4073.5,
         "crc32": 565090450
       },
       {
@@ -12501,8 +12501,8 @@
         "duration": 20,
         "frameNumber": 205,
         "totalBytesOut": 1283724,
-        "totalSamples": 196800,
-        "totalDuration": 4100,
+        "totalSamples": 196488,
+        "totalDuration": 4093.4999999999995,
         "crc32": -465119005
       },
       {
@@ -12560,8 +12560,8 @@
         "duration": 20,
         "frameNumber": 206,
         "totalBytesOut": 1289323,
-        "totalSamples": 197760,
-        "totalDuration": 4120,
+        "totalSamples": 197448,
+        "totalDuration": 4113.5,
         "crc32": 1293679395
       },
       {
@@ -12619,8 +12619,8 @@
         "duration": 20,
         "frameNumber": 207,
         "totalBytesOut": 1294970,
-        "totalSamples": 198720,
-        "totalDuration": 4140,
+        "totalSamples": 198408,
+        "totalDuration": 4133.5,
         "crc32": -605012811
       },
       {
@@ -12678,8 +12678,8 @@
         "duration": 20,
         "frameNumber": 208,
         "totalBytesOut": 1300729,
-        "totalSamples": 199680,
-        "totalDuration": 4160,
+        "totalSamples": 199368,
+        "totalDuration": 4153.5,
         "crc32": -615959393
       }
     ],
@@ -12692,8 +12692,8 @@
     "pageSequenceNumber": 22,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 200640,
-    "totalDuration": 4180,
+    "totalSamples": 200328,
+    "totalDuration": 4173.5,
     "totalBytesOut": 1306424
   },
   {
@@ -12753,8 +12753,8 @@
         "duration": 20,
         "frameNumber": 209,
         "totalBytesOut": 1306424,
-        "totalSamples": 200640,
-        "totalDuration": 4180,
+        "totalSamples": 200328,
+        "totalDuration": 4173.5,
         "crc32": 298110479
       },
       {
@@ -12812,8 +12812,8 @@
         "duration": 20,
         "frameNumber": 210,
         "totalBytesOut": 1312215,
-        "totalSamples": 201600,
-        "totalDuration": 4200,
+        "totalSamples": 201288,
+        "totalDuration": 4193.5,
         "crc32": -1659804147
       },
       {
@@ -12871,8 +12871,8 @@
         "duration": 20,
         "frameNumber": 211,
         "totalBytesOut": 1317894,
-        "totalSamples": 202560,
-        "totalDuration": 4220,
+        "totalSamples": 202248,
+        "totalDuration": 4213.5,
         "crc32": 2082442853
       },
       {
@@ -12930,8 +12930,8 @@
         "duration": 20,
         "frameNumber": 212,
         "totalBytesOut": 1323669,
-        "totalSamples": 203520,
-        "totalDuration": 4240,
+        "totalSamples": 203208,
+        "totalDuration": 4233.5,
         "crc32": -1584050155
       },
       {
@@ -12989,8 +12989,8 @@
         "duration": 20,
         "frameNumber": 213,
         "totalBytesOut": 1329396,
-        "totalSamples": 204480,
-        "totalDuration": 4260,
+        "totalSamples": 204168,
+        "totalDuration": 4253.5,
         "crc32": -555073161
       },
       {
@@ -13048,8 +13048,8 @@
         "duration": 20,
         "frameNumber": 214,
         "totalBytesOut": 1335347,
-        "totalSamples": 205440,
-        "totalDuration": 4280,
+        "totalSamples": 205128,
+        "totalDuration": 4273.5,
         "crc32": -1083377664
       },
       {
@@ -13107,8 +13107,8 @@
         "duration": 20,
         "frameNumber": 215,
         "totalBytesOut": 1341186,
-        "totalSamples": 206400,
-        "totalDuration": 4300,
+        "totalSamples": 206088,
+        "totalDuration": 4293.5,
         "crc32": 72865241
       },
       {
@@ -13166,8 +13166,8 @@
         "duration": 20,
         "frameNumber": 216,
         "totalBytesOut": 1347089,
-        "totalSamples": 207360,
-        "totalDuration": 4320,
+        "totalSamples": 207048,
+        "totalDuration": 4313.5,
         "crc32": -915360147
       },
       {
@@ -13225,8 +13225,8 @@
         "duration": 20,
         "frameNumber": 217,
         "totalBytesOut": 1353136,
-        "totalSamples": 208320,
-        "totalDuration": 4340,
+        "totalSamples": 208008,
+        "totalDuration": 4333.5,
         "crc32": 433971658
       },
       {
@@ -13284,8 +13284,8 @@
         "duration": 20,
         "frameNumber": 218,
         "totalBytesOut": 1359599,
-        "totalSamples": 209280,
-        "totalDuration": 4360,
+        "totalSamples": 208968,
+        "totalDuration": 4353.5,
         "crc32": -316963696
       }
     ],
@@ -13298,8 +13298,8 @@
     "pageSequenceNumber": 23,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 210240,
-    "totalDuration": 4380,
+    "totalSamples": 209928,
+    "totalDuration": 4373.5,
     "totalBytesOut": 1366014
   },
   {
@@ -13359,8 +13359,8 @@
         "duration": 20,
         "frameNumber": 219,
         "totalBytesOut": 1366014,
-        "totalSamples": 210240,
-        "totalDuration": 4380,
+        "totalSamples": 209928,
+        "totalDuration": 4373.5,
         "crc32": -1887429040
       },
       {
@@ -13418,8 +13418,8 @@
         "duration": 20,
         "frameNumber": 220,
         "totalBytesOut": 1372253,
-        "totalSamples": 211200,
-        "totalDuration": 4400,
+        "totalSamples": 210888,
+        "totalDuration": 4393.5,
         "crc32": -1342218830
       },
       {
@@ -13477,8 +13477,8 @@
         "duration": 20,
         "frameNumber": 221,
         "totalBytesOut": 1378412,
-        "totalSamples": 212160,
-        "totalDuration": 4420,
+        "totalSamples": 211848,
+        "totalDuration": 4413.5,
         "crc32": 1919680851
       },
       {
@@ -13536,8 +13536,8 @@
         "duration": 20,
         "frameNumber": 222,
         "totalBytesOut": 1384315,
-        "totalSamples": 213120,
-        "totalDuration": 4440,
+        "totalSamples": 212808,
+        "totalDuration": 4433.5,
         "crc32": 1547556499
       },
       {
@@ -13595,8 +13595,8 @@
         "duration": 20,
         "frameNumber": 223,
         "totalBytesOut": 1390218,
-        "totalSamples": 214080,
-        "totalDuration": 4460,
+        "totalSamples": 213768,
+        "totalDuration": 4453.5,
         "crc32": -2082411380
       },
       {
@@ -13654,8 +13654,8 @@
         "duration": 20,
         "frameNumber": 224,
         "totalBytesOut": 1395849,
-        "totalSamples": 215040,
-        "totalDuration": 4480,
+        "totalSamples": 214728,
+        "totalDuration": 4473.5,
         "crc32": 793413705
       },
       {
@@ -13713,8 +13713,8 @@
         "duration": 20,
         "frameNumber": 225,
         "totalBytesOut": 1402056,
-        "totalSamples": 216000,
-        "totalDuration": 4500,
+        "totalSamples": 215688,
+        "totalDuration": 4493.5,
         "crc32": -529684257
       },
       {
@@ -13772,8 +13772,8 @@
         "duration": 20,
         "frameNumber": 226,
         "totalBytesOut": 1408343,
-        "totalSamples": 216960,
-        "totalDuration": 4520,
+        "totalSamples": 216648,
+        "totalDuration": 4513.5,
         "crc32": 1789731936
       },
       {
@@ -13831,8 +13831,8 @@
         "duration": 20,
         "frameNumber": 227,
         "totalBytesOut": 1414726,
-        "totalSamples": 217920,
-        "totalDuration": 4540,
+        "totalSamples": 217608,
+        "totalDuration": 4533.5,
         "crc32": -2142102398
       },
       {
@@ -13890,8 +13890,8 @@
         "duration": 20,
         "frameNumber": 228,
         "totalBytesOut": 1421173,
-        "totalSamples": 218880,
-        "totalDuration": 4560,
+        "totalSamples": 218568,
+        "totalDuration": 4553.5,
         "crc32": -446175072
       }
     ],
@@ -13904,8 +13904,8 @@
     "pageSequenceNumber": 24,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 219840,
-    "totalDuration": 4580,
+    "totalSamples": 219528,
+    "totalDuration": 4573.5,
     "totalBytesOut": 1427716
   },
   {
@@ -13965,8 +13965,8 @@
         "duration": 20,
         "frameNumber": 229,
         "totalBytesOut": 1427716,
-        "totalSamples": 219840,
-        "totalDuration": 4580,
+        "totalSamples": 219528,
+        "totalDuration": 4573.5,
         "crc32": 1542485208
       },
       {
@@ -14024,8 +14024,8 @@
         "duration": 20,
         "frameNumber": 230,
         "totalBytesOut": 1434275,
-        "totalSamples": 220800,
-        "totalDuration": 4600,
+        "totalSamples": 220488,
+        "totalDuration": 4593.5,
         "crc32": 470066564
       },
       {
@@ -14083,8 +14083,8 @@
         "duration": 20,
         "frameNumber": 231,
         "totalBytesOut": 1440738,
-        "totalSamples": 221760,
-        "totalDuration": 4620,
+        "totalSamples": 221448,
+        "totalDuration": 4613.5,
         "crc32": 1177700354
       },
       {
@@ -14142,8 +14142,8 @@
         "duration": 20,
         "frameNumber": 232,
         "totalBytesOut": 1447089,
-        "totalSamples": 222720,
-        "totalDuration": 4640,
+        "totalSamples": 222408,
+        "totalDuration": 4633.5,
         "crc32": 1963504549
       },
       {
@@ -14201,8 +14201,8 @@
         "duration": 20,
         "frameNumber": 233,
         "totalBytesOut": 1453248,
-        "totalSamples": 223680,
-        "totalDuration": 4660,
+        "totalSamples": 223368,
+        "totalDuration": 4653.5,
         "crc32": 697892046
       },
       {
@@ -14260,8 +14260,8 @@
         "duration": 20,
         "frameNumber": 234,
         "totalBytesOut": 1459391,
-        "totalSamples": 224640,
-        "totalDuration": 4680,
+        "totalSamples": 224328,
+        "totalDuration": 4673.5,
         "crc32": -791639248
       },
       {
@@ -14319,8 +14319,8 @@
         "duration": 20,
         "frameNumber": 235,
         "totalBytesOut": 1465422,
-        "totalSamples": 225600,
-        "totalDuration": 4700,
+        "totalSamples": 225288,
+        "totalDuration": 4693.5,
         "crc32": -1724955589
       },
       {
@@ -14378,8 +14378,8 @@
         "duration": 20,
         "frameNumber": 236,
         "totalBytesOut": 1471469,
-        "totalSamples": 226560,
-        "totalDuration": 4720,
+        "totalSamples": 226248,
+        "totalDuration": 4713.5,
         "crc32": 1065380694
       },
       {
@@ -14437,8 +14437,8 @@
         "duration": 20,
         "frameNumber": 237,
         "totalBytesOut": 1477420,
-        "totalSamples": 227520,
-        "totalDuration": 4740,
+        "totalSamples": 227208,
+        "totalDuration": 4733.5,
         "crc32": 1071931737
       },
       {
@@ -14496,8 +14496,8 @@
         "duration": 20,
         "frameNumber": 238,
         "totalBytesOut": 1483259,
-        "totalSamples": 228480,
-        "totalDuration": 4760,
+        "totalSamples": 228168,
+        "totalDuration": 4753.5,
         "crc32": 247172008
       }
     ],
@@ -14510,8 +14510,8 @@
     "pageSequenceNumber": 25,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 229440,
-    "totalDuration": 4780,
+    "totalSamples": 229128,
+    "totalDuration": 4773.5,
     "totalBytesOut": 1488906
   },
   {
@@ -14571,8 +14571,8 @@
         "duration": 20,
         "frameNumber": 239,
         "totalBytesOut": 1488906,
-        "totalSamples": 229440,
-        "totalDuration": 4780,
+        "totalSamples": 229128,
+        "totalDuration": 4773.5,
         "crc32": -750295744
       },
       {
@@ -14630,8 +14630,8 @@
         "duration": 20,
         "frameNumber": 240,
         "totalBytesOut": 1494425,
-        "totalSamples": 230400,
-        "totalDuration": 4800,
+        "totalSamples": 230088,
+        "totalDuration": 4793.5,
         "crc32": 967320436
       },
       {
@@ -14689,8 +14689,8 @@
         "duration": 20,
         "frameNumber": 241,
         "totalBytesOut": 1499880,
-        "totalSamples": 231360,
-        "totalDuration": 4820,
+        "totalSamples": 231048,
+        "totalDuration": 4813.5,
         "crc32": 1924884416
       },
       {
@@ -14748,8 +14748,8 @@
         "duration": 20,
         "frameNumber": 242,
         "totalBytesOut": 1505479,
-        "totalSamples": 232320,
-        "totalDuration": 4840,
+        "totalSamples": 232008,
+        "totalDuration": 4833.5,
         "crc32": -882757564
       },
       {
@@ -14807,8 +14807,8 @@
         "duration": 20,
         "frameNumber": 243,
         "totalBytesOut": 1511254,
-        "totalSamples": 233280,
-        "totalDuration": 4860,
+        "totalSamples": 232968,
+        "totalDuration": 4853.5,
         "crc32": -544333696
       },
       {
@@ -14866,8 +14866,8 @@
         "duration": 20,
         "frameNumber": 244,
         "totalBytesOut": 1516885,
-        "totalSamples": 234240,
-        "totalDuration": 4880,
+        "totalSamples": 233928,
+        "totalDuration": 4873.5,
         "crc32": -2118222021
       },
       {
@@ -14925,8 +14925,8 @@
         "duration": 20,
         "frameNumber": 245,
         "totalBytesOut": 1522324,
-        "totalSamples": 235200,
-        "totalDuration": 4900,
+        "totalSamples": 234888,
+        "totalDuration": 4893.5,
         "crc32": 711409240
       },
       {
@@ -14984,8 +14984,8 @@
         "duration": 20,
         "frameNumber": 246,
         "totalBytesOut": 1527555,
-        "totalSamples": 236160,
-        "totalDuration": 4920,
+        "totalSamples": 235848,
+        "totalDuration": 4913.5,
         "crc32": -27855204
       },
       {
@@ -15043,8 +15043,8 @@
         "duration": 20,
         "frameNumber": 247,
         "totalBytesOut": 1532594,
-        "totalSamples": 237120,
-        "totalDuration": 4940,
+        "totalSamples": 236808,
+        "totalDuration": 4933.5,
         "crc32": -646924913
       },
       {
@@ -15102,8 +15102,8 @@
         "duration": 20,
         "frameNumber": 248,
         "totalBytesOut": 1538001,
-        "totalSamples": 238080,
-        "totalDuration": 4960,
+        "totalSamples": 237768,
+        "totalDuration": 4953.5,
         "crc32": -1893113208
       },
       {
@@ -15161,8 +15161,8 @@
         "duration": 20,
         "frameNumber": 249,
         "totalBytesOut": 1543248,
-        "totalSamples": 239040,
-        "totalDuration": 4980,
+        "totalSamples": 238728,
+        "totalDuration": 4973.5,
         "crc32": 809002648
       }
     ],
@@ -15175,8 +15175,8 @@
     "pageSequenceNumber": 26,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 240000,
-    "totalDuration": 5000,
+    "totalSamples": 239688,
+    "totalDuration": 4993.5,
     "totalBytesOut": 1548655
   },
   {
@@ -15236,8 +15236,8 @@
         "duration": 20,
         "frameNumber": 250,
         "totalBytesOut": 1548655,
-        "totalSamples": 240000,
-        "totalDuration": 5000,
+        "totalSamples": 239688,
+        "totalDuration": 4993.5,
         "crc32": -1356368688
       },
       {
@@ -15295,8 +15295,8 @@
         "duration": 20,
         "frameNumber": 251,
         "totalBytesOut": 1555118,
-        "totalSamples": 240960,
-        "totalDuration": 5020,
+        "totalSamples": 240648,
+        "totalDuration": 5013.5,
         "crc32": -1982628886
       },
       {
@@ -15354,8 +15354,8 @@
         "duration": 20,
         "frameNumber": 252,
         "totalBytesOut": 1560541,
-        "totalSamples": 241920,
-        "totalDuration": 5040,
+        "totalSamples": 241608,
+        "totalDuration": 5033.5,
         "crc32": 1233813843
       },
       {
@@ -15413,8 +15413,8 @@
         "duration": 20,
         "frameNumber": 253,
         "totalBytesOut": 1565996,
-        "totalSamples": 242880,
-        "totalDuration": 5060,
+        "totalSamples": 242568,
+        "totalDuration": 5053.5,
         "crc32": -1654519335
       },
       {
@@ -15472,8 +15472,8 @@
         "duration": 20,
         "frameNumber": 254,
         "totalBytesOut": 1571339,
-        "totalSamples": 243840,
-        "totalDuration": 5080,
+        "totalSamples": 243528,
+        "totalDuration": 5073.5,
         "crc32": -1828693488
       },
       {
@@ -15531,8 +15531,8 @@
         "duration": 20,
         "frameNumber": 255,
         "totalBytesOut": 1576794,
-        "totalSamples": 244800,
-        "totalDuration": 5100,
+        "totalSamples": 244488,
+        "totalDuration": 5093.5,
         "crc32": -1580622113
       },
       {
@@ -15590,8 +15590,8 @@
         "duration": 20,
         "frameNumber": 256,
         "totalBytesOut": 1582345,
-        "totalSamples": 245760,
-        "totalDuration": 5120,
+        "totalSamples": 245448,
+        "totalDuration": 5113.5,
         "crc32": 897882577
       },
       {
@@ -15649,8 +15649,8 @@
         "duration": 20,
         "frameNumber": 257,
         "totalBytesOut": 1587784,
-        "totalSamples": 246720,
-        "totalDuration": 5140,
+        "totalSamples": 246408,
+        "totalDuration": 5133.5,
         "crc32": -1986983491
       },
       {
@@ -15708,8 +15708,8 @@
         "duration": 20,
         "frameNumber": 258,
         "totalBytesOut": 1593207,
-        "totalSamples": 247680,
-        "totalDuration": 5160,
+        "totalSamples": 247368,
+        "totalDuration": 5153.5,
         "crc32": -63944100
       },
       {
@@ -15767,8 +15767,8 @@
         "duration": 20,
         "frameNumber": 259,
         "totalBytesOut": 1598534,
-        "totalSamples": 248640,
-        "totalDuration": 5180,
+        "totalSamples": 248328,
+        "totalDuration": 5173.5,
         "crc32": -413201492
       },
       {
@@ -15826,8 +15826,8 @@
         "duration": 20,
         "frameNumber": 260,
         "totalBytesOut": 1603829,
-        "totalSamples": 249600,
-        "totalDuration": 5200,
+        "totalSamples": 249288,
+        "totalDuration": 5193.5,
         "crc32": 699009772
       }
     ],
@@ -15840,8 +15840,8 @@
     "pageSequenceNumber": 27,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 250560,
-    "totalDuration": 5220,
+    "totalSamples": 250248,
+    "totalDuration": 5213.5,
     "totalBytesOut": 1610451
   },
   {
@@ -15901,8 +15901,8 @@
         "duration": 20,
         "frameNumber": 261,
         "totalBytesOut": 1610451,
-        "totalSamples": 250560,
-        "totalDuration": 5220,
+        "totalSamples": 250248,
+        "totalDuration": 5213.5,
         "crc32": 718159474
       },
       {
@@ -15960,8 +15960,8 @@
         "duration": 20,
         "frameNumber": 262,
         "totalBytesOut": 1617073,
-        "totalSamples": 251520,
-        "totalDuration": 5240,
+        "totalSamples": 251208,
+        "totalDuration": 5233.5,
         "crc32": -1413937968
       },
       {
@@ -16019,8 +16019,8 @@
         "duration": 20,
         "frameNumber": 263,
         "totalBytesOut": 1622352,
-        "totalSamples": 252480,
-        "totalDuration": 5260,
+        "totalSamples": 252168,
+        "totalDuration": 5253.5,
         "crc32": -1526198236
       },
       {
@@ -16078,8 +16078,8 @@
         "duration": 20,
         "frameNumber": 264,
         "totalBytesOut": 1628847,
-        "totalSamples": 253440,
-        "totalDuration": 5280,
+        "totalSamples": 253128,
+        "totalDuration": 5273.5,
         "crc32": -438728375
       },
       {
@@ -16137,8 +16137,8 @@
         "duration": 20,
         "frameNumber": 265,
         "totalBytesOut": 1634142,
-        "totalSamples": 254400,
-        "totalDuration": 5300,
+        "totalSamples": 254088,
+        "totalDuration": 5293.5,
         "crc32": -1982500023
       },
       {
@@ -16196,8 +16196,8 @@
         "duration": 20,
         "frameNumber": 266,
         "totalBytesOut": 1639533,
-        "totalSamples": 255360,
-        "totalDuration": 5320,
+        "totalSamples": 255048,
+        "totalDuration": 5313.5,
         "crc32": -1861138525
       },
       {
@@ -16255,8 +16255,8 @@
         "duration": 20,
         "frameNumber": 267,
         "totalBytesOut": 1644812,
-        "totalSamples": 256320,
-        "totalDuration": 5340,
+        "totalSamples": 256008,
+        "totalDuration": 5333.5,
         "crc32": -1756083711
       },
       {
@@ -16314,8 +16314,8 @@
         "duration": 20,
         "frameNumber": 268,
         "totalBytesOut": 1650091,
-        "totalSamples": 257280,
-        "totalDuration": 5360,
+        "totalSamples": 256968,
+        "totalDuration": 5353.5,
         "crc32": -456560048
       },
       {
@@ -16373,8 +16373,8 @@
         "duration": 20,
         "frameNumber": 269,
         "totalBytesOut": 1655338,
-        "totalSamples": 258240,
-        "totalDuration": 5380,
+        "totalSamples": 257928,
+        "totalDuration": 5373.5,
         "crc32": -1537883522
       },
       {
@@ -16432,8 +16432,8 @@
         "duration": 20,
         "frameNumber": 270,
         "totalBytesOut": 1660521,
-        "totalSamples": 259200,
-        "totalDuration": 5400,
+        "totalSamples": 258888,
+        "totalDuration": 5393.5,
         "crc32": 725695356
       },
       {
@@ -16491,8 +16491,8 @@
         "duration": 20,
         "frameNumber": 271,
         "totalBytesOut": 1665704,
-        "totalSamples": 260160,
-        "totalDuration": 5420,
+        "totalSamples": 259848,
+        "totalDuration": 5413.5,
         "crc32": 1566811333
       }
     ],
@@ -16505,8 +16505,8 @@
     "pageSequenceNumber": 28,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 261120,
-    "totalDuration": 5440,
+    "totalSamples": 260808,
+    "totalDuration": 5433.5,
     "totalBytesOut": 1671127
   },
   {
@@ -16566,8 +16566,8 @@
         "duration": 20,
         "frameNumber": 272,
         "totalBytesOut": 1671127,
-        "totalSamples": 261120,
-        "totalDuration": 5440,
+        "totalSamples": 260808,
+        "totalDuration": 5433.5,
         "crc32": 1855735479
       },
       {
@@ -16625,8 +16625,8 @@
         "duration": 20,
         "frameNumber": 273,
         "totalBytesOut": 1676406,
-        "totalSamples": 262080,
-        "totalDuration": 5460,
+        "totalSamples": 261768,
+        "totalDuration": 5453.5,
         "crc32": 1274091220
       },
       {
@@ -16684,8 +16684,8 @@
         "duration": 20,
         "frameNumber": 274,
         "totalBytesOut": 1681845,
-        "totalSamples": 263040,
-        "totalDuration": 5480,
+        "totalSamples": 262728,
+        "totalDuration": 5473.5,
         "crc32": -798188697
       },
       {
@@ -16743,8 +16743,8 @@
         "duration": 20,
         "frameNumber": 275,
         "totalBytesOut": 1688052,
-        "totalSamples": 264000,
-        "totalDuration": 5500,
+        "totalSamples": 263688,
+        "totalDuration": 5493.5,
         "crc32": 146917938
       },
       {
@@ -16802,8 +16802,8 @@
         "duration": 20,
         "frameNumber": 276,
         "totalBytesOut": 1694307,
-        "totalSamples": 264960,
-        "totalDuration": 5520,
+        "totalSamples": 264648,
+        "totalDuration": 5513.5,
         "crc32": 804937165
       },
       {
@@ -16861,8 +16861,8 @@
         "duration": 20,
         "frameNumber": 277,
         "totalBytesOut": 1700642,
-        "totalSamples": 265920,
-        "totalDuration": 5540,
+        "totalSamples": 265608,
+        "totalDuration": 5533.5,
         "crc32": 646815271
       },
       {
@@ -16920,8 +16920,8 @@
         "duration": 20,
         "frameNumber": 278,
         "totalBytesOut": 1705841,
-        "totalSamples": 266880,
-        "totalDuration": 5560,
+        "totalSamples": 266568,
+        "totalDuration": 5553.5,
         "crc32": -1813837250
       },
       {
@@ -16979,8 +16979,8 @@
         "duration": 20,
         "frameNumber": 279,
         "totalBytesOut": 1711072,
-        "totalSamples": 267840,
-        "totalDuration": 5580,
+        "totalSamples": 267528,
+        "totalDuration": 5573.5,
         "crc32": 973462872
       },
       {
@@ -17038,8 +17038,8 @@
         "duration": 20,
         "frameNumber": 280,
         "totalBytesOut": 1717263,
-        "totalSamples": 268800,
-        "totalDuration": 5600,
+        "totalSamples": 268488,
+        "totalDuration": 5593.5,
         "crc32": 1764320647
       },
       {
@@ -17097,8 +17097,8 @@
         "duration": 20,
         "frameNumber": 281,
         "totalBytesOut": 1723582,
-        "totalSamples": 269760,
-        "totalDuration": 5620,
+        "totalSamples": 269448,
+        "totalDuration": 5613.5,
         "crc32": -195985231
       },
       {
@@ -17156,8 +17156,8 @@
         "duration": 20,
         "frameNumber": 282,
         "totalBytesOut": 1728893,
-        "totalSamples": 270720,
-        "totalDuration": 5640,
+        "totalSamples": 270408,
+        "totalDuration": 5633.5,
         "crc32": 1057001891
       }
     ],
@@ -17170,8 +17170,8 @@
     "pageSequenceNumber": 29,
     "samples": 10560,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 271680,
-    "totalDuration": 5660,
+    "totalSamples": 271368,
+    "totalDuration": 5653.5,
     "totalBytesOut": 1734316
   },
   {
@@ -17231,8 +17231,8 @@
         "duration": 20,
         "frameNumber": 283,
         "totalBytesOut": 1734316,
-        "totalSamples": 271680,
-        "totalDuration": 5660,
+        "totalSamples": 271368,
+        "totalDuration": 5653.5,
         "crc32": 1961895728
       },
       {
@@ -17290,8 +17290,8 @@
         "duration": 20,
         "frameNumber": 284,
         "totalBytesOut": 1740619,
-        "totalSamples": 272640,
-        "totalDuration": 5680,
+        "totalSamples": 272328,
+        "totalDuration": 5673.5,
         "crc32": -1831618407
       },
       {
@@ -17349,8 +17349,8 @@
         "duration": 20,
         "frameNumber": 285,
         "totalBytesOut": 1745738,
-        "totalSamples": 273600,
-        "totalDuration": 5700,
+        "totalSamples": 273288,
+        "totalDuration": 5693.5,
         "crc32": 726649374
       },
       {
@@ -17408,8 +17408,8 @@
         "duration": 20,
         "frameNumber": 286,
         "totalBytesOut": 1751945,
-        "totalSamples": 274560,
-        "totalDuration": 5720,
+        "totalSamples": 274248,
+        "totalDuration": 5713.5,
         "crc32": -1914949227
       },
       {
@@ -17467,8 +17467,8 @@
         "duration": 20,
         "frameNumber": 287,
         "totalBytesOut": 1758088,
-        "totalSamples": 275520,
-        "totalDuration": 5740,
+        "totalSamples": 275208,
+        "totalDuration": 5733.5,
         "crc32": 487697947
       },
       {
@@ -17526,8 +17526,8 @@
         "duration": 20,
         "frameNumber": 288,
         "totalBytesOut": 1764135,
-        "totalSamples": 276480,
-        "totalDuration": 5760,
+        "totalSamples": 276168,
+        "totalDuration": 5753.5,
         "crc32": 1879107776
       },
       {
@@ -17585,8 +17585,8 @@
         "duration": 20,
         "frameNumber": 289,
         "totalBytesOut": 1770278,
-        "totalSamples": 277440,
-        "totalDuration": 5780,
+        "totalSamples": 277128,
+        "totalDuration": 5773.5,
         "crc32": -984084091
       },
       {
@@ -17644,8 +17644,8 @@
         "duration": 20,
         "frameNumber": 290,
         "totalBytesOut": 1775301,
-        "totalSamples": 278400,
-        "totalDuration": 5800,
+        "totalSamples": 278088,
+        "totalDuration": 5793.5,
         "crc32": -653098361
       },
       {
@@ -17703,8 +17703,8 @@
         "duration": 20,
         "frameNumber": 291,
         "totalBytesOut": 1780404,
-        "totalSamples": 279360,
-        "totalDuration": 5820,
+        "totalSamples": 279048,
+        "totalDuration": 5813.5,
         "crc32": -678919018
       },
       {
@@ -17762,8 +17762,8 @@
         "duration": 20,
         "frameNumber": 292,
         "totalBytesOut": 1786483,
-        "totalSamples": 280320,
-        "totalDuration": 5840,
+        "totalSamples": 280008,
+        "totalDuration": 5833.5,
         "crc32": 991864901
       }
     ],
@@ -17776,8 +17776,8 @@
     "pageSequenceNumber": 30,
     "samples": 9600,
     "streamSerialNumber": 1188007568,
-    "totalSamples": 281280,
-    "totalDuration": 5860,
+    "totalSamples": 280968,
+    "totalDuration": 5853.5,
     "totalBytesOut": 1792626
   }
 ]
