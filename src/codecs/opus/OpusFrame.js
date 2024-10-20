@@ -20,10 +20,6 @@ import CodecFrame from "../CodecFrame.js";
 
 export default class OpusFrame extends CodecFrame {
   constructor(data, header, samples) {
-    super(
-      header,
-      data,
-      samples
-    );
+    super(header, data, samples);
   }
 }

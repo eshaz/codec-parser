@@ -76,11 +76,14 @@ export default class OpusParser extends Parser {
             if (this._preSkipRemaining === null)
               this._preSkipRemaining = header[preSkip];
 
-            let samples = header[frameSize] * header[frameCount] / 1000 * header[sampleRate];
+            let samples =
+              ((header[frameSize] * header[frameCount]) / 1000) *
+              header[sampleRate];
 
             if (this._preSkipRemaining > 0) {
               this._preSkipRemaining -= samples;
-              samples = this._preSkipRemaining < 0 ? -this._preSkipRemaining : 0;
+              samples =
+                this._preSkipRemaining < 0 ? -this._preSkipRemaining : 0;
             }
 
             return new OpusFrame(segment, header, samples);
