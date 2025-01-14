@@ -148,8 +148,8 @@ declare class CodecParser<
   constructor(mimeType: MimeType, options?: ICodecParserOptions);
 
   public parseAll(file: Uint8Array): T[];
-  public parseChunk(chunk: Uint8Array): Iterator<T>;
-  public flush(): Iterator<T>;
+  public parseChunk(chunk: Uint8Array): Iterable<T>;
+  public flush(): Iterable<T>;
 }
 
 export default CodecParser;
