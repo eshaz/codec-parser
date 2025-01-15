@@ -131,25 +131,88 @@ declare class OggPage {
 }
 
 declare interface ICodecParserOptions {
-  onCodec?: (codec: CodecValue) => any;
+  /**
+   * Called when the output codec is determined.
+   * @param codec See {@link CodecParser.codec}
+   */
+  onCodec?: (codec: CodecValue) => void;
+  /**
+   * Called once when the codec header is first parsed.
+   * @param codecHeaderData Object containing codec header information.
+   */
+  onCodecHeader?: (codecHeaderData: CodecHeader) => void;
+  /**
+   * Called when there is a change in the codec header.
+   * @param codecHeaderData Object containing codec header information that was updated.
+   * @param updateTimestamp Timestamp in milliseconds when the codec information was updated.
+   */
   onCodecUpdate?: (
     codecHeaderData: CodecHeader,
     updateTimestamp: number,
-  ) => any;
+  ) => void;
+  /** Set to true to enable warning and error messages. */
   enableLogging?: boolean;
+  /** 
+   * Set to false to disable the crc32 calculation for each frame.
+   * This will save a marginal amount of execution time if you don't need this information. 
+   */
   enableFrameCRC32?: boolean;
 }
 
 declare class CodecParser<
   T extends CodecFrame | OggPage = CodecFrame | OggPage,
 > {
+  /** 
+   * The detected codec of the audio data. 
+   * 
+   * **Note**:  For Ogg streams, the codec will only be available after Ogg identification header has been parsed.
+   * 
+   * Possible Values:
+   * - MPEG (MP3) - `"mpeg"`
+   * - AAC - `"aac"`
+   * - FLAC - `"flac"`
+   * - Opus - `"opus"`
+   * - Vorbis - `"vorbis"`
+   */
   public readonly codec: CodecValue;
 
+  /**
+   * Creates a new instance of CodecParser that can be used to parse audio for a given mimetype.
+   * @param mimeType Incoming audio codec or container. Possible values:
+   * - MP3 - `audio/mpeg`
+   * - AAC - `audio/aac`, `audio/aacp`
+   * - FLAC - `audio/flac`
+   * - Ogg FLAC - `application/ogg`, `audio/ogg`
+   * - Ogg Opus - `application/ogg`, `audio/ogg`
+   * - Ogg Vorbis - `application/ogg`, `audio/ogg`
+   * @param options See {@link ICodecParserOptions}.
+   */
   constructor(mimeType: MimeType, options?: ICodecParserOptions);
 
+  /**
+   * Function that takes a audio data for an entire file.
+   * @param file `Uint8Array` of audio data for a complete audio stream / file.
+   * @returns Returns an Array of {@link CodecFrame}s or {@link OggPage}s for the entire file.
+   */
   public parseAll(file: Uint8Array): T[];
-  public parseChunk(chunk: Uint8Array): Iterator<T>;
-  public flush(): Iterator<T>;
+  /**
+   * Generator function that yields frames for a partial chunk of audio data from an audio stream or file.
+   * @param chunk `Uint8Array` of audio data.
+   * @returns Returns Iterable that yields a parsed {@link CodecFrame} or {@link OggPage} for each iteration.
+   */
+  public parseChunk(chunk: Uint8Array): Iterable<T>;
+  /**
+   * Generator function that yields any buffered frames that are stored after `parseChunk()` completes.
+   * 
+   * This function can be used after parseChunk has been called with all of the audio data you intend to parse.
+   * The final iterator returned by `parseChunk()` must be consumed before calling `flush()`.
+   * 
+   * Calling `flush()` will reset the internal state of the CodecParser instance.
+   * You may re-use the instance to parse additional streams.
+   * 
+   * @returns Returns Iterable that yields a parsed {@link CodecFrame} or {@link OggPage} for each iteration.
+   */
+  public flush(): Iterable<T>;
 }
 
 export default CodecParser;
